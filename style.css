@@ -212,20 +212,27 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .reply > .aside-line { margin-top: var(--s-3); font-size: var(--t-4); color: var(--text-3); }
 .reply > .panel + p, .reply > .attach + p { margin-top: var(--s-5); }
 
-/* The install card is Yardlet's approval card: what is asked, the command, then the two answers. */
+/* The install card is Yardlet's approval card: what is asked, the command, then the two answers. Its box is a
+   container, so the buttons drop below the text whenever the card itself is narrow, sidebar or not. */
+.approve-box { container-type: inline-size; margin-top: var(--s-6); }
 .approve {
-  margin-top: var(--s-6); padding: var(--s-4) var(--s-4) var(--s-4) var(--s-5);
+  padding: var(--s-4) var(--s-4) var(--s-4) var(--s-5);
   background: var(--card); border-radius: 14px;
   box-shadow: 0 0 0 1px var(--card-ring), 0 2px 8px rgb(0 0 0 / 0.04);
-  display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: var(--s-5); row-gap: var(--s-3);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: var(--s-5); row-gap: var(--s-3);
 }
 .approve-head { display: flex; gap: var(--s-3); align-items: flex-start; }
 .approve-icon { flex: none; width: 20px; height: 20px; margin-top: 2px; color: var(--text-2); stroke-width: 1.6; }
 .approve h2, .approve h3 { font: 600 var(--t-3)/1.35 var(--font); letter-spacing: 0; max-width: none; }
 .approve-head p { margin-top: 2px; font-size: var(--t-4); color: var(--text-3); }
-.approve-cmd { grid-column: 1; padding-left: calc(20px + var(--s-3)); }
-.approve-cmd code { font-size: var(--t-4); padding: var(--s-1) var(--s-2); }
+/* The command stays on one line; when the card is too narrow for it, only this line scrolls. */
+.approve-cmd { grid-column: 1; min-width: 0; padding-left: calc(20px + var(--s-3)); overflow-x: auto; }
+.approve-cmd code { font-size: var(--t-4); padding: var(--s-1) var(--s-2); white-space: nowrap; }
 .approve-actions { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: var(--s-2); }
+@container (max-width: 720px) {
+  .approve { grid-template-columns: minmax(0, 1fr); }
+  .approve-actions { grid-column: 1; grid-row: auto; padding-left: calc(20px + var(--s-3)); margin-top: var(--s-1); }
+}
 
 /* Attachments. Recordings and whole-window screens take the pane's width, not the reading column's, so the
    app's own text stays legible; a settings sheet is already legible at the column's width. */
@@ -335,10 +342,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
   .missing { padding: var(--s-8) var(--s-4); }
   .ask { max-width: 88%; }
   .reply { margin-top: var(--s-5); }
-  .approve { grid-template-columns: 1fr; padding: var(--s-4); }
+  .approve { grid-template-columns: minmax(0, 1fr); padding: var(--s-4); }
   .approve-cmd { padding-left: 0; }
-  .approve-cmd code { font-size: var(--t-5); white-space: nowrap; }
-  .approve-actions { grid-column: 1; grid-row: auto; flex-direction: column-reverse; }
+  .approve-cmd code { font-size: var(--t-5); padding: var(--s-1); }
+  .approve-actions { grid-column: 1; grid-row: auto; flex-direction: column-reverse; padding-left: 0; margin-top: 0; }
   .approve-actions .btn { height: 44px; }
   .shot { aspect-ratio: 1036 / 1800; max-height: 80vh; margin-inline: auto; border-radius: 14px; }
   /* A settings sheet is cropped to its content and shown larger, so its text stays legible on a phone. */
