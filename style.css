@@ -127,8 +127,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 /* The desk and the window on it. A strip the desk's color keeps the scrolled thread out of the gap above. */
 .desk { padding: var(--desk-pad); }
 .desk::before { content: ""; position: fixed; inset: 0 0 auto; height: var(--desk-pad); background: var(--desk); z-index: 20; }
+/* On a large display the window stays window-sized, centered on the desk, as it would on a Mac. */
 .win {
   display: grid; grid-template-columns: var(--side-w) minmax(0, 1fr);
+  max-width: 1600px; margin: 0 auto;
   min-height: calc(100vh - 2 * var(--desk-pad));
   background: var(--win);
   border-radius: var(--r-win);
@@ -227,9 +229,9 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .approve h2, .approve h3 { font: 600 var(--t-3)/1.35 var(--font); letter-spacing: 0; max-width: none; }
 .approve-head p { margin-top: 2px; font-size: var(--t-4); color: var(--text-3); }
 /* The command stays on one line; when the card is too narrow for it, only this line scrolls. */
-.approve-cmd { grid-column: 1; min-width: 0; padding-left: calc(20px + var(--s-3)); overflow-x: auto; }
+.approve-cmd { grid-column: 1 / -1; min-width: 0; padding-left: calc(20px + var(--s-3)); overflow-x: auto; }
 .approve-cmd code { font-size: var(--t-4); padding: var(--s-1) var(--s-2); white-space: nowrap; }
-.approve-actions { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: var(--s-2); }
+.approve-actions { grid-column: 2; grid-row: 1; display: flex; gap: var(--s-2); }
 @container (max-width: 720px) {
   .approve { grid-template-columns: minmax(0, 1fr); }
   .approve-actions { grid-column: 1; grid-row: auto; padding-left: calc(20px + var(--s-3)); margin-top: var(--s-1); }
@@ -238,8 +240,12 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 /* Attachments. Recordings and whole-window screens take the pane's width, not the reading column's, so the
    app's own text stays legible; a settings sheet is already legible at the column's width. */
 .attach { margin-top: var(--s-6); }
-.attach.wide { --w: min(1100px, 100cqw - 2 * var(--s-6)); }
-@media (min-width: 641px) { .attach.wide { margin-inline: calc((100% - var(--w)) / 2); } }
+.attach.wide { --w: min(1100px, 100cqw - 2 * var(--s-6)); --r: min(var(--thread), 100cqw - 2 * var(--s-6)); }
+@media (min-width: 641px) {
+  .attach.wide { margin-inline: calc((100% - var(--w)) / 2); }
+  /* The caption goes back to the reading column, so its left edge lines up with the text above. */
+  .attach.wide figcaption { margin-inline: calc((var(--w) - var(--r)) / 2); }
+}
 .shot {
   position: relative; overflow: hidden;
   aspect-ratio: 2240 / 1383;
@@ -343,7 +349,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
   .missing { padding: var(--s-8) var(--s-4); }
   .ask { max-width: 88%; }
   .reply { margin-top: var(--s-5); }
-  .approve { grid-template-columns: minmax(0, 1fr); padding: var(--s-4); }
+  .approve { grid-template-columns: minmax(0, 1fr); padding: var(--s-4) var(--s-3); }
   .approve-cmd { padding-left: 0; }
   .approve-cmd code { font-size: var(--t-5); padding: var(--s-1); }
   .approve-actions { grid-column: 1; grid-row: auto; flex-direction: column-reverse; padding-left: 0; margin-top: 0; }
