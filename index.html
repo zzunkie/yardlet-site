@@ -7,6 +7,8 @@
 <title>Yardlet: the Mac app for the coding agents you already use</title>
 <meta name="description" content="Yardlet is a free, open-source Mac app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and session history. Stop whenever you like; your agents stay as they were.">
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yardlet">
 <meta property="og:title" content="Yardlet: the Mac app for the coding agents you already use">
@@ -44,7 +46,7 @@
             <li><a class="task" href="#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
             <li><a class="task" href="#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors and tools</a></li>
             <li><a class="task" href="#google"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>How Google data is used</a></li>
-            <li><a class="task" href="#privacy"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.25 7V5a2.75 2.75 0 0 1 5.5 0v2"/></svg>What leaves your Mac</a></li>
+            <li><a class="task" href="#privacy"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.25 7V5a2.75 2.75 0 0 1 5.5 0v2"/></svg>Where your data goes</a></li>
             <li><a class="task" href="#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
           </ul>
         </nav>
@@ -78,7 +80,7 @@
             <li><a href="#review">Review, then merge</a></li>
             <li><a href="#connectors">Connectors and tools</a></li>
             <li><a href="#google">How Google data is used</a></li>
-            <li><a href="#privacy">What leaves your Mac</a></li>
+            <li><a href="#privacy">Where your data goes</a></li>
             <li><a href="#install">Install</a></li>
             <li class="sep"><a href="privacy.html">Privacy policy</a></li>
             <li><a href="terms.html">Terms of use</a></li>
@@ -100,9 +102,9 @@
           <p class="ask"><span class="sr-only">Question: </span>I already use Codex and Claude Code. What does Yardlet change?</p>
           <div class="reply">
             <h1 id="what-title">It runs them side&nbsp;by&nbsp;side, still signed in as&nbsp;you.</h1>
-            <p class="lead">Yardlet is a free, open-source Mac app that starts the agent CLIs you already use, with the
-              sign-in they already have. Each agent keeps its own agent loop and session history, and all of them get
-              the same sidebar, conversation view, composer and approval cards.</p>
+            <p class="lead">Yardlet is a free, open-source Mac app. It starts the agent CLIs you already use with the
+              sign-in they already have, and gives all of them the same sidebar, conversation view, composer and
+              approval cards.</p>
 
             <div class="approve-box">
             <section class="approve" aria-labelledby="get-title">
@@ -253,7 +255,9 @@
             <figure class="attach">
               <div class="sheet">
                 <picture>
-                  <source media="(prefers-color-scheme: dark)" srcset="screens/explore-accounts-dark.png">
+                  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/explore-accounts-phone-dark.png" width="858" height="799">
+                  <source media="(max-width: 640px)" srcset="screens/explore-accounts-phone-light.png" width="858" height="799">
+                  <source media="(prefers-color-scheme: dark)" srcset="screens/explore-accounts-dark.png" width="1620" height="950">
                   <img src="screens/explore-accounts-light.png" width="1620" height="950" loading="lazy"
                        alt="Settings, Accounts: two Codex and two Claude Code accounts, each with its five-hour and seven-day limits and when they reset.">
                 </picture>
@@ -294,7 +298,9 @@
             <figure class="attach">
               <div class="sheet">
                 <picture>
-                  <source media="(prefers-color-scheme: dark)" srcset="screens/explore-connectors-dark.png">
+                  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/explore-connectors-phone-dark.png" width="710" height="619">
+                  <source media="(max-width: 640px)" srcset="screens/explore-connectors-phone-light.png" width="710" height="619">
+                  <source media="(prefers-color-scheme: dark)" srcset="screens/explore-connectors-dark.png" width="1620" height="1080">
                   <img src="screens/explore-connectors-light.png" width="1620" height="1080" loading="lazy"
                        alt="Settings, Connectors: GitHub, Linear, Notion, Sentry and Slack connected for every task.">
                 </picture>
@@ -337,9 +343,10 @@
           <div class="reply">
             <h2 id="privacy-title">Nothing goes to its developer.</h2>
             <p>Yardlet has no analytics and no server that receives your work. Its task list and drafts stay in
-              <code>~/.yardlet</code>. This is everything that leaves your Mac:</p>
+              <code>~/.yardlet</code>, and its only online services are an update check and, if you pair a phone, a
+              relay.</p>
             <section class="panel" aria-labelledby="leaves-title">
-              <h3 id="leaves-title">Where data goes</h3>
+              <h3 id="leaves-title">What goes where</h3>
               <dl class="rows">
                 <div><dt>Your AI providers</dt><dd>What an agent reads, including through a connector, goes to that agent's provider under your account. Training follows that account's settings.</dd></div>
                 <div><dt>Services you connect</dt><dd>Calls go straight from your Mac to the service. Sign-ins are kept in the macOS Keychain.</dd></div>
