@@ -181,9 +181,9 @@
           <p class="ask"><span class="sr-only">You: </span>Which agents does it work with?</p>
           <div class="reply">
             <h2 id="agents-title">The ones you already use, with the same&nbsp;controls.</h2>
-            <p>Each agent runs from its own CLI, as it would in Terminal, and all of them share one sidebar, conversation
-              view, composer and approval cards. The controls stay in the same place; the choices and values come from
-              each agent. Install and sign in to at least one of them first.</p>
+            <p>Yardlet runs each agent from its own CLI and gives all of them one sidebar, conversation view, composer and
+              approval cards. The controls stay in the same place; the choices and values come from each agent. Install
+              and sign in to at least one of them first.</p>
             <ul class="agent-names" aria-label="Agents Yardlet works with">
               <li>Codex</li><li>Claude Code</li><li>OpenCode</li><li>Cursor Agent</li><li>Antigravity CLI</li>
               <li>Kimi Code</li><li>Grok Build</li><li>Hermes Agent</li><li>Muse Code</li><li>Pi</li>
@@ -217,10 +217,9 @@
           <p class="ask"><span class="sr-only">You: </span>Have Codex review what Claude Code just wrote.</p>
           <div class="reply">
             <h2 id="together-title">Your agents hand work to each&nbsp;other.</h2>
-            <p>Every agent Yardlet starts gets its session tools, so the work goes further than agents running side by
-              side. A task can read another task, message it while it works, start a task under itself on any agent and
-              account, ask a one&#8209;off subagent on another agent and get its answer, wait for the results, and put work on
-              a schedule.</p>
+            <p>One task can read another, message it while it works, start a task under itself on any agent and account,
+              run a one&#8209;off subagent on another agent and get its answer, wait for the results, and put work on a
+              schedule. Every agent Yardlet starts gets these session tools.</p>
             <section class="panel" aria-labelledby="tools-title">
               <h3 id="tools-title">Tools every agent gets from Yardlet</h3>
               <dl class="rows tools">
@@ -240,9 +239,9 @@
           <p class="ask"><span class="sr-only">You: </span>Tell the deploy task: ship it once the checks pass.</p>
           <div class="reply">
             <h2 id="approvals-title">Your approval travels in your own&nbsp;words.</h2>
-            <p>When one agent passes your go-ahead to another, it attaches the words you typed. Yardlet checks that they
-              are really in your messages in that task, adds when you sent them, and refuses to send if a single quote is
-              missing. So the receiving agent can tell what you said from what another agent says you said.</p>
+            <p>When one agent passes your approval to another, your own words go with it, with the time you sent them.
+              Yardlet checks that the words are really in your messages in that task and refuses to send if one is
+              missing, so the receiving agent can tell what you said from what another agent says you said.</p>
             <figure class="trace">
               <figcaption>What the deploy task reads</figcaption>
               <pre><code>The checks passed on #128. Ship it.
@@ -285,9 +284,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Start this on whichever account has the most left.</p>
           <div class="reply">
             <h2 id="accounts-title">Every account, with its limits in&nbsp;view.</h2>
-            <p>No separate account switcher: register more than one account per provider, see each account's session and
-              weekly limits, and start a task on the one with the most left. A saved task keeps the account it started on.
-              Each agent runs with the sign-in its CLI already has; Yardlet doesn't copy it or stand in for it.</p>
+            <p>Yardlet shows each account's session and weekly limits, with more than one account per provider. When an
+              agent starts a task or a subagent, it goes on the account with the most room left, and tasks started
+              together spread across your accounts. A saved task keeps the account it started on. Each agent runs with
+              the sign-in its CLI already has; Yardlet doesn't copy it or stand in for it.</p>
             <figure class="attach">
               <div class="sheet">
                 <picture>
@@ -306,10 +306,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Sign in to the dashboard and pull this week's numbers.</p>
           <div class="reply">
             <h2 id="browser-title">A browser your agents can drive, with your&nbsp;sign-ins.</h2>
-            <p>A Chromium panel sits beside the conversation, and agents drive it with browser tools while you watch. No
-              separate password manager for them: a sign-in you saved in Yardlet's vault goes into the page without the
-              agent ever seeing it, and only on the site it belongs to. A step only you can do, like a CAPTCHA or a
-              payment approval, comes to you as a handed-over tab while the agent waits.</p>
+            <p>Agents drive a Chromium panel beside the conversation with browser tools while you watch. They fill a
+              sign-in you saved in Yardlet's vault into the page without seeing the password, and only on the site it
+              belongs to. A step only you can do, like a CAPTCHA or a payment approval, comes to you as a handed-over tab
+              while the agent waits.</p>
             <figure class="trace">
               <figcaption>What the agent gets back after filling a saved sign-in</figcaption>
               <pre><code>Filled the username and password of “Acme dashboard” into the form on dashboard.acme.dev and submitted it. The values are not shown to you.</code></pre>
@@ -330,10 +330,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Draft a reply to Jordan and put the meeting on my calendar.</p>
           <div class="reply">
             <h2 id="connectors-title">Set up a connector once, and your agents get&nbsp;it.</h2>
-            <p>Gmail, Google Calendar and Google Drive run through Yardlet's built-in MCP server on your Mac. GitHub, Slack
-              and dozens of remote MCP services connect with one sign-in, and you can find more in the MCP registries,
-              Pipedream, Composio and Make, or bring in the servers your other apps already use. A connector set up once is
-              offered to the agents you run, and can be turned off per task.</p>
+            <p>A connector you set up once is offered to the agents you run, and can be turned off per task. Gmail, Google
+              Calendar and Google Drive run through Yardlet's built-in MCP server on your Mac; GitHub, Slack and dozens of
+              remote MCP services connect with one sign-in. You can find more in MCP registries, or bring in the servers
+              your other apps already use.</p>
             <figure class="attach">
               <div class="sheet">
                 <picture>
@@ -352,9 +352,11 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Can I answer my agents from my phone?</p>
           <div class="reply">
             <h2 id="phone-title">Answer approvals and start tasks from your&nbsp;phone.</h2>
-            <p>An Android app, in closed testing for now, pairs with your Mac by QR code and follows the tasks running in
-              Yardlet. On the same network it connects directly; away from it, through Yardlet's relay. Either way the
-              messages are end-to-end encrypted, and the relay can neither read nor store them.</p>
+            <p>An Android app pairs with your Mac by QR code and follows the tasks running in Yardlet, so you can answer
+              approvals and start tasks while you are away. On the same network it connects directly; away from it,
+              through Yardlet's relay. Either way the messages are end-to-end encrypted, and the relay can neither read
+              nor store them.</p>
+            <p class="aside-line">The Android app isn't public yet.</p>
           </div>
         </article>
 
