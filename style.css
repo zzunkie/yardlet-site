@@ -270,6 +270,26 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .pause[aria-pressed="true"] .icon-play { display: block; }
 .cap-phone { display: none; }
 
+/* A heading inside an answer that covers several things. */
+.reply > .sub { margin-top: var(--s-7); font: 700 var(--t-3)/1.35 var(--display); color: var(--text); }
+.reply > .sub + p { margin-top: var(--s-2); }
+
+/* Text an agent reads, exactly as Yardlet writes it: what the tool returns or what the other task receives. */
+.trace { margin-top: var(--s-5); }
+.trace + .trace { margin-top: var(--s-4); }
+.trace figcaption { font-size: var(--t-4); color: var(--text-3); margin-bottom: var(--s-2); }
+.trace pre {
+  margin: 0; padding: var(--s-4) var(--s-5);
+  background: var(--card-fill); border-radius: 12px; box-shadow: 0 0 0 1px var(--card-ring);
+  font: var(--t-4)/1.6 var(--mono); color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.trace code { font: inherit; background: none; padding: 0; }
+.trace .q { display: inline-block; padding-left: var(--s-3); border-left: 2px solid var(--link); color: var(--text); }
+
+/* Tool names beside what they do. */
+.rows.tools > div { grid-template-columns: 13.5em 1fr; }
+.rows.tools dt code { background: none; padding: 0; font-size: var(--t-4); }
+
 /* The agents, as one plain line of names between dots. */
 .agent-names { display: flex; flex-wrap: wrap; margin-top: var(--s-5); max-width: 36em; color: var(--text); font-weight: 500; line-height: 1.7; }
 .agent-names li { white-space: nowrap; }
@@ -378,6 +398,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
   .shot-review { aspect-ratio: 1036 / 1290; }
   /* Phones get crops of the settings sheets (the rows themselves), so their text stays legible. */
   .rows > li, .rows > div { grid-template-columns: 1fr; gap: 2px; }
+  .rows.tools > div { grid-template-columns: 1fr; }
+  .trace pre { padding: var(--s-3) var(--s-4); font-size: var(--t-5); }
   .folders > li { grid-template-columns: 16px 1fr; row-gap: 2px; column-gap: var(--s-3); }
   .folders > li > span, .folders .val { grid-column: 2; }
   .panel { padding: var(--s-3) var(--s-4) var(--s-1); }
