@@ -262,6 +262,8 @@ p { text-wrap: pretty; }
 .hero-meta > * { white-space: nowrap; }
 .hero-meta a { color: var(--on-panel-2); text-decoration-color: rgb(255 255 255 / 0.35); }
 .hero-meta a:hover { color: var(--on-panel); }
+.hero-brew { margin-top: 22px; }
+.hero-brew code { color: var(--on-panel-2); background: rgb(255 255 255 / 0.1); user-select: all; }
 .story :focus-visible, .finale :focus-visible { outline-color: #ffffff; }
 
 .story-rig { position: relative; z-index: 1; max-width: 1180px; margin: clamp(40px, 6vw, 64px) auto 0; }
