@@ -58,7 +58,7 @@ if (button && videos.length && !matchMedia('(prefers-reduced-motion: reduce)').m
   button.addEventListener('click', () => {
     paused = !paused;
     button.setAttribute('aria-pressed', String(paused));
-    button.querySelector('.sr-only').textContent = paused ? 'Play the recording' : 'Pause the recording';
+    button.querySelector('.label').textContent = paused ? 'Play' : 'Pause';
     sync();
   });
 }
