@@ -3,6 +3,56 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.1</title>
+            <pubDate>Tue, 27 Oct 2026 17:43:51 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>23</sparkle:version>
+            <sparkle:shortVersionString>0.11.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.1
+
+## Security
+
+- An agent's browser now asks before opening a file outside the task's folders.
+
+## New
+
+- Apple connectors: Xcode through its own MCP bridge, App Store Connect with your API key, and the
+  Mac's calendars, reminders and contacts.
+- The Google Drive connector reads what is inside Docs, Sheets and Slides, in parts for long files,
+  and edits the ones Yardlet created or copied, asking before each change. It needs no new Google
+  permissions.
+- Mercury in the connector directory, read only.
+- Bring a site's sign-in over from another browser into the built-in one: Chrome, Whale and other
+  Chromium browsers, Comet, Opera GX, Yandex, Helium and Firefox.
+- An agent can hand a browser tab to you for a step only you can take, and wait for you.
+- The built-in browser reads and acts inside frames, those from other sites included, and can
+  emulate a screen size per tab.
+- A child task or subagent can start on the account with the most room before its limits reset.
+- The review shows a Markdown change rendered, and the tasks that read or edited a file.
+- A task shows the servers its processes listen on, and opens one in the task's browser.
+- An agent can start a top-level task or one nested under another open task.
+
+## Fixes
+
+- Fix a crash when a task's side rail showed some tool calls.
+- The composer scrolls its text inside once it passes the field's lines.
+- A streaming conversation keeps following through a swipe toward its end.
+- The browser panel keeps its last frame while it resizes, and its tabs keep their titles while
+  there is room.
+- Chromium's passkey and sign-in windows open over the tab that asked for them.
+- Tabs open past 16 across tasks, and a tab the browser could not open says why.
+
+## Install
+
+Download `Yardlet-0.11.1.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Yardlet 0.11.0
+updates itself. Requires macOS 15 or later on Apple silicon.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.1/Yardlet-0.11.1.dmg" length="170929592" type="application/octet-stream" sparkle:edSignature="u59VSPQQq26UbaTa7OoxpcMAu3UzQD7qVZMGoNFInb8Kd5kWULyEabT3MLRA28IHjF9uVRn/3Tzo33lKMvn8CA=="/>
+        </item>
+        <item>
             <title>0.11.0</title>
             <pubDate>Tue, 27 Oct 2026 03:52:45 +0900</pubDate>
             <link>https://yardlet.app</link>
