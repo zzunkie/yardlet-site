@@ -3,6 +3,56 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.2</title>
+            <pubDate>Tue, 27 Oct 2026 22:17:26 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>24</sparkle:version>
+            <sparkle:shortVersionString>0.11.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.2
+
+## New
+
+- Yardlet can be your default browser (System Settings › Desktop & Dock › Default web browser). A link you
+  open in another app opens in a new tab beside the task you are looking at. Passkeys from iCloud Keychain
+  don't work in it yet; security keys and passkeys on your phone (QR code) do.
+- Memory saver (Settings › General): tasks you haven't used in a while let go of their browser tabs and agent
+  processes, and come back when you return to them.
+- Accounts you already have: add a Claude account folder, share everything but its login with the default
+  folder, take an account off the list, or sign it out and delete it. Yardlet also finds account folders kept
+  in other places.
+- Tasks follow your sign-ins in the built-in browser, a page an agent handed over included, and keep the
+  sign-ins their agents make.
+- Find and connect servers from the MCP registries, Pipedream, Composio and Make, and bring in the MCP
+  servers your other apps already use.
+- More connectors in the directory. They are new, so please open an issue if one doesn't connect.
+  - Microsoft 365 (Outlook mail and calendar, OneDrive, Teams), with your own Microsoft Entra app for now.
+  - Google Analytics and Google Ads, read only. Google Ads needs your own Google app for now.
+  - Zoom Meetings, Team Chat and Docs, read only, with your own Zoom app.
+  - Twilio Docs: searches Twilio's public documentation.
+- Open a conversation image over the window, fitted, with zoom, the arrow keys and Esc.
+- Click any file in a conversation to open it: files outside the task's folders read-only, images and PDFs
+  shown, folders in Finder.
+- A downloaded update shows **Restart to update** above the account button and in the menu bar menu.
+- Each agent starts on the newest CLI found on this Mac when you haven't picked one, and settings say when a
+  newer one is elsewhere.
+
+## Fixes
+
+- A browser dialog or file chooser waits in its own tab instead of blocking the window, and shows when you
+  go back to that tab.
+- An agent no longer takes over the tab you are using; it works in a tab of its own.
+
+## Install
+
+Download `Yardlet-0.11.2.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
+themselves. Requires macOS 15 or later on Apple silicon.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.2/Yardlet-0.11.2.dmg" length="172466968" type="application/octet-stream" sparkle:edSignature="maua3g6a4gQwUGs8jh38f8SXUb5wKjLbGhR1bM4JqeTX4CCQs/K9fmSy4yELkdJbMkzQQYXBv0i1Nyqh327rCg=="/>
+        </item>
+        <item>
             <title>0.11.1</title>
             <pubDate>Tue, 27 Oct 2026 17:43:51 +0900</pubDate>
             <link>https://yardlet.app</link>
