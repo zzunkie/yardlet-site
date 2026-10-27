@@ -3,53 +3,168 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Yardlet Privacy Policy</title>
-<style>
-  :root { color-scheme: light dark; }
-  body { font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 680px; margin: 48px auto; padding: 0 16px; }
-  footer { margin-top: 48px; font-size: 14px; opacity: .75; }
-</style>
+<meta name="description" content="What the Yardlet macOS app accesses, where it is stored, and where it goes.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Yardlet Privacy Policy</h1>
-<p>Last updated: October 20, 2026</p>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<p>Yardlet is a desktop app that runs entirely on your Mac. It has no server and no analytics, and it does not
-send your data to its developer.</p>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="24" height="24">Yardlet</a>
+    <nav class="site-nav" aria-label="Site">
+      <a class="nav-wide" href="./#explore">Explore</a>
+      <a class="nav-wide" href="./#features">Features</a>
+      <a class="nav-wide" href="./#faq">FAQ</a>
+      <a class="nav-wide" href="privacy.html" aria-current="page">Privacy</a>
+      <a class="nav-mid" href="https://github.com/zzunkie/yardlet">GitHub</a>
+      <a class="btn btn-solid btn-small" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+    </nav>
+  </div>
+</header>
 
-<h2>Google user data</h2>
-<p>Yardlet asks for access to Google services only when you connect a Google account in its settings. Depending
-on the services you turn on, it requests these permissions:</p>
-<ul>
-  <li><strong>Gmail</strong> (<code>gmail.modify</code>): read, search, draft, send and label your email.</li>
-  <li><strong>Google Calendar</strong> (<code>calendar.calendarlist.readonly</code>, <code>calendar.events</code>,
-      <code>calendar.events.freebusy</code>): list your calendars, read and change events, and check free/busy times.</li>
-  <li><strong>Google Drive</strong> (<code>drive.readonly</code>, <code>drive.file</code>): read your files, and
-      create or change files that Yardlet creates.</li>
-</ul>
+<main class="doc" id="main">
+  <div class="narrow">
+    <h1>Yardlet Privacy Policy</h1>
+    <p class="updated">Last updated: October 26, 2026</p>
 
-<h2>How the data is used</h2>
-<p>Yardlet calls Google's APIs only when a coding agent you are running asks for it through Yardlet's tools,
-and passes the result to that agent so it can complete the task you gave it. The coding agent (for example
-Claude Code or Codex) runs under your own account with its provider, and that provider's terms and privacy
-policy apply to what the agent receives.</p>
-<p>Yardlet does not sell Google user data, does not use it for advertising, and does not use it to train or
-improve AI models.</p>
+    <p class="summary">Yardlet is a desktop app that runs on your Mac. It has no analytics and does not send your
+      data to its developer. Its only online services are an update feed and, if you use the phone remote, a relay
+      that passes end-to-end encrypted messages it cannot read.</p>
 
-<h2>Storage</h2>
-<p>Your Google sign-in tokens are stored in the macOS Keychain on your Mac. Yardlet does not copy Google data to
-any server. Removing the Google account in Yardlet's settings, or deleting Yardlet, deletes the stored sign-in.
-You can also revoke Yardlet's access at any time at
-<a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+    <h2 id="what-yardlet-keeps-on-your-mac">What Yardlet keeps on your Mac</h2>
+    <ul>
+      <li>Yardlet's own task list, drafts and reading caches are stored under <code>~/.yardlet</code>.</li>
+      <li>Conversations with an agent stay in that agent's own session store on your Mac, as they would if you
+        used the agent without Yardlet.</li>
+      <li>Sign-ins for connectors, such as Google, GitHub and Slack, are stored in the macOS Keychain.</li>
+    </ul>
+    <p>Yardlet starts the agent CLIs you have installed with their own sign-in. It does not import credentials
+      from other apps.</p>
 
-<h2>Limited Use</h2>
-<p>Yardlet's use and transfer of information received from Google APIs adheres to the
-<a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
-including the Limited Use requirements.</p>
+    <h2 id="agents-and-ai-providers">Agents and AI providers</h2>
+    <p>Yardlet runs coding agents such as Claude Code and Codex. Each agent works under your own account with its
+      AI provider (for example Anthropic for Claude Code, or OpenAI for Codex). What you type in a task, and what
+      the agent reads while working on it, is sent by that agent to the provider you chose, under your account.
+      That includes data the agent reads through a connector, such as an email, a calendar event or a Drive
+      file.</p>
+    <p>Whether that provider may use the data to train or improve its models is decided by the settings and terms
+      of your account with that provider, not by Yardlet. Yardlet itself never uses your data to train AI models.
+      Check your provider account's data settings before you let an agent read data you do not want that provider
+      to receive.</p>
 
-<h2>Contact</h2>
-<p>Questions about this policy: <a href="https://github.com/zzunkie/yardlet-site/issues">github.com/zzunkie/yardlet-site/issues</a>.</p>
+    <h2 id="google-user-data">Google user data</h2>
+    <p>Yardlet asks for access to Google services only when you connect a Google account in its settings. Depending
+      on the services you turn on, it requests these permissions:</p>
+    <ul>
+      <li><strong>Gmail</strong> (<code>gmail.modify</code>): read, search, draft, send and label your email.
+        Yardlet does not ask for full mail access, so it cannot permanently delete your email.</li>
+      <li><strong>Google Calendar</strong> (<code>calendar.calendarlist.readonly</code>, <code>calendar.events</code>,
+        <code>calendar.events.freebusy</code>): list your calendars, read and change events, and check free/busy
+        times.</li>
+      <li><strong>Google Drive</strong> (<code>drive.readonly</code>, <code>drive.file</code>): read your files, and
+        create or change files that Yardlet creates.</li>
+    </ul>
 
-<footer><a href="index.html">Yardlet</a></footer>
+    <h2 id="how-google-data-is-used">How Google data is used</h2>
+    <p>Yardlet calls Google's APIs directly from your Mac, only when a coding agent you are running asks for it
+      through Yardlet's tools. It passes the result only to that agent, so the agent can complete the task you
+      gave it. The result then becomes part of that conversation:</p>
+    <ul>
+      <li>The agent sends it to its AI provider under your account, as described in
+        <a href="#agents-and-ai-providers">Agents and AI providers</a>. That provider's terms and privacy policy,
+        and your account's training settings with it, apply to what the agent receives.</li>
+      <li>The agent and Yardlet keep the conversation on your Mac. Yardlet does not copy Google data to any
+        server.</li>
+    </ul>
+    <p>Yardlet does not sell Google user data, does not use it for advertising, and does not use it to train or
+      improve AI models. The developer never receives your Google data, so no person working on Yardlet can read
+      it.</p>
+
+    <h2 id="storage-and-removal">Storage and removal</h2>
+    <p>Your Google sign-in tokens are stored in the macOS Keychain on your Mac. Removing the Google account in
+      Yardlet's settings deletes the stored sign-in. If you delete the Yardlet app without removing the account
+      first, the sign-in stays in your Keychain until you remove it in Keychain Access.</p>
+    <p>Removing the account in Yardlet does not cancel the access you granted at Google. You can revoke Yardlet's
+      access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+    <h2 id="other-connectors">Other connectors</h2>
+    <p>GitHub, Slack and the other services you connect work the same way. The sign-in is stored in the macOS
+      Keychain, calls go straight from your Mac to that service, and what an agent reads through them is sent to
+      that agent's provider as described above. Each service's own privacy policy applies to your account there.</p>
+
+    <h2 id="updates">Updates</h2>
+    <p>Once a day, unless you turn it off in Settings &gt; General, Yardlet reads <code>https://yardlet.app/appcast.xml</code>
+      to see whether a newer version exists. The request carries Yardlet's and its updater's version numbers and no
+      system profile. Updates download from GitHub Releases, which may log the download as described in the
+      <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub
+      Privacy Statement</a>.</p>
+
+    <h2 id="phone-remote">Phone remote</h2>
+    <p>If you pair a phone with Yardlet and the phone is away from your Mac's network, the two connect through
+      Yardlet's relay at <code>relay.yardlet.app</code>, which runs on Cloudflare. Everything between the phone and your
+      Mac, such as tasks, conversations and approvals, is end-to-end encrypted with keys only the two devices hold,
+      so the relay cannot read it and stores none of it. The relay sees the connection itself: a room identifier,
+      IP addresses, when devices connect and how much they send. Notifications for the phone are encrypted the same
+      way before they pass through the relay and Google's Firebase Cloud Messaging; to deliver one, the relay uses
+      the phone's notification token and keeps it only for that moment. If you sign in to the relay with GitHub or
+      Google to find your Mac from anywhere, it keeps your Macs' names and public keys under that account.</p>
+
+    <h2 id="limited-use">Limited Use</h2>
+    <p>Yardlet's use and transfer of information received from Google APIs adheres to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.</p>
+
+    <h2 id="this-website">This website</h2>
+    <p>This website has no analytics, cookies, third-party scripts or requests to other sites. It is hosted on GitHub Pages,
+      which may log visits as described in the
+      <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub
+      Privacy Statement</a>.</p>
+
+    <h2 id="changes">Changes</h2>
+    <p>When this policy changes, the date at the top changes with it. Earlier versions are in the
+      <a href="https://github.com/zzunkie/yardlet-site/commits/main/privacy.html">history of this page</a>.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p>Questions about this policy: <a href="https://github.com/zzunkie/yardlet-site/issues">github.com/zzunkie/yardlet-site/issues</a>.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="frame footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="24" height="24">Yardlet</a>
+      <p>A native Mac window for the coding agents you already use.</p>
+    </div>
+    <nav aria-label="Product">
+      <h2>Product</h2>
+      <ul>
+        <li><a href="./#explore">Explore</a></li>
+        <li><a href="./#features">Features</a></li>
+        <li><a href="./#faq">FAQ</a></li>
+        <li><a href="https://github.com/zzunkie/yardlet/releases/latest">Download</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Project">
+      <h2>Project</h2>
+      <ul>
+        <li><a href="https://github.com/zzunkie/yardlet">Source code</a></li>
+        <li><a href="https://github.com/zzunkie/yardlet/releases">Releases</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="footer-note">
+      <p>Yardlet is a personal open-source project, released under the MIT License.</p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

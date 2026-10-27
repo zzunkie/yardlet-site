@@ -1,0 +1,54 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Yardlet</title>
+        <item>
+            <title>0.11.0</title>
+            <pubDate>Tue, 27 Oct 2026 03:52:45 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>22</sparkle:version>
+            <sparkle:shortVersionString>0.11.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.0
+
+The first public release of Yardlet, a native macOS app for running coding agents. Codex, Claude Code
+and other agent CLIs open side by side in one window of projects and tasks, while each agent keeps its
+own agent loop, sign-in and session history.
+
+This repository used to hold Yardlet's command-line predecessor, a Rust CLI. Its code and releases
+(v0.10.3 and earlier) stay available on the `legacy-cli` branch and its tags.
+
+## Highlights
+
+- One window for Codex, Claude Code, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Pi
+  and others, each started with the CLI and account you already use.
+- Sessions stay in each agent's own store, so a task resumes in the original app or CLI and back.
+- Several accounts per provider, with each account's session and weekly limits.
+- Review the last turn's diff, restore or fork files, follow a pull request's checks through `gh`, and
+  keep a terminal and files pane beside the conversation.
+- Connectors for every agent: Gmail, Google Calendar and Google Drive through Yardlet's built-in MCP
+  server on your Mac, plus GitHub, Slack and remote MCP services.
+- A built-in Chromium browser the agents can drive while you watch.
+- Scheduled tasks, and session tools that let one task read, message or start another.
+- Updates through Sparkle from this release on.
+
+## Install
+
+Download `Yardlet-0.11.0.dmg` below, open it and drag Yardlet to Applications. It is signed with
+Developer ID and notarized by Apple. Requires macOS 15 or later on Apple silicon, and at least one
+agent CLI installed and signed in.
+
+## Known limits
+
+- Google connectors: Google is still reviewing Yardlet's access to Gmail, Calendar and Drive. Until it
+  finishes, Google shows an "unverified app" warning when you connect an account, and the built-in
+  Google app accepts a limited number of new accounts. You can use your own Google OAuth client in
+  Settings > Connectors meanwhile.
+- The phone remote's Android app is not public yet.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.0/Yardlet-0.11.0.dmg" length="169800079" type="application/octet-stream" sparkle:edSignature="nGN5EZv25LPxmTIVU8iz8SAzRWb2aMk2+ntRFEZgfCrl8/jXuGX7SrZSgtq3ZIpDNHuNDFsRicVcXHx25A39Dg=="/>
+        </item>
+    </channel>
+</rss>
