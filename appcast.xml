@@ -29,7 +29,7 @@
   servers your other apps already use.
 - More connectors in the directory. They are new, so please open an issue if one doesn't connect.
   - Microsoft 365 (Outlook mail and calendar, OneDrive, Teams), with your own Microsoft Entra app for now.
-  - Google Analytics and Google Ads, read only. Google Ads needs your own Google app for now.
+  - Google Analytics and Google Ads, read only.
   - Zoom Meetings, Team Chat and Docs, read only, with your own Zoom app.
   - Twilio Docs: searches Twilio's public documentation.
 - Open a conversation image over the window, fitted, with zoom, the arrow keys and Esc.
