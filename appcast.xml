@@ -3,6 +3,59 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.3</title>
+            <pubDate>Wed, 28 Oct 2026 21:38:32 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>25</sparkle:version>
+            <sparkle:shortVersionString>0.11.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.3
+
+## Security
+
+- Agent tools are more limited in what they can reach: scheduled tasks an agent writes, which calls may use a
+  task's tools, filled passwords and uploads.
+- Phone pairing and linking are hardened. The first phone protocol is no longer supported, so pair again with
+  the current app.
+- The phone relay limits connections a Mac has not answered.
+
+## New
+
+- Choose the app's language in Settings › General: System, English or 한국어.
+- Keep tasks working with the lid closed, when you turn it on in Settings › General.
+- ⌘K finds tasks as well as commands.
+- Back and Forward (⌘[ and ⌘], or the mouse's back and forward buttons) go through what the window showed.
+  Over a browser page, the mouse buttons go through that page's history.
+- With one tab, ⌃Tab and ⌃⇧Tab go to the next and previous task.
+- A button's tooltip shows its menu bar key.
+- The browser's address field suggests pages and searches as you type.
+- A call's images show on its line, and whole when the line is opened.
+- A two-factor code saved without a site is offered on the site its name names.
+- Agent CLIs installed with nvm, Volta, bun, npm or pnpm are found when Yardlet opens from the Dock.
+- Double-click the sidebar's line to return it to its standard width.
+
+## Fixes
+
+- An agent CLI that exits on its own no longer keeps two CPU cores busy.
+- A streaming Codex answer no longer redraws its whole turn, and scrolling the sidebar to its top no longer
+  redraws the window.
+- Button tooltips show again after a scroll.
+- A task's terminal keeps running when the task leaves the screen.
+- Codex's running turn no longer clears right after you send.
+- A long tool call's progress no longer arrives after its reply.
+
+Thanks to @minsujang0 for the detailed reports behind several of these changes.
+
+## Install
+
+Download `Yardlet-0.11.3.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
+themselves. Requires macOS 15 or later on Apple silicon.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.3/Yardlet-0.11.3.dmg" length="173504881" type="application/octet-stream" sparkle:edSignature="dYpztHjdbDiWE96pv8tUXGWecXaKou/C2E/okmjh+uADthrLX0GMhtlaNnmKnKC8rhAp1z1xZ74CYoIwkovJDg=="/>
+        </item>
+        <item>
             <title>0.11.2</title>
             <pubDate>Tue, 27 Oct 2026 22:17:26 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -101,54 +154,6 @@ Download `Yardlet-0.11.1.dmg` below, or `brew install --cask zzunkie/tap/yardlet
 updates itself. Requires macOS 15 or later on Apple silicon.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.1/Yardlet-0.11.1.dmg" length="170929592" type="application/octet-stream" sparkle:edSignature="u59VSPQQq26UbaTa7OoxpcMAu3UzQD7qVZMGoNFInb8Kd5kWULyEabT3MLRA28IHjF9uVRn/3Tzo33lKMvn8CA=="/>
-        </item>
-        <item>
-            <title>0.11.0</title>
-            <pubDate>Tue, 27 Oct 2026 03:52:45 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>22</sparkle:version>
-            <sparkle:shortVersionString>0.11.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.0
-
-The first public release of Yardlet, a native macOS app for running coding agents. Codex, Claude Code
-and other agent CLIs open side by side in one window of projects and tasks, while each agent keeps its
-own agent loop, sign-in and session history.
-
-This repository used to hold Yardlet's command-line predecessor, a Rust CLI. Its code and releases
-(v0.10.3 and earlier) stay available on the `legacy-cli` branch and its tags.
-
-## Highlights
-
-- One window for Codex, Claude Code, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Pi
-  and others, each started with the CLI and account you already use.
-- Sessions stay in each agent's own store, so a task resumes in the original app or CLI and back.
-- Several accounts per provider, with each account's session and weekly limits.
-- Review the last turn's diff, restore or fork files, follow a pull request's checks through `gh`, and
-  keep a terminal and files pane beside the conversation.
-- Connectors for every agent: Gmail, Google Calendar and Google Drive through Yardlet's built-in MCP
-  server on your Mac, plus GitHub, Slack and remote MCP services.
-- A built-in Chromium browser the agents can drive while you watch.
-- Scheduled tasks, and session tools that let one task read, message or start another.
-- Updates through Sparkle from this release on.
-
-## Install
-
-Download `Yardlet-0.11.0.dmg` below, open it and drag Yardlet to Applications. It is signed with
-Developer ID and notarized by Apple. Requires macOS 15 or later on Apple silicon, and at least one
-agent CLI installed and signed in.
-
-## Known limits
-
-- Google connectors: Google is still reviewing Yardlet's access to Gmail, Calendar and Drive. Until it
-  finishes, Google shows an "unverified app" warning when you connect an account, and the built-in
-  Google app accepts a limited number of new accounts. You can use your own Google OAuth client in
-  Settings > Connectors meanwhile.
-- The phone remote's Android app is not public yet.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.0/Yardlet-0.11.0.dmg" length="169800079" type="application/octet-stream" sparkle:edSignature="nGN5EZv25LPxmTIVU8iz8SAzRWb2aMk2+ntRFEZgfCrl8/jXuGX7SrZSgtq3ZIpDNHuNDFsRicVcXHx25A39Dg=="/>
         </item>
     </channel>
 </rss>
