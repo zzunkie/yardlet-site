@@ -3,6 +3,47 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.4</title>
+            <pubDate>Thu, 29 Oct 2026 11:16:29 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>26</sparkle:version>
+            <sparkle:shortVersionString>0.11.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.4
+
+## Security
+
+- Values the password manager fills are kept away from agents in more places.
+
+## New
+
+- Personal agents, below Scheduled tasks in the sidebar, opens your Dots conversation. Scroll up to read earlier
+  messages, and open its details panel for activity, schedules, computers and attachments.
+- At a new password field, Yardlet suggests a strong password, as Chrome and Safari do. It is saved right away,
+  beside any password the item already has, and agents can make one when they sign up for an account.
+- Gmail drafts and sends can attach files from your Mac, and a draft can be deleted.
+- Forty more remote MCP services in the connector directory.
+- An agent's reply can link to the tasks it mentions.
+
+## Fixes
+
+- A turn's error card shows where the turn ended, and offers Retry only when retrying can help.
+- A folded turn keeps its calls in one summary line, and a Codex reasoning summary folds like Claude Code's
+  thinking.
+- Reconnect signs in again when a server that listed its tools without a sign-in refuses a call.
+- A task's terminal reads a wrapped line as one line, and a program still running in it keeps the task shown as
+  working.
+
+## Install
+
+Download `Yardlet-0.11.4.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
+themselves. Requires macOS 15 or later on Apple silicon.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.4/Yardlet-0.11.4.dmg" length="174287315" type="application/octet-stream" sparkle:edSignature="GDV9RJUS74/AVGtPszPJM+i7OgvvwkH2X8h1m8w9nAsa383+U2jVNURBE0Op/Fjv+S2YoKYb5u+bGLSX3eqlDw=="/>
+        </item>
+        <item>
             <title>0.11.3</title>
             <pubDate>Wed, 28 Oct 2026 21:38:32 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -104,56 +145,6 @@ Download `Yardlet-0.11.2.dmg` below, or `brew install --cask zzunkie/tap/yardlet
 themselves. Requires macOS 15 or later on Apple silicon.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.2/Yardlet-0.11.2.dmg" length="172466968" type="application/octet-stream" sparkle:edSignature="maua3g6a4gQwUGs8jh38f8SXUb5wKjLbGhR1bM4JqeTX4CCQs/K9fmSy4yELkdJbMkzQQYXBv0i1Nyqh327rCg=="/>
-        </item>
-        <item>
-            <title>0.11.1</title>
-            <pubDate>Tue, 27 Oct 2026 17:43:51 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>23</sparkle:version>
-            <sparkle:shortVersionString>0.11.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.1
-
-## Security
-
-- An agent's browser now asks before opening a file outside the task's folders.
-
-## New
-
-- Apple connectors: Xcode through its own MCP bridge, App Store Connect with your API key, and the
-  Mac's calendars, reminders and contacts.
-- The Google Drive connector reads what is inside Docs, Sheets and Slides, in parts for long files,
-  and edits the ones Yardlet created or copied, asking before each change. It needs no new Google
-  permissions.
-- Mercury in the connector directory, read only.
-- Bring a site's sign-in over from another browser into the built-in one: Chrome, Whale and other
-  Chromium browsers, Comet, Opera GX, Yandex, Helium and Firefox.
-- An agent can hand a browser tab to you for a step only you can take, and wait for you.
-- The built-in browser reads and acts inside frames, those from other sites included, and can
-  emulate a screen size per tab.
-- A child task or subagent can start on the account with the most room before its limits reset.
-- The review shows a Markdown change rendered, and the tasks that read or edited a file.
-- A task shows the servers its processes listen on, and opens one in the task's browser.
-- An agent can start a top-level task or one nested under another open task.
-
-## Fixes
-
-- Fix a crash when a task's side rail showed some tool calls.
-- The composer scrolls its text inside once it passes the field's lines.
-- A streaming conversation keeps following through a swipe toward its end.
-- The browser panel keeps its last frame while it resizes, and its tabs keep their titles while
-  there is room.
-- Chromium's passkey and sign-in windows open over the tab that asked for them.
-- Tabs open past 16 across tasks, and a tab the browser could not open says why.
-
-## Install
-
-Download `Yardlet-0.11.1.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Yardlet 0.11.0
-updates itself. Requires macOS 15 or later on Apple silicon.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.1/Yardlet-0.11.1.dmg" length="170929592" type="application/octet-stream" sparkle:edSignature="u59VSPQQq26UbaTa7OoxpcMAu3UzQD7qVZMGoNFInb8Kd5kWULyEabT3MLRA28IHjF9uVRn/3Tzo33lKMvn8CA=="/>
         </item>
     </channel>
 </rss>
