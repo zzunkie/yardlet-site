@@ -3,6 +3,53 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.5</title>
+            <pubDate>Fri, 30 Oct 2026 17:46:58 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>27</sparkle:version>
+            <sparkle:shortVersionString>0.11.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.5
+
+## New
+
+- The built-in browser plays H.264 video and AAC audio, so MP4 video on sites such as X and LinkedIn plays as it does in
+  Chrome.
+- Find and pick any saved password or code from the browser panel. Settings › Passwords and the key button's list search
+  by name, username or site, and the key button shows on every site while the vault holds an item.
+- Two-factor codes: one-time code fields are found in more languages and sign-in steps. A code saved without a site is
+  linked to its account's sign-in when nothing else could be meant, and the rest are listed in Settings › Passwords with
+  a suggested site.
+- A blank browser tab shows a start page with the pages the task's tabs showed, as Safari, Chrome and the Codex app do,
+  and the side panel's launcher offers them too.
+- Memory saver has Chrome's Moderate, Balanced and Maximum levels. A tab an agent opened that no panel showed is let go
+  ten minutes after the agent's turn.
+- A Codex account's banked usage-limit resets show beside its limits and on its limit card, and one is used only after
+  you confirm.
+- Before removing a saved Claude account, move its tasks to another folder of the same account.
+- A task started from another task nests under it in the sidebar, up to two levels.
+- Dots: send files and photos, see what a dot is working on, and answer its approvals, forms and option questions in
+  Yardlet. Dot avatars animate, and moving between personal agents and tasks is quicker.
+- An agent can quote you by a phrase, and the message that holds it is passed on as you typed it.
+
+## Fixes
+
+- Long conversations and streaming Codex answers take much less work on the main thread, so scrolling and typing stay
+  smooth with long histories, many saved cards and running subagents.
+- A Codex turn that failed on a busy server can be retried.
+- A Codex turn folds its work only once a final answer begins, as the Codex app does.
+- Agents get clearer failures from Yardlet's tools and the browser tools, with whether calling again can help.
+
+## Install
+
+Download `Yardlet-0.11.5.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
+themselves. Requires macOS 15 or later on Apple silicon.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.5/Yardlet-0.11.5.dmg" length="175341977" type="application/octet-stream" sparkle:edSignature="PYKKeiAdRHsl/S9UWk0Nqd2IuTXnQnRr9xy/QZOWkR1ueDv3uSp9EUyvwniNKLwk9HZmoOebYCQLI2xtsWjKBA=="/>
+        </item>
+        <item>
             <title>0.11.4</title>
             <pubDate>Thu, 29 Oct 2026 11:16:29 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -95,56 +142,6 @@ Download `Yardlet-0.11.3.dmg` below, or `brew install --cask zzunkie/tap/yardlet
 themselves. Requires macOS 15 or later on Apple silicon.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.3/Yardlet-0.11.3.dmg" length="173504881" type="application/octet-stream" sparkle:edSignature="dYpztHjdbDiWE96pv8tUXGWecXaKou/C2E/okmjh+uADthrLX0GMhtlaNnmKnKC8rhAp1z1xZ74CYoIwkovJDg=="/>
-        </item>
-        <item>
-            <title>0.11.2</title>
-            <pubDate>Tue, 27 Oct 2026 22:17:26 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>24</sparkle:version>
-            <sparkle:shortVersionString>0.11.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.2
-
-## New
-
-- Yardlet can be your default browser (System Settings › Desktop & Dock › Default web browser). A link you
-  open in another app opens in a new tab beside the task you are looking at. Passkeys from iCloud Keychain
-  don't work in it yet; security keys and passkeys on your phone (QR code) do.
-- Memory saver (Settings › General): tasks you haven't used in a while let go of their browser tabs and agent
-  processes, and come back when you return to them.
-- Accounts you already have: add a Claude account folder, share everything but its login with the default
-  folder, take an account off the list, or sign it out and delete it. Yardlet also finds account folders kept
-  in other places.
-- Tasks follow your sign-ins in the built-in browser, a page an agent handed over included, and keep the
-  sign-ins their agents make.
-- Find and connect servers from the MCP registries, Pipedream, Composio and Make, and bring in the MCP
-  servers your other apps already use.
-- More connectors in the directory. They are new, so please open an issue if one doesn't connect.
-  - Microsoft 365 (Outlook mail and calendar, OneDrive, Teams), with your own Microsoft Entra app for now.
-  - Google Analytics and Google Ads, read only.
-  - Zoom Meetings, Team Chat and Docs, read only, with your own Zoom app.
-  - Twilio Docs: searches Twilio's public documentation.
-- Open a conversation image over the window, fitted, with zoom, the arrow keys and Esc.
-- Click any file in a conversation to open it: files outside the task's folders read-only, images and PDFs
-  shown, folders in Finder.
-- A downloaded update shows **Restart to update** above the account button and in the menu bar menu.
-- Each agent starts on the newest CLI found on this Mac when you haven't picked one, and settings say when a
-  newer one is elsewhere.
-
-## Fixes
-
-- A browser dialog or file chooser waits in its own tab instead of blocking the window, and shows when you
-  go back to that tab.
-- An agent no longer takes over the tab you are using; it works in a tab of its own.
-
-## Install
-
-Download `Yardlet-0.11.2.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
-themselves. Requires macOS 15 or later on Apple silicon.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.2/Yardlet-0.11.2.dmg" length="172466968" type="application/octet-stream" sparkle:edSignature="maua3g6a4gQwUGs8jh38f8SXUb5wKjLbGhR1bM4JqeTX4CCQs/K9fmSy4yELkdJbMkzQQYXBv0i1Nyqh327rCg=="/>
         </item>
     </channel>
 </rss>
