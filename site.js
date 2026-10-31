@@ -78,3 +78,20 @@ if (navigator.clipboard) {
     });
   }
 }
+
+// Copy buttons on the blog's code blocks.
+if (navigator.clipboard) {
+  for (const copy of document.querySelectorAll('.code .copy')) {
+    copy.hidden = false;
+    copy.addEventListener('click', async () => {
+      const code = copy.closest('.code').querySelector('pre code');
+      try {
+        await navigator.clipboard.writeText(code.innerText);
+        copy.textContent = 'Copied';
+      } catch {
+        copy.textContent = 'Select and copy';
+      }
+      setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+    });
+  }
+}

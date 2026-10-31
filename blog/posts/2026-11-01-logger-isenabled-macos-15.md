@@ -11,7 +11,7 @@ I make [Yardlet](https://github.com/zzunkie/yardlet), a free, open-source Mac ap
 
 On October 31 I was getting my company MacBook ready for a performance comparison. That Mac is still on macOS 15.6.1. Yardlet quit the moment it launched. No window, just a crash report. My first thought was that the company Mac was just too old.
 
-```
+```text Crash report
 Termination Reason: DYLD, Symbol missing
 Symbol not found: _$s2os6LoggerV9isEnabled4typeSbSo0a5_log_E2_ta_tF
 Expected in: /usr/lib/swift/libswiftos.dylib
@@ -49,7 +49,7 @@ guard logHandle.isEnabled(type: .debug) else { return }
 
 I didn't want to find the next one the same way. On the macOS 15.6.1 Mac I listed the symbols the executable imports without weak linking, and checked each one against what its system library exports there. A rough version of the script (it doesn't check exit codes):
 
-```python
+```python check-imports.py
 import re, subprocess, sys
 
 def run(*args):

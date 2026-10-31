@@ -3,11 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
-<title>A Logger symbol missing on macOS 15 kept my Mac app from launching · Yardlet</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>A Logger symbol missing on macOS 15 kept my Mac app from launching · Yardlet blog</title>
 <meta name="description" content="For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1&#x27;s libswiftos doesn&#x27;t have it.">
 <link rel="canonical" href="https://yardlet.app/blog/logger-isenabled-macos-15.html">
 <link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/logger-isenabled-macos-15.html">
+<meta property="og:title" content="A Logger symbol missing on macOS 15 kept my Mac app from launching">
+<meta property="og:description" content="For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1&#x27;s libswiftos doesn&#x27;t have it.">
+<meta property="og:image" content="https://yardlet.app/blog/og/logger-isenabled-macos-15.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-01">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/logger-isenabled-macos-15.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "A Logger symbol missing on macOS 15 kept my Mac app from launching", "description": "For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1's libswiftos doesn't have it.", "datePublished": "2026-11-01", "url": "https://yardlet.app/blog/logger-isenabled-macos-15.html", "image": "https://yardlet.app/blog/og/logger-isenabled-macos-15.png", "mainEntityOfPage": "https://yardlet.app/blog/logger-isenabled-macos-15.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -15,6 +27,8 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -91,65 +105,78 @@
         </nav>
       </header>
 
-<main class="doc" id="main">
-  <article class="narrow">
-    <h1>A Logger symbol missing on macOS 15 kept my Mac app from launching</h1>
-    <p class="updated"><time datetime="2026-11-01">November 1, 2026</time> · <a href="./">Yardlet blog</a></p>
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-01">November 1, 2026</time></span><span>3 min read</span></p>
+<h1>A Logger symbol missing on macOS 15 kept my Mac app from launching</h1>
+<p class="dek">For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1's libswiftos doesn't have it.</p>
+</header>
+<div class="post-body">
 <p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app for running coding agents like Codex and Claude Code in one window. It says it needs macOS 15 or later. For four days it quit at launch on macOS 15, and I didn't know.</p>
-<h2 id="how-i-found-out">How I found out</h2>
+<h2 id="how-i-found-out"><a class="anchor" href="#how-i-found-out" aria-hidden="true">#</a>How I found out</h2>
 <p>On October 31 I was getting my company MacBook ready for a performance comparison. That Mac is still on macOS 15.6.1. Yardlet quit the moment it launched. No window, just a crash report. My first thought was that the company Mac was just too old.</p>
-<pre><code>Termination Reason: DYLD, Symbol missing
+<figure class="code"><figcaption><span>Crash report</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code>Termination Reason: DYLD, Symbol missing
 Symbol not found: _$s2os6LoggerV9isEnabled4typeSbSo0a5_log_E2_ta_tF
-Expected in: /usr/lib/swift/libswiftos.dylib</code></pre>
+Expected in: /usr/lib/swift/libswiftos.dylib</code></pre></figure>
 <p>That symbol is <code>Logger.isEnabled(type:)</code> from the <code>os</code> module. I used it in one place, to skip building debug messages about text selection when nobody is reading debug logs.</p>
 <p>I downloaded the public disk images of 0.11.0, 0.11.4 and 0.11.5 and checked them with <code>nm -u</code>. All three import it. 0.11.0, the first public release, went out on October 27. My own Mac runs macOS 27, so I never saw it.</p>
-<h2 id="why-it-compiled">Why it compiled</h2>
+<h2 id="why-it-compiled"><a class="anchor" href="#why-it-compiled" aria-hidden="true">#</a>Why it compiled</h2>
 <p>The deployment target is macOS 15, so I expected an availability error if I called anything newer. In Xcode 27.1's SDK, <code>Logger</code> is marked available since macOS 11, and <code>isEnabled(type:)</code> has no availability of its own (shortened):</p>
-<pre><code class="language-swift">@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
-public struct Logger : @unchecked Sendable {
-  // ...
-  public func isEnabled(type: OSLogType) -&gt; Bool</code></pre>
+<figure class="code"><figcaption><span>Swift</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code><span class="hl-a">@available</span>(macOS <span class="hl-n">11.0</span>, iOS <span class="hl-n">14.0</span>, watchOS <span class="hl-n">7.0</span>, tvOS <span class="hl-n">14.0</span>, *)
+<span class="hl-k">public</span> <span class="hl-k">struct</span> <span class="hl-t">Logger</span> : <span class="hl-a">@unchecked</span> <span class="hl-t">Sendable</span> {
+  <span class="hl-c">// ...</span>
+  <span class="hl-k">public</span> <span class="hl-k">func</span> isEnabled(type: <span class="hl-t">OSLogType</span>) -&gt; <span class="hl-t">Bool</span></code></pre></figure>
 <p>So the compiler treats it as there since macOS 11. But the macOS 15.5 SDK that comes with the Command Line Tools has no such symbol in <code>libswiftos.tbd</code>, the 27 SDK has it, and <code>libswiftos.dylib</code> on macOS 15.6.1 doesn't export it. I haven't checked macOS 26.</p>
-<h2 id="the-fix">The fix</h2>
+<h2 id="the-fix"><a class="anchor" href="#the-fix" aria-hidden="true">#</a>The fix</h2>
 <p><code>OSLog</code> has its own <code>isEnabled(type:)</code>, which goes to the C function <code>os_log_type_enabled</code>, there since macOS 10.12. So I keep an <code>OSLog</code> handle, make the <code>Logger</code> from it, and ask the handle:</p>
-<pre><code class="language-swift">static let logHandle = OSLog(subsystem: bundleID, category: "conversation-selection")
-static let log = Logger(logHandle)
+<figure class="code"><figcaption><span>Swift</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code><span class="hl-k">static</span> <span class="hl-k">let</span> logHandle = <span class="hl-t">OSLog</span>(subsystem: bundleID, category: <span class="hl-s">"conversation-selection"</span>)
+<span class="hl-k">static</span> <span class="hl-k">let</span> log = <span class="hl-t">Logger</span>(logHandle)
 
-guard logHandle.isEnabled(type: .debug) else { return }</code></pre>
-<h2 id="checking-the-other-imports">Checking the other imports</h2>
+<span class="hl-k">guard</span> logHandle.isEnabled(type: .debug) <span class="hl-k">else</span> { <span class="hl-k">return</span> }</code></pre></figure>
+<h2 id="checking-the-other-imports"><a class="anchor" href="#checking-the-other-imports" aria-hidden="true">#</a>Checking the other imports</h2>
 <p>I didn't want to find the next one the same way. On the macOS 15.6.1 Mac I listed the symbols the executable imports without weak linking, and checked each one against what its system library exports there. A rough version of the script (it doesn't check exit codes):</p>
-<pre><code class="language-python">import re, subprocess, sys
+<figure class="code"><figcaption><span>check-imports.py</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code><span class="hl-k">import</span> re, subprocess, sys
 
-def run(*args):
-    return subprocess.run(args, capture_output=True, text=True).stdout
+<span class="hl-k">def</span> run(*args):
+    <span class="hl-k">return</span> subprocess.run(args, capture_output=<span class="hl-k">True</span>, text=<span class="hl-k">True</span>).stdout
 
-def short(path):
-    name = re.sub(r"\.dylib$", "", path.split("/")[-1])
-    return re.sub(r"(\.[A-Z0-9]+)+$", "", name)
+<span class="hl-k">def</span> short(path):
+    name = re.sub(<span class="hl-s">r"\.dylib$"</span>, <span class="hl-s">""</span>, path.split(<span class="hl-s">"/"</span>)[-<span class="hl-n">1</span>])
+    <span class="hl-k">return</span> re.sub(<span class="hl-s">r"(\.[A-Z0-9]+)+$"</span>, <span class="hl-s">""</span>, name)
 
-binary = sys.argv[1]
+binary = sys.argv[<span class="hl-n">1</span>]
 wanted = {}
-for line in run("dyld_info", "-imports", binary).splitlines():
-    m = re.match(r"\s+0x[0-9A-F]+\s+(_\S+)\s+(\[weak-import\]\s+)?\(from (\S+)\)", line)
-    if m and not m.group(2):
-        wanted.setdefault(m.group(3), set()).add(m.group(1))
+<span class="hl-k">for</span> line <span class="hl-k">in</span> run(<span class="hl-s">"dyld_info"</span>, <span class="hl-s">"-imports"</span>, binary).splitlines():
+    m = re.match(<span class="hl-s">r"\s+0x[0-9A-F]+\s+(_\S+)\s+(\[weak-import\]\s+)?\(from (\S+)\)"</span>, line)
+    <span class="hl-k">if</span> m <span class="hl-k">and</span> <span class="hl-k">not</span> m.group(<span class="hl-n">2</span>):
+        wanted.setdefault(m.group(<span class="hl-n">3</span>), set()).add(m.group(<span class="hl-n">1</span>))
 
-for line in run("dyld_info", "-dependents", binary).splitlines():
-    path = line.strip().split()[-1] if line.strip() else ""
-    if not path.startswith(("/usr/lib", "/System")) or short(path) not in wanted:
-        continue
-    libraries = [path] + [l.split()[-1] for l in run("dyld_info", "-dependents", path).splitlines() if "re-export" in l]
+<span class="hl-k">for</span> line <span class="hl-k">in</span> run(<span class="hl-s">"dyld_info"</span>, <span class="hl-s">"-dependents"</span>, binary).splitlines():
+    path = line.strip().split()[-<span class="hl-n">1</span>] <span class="hl-k">if</span> line.strip() <span class="hl-k">else</span> <span class="hl-s">""</span>
+    <span class="hl-k">if</span> <span class="hl-k">not</span> path.startswith((<span class="hl-s">"/usr/lib"</span>, <span class="hl-s">"/System"</span>)) <span class="hl-k">or</span> short(path) <span class="hl-k">not</span> <span class="hl-k">in</span> wanted:
+        <span class="hl-k">continue</span>
+    libraries = [path] + [l.split()[-<span class="hl-n">1</span>] <span class="hl-k">for</span> l <span class="hl-k">in</span> run(<span class="hl-s">"dyld_info"</span>, <span class="hl-s">"-dependents"</span>, path).splitlines() <span class="hl-k">if</span> <span class="hl-s">"re-export"</span> <span class="hl-k">in</span> l]
     exported = set()
-    for library in libraries:
-        exported |= set(re.findall(r"(_\S+)", run("dyld_info", "-exports", library)))
-    for symbol in sorted(wanted[short(path)] - exported):
-        print(short(path), run("xcrun", "swift-demangle", "--compact", symbol).strip())</code></pre>
-<p>It follows direct re-exports, since SwiftUI re-exports SwiftUICore on macOS 15. For 0.11.5, with 4,261 strong imports, it printed one line: <code>libswiftos os.Logger.isEnabled(type: __C.os_log_type_t) -&gt; Swift.Bool</code>.</p>
+    <span class="hl-k">for</span> library <span class="hl-k">in</span> libraries:
+        exported |= set(re.findall(<span class="hl-s">r"(_\S+)"</span>, run(<span class="hl-s">"dyld_info"</span>, <span class="hl-s">"-exports"</span>, library)))
+    <span class="hl-k">for</span> symbol <span class="hl-k">in</span> sorted(wanted[short(path)] - exported):
+        print(short(path), run(<span class="hl-s">"xcrun"</span>, <span class="hl-s">"swift-demangle"</span>, <span class="hl-s">"--compact"</span>, symbol).strip())</code></pre></figure>
+<p>It follows direct re-exports, since SwiftUI re-exports SwiftUICore on macOS 15. For 0.11.5, with 4,261 strong imports, it printed one line: <code class="long">libswiftos os.Logger.isEnabled(type: __C.os_log_type_t) -&gt; Swift.Bool</code>.</p>
 <p>0.11.6 went out the same night. Before publishing it I copied the notarized disk image to the macOS 15.6.1 Mac. The script printed nothing for its 4,291 imports, and the app stayed up when I launched it with an empty home folder.</p>
-<h2 id="what-changed">What changed</h2>
+<h2 id="what-changed"><a class="anchor" href="#what-changed" aria-hidden="true">#</a>What changed</h2>
 <p>Now every release gets this check and a launch on that macOS 15 Mac before it goes out. A CI job that launches the app on the oldest supported macOS is planned but not built yet.</p>
 <p>I had thought of the deployment target as something the compiler would hold me to. It only holds me to what the SDK says, and here that was macOS 11.</p>
-  </article>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong>Yardlet</strong> is a free, open-source Mac app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
 </main>
 
       <div class="doc-end">
