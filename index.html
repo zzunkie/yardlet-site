@@ -38,6 +38,70 @@
   "sameAs": ["https://github.com/zzunkie/yardlet", "https://www.producthunt.com/products/yardlet-2"]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do I need to run Yardlet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "macOS 15 or later on a Mac with Apple silicon, and at least one agent CLI installed and signed in, such as codex or claude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Yardlet free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Free and open source under the MIT License, with no Yardlet account or subscription. You pay only for the agents' own plans, as you do today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Yardlet run on Windows or Linux?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not available. Yardlet is a native Mac app written in Swift."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need the Codex or Claude app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not needed. Yardlet needs only an agent's CLI, signed in. If you also use the Codex or Claude app, a session continues in either place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Yardlet share or proxy my AI accounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each task runs the agent's own CLI on your Mac with the sign-in that CLI already has, through the interface it offers for apps: the app server for Codex, stream JSON for Claude Code and ACP for OpenCode and others. Yardlet does not share or proxy accounts, and the agents talk to their providers directly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I stop using Yardlet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quit Yardlet or delete it. It writes nothing into the agents' settings, so they, their sign-ins and their sessions stay as they were."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Yardlet update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yardlet is notarized by Apple and updates itself with Sparkle. It installs only updates signed with Yardlet's release key."
+      }
+    }
+  ]
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -75,6 +139,7 @@
           <ul>
             <li><a class="task" href="privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
             <li><a class="task" href="terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
           </ul>
         </nav>
         <!-- side:end -->
@@ -105,6 +170,7 @@
             <li><a href="#install">Install</a></li>
             <li class="sep"><a href="privacy.html">Privacy policy</a></li>
             <li><a href="terms.html">Terms of use</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
             <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
           </ul>
         </details>
@@ -127,6 +193,35 @@
             <p class="lead">Yardlet is a free, open-source Mac app written in Swift, not a web view. It starts the agent
               CLIs you already use with the sign-in they already have, and gives all of them the same sidebar,
               conversation view, composer and approval cards.</p>
+
+            <div class="approve-box">
+            <section class="approve" aria-labelledby="get-title">
+              <div class="approve-head">
+                <svg class="approve-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>
+                <div>
+                  <h2 id="get-title">Install Yardlet on your Mac?</h2>
+                  <p><span class="nw">Version 0.11.5</span> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
+                </div>
+              </div>
+              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code></p>
+              <div class="approve-actions">
+                <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet">View source</a>
+                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/latest">Download for Mac</a>
+              </div>
+            </section>
+            </div>
+            <p class="works"><span class="works-label">Works with</span>
+              <span class="agent"><img src="assets/agents/codex.png" alt="" width="20" height="20">Codex</span>
+              <span class="agent"><img src="assets/agents/claude-code.png" alt="" width="20" height="20">Claude Code</span>
+              <span class="agent"><img src="assets/agents/opencode.png" alt="" width="20" height="20">OpenCode</span>
+              <span class="agent"><img src="assets/agents/cursor-agent.png" alt="" width="20" height="20">Cursor Agent</span>
+              <span class="agent"><img src="assets/agents/antigravity-cli.png" alt="" width="20" height="20">Antigravity CLI</span>
+              <span class="agent"><img src="assets/agents/kimi-code.png" alt="" width="20" height="20">Kimi Code</span>
+              <span class="agent"><img src="assets/agents/grok-build.png" alt="" width="20" height="20">Grok Build</span>
+              <span class="agent"><img src="assets/agents/hermes-agent.png" alt="" width="20" height="20">Hermes Agent</span>
+              <span class="agent"><img src="assets/agents/muse-code.png" alt="" width="20" height="20">Muse Code</span>
+              <span class="agent"><img src="assets/agents/pi.png" alt="" width="20" height="20">Pi</span>
+            </p>
 
             <figure class="attach wide">
               <div class="shot">
@@ -174,22 +269,6 @@
                 </button>
               </figcaption>
             </figure>
-            <div class="approve-box">
-            <section class="approve" aria-labelledby="get-title">
-              <div class="approve-head">
-                <svg class="approve-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>
-                <div>
-                  <h2 id="get-title">Install Yardlet on your Mac?</h2>
-                  <p><span class="nw">Version 0.11.5</span> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
-                </div>
-              </div>
-              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code></p>
-              <div class="approve-actions">
-                <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet">View source</a>
-                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/latest">Download for Mac</a>
-              </div>
-            </section>
-            </div>
             <p class="aside-line">Connecting Google is optional. <a href="#google">How Yardlet uses your data</a></p>
           </div>
         </article>
@@ -469,6 +548,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <div><dt>Updates</dt><dd>Yardlet is notarized by Apple and updates itself with Sparkle. It installs only updates signed with Yardlet's release key.</dd></div>
                 <div><dt>Price</dt><dd>Free and open source under the MIT License, with no Yardlet account or subscription. You pay only for the agents' own plans, as you do today.</dd></div>
                 <div><dt>Windows and Linux</dt><dd>Not available. Yardlet is a native Mac app written in Swift.</dd></div>
+                <div><dt>The agents' own apps</dt><dd>Not needed. Yardlet needs only an agent's CLI, signed in. If you also use the Codex or Claude app, a session continues in either place.</dd></div>
+                <div><dt>Your accounts</dt><dd>Each task runs the agent's own CLI on your Mac with the sign-in that CLI already has, through the interface it offers for apps: the app server for Codex, stream JSON for Claude Code and ACP for OpenCode and others. Yardlet does not share or proxy accounts, and the agents talk to their providers directly.</dd></div>
+                <div><dt>Stopping</dt><dd>Quit Yardlet or delete it. It writes nothing into the agents' settings, so they, their sign-ins and their sessions stay as they were.</dd></div>
+                <div><dt>What changed</dt><dd>Each version's changes are in the <a href="changelog.html">changelog</a>.</dd></div>
               </dl>
             </section>
           </div>
@@ -479,7 +562,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <a href="privacy.html">Privacy policy</a>
             <a href="terms.html">Terms of use</a>
             <a href="https://github.com/zzunkie/yardlet">Source code</a>
-            <a href="https://github.com/zzunkie/yardlet/releases">Releases</a>
+            <a href="changelog.html">Changelog</a>
             <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
           </nav>
           <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,

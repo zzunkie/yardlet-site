@@ -1,0 +1,21 @@
+# Yardlet
+
+> Yardlet is a free, open-source (MIT) native Mac app, written in Swift, that runs the coding agent CLIs you already use, such as Codex, Claude Code, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Hermes Agent, Muse Code and Pi, side by side in one window. Each agent keeps its own sign-in, agent loop and session history.
+
+- Runs each agent's own CLI on your Mac with the sign-in it already has: Codex through its app server, Claude Code through its stream JSON mode, and OpenCode and others through ACP. It does not share or proxy accounts.
+- Sessions stay in each agent's own store, so a session started in Yardlet continues in the agent's own app or CLI, and the other way round.
+- Writes nothing into the agents' settings. Quit or delete Yardlet and the agents, their sign-ins and their sessions are as they were.
+- One sidebar, conversation view, composer and approval cards for every agent; several accounts per provider with their session and weekly limits; diffs of the last turn, file restore and fork, a pull request tab through your own `gh`, a terminal and a files pane.
+- Connectors (Gmail, Google Calendar, Google Drive, GitHub, Slack and remote MCP services) and a built-in Chromium browser that agents can drive, offered to Codex, Claude Code and the ACP agents.
+- Tasks can read, message or start other tasks, including on another agent, and scheduled tasks run while Yardlet is open.
+- Requires macOS 15 or later on Apple silicon and at least one agent CLI installed and signed in. Not available for Windows, Linux or Intel Macs.
+- No analytics and no server that receives your work.
+
+## Links
+
+- [Home page](https://yardlet.app/): what Yardlet does, with recordings of the app
+- [Changelog](https://yardlet.app/changelog.html): what changed in each version
+- [Source code and README](https://github.com/zzunkie/yardlet): install, permissions, known limitations and development
+- [Releases](https://github.com/zzunkie/yardlet/releases/latest): the notarized DMG; or `brew install --cask zzunkie/tap/yardlet`
+- [Privacy policy](https://yardlet.app/privacy.html)
+- [Terms of use](https://yardlet.app/terms.html)

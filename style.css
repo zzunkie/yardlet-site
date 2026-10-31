@@ -214,6 +214,14 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .reply > p { margin-top: var(--s-4); color: var(--text-2); max-width: 34em; text-wrap: pretty; }
 .reply > .lead { margin-top: var(--s-5); }
 .reply > .aside-line { margin-top: var(--s-3); font-size: var(--t-4); color: var(--text-3); }
+/* The agents Yardlet starts, by the icon each shows in Settings › Harnesses. */
+.reply > .works {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-4);
+  margin-top: var(--s-4); max-width: none; font-size: var(--t-4);
+}
+.works-label { color: var(--text-3); }
+.works .agent { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; color: var(--text-2); }
+.works .agent img { width: 20px; height: 20px; border-radius: 5px; }
 .reply > .panel + p, .reply > .attach + p { margin-top: var(--s-5); }
 
 /* The install card is Yardlet's approval card: what is asked, the command, then the two answers. Its box is a
@@ -345,6 +353,11 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .doc .summary { margin-top: var(--s-6); padding: var(--s-4) var(--s-5); background: var(--card-fill); border-radius: 14px;
   box-shadow: 0 0 0 1px var(--card-ring); color: var(--text); }
 .doc .narrow { max-width: none; }
+/* The changelog: one section a release, its New, Fixes and Security lists under it. */
+.doc .release + .release { margin-top: var(--s-8); padding-top: var(--s-2); border-top: 1px solid var(--card-ring); }
+.doc .release h2 { margin-top: var(--s-6); font: 700 var(--t-2)/1.2 var(--display); letter-spacing: -0.02em; }
+.doc .release h3 { margin-top: var(--s-5); font: 600 var(--t-3)/1.4 var(--font); color: var(--text); }
+.doc .release h3 + ul, .doc .release h3 + p { margin-top: var(--s-2); }
 .doc + .doc-end, .missing + .doc-end { max-width: calc(680px + 2 * var(--s-6)); margin: 0 auto; padding: 0 var(--s-6) var(--s-8); }
 .missing + .doc-end { max-width: calc(var(--thread) + 2 * var(--s-6)); }
 .doc-end .foot { margin-top: 0; }
