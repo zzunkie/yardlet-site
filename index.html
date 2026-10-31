@@ -29,7 +29,7 @@
   "url": "https://yardlet.app/",
   "description": "A free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and session history.",
   "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "macOS 15 or later, Apple silicon",
+  "operatingSystem": "macOS 15 or later, Apple silicon or Intel",
   "image": "https://yardlet.app/screens/og.jpg",
   "downloadUrl": "https://github.com/zzunkie/yardlet/releases/latest",
   "license": "https://opensource.org/licenses/MIT",
@@ -48,7 +48,7 @@
       "name": "What do I need to run Yardlet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "macOS 15 or later on a Mac with Apple silicon, and at least one agent CLI installed and signed in, such as codex or claude."
+        "text": "macOS 15 or later on a Mac with Apple silicon or Intel, and at least one agent CLI installed and signed in, such as codex or claude. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630."
       }
     },
     {
@@ -204,6 +204,7 @@
                 <div>
                   <h2 id="get-title">Install Yardlet?</h2>
                   <p><a class="nw" href="changelog.html">Version 0.11.8</a> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
+                  <p class="approve-alt">On an Intel Mac, get the <a href="https://github.com/zzunkie/yardlet/releases/download/v0.11.8/Yardlet-0.11.8-x86_64.dmg">Intel version</a>.</p>
                   <p>No Yardlet account. Your agents keep their sign&#8209;ins.</p>
                 </div>
               </div>
@@ -531,6 +532,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <div>
                   <h3 id="get-again-title">Install Yardlet?</h3>
                   <p><span class="nw">Version 0.11.8</span> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
+                  <p class="approve-alt">On an Intel Mac, get the <a href="https://github.com/zzunkie/yardlet/releases/download/v0.11.8/Yardlet-0.11.8-x86_64.dmg">Intel version</a>.</p>
                 </div>
               </div>
               <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
@@ -543,7 +545,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <section class="panel" aria-labelledby="know-title">
               <h3 id="know-title">Good to know</h3>
               <dl class="rows">
-                <div><dt>Requirements</dt><dd>macOS 15 or later on a Mac with Apple silicon, and at least one agent CLI installed and signed in, such as <code>codex</code> or <code>claude</code>.</dd></div>
+                <div><dt>Requirements</dt><dd>macOS 15 or later on a Mac with Apple silicon or Intel, and at least one agent CLI installed and signed in, such as <code>codex</code> or <code>claude</code>. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630. <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">Tell us</a> how it goes.</dd></div>
                 <div><dt>Updates</dt><dd>Yardlet is notarized by Apple and updates itself with Sparkle. It installs only updates signed with Yardlet's release key.</dd></div>
                 <div><dt>Price</dt><dd>Free and open source under the MIT License, with no Yardlet account or subscription. You pay only for the agents' own plans, as you do today.</dd></div>
                 <div><dt>Windows and Linux</dt><dd>Not yet. Yardlet runs on macOS for now.</dd></div>

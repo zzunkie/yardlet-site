@@ -241,6 +241,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .approve-head p { margin-top: 2px; font-size: var(--t-4); color: var(--text-3); }
 .approve-head a { color: inherit; text-decoration-color: var(--line); }
 .approve-head a:hover { color: var(--text); }
+/* The other download is a link people look for, so its underline shows as ordinary links' do. */
+.approve-alt a { text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
 /* The command stays on one line; when the card is too narrow for it, only this line scrolls. */
 .approve-cmd { grid-column: 1 / -1; min-width: 0; padding-left: calc(20px + var(--s-3)); overflow-x: auto; }
 .approve-cmd code { font-size: var(--t-4); padding: var(--s-1) var(--s-2); white-space: nowrap; }
