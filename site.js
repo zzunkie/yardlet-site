@@ -62,3 +62,19 @@ if (button && videos.length && !matchMedia('(prefers-reduced-motion: reduce)').m
     sync();
   });
 }
+
+// Copy buttons beside the Homebrew command. They show only where the clipboard can be written.
+if (navigator.clipboard) {
+  for (const copy of document.querySelectorAll('button.copy[data-copy]')) {
+    copy.hidden = false;
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copy.dataset.copy);
+        copy.textContent = 'Copied';
+      } catch {
+        copy.textContent = 'Select and copy';
+      }
+      setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+    });
+  }
+}

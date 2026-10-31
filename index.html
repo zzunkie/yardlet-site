@@ -122,8 +122,8 @@
           <p class="group">yardlet.app</p>
           <ul>
             <li><a class="task" href="#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
-            <li><a class="task" href="#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
             <li><a class="task" href="#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
             <li><a class="task" href="#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
             <li><a class="task" href="#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
             <li><a class="task" href="#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
@@ -158,8 +158,8 @@
             <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
           <ul>
             <li><a href="#what">What Yardlet is</a></li>
-            <li><a href="#agents">Any agent, same controls</a></li>
             <li><a href="#together">Agents that work together</a></li>
+            <li><a href="#agents">Any agent, same controls</a></li>
             <li><a href="#approvals">Approvals in your words</a></li>
             <li><a href="#review">Review, then merge</a></li>
             <li><a href="#accounts">Every account's limits</a></li>
@@ -179,7 +179,7 @@
         <nav class="bar-links" aria-label="Site">
           <a href="privacy.html">Privacy</a>
           <a href="https://github.com/zzunkie/yardlet">GitHub</a>
-          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.5/Yardlet-0.11.5.dmg">Download</a>
           <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
         </nav>
       </header>
@@ -189,10 +189,9 @@
         <article class="turn" id="what" aria-labelledby="what-title">
           <p class="ask"><span class="sr-only">You: </span>I already use Codex and Claude Code. What does Yardlet change?</p>
           <div class="reply">
-            <h1 id="what-title">It runs them side&nbsp;by&nbsp;side, still signed in as&nbsp;you.</h1>
-            <p class="lead">Yardlet is a free, open-source Mac app written in Swift, not a web view. It starts the agent
-              CLIs you already use with the sign-in they already have, and gives all of them the same sidebar,
-              conversation view, composer and approval cards.</p>
+            <h1 id="what-title">Codex, Claude Code and more, side&nbsp;by&nbsp;side, still signed in as&nbsp;you.</h1>
+            <p class="lead">Yardlet is a free, open-source native Mac app. It starts the agent CLIs you already use with the
+              sign-in they already have, and gives them one sidebar, composer and set of approval cards.</p>
 
             <div class="approve-box">
             <section class="approve" aria-labelledby="get-title">
@@ -200,13 +199,14 @@
                 <svg class="approve-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>
                 <div>
                   <h2 id="get-title">Install Yardlet on your Mac?</h2>
-                  <p><span class="nw">Version 0.11.5</span> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
+                  <p><a class="nw" href="changelog.html">Version 0.11.5</a> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
+                  <p>No Yardlet account needed.</p>
                 </div>
               </div>
-              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code></p>
+              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
               <div class="approve-actions">
-                <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet">View source</a>
-                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/latest">Download for Mac</a>
+                <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a>
+                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.5/Yardlet-0.11.5.dmg">Download for Mac</a>
               </div>
             </section>
             </div>
@@ -216,11 +216,7 @@
               <span class="agent"><img src="assets/agents/opencode.png" alt="" width="20" height="20">OpenCode</span>
               <span class="agent"><img src="assets/agents/cursor-agent.png" alt="" width="20" height="20">Cursor Agent</span>
               <span class="agent"><img src="assets/agents/antigravity-cli.png" alt="" width="20" height="20">Antigravity CLI</span>
-              <span class="agent"><img src="assets/agents/kimi-code.png" alt="" width="20" height="20">Kimi Code</span>
-              <span class="agent"><img src="assets/agents/grok-build.png" alt="" width="20" height="20">Grok Build</span>
-              <span class="agent"><img src="assets/agents/hermes-agent.png" alt="" width="20" height="20">Hermes Agent</span>
-              <span class="agent"><img src="assets/agents/muse-code.png" alt="" width="20" height="20">Muse Code</span>
-              <span class="agent"><img src="assets/agents/pi.png" alt="" width="20" height="20">Pi</span>
+              <a class="works-more" href="#agents">and 5 more</a>
             </p>
 
             <figure class="attach wide">
@@ -238,7 +234,7 @@
                   <source media="(prefers-reduced-motion: no-preference)" srcset="screens/hero-split-start-light.jpg">
                   <source media="(prefers-color-scheme: dark)" srcset="screens/hero-split-dark.jpg">
                   <img src="screens/hero-split-light.jpg" width="2240" height="1384" fetchpriority="high"
-                       alt="One Yardlet window with two tasks side by side: Codex adding a dark mode toggle to acme-web, and Claude Code running a flaky checkout test 50 times.">
+                       alt="A recording of Yardlet: Codex adds a dark mode toggle to acme-web, and on wider screens Claude Code tracks down a flaky checkout test beside it.">
                 </picture>
                 <!-- The first playable source wins: HEVC for Safari, H.264 for most browsers, then VP9 or VP8 for
                      Chromium builds without H.264. Each source also asks for motion, so nothing downloads when it is
@@ -269,7 +265,29 @@
                 </button>
               </figcaption>
             </figure>
-            <p class="aside-line">Connecting Google is optional. <a href="#google">How Yardlet uses your data</a></p>
+          </div>
+        </article>
+
+        <article class="turn" id="together" aria-labelledby="together-title">
+          <p class="ask"><span class="sr-only">You: </span>Have Codex review what Claude Code just wrote.</p>
+          <div class="reply">
+            <h2 id="together-title">Your agents hand work to each&nbsp;other.</h2>
+            <p>One task can read another, message it while it works, start a task under itself on any agent and account,
+              run a one&#8209;off subagent on another agent and get its answer, wait for the results, and put work on a
+              schedule. Codex, Claude Code and the agents that use ACP get these session tools.</p>
+            <details class="panel fold">
+              <summary id="tools-title">The session tools
+                <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+              <dl class="rows tools">
+                <div><dt><code>read_task</code></dt><dd>Read another task's latest turns.</dd></div>
+                <div><dt><code>send_message_to_task</code></dt><dd>Message another task. An idle one starts a turn; a running one reads it without stopping.</dd></div>
+                <div><dt><code>create_task</code></dt><dd>Start a task under this one, with any agent, model and account.</dd></div>
+                <div><dt><code>run_agent</code></dt><dd>Run a subagent on another agent, Codex from Claude Code for instance, and get its final answer.</dd></div>
+                <div><dt><code>wait_tasks</code></dt><dd>Wait until they finish a turn or need you.</dd></div>
+                <div><dt><code>create_scheduled_task</code></dt><dd>Put work on a schedule that runs while Yardlet is open.</dd></div>
+              </dl>
+            </details>
+            <p class="aside-line">Messaging or starting a task in another project asks you first, with an approval card.</p>
           </div>
         </article>
 
@@ -299,35 +317,13 @@
             <section class="panel" aria-labelledby="every-title">
               <h3 id="every-title">What every task comes with</h3>
               <dl class="rows">
-                <div><dt>One composer</dt><dd>Type the task, attach files and choose the permission mode in the same place. Each agent still asks before it acts, as it would on its own.</dd></div>
+                <div><dt>One composer</dt><dd>Type the task, attach files and choose the permission mode in the same place. Each agent asks for approval as its permission mode says, as it would on its own.</dd></div>
                 <div><dt>Plans you can follow</dt><dd>When an agent makes a plan, its steps sit beside the conversation and tick off as the work moves.</dd></div>
                 <div><dt>Model, effort, account</dt><dd>Chosen per task, from the choices that agent offers.</dd></div>
                 <div><dt>Context and limits</dt><dd>How much of its context a task has used, and how much of each account's session and weekly limits is left.</dd></div>
               </dl>
             </section>
             <p class="aside-line">Product names belong to their owners. Yardlet is not affiliated with or endorsed by them.</p>
-          </div>
-        </article>
-
-        <article class="turn" id="together" aria-labelledby="together-title">
-          <p class="ask"><span class="sr-only">You: </span>Have Codex review what Claude Code just wrote.</p>
-          <div class="reply">
-            <h2 id="together-title">Your agents hand work to each&nbsp;other.</h2>
-            <p>One task can read another, message it while it works, start a task under itself on any agent and account,
-              run a one&#8209;off subagent on another agent and get its answer, wait for the results, and put work on a
-              schedule. Every agent Yardlet starts gets these session tools.</p>
-            <section class="panel" aria-labelledby="tools-title">
-              <h3 id="tools-title">Tools every agent gets from Yardlet</h3>
-              <dl class="rows tools">
-                <div><dt><code>read_task</code></dt><dd>Read another task's latest turns.</dd></div>
-                <div><dt><code>send_message_to_task</code></dt><dd>Message another task. An idle one starts a turn; a running one reads it without stopping.</dd></div>
-                <div><dt><code>create_task</code></dt><dd>Start a task under this one, with any agent, model and account.</dd></div>
-                <div><dt><code>run_agent</code></dt><dd>Run a subagent on another agent, Codex from Claude Code for instance, and get its final answer.</dd></div>
-                <div><dt><code>wait_tasks</code></dt><dd>Wait until they finish a turn or need you.</dd></div>
-                <div><dt><code>create_scheduled_task</code></dt><dd>Put work on a schedule that runs while Yardlet is open.</dd></div>
-              </dl>
-            </section>
-            <p class="aside-line">Messaging or starting a task in another project asks you first, with an approval card.</p>
           </div>
         </article>
 
@@ -448,11 +444,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Can I answer my agents from my phone?</p>
           <div class="reply">
             <h2 id="phone-title">Answer approvals and start tasks from your&nbsp;phone.</h2>
-            <p>An Android app pairs with your Mac by QR code and follows the tasks running in Yardlet, so you can answer
+            <p>Coming soon: an Android app that pairs with your Mac by QR code and follows the tasks running in Yardlet, so you can answer
               approvals and start tasks while you are away. On the same network it connects directly; away from it,
               through Yardlet's relay. Either way the messages are end-to-end encrypted, and the relay can neither read
               nor store them.</p>
-            <p class="aside-line">The Android app isn't public yet.</p>
           </div>
         </article>
 
@@ -534,10 +529,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                   <p><span class="nw">Version 0.11.5</span> · <span class="nw">macOS 15 or later</span> · <span class="nw">Apple silicon</span></p>
                 </div>
               </div>
-              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code></p>
+              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
               <div class="approve-actions">
                 <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet#development">Build from source</a>
-                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/latest">Download for Mac</a>
+                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.5/Yardlet-0.11.5.dmg">Download for Mac</a>
               </div>
             </section>
             </div>

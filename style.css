@@ -222,6 +222,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .works-label { color: var(--text-3); }
 .works .agent { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; color: var(--text-2); }
 .works .agent img { width: 20px; height: 20px; border-radius: 5px; }
+.works-more { color: var(--text-3); }
+.works-more:hover { color: var(--text); }
 .reply > .panel + p, .reply > .attach + p { margin-top: var(--s-5); }
 
 /* The install card is Yardlet's approval card: what is asked, the command, then the two answers. Its box is a
@@ -237,9 +239,14 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .approve-icon { flex: none; width: 20px; height: 20px; margin-top: 2px; color: var(--text-2); stroke-width: 1.6; }
 .approve h2, .approve h3 { font: 600 var(--t-3)/1.35 var(--font); letter-spacing: 0; max-width: none; }
 .approve-head p { margin-top: 2px; font-size: var(--t-4); color: var(--text-3); }
+.approve-head a { color: inherit; text-decoration-color: var(--line); }
+.approve-head a:hover { color: var(--text); }
 /* The command stays on one line; when the card is too narrow for it, only this line scrolls. */
 .approve-cmd { grid-column: 1 / -1; min-width: 0; padding-left: calc(20px + var(--s-3)); overflow-x: auto; }
 .approve-cmd code { font-size: var(--t-4); padding: var(--s-1) var(--s-2); white-space: nowrap; }
+.approve-cmd .copy { margin-left: var(--s-2); padding: 2px 8px; border: 0; border-radius: 6px; background: var(--quiet); color: var(--text-2);
+  font: 500 var(--t-5)/1.6 var(--font); cursor: pointer; vertical-align: middle; }
+.approve-cmd .copy:hover { background: var(--quiet-hover); color: var(--text); }
 .approve-actions { grid-column: 2; grid-row: 1; display: flex; gap: var(--s-2); }
 @container (max-width: 720px) {
   .approve { grid-template-columns: minmax(0, 1fr); }
@@ -405,6 +412,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
   .approve { grid-template-columns: minmax(0, 1fr); padding: var(--s-4) var(--s-3); }
   .approve-cmd { padding-left: 0; }
   .approve-cmd code { font-size: var(--t-5); padding: var(--s-1); }
+  .approve-cmd .copy { display: none; }
   .approve-actions { grid-column: 1; grid-row: auto; flex-direction: column-reverse; padding-left: 0; margin-top: 0; }
   .approve-actions .btn { height: 44px; }
   .shot { aspect-ratio: 1036 / 1800; max-height: 80vh; margin-inline: auto; border-radius: 14px; }
