@@ -93,6 +93,32 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.6" aria-labelledby="v0.11.6-title">
+      <h2 id="v0.11.6-title">Yardlet 0.11.6</h2>
+      <p class="updated"><time datetime="2026-10-31">October 31, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.6">Release on GitHub</a></p>
+      <p>Yardlet starts on macOS 15 again. Since 0.11.0 it quit as soon as it opened there. If you are on macOS 15, download this version: the earlier ones cannot open to update themselves.</p>
+      <h3>New</h3>
+      <ul>
+        <li>The browser panel saves and fills your addresses and payment cards. A card fills only after Touch ID, never with its security code, and never for an agent.</li>
+        <li>Sign-ins that ask for the username first keep it for the password step, and other fields such as an AWS account ID are saved with the item. The save bar closes with an X and says Save when it adds a username.</li>
+        <li>Move a task one level up or under another task in the sidebar, from its menu or by dragging it.</li>
+        <li>Personal agents: read a dot's activity records and reply in threads in Yardlet.</li>
+        <li>Settings says when Yardlet's instructions reach a task: when Yardlet starts or resumes it.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>Your own messages stay in view when a turn's work folds.</li>
+        <li>A Codex error shows once after Retry.</li>
+        <li>A subagent cut off by quitting tells the task that was waiting for it, and quitting to update waits for working subagents too.</li>
+        <li>Moving an account's tasks to another folder carries on after a quit.</li>
+        <li>A task cannot be archived while work it started is still running.</li>
+        <li>An agent CLI that stops reading no longer ends Yardlet, and a shell command is no longer cut short while Yardlet is busy.</li>
+        <li>Less work on the main thread while Codex streams, in tasks with many saved cards, and while subagents run.</li>
+        <li>A saved connector file that cannot be read is left as it is, and Settings says so, instead of being replaced.</li>
+        <li>The password the vault made is kept unless the page certainly did not take it.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.5" aria-labelledby="v0.11.5-title">
       <h2 id="v0.11.5-title">Yardlet 0.11.5</h2>
       <p class="updated"><time datetime="2026-10-30">October 30, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.5">Release on GitHub</a></p>

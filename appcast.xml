@@ -3,6 +3,51 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.6</title>
+            <pubDate>Sat, 31 Oct 2026 21:49:26 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>28</sparkle:version>
+            <sparkle:shortVersionString>0.11.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.6
+
+Yardlet starts on macOS 15 again. Since 0.11.0 it quit as soon as it opened there. If you are on macOS 15, download
+this version: the earlier ones cannot open to update themselves.
+
+## New
+
+- The browser panel saves and fills your addresses and payment cards. A card fills only after Touch ID, never with
+  its security code, and never for an agent.
+- Sign-ins that ask for the username first keep it for the password step, and other fields such as an AWS account ID
+  are saved with the item. The save bar closes with an X and says Save when it adds a username.
+- Move a task one level up or under another task in the sidebar, from its menu or by dragging it.
+- Personal agents: read a dot's activity records and reply in threads in Yardlet.
+- Settings says when Yardlet's instructions reach a task: when Yardlet starts or resumes it.
+
+## Fixes
+
+- Your own messages stay in view when a turn's work folds.
+- A Codex error shows once after Retry.
+- A subagent cut off by quitting tells the task that was waiting for it, and quitting to update waits for working
+  subagents too.
+- Moving an account's tasks to another folder carries on after a quit.
+- A task cannot be archived while work it started is still running.
+- An agent CLI that stops reading no longer ends Yardlet, and a shell command is no longer cut short while Yardlet is
+  busy.
+- Less work on the main thread while Codex streams, in tasks with many saved cards, and while subagents run.
+- A saved connector file that cannot be read is left as it is, and Settings says so, instead of being replaced.
+- The password the vault made is kept unless the page certainly did not take it.
+
+## Install
+
+Download `Yardlet-0.11.6.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Requires macOS 15 or later on
+Apple silicon.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.6/Yardlet-0.11.6.dmg" length="175968120" type="application/octet-stream" sparkle:edSignature="K30wVOw6tEa/iqCumpHgrHorBRc8fwEGgVkk9V+VljkIrzJE7nvMW7HblNFIxv+tXwd01xYbldevebYmvdQlDg=="/>
+        </item>
+        <item>
             <title>0.11.5</title>
             <pubDate>Fri, 30 Oct 2026 17:46:58 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -89,59 +134,6 @@ Download `Yardlet-0.11.4.dmg` below, or `brew install --cask zzunkie/tap/yardlet
 themselves. Requires macOS 15 or later on Apple silicon.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.4/Yardlet-0.11.4.dmg" length="174287315" type="application/octet-stream" sparkle:edSignature="GDV9RJUS74/AVGtPszPJM+i7OgvvwkH2X8h1m8w9nAsa383+U2jVNURBE0Op/Fjv+S2YoKYb5u+bGLSX3eqlDw=="/>
-        </item>
-        <item>
-            <title>0.11.3</title>
-            <pubDate>Wed, 28 Oct 2026 21:38:32 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>25</sparkle:version>
-            <sparkle:shortVersionString>0.11.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.3
-
-## Security
-
-- Agent tools are more limited in what they can reach: scheduled tasks an agent writes, which calls may use a
-  task's tools, filled passwords and uploads.
-- Phone pairing and linking are hardened. The first phone protocol is no longer supported, so pair again with
-  the current app.
-- The phone relay limits connections a Mac has not answered.
-
-## New
-
-- Choose the app's language in Settings › General: System, English or 한국어.
-- Keep tasks working with the lid closed, when you turn it on in Settings › General.
-- ⌘K finds tasks as well as commands.
-- Back and Forward (⌘[ and ⌘], or the mouse's back and forward buttons) go through what the window showed.
-  Over a browser page, the mouse buttons go through that page's history.
-- With one tab, ⌃Tab and ⌃⇧Tab go to the next and previous task.
-- A button's tooltip shows its menu bar key.
-- The browser's address field suggests pages and searches as you type.
-- A call's images show on its line, and whole when the line is opened.
-- A two-factor code saved without a site is offered on the site its name names.
-- Agent CLIs installed with nvm, Volta, bun, npm or pnpm are found when Yardlet opens from the Dock.
-- Double-click the sidebar's line to return it to its standard width.
-
-## Fixes
-
-- An agent CLI that exits on its own no longer keeps two CPU cores busy.
-- A streaming Codex answer no longer redraws its whole turn, and scrolling the sidebar to its top no longer
-  redraws the window.
-- Button tooltips show again after a scroll.
-- A task's terminal keeps running when the task leaves the screen.
-- Codex's running turn no longer clears right after you send.
-- A long tool call's progress no longer arrives after its reply.
-
-Thanks to @minsujang0 for the detailed reports behind several of these changes.
-
-## Install
-
-Download `Yardlet-0.11.3.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
-themselves. Requires macOS 15 or later on Apple silicon.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.3/Yardlet-0.11.3.dmg" length="173504881" type="application/octet-stream" sparkle:edSignature="dYpztHjdbDiWE96pv8tUXGWecXaKou/C2E/okmjh+uADthrLX0GMhtlaNnmKnKC8rhAp1z1xZ74CYoIwkovJDg=="/>
         </item>
     </channel>
 </rss>
