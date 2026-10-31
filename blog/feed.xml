@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Yardlet blog</title>
+  <link href="https://yardlet.app/blog/"/>
+  <link rel="self" href="https://yardlet.app/blog/feed.xml"/>
+  <id>https://yardlet.app/blog/</id>
+  <updated>2026-11-01T00:00:00Z</updated>
+  <author><name>Yardlet</name></author>
+  <entry>
+    <title>A Logger symbol missing on macOS 15 kept my Mac app from launching</title>
+    <link href="https://yardlet.app/blog/logger-isenabled-macos-15.html"/>
+    <id>https://yardlet.app/blog/logger-isenabled-macos-15.html</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1&#x27;s libswiftos doesn&#x27;t have it.</summary>
+    <content type="html">&lt;p&gt;I make &lt;a href=&quot;https://github.com/zzunkie/yardlet&quot;&gt;Yardlet&lt;/a&gt;, a free, open-source Mac app for running coding agents like Codex and Claude Code in one window. It says it needs macOS 15 or later. For four days it quit at launch on macOS 15, and I didn&#x27;t know.&lt;/p&gt;
+&lt;h2 id=&quot;how-i-found-out&quot;&gt;How I found out&lt;/h2&gt;
+&lt;p&gt;On October 31 I was getting my company MacBook ready for a performance comparison. That Mac is still on macOS 15.6.1. Yardlet quit the moment it launched. No window, just a crash report. My first thought was that the company Mac was just too old.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Termination Reason: DYLD, Symbol missing
+Symbol not found: _$s2os6LoggerV9isEnabled4typeSbSo0a5_log_E2_ta_tF
+Expected in: /usr/lib/swift/libswiftos.dylib&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That symbol is &lt;code&gt;Logger.isEnabled(type:)&lt;/code&gt; from the &lt;code&gt;os&lt;/code&gt; module. I used it in one place, to skip building debug messages about text selection when nobody is reading debug logs.&lt;/p&gt;
+&lt;p&gt;I downloaded the public disk images of 0.11.0, 0.11.4 and 0.11.5 and checked them with &lt;code&gt;nm -u&lt;/code&gt;. All three import it. 0.11.0, the first public release, went out on October 27. My own Mac runs macOS 27, so I never saw it.&lt;/p&gt;
+&lt;h2 id=&quot;why-it-compiled&quot;&gt;Why it compiled&lt;/h2&gt;
+&lt;p&gt;The deployment target is macOS 15, so I expected an availability error if I called anything newer. In Xcode 27.1&#x27;s SDK, &lt;code&gt;Logger&lt;/code&gt; is marked available since macOS 11, and &lt;code&gt;isEnabled(type:)&lt;/code&gt; has no availability of its own (shortened):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
+public struct Logger : @unchecked Sendable {
+  // ...
+  public func isEnabled(type: OSLogType) -&amp;gt; Bool&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So the compiler treats it as there since macOS 11. But the macOS 15.5 SDK that comes with the Command Line Tools has no such symbol in &lt;code&gt;libswiftos.tbd&lt;/code&gt;, the 27 SDK has it, and &lt;code&gt;libswiftos.dylib&lt;/code&gt; on macOS 15.6.1 doesn&#x27;t export it. I haven&#x27;t checked macOS 26.&lt;/p&gt;
+&lt;h2 id=&quot;the-fix&quot;&gt;The fix&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;OSLog&lt;/code&gt; has its own &lt;code&gt;isEnabled(type:)&lt;/code&gt;, which goes to the C function &lt;code&gt;os_log_type_enabled&lt;/code&gt;, there since macOS 10.12. So I keep an &lt;code&gt;OSLog&lt;/code&gt; handle, make the &lt;code&gt;Logger&lt;/code&gt; from it, and ask the handle:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;static let logHandle = OSLog(subsystem: bundleID, category: &quot;conversation-selection&quot;)
+static let log = Logger(logHandle)
+
+guard logHandle.isEnabled(type: .debug) else { return }&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;checking-the-other-imports&quot;&gt;Checking the other imports&lt;/h2&gt;
+&lt;p&gt;I didn&#x27;t want to find the next one the same way. On the macOS 15.6.1 Mac I listed the symbols the executable imports without weak linking, and checked each one against what its system library exports there. A rough version of the script (it doesn&#x27;t check exit codes):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import re, subprocess, sys
+
+def run(*args):
+    return subprocess.run(args, capture_output=True, text=True).stdout
+
+def short(path):
+    name = re.sub(r&quot;\.dylib$&quot;, &quot;&quot;, path.split(&quot;/&quot;)[-1])
+    return re.sub(r&quot;(\.[A-Z0-9]+)+$&quot;, &quot;&quot;, name)
+
+binary = sys.argv[1]
+wanted = {}
+for line in run(&quot;dyld_info&quot;, &quot;-imports&quot;, binary).splitlines():
+    m = re.match(r&quot;\s+0x[0-9A-F]+\s+(_\S+)\s+(\[weak-import\]\s+)?\(from (\S+)\)&quot;, line)
+    if m and not m.group(2):
+        wanted.setdefault(m.group(3), set()).add(m.group(1))
+
+for line in run(&quot;dyld_info&quot;, &quot;-dependents&quot;, binary).splitlines():
+    path = line.strip().split()[-1] if line.strip() else &quot;&quot;
+    if not path.startswith((&quot;/usr/lib&quot;, &quot;/System&quot;)) or short(path) not in wanted:
+        continue
+    libraries = [path] + [l.split()[-1] for l in run(&quot;dyld_info&quot;, &quot;-dependents&quot;, path).splitlines() if &quot;re-export&quot; in l]
+    exported = set()
+    for library in libraries:
+        exported |= set(re.findall(r&quot;(_\S+)&quot;, run(&quot;dyld_info&quot;, &quot;-exports&quot;, library)))
+    for symbol in sorted(wanted[short(path)] - exported):
+        print(short(path), run(&quot;xcrun&quot;, &quot;swift-demangle&quot;, &quot;--compact&quot;, symbol).strip())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It follows direct re-exports, since SwiftUI re-exports SwiftUICore on macOS 15. For 0.11.5, with 4,261 strong imports, it printed one line: &lt;code&gt;libswiftos os.Logger.isEnabled(type: __C.os_log_type_t) -&amp;gt; Swift.Bool&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;0.11.6 went out the same night. Before publishing it I copied the notarized disk image to the macOS 15.6.1 Mac. The script printed nothing for its 4,291 imports, and the app stayed up when I launched it with an empty home folder.&lt;/p&gt;
+&lt;h2 id=&quot;what-changed&quot;&gt;What changed&lt;/h2&gt;
+&lt;p&gt;Now every release gets this check and a launch on that macOS 15 Mac before it goes out. A CI job that launches the app on the oldest supported macOS is planned but not built yet.&lt;/p&gt;
+&lt;p&gt;I had thought of the deployment target as something the compiler would hold me to. It only holds me to what the SDK says, and here that was macOS 11.&lt;/p&gt;</content>
+  </entry>
+</feed>

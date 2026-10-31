@@ -15,6 +15,7 @@
 
 - [Home page](https://yardlet.app/): what Yardlet does, with recordings of the app
 - [Changelog](https://yardlet.app/changelog.html): what changed in each version
+- [Blog](https://yardlet.app/blog/): notes from building Yardlet
 - [Source code and README](https://github.com/zzunkie/yardlet): install, permissions, known limitations and development
 - [Releases](https://github.com/zzunkie/yardlet/releases/latest): the notarized DMG; or `brew install --cask zzunkie/tap/yardlet`
 - [Privacy policy](https://yardlet.app/privacy.html)
