@@ -314,7 +314,7 @@ def feed(posts):
 
 def main():
     posts = []
-    for path in sorted((ROOT / "blog" / "posts").glob("*.md")):
+    for path in sorted((ROOT / "blog" / "posts").glob("*.md"), reverse=True):
         meta, body = front_matter(path.read_text())
         meta["day"] = datetime.date.fromisoformat(meta["date"])
         meta["minutes"] = reading_minutes(body)

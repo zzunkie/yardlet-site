@@ -7,6 +7,66 @@
   <updated>2026-11-01T00:00:00Z</updated>
   <author><name>Yardlet</name></author>
   <entry>
+    <title>Giving coding agents an MCP server without writing to their settings</title>
+    <link href="https://yardlet.app/blog/mcp-server-without-settings.html"/>
+    <id>https://yardlet.app/blog/mcp-server-without-settings.html</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <summary>Yardlet hands Codex, Claude Code and ACP agents its MCP server one session at a time: a launch argument for one, a request field for the others. Nothing is written to their settings.</summary>
+    <content type="html">&lt;p&gt;I make &lt;a href=&quot;https://github.com/zzunkie/yardlet&quot;&gt;Yardlet&lt;/a&gt;, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window. The agents get a few tools from it: a browser panel they can drive while I watch, a view of my other tasks, and the connectors I signed in to once. All of that comes through one small MCP server in the app bundle, &lt;code&gt;yardlet-mcp&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The usual way to give an agent an MCP server is to register it in the agent&#x27;s settings: &lt;code&gt;claude mcp add&lt;/code&gt; for Claude Code, an &lt;code&gt;mcp_servers&lt;/code&gt; entry in &lt;code&gt;config.toml&lt;/code&gt; for Codex. Yardlet doesn&#x27;t. It passes the server to each session as it starts, through whatever that agent accepts for one session. This post is about why, and what each agent accepts.&lt;/p&gt;
+&lt;h2 id=&quot;why-not-the-settings-file&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#why-not-the-settings-file&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;Why not the settings file&lt;/h2&gt;
+&lt;p&gt;Early on I considered things that would have made Yardlet matter more to the agent: a hook that handles approvals, performance numbers sent with every turn. I dropped them. Yardlet runs each agent&#x27;s own CLI, and what it changes for a session, it changes in that process only, with an argument or an environment variable. I wanted two things to hold:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What Yardlet adds, you can switch off in its settings, and the agent&#x27;s own files don&#x27;t change either way.&lt;/li&gt;
+&lt;li&gt;Quit Yardlet or drag it to the Trash, and the agents, their sign-ins and their sessions are as they were.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A server in the agent&#x27;s settings would break the second one. Every session, in Yardlet or not, would start the server. With Yardlet closed, it would still list its browser tools and answer every call with an error. Remove the app, and the entry stays, pointing at a command that is gone.&lt;/p&gt;
+&lt;h2 id=&quot;what-each-agent-accepts-for-one-session&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-each-agent-accepts-for-one-session&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;What each agent accepts for one session&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Claude Code&lt;/strong&gt; takes &lt;code&gt;--mcp-config &amp;lt;file&amp;gt;&lt;/code&gt;. Yardlet writes one file per session, with the server and the session&#x27;s token in its environment:&lt;/p&gt;
+&lt;figure class=&quot;code&quot;&gt;&lt;figcaption&gt;&lt;span&gt;claude-&amp;lt;session&amp;gt;.json&lt;/span&gt;&lt;button class=&quot;copy&quot; type=&quot;button&quot; hidden&gt;Copy&lt;/button&gt;&lt;/figcaption&gt;&lt;pre&gt;&lt;code&gt;{
+  &quot;mcpServers&quot;: {
+    &quot;yardlet&quot;: {
+      &quot;type&quot;: &quot;stdio&quot;,
+      &quot;command&quot;: &quot;/Applications/Yardlet.app/Contents/Helpers/yardlet-mcp&quot;,
+      &quot;args&quot;: [],
+      &quot;env&quot;: {
+        &quot;YARDLET_TOOLS_SOCKET&quot;: &quot;…/tools.sock&quot;,
+        &quot;YARDLET_TOOLS_TOKEN&quot;: &quot;…&quot;,
+        &quot;YARDLET_TOOLS_SESSION&quot;: &quot;…&quot;,
+        &quot;YARDLET_TOOLS_APP_PID&quot;: &quot;…&quot;
+      }
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;A JSON argument would work too, but then the token would show in the process list. So the file sits in a folder only the user can open, under the temporary directory of that run of Yardlet. It goes when Yardlet quits; a run that crashed leaves it, and the next run removes it. The argument goes last, because it takes several values, so nothing after it is taken as one of them. I don&#x27;t pass &lt;code&gt;--strict-mcp-config&lt;/code&gt;, which would drop the servers you registered yourself. They load beside Yardlet&#x27;s, with one exception: when a Yardlet connector is connected for the same address as one of your Claude servers, that server is denied for this process through &lt;code&gt;--settings&lt;/code&gt;, so the agent isn&#x27;t offered the same service twice. That is a launch argument too.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codex&lt;/strong&gt; runs as an App Server, and &lt;code&gt;thread/start&lt;/code&gt;, &lt;code&gt;thread/resume&lt;/code&gt; and &lt;code&gt;thread/fork&lt;/code&gt; take a &lt;code&gt;config&lt;/code&gt; object for that thread:&lt;/p&gt;
+&lt;figure class=&quot;code&quot;&gt;&lt;figcaption&gt;&lt;span&gt;config in thread/start&lt;/span&gt;&lt;button class=&quot;copy&quot; type=&quot;button&quot; hidden&gt;Copy&lt;/button&gt;&lt;/figcaption&gt;&lt;pre&gt;&lt;code&gt;{
+  &quot;mcp_servers&quot;: {
+    &quot;yardlet&quot;: {
+      &quot;command&quot;: &quot;/Applications/Yardlet.app/Contents/Helpers/yardlet-mcp&quot;,
+      &quot;args&quot;: [],
+      &quot;env&quot;: {
+        &quot;YARDLET_TOOLS_SOCKET&quot;: &quot;…/tools.sock&quot;,
+        &quot;YARDLET_TOOLS_TOKEN&quot;: &quot;…&quot;,
+        &quot;YARDLET_TOOLS_SESSION&quot;: &quot;…&quot;,
+        &quot;YARDLET_TOOLS_APP_PID&quot;: &quot;…&quot;
+      },
+      &quot;tool_timeout_sec&quot;: 1800
+    }
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;Codex merges it over the user&#x27;s configuration. I checked with a server of my own in the &lt;code&gt;config.toml&lt;/code&gt; of a temporary home: &lt;code&gt;mcpServerStatus/list&lt;/code&gt; showed both connected. The timeout is there because a browser call can wait for a page to load, longer than Codex&#x27;s default.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ACP agents&lt;/strong&gt; (OpenCode, Kimi Code, Grok Build, Hermes) take &lt;code&gt;mcpServers&lt;/code&gt; in &lt;code&gt;session/new&lt;/code&gt; and &lt;code&gt;session/load&lt;/code&gt;. The protocol makes stdio servers mandatory for them. OpenCode, in a temporary home, started the server from that field and asked it for the tool list.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cursor Agent, Antigravity CLI, Pi and Muse Code&lt;/strong&gt; don&#x27;t have one. The interfaces Yardlet runs them through have no field for a session&#x27;s MCP servers; what they load comes from their configuration. Their tasks in Yardlet run without the tools. I&#x27;d rather leave those tasks without the tools than write to the agents&#x27; settings.&lt;/p&gt;
+&lt;h2 id=&quot;antigravity-loaded-it-and-kept-a-note&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#antigravity-loaded-it-and-kept-a-note&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;Antigravity loaded it, and kept a note&lt;/h2&gt;
+&lt;p&gt;Antigravity nearly worked. Its CLI loads &lt;code&gt;.agents/mcp_config.json&lt;/code&gt; from any folder passed with &lt;code&gt;--add-dir&lt;/code&gt;, so Yardlet could pass a folder of its own, and the server loaded. Then I looked at what the CLI writes down. It records the folder in the conversation&#x27;s &lt;code&gt;workspace_uris&lt;/code&gt;, and when you continue that conversation in a terminal, it brings the folder back and tries to load the server again. A conversation continued outside Yardlet still made the CLI try to load Yardlet&#x27;s server. I reverted that the same day, before it reached a release.&lt;/p&gt;
+&lt;p&gt;Since then the question I ask is not whether the server loads but what the agent writes down about it. For the three above, the server is in none of their files. Their transcripts keep the calls the agent made to the tools, as they keep any tool call; a session resumed outside Yardlet simply doesn&#x27;t have the tools any more.&lt;/p&gt;
+&lt;h2 id=&quot;keeping-the-token-to-its-session&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#keeping-the-token-to-its-session&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;Keeping the token to its session&lt;/h2&gt;
+&lt;p&gt;The server itself does little. It asks the running app for the task&#x27;s tool list and forwards each call over a local socket; the app drives the browser and the connectors. Each session gets a random 256-bit token in the server&#x27;s environment. The app runs a call only when the token and the task ID match and the process that connected runs under the agent Yardlet runs for it: that task&#x27;s Claude Code process, one of the Codex App Servers Yardlet started, or Yardlet itself for an ACP agent. Another process of the same user could read the token from the environment, but not call with it from elsewhere. Approvals stay with the agent, Claude&#x27;s permission card or Codex&#x27;s approval policy; Yardlet doesn&#x27;t ask a second time.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-left-when-you-remove-it&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-is-left-when-you-remove-it&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;What is left when you remove it&lt;/h2&gt;
+&lt;p&gt;Nothing in the agents&#x27; settings. Yardlet&#x27;s own things are listed in the README: &lt;code&gt;~/.yardlet&lt;/code&gt; (tasks, drafts), &lt;code class=&quot;long&quot;&gt;~/Library/Application Support/Yardlet&lt;/code&gt; (browser profiles), its logs and caches, and the Keychain items named Yardlet for the connectors. If you enabled the option to keep tasks running with the lid closed, turn it off before deleting the app. macOS keeps the app&#x27;s background item after the app is gone.&lt;/p&gt;</content>
+  </entry>
+  <entry>
     <title>A Logger symbol missing on macOS 15 kept my Mac app from launching</title>
     <link href="https://yardlet.app/blog/logger-isenabled-macos-15.html"/>
     <id>https://yardlet.app/blog/logger-isenabled-macos-15.html</id>

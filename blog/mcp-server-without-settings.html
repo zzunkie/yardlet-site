@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Giving coding agents an MCP server without writing to their settings · Yardlet blog</title>
+<meta name="description" content="Yardlet hands Codex, Claude Code and ACP agents its MCP server one session at a time: a launch argument for one, a request field for the others. Nothing is written to their settings.">
+<link rel="canonical" href="https://yardlet.app/blog/mcp-server-without-settings.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/mcp-server-without-settings.html">
+<meta property="og:title" content="Giving coding agents an MCP server without writing to their settings">
+<meta property="og:description" content="Yardlet hands Codex, Claude Code and ACP agents its MCP server one session at a time: a launch argument for one, a request field for the others. Nothing is written to their settings.">
+<meta property="og:image" content="https://yardlet.app/blog/og/mcp-server-without-settings.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-01">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/mcp-server-without-settings.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Giving coding agents an MCP server without writing to their settings", "description": "Yardlet hands Codex, Claude Code and ACP agents its MCP server one session at a time: a launch argument for one, a request field for the others. Nothing is written to their settings.", "datePublished": "2026-11-01", "url": "https://yardlet.app/blog/mcp-server-without-settings.html", "image": "https://yardlet.app/blog/og/mcp-server-without-settings.png", "mainEntityOfPage": "https://yardlet.app/blog/mcp-server-without-settings.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-01">November 1, 2026</time></span><span>5 min read</span></p>
+<h1>Giving coding agents an MCP server without writing to their settings</h1>
+<p class="dek">Yardlet hands Codex, Claude Code and ACP agents its MCP server one session at a time: a launch argument for one, a request field for the others. Nothing is written to their settings.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window. The agents get a few tools from it: a browser panel they can drive while I watch, a view of my other tasks, and the connectors I signed in to once. All of that comes through one small MCP server in the app bundle, <code>yardlet-mcp</code>.</p>
+<p>The usual way to give an agent an MCP server is to register it in the agent's settings: <code>claude mcp add</code> for Claude Code, an <code>mcp_servers</code> entry in <code>config.toml</code> for Codex. Yardlet doesn't. It passes the server to each session as it starts, through whatever that agent accepts for one session. This post is about why, and what each agent accepts.</p>
+<h2 id="why-not-the-settings-file"><a class="anchor" href="#why-not-the-settings-file" aria-hidden="true">#</a>Why not the settings file</h2>
+<p>Early on I considered things that would have made Yardlet matter more to the agent: a hook that handles approvals, performance numbers sent with every turn. I dropped them. Yardlet runs each agent's own CLI, and what it changes for a session, it changes in that process only, with an argument or an environment variable. I wanted two things to hold:</p>
+<ul>
+<li>What Yardlet adds, you can switch off in its settings, and the agent's own files don't change either way.</li>
+<li>Quit Yardlet or drag it to the Trash, and the agents, their sign-ins and their sessions are as they were.</li>
+</ul>
+<p>A server in the agent's settings would break the second one. Every session, in Yardlet or not, would start the server. With Yardlet closed, it would still list its browser tools and answer every call with an error. Remove the app, and the entry stays, pointing at a command that is gone.</p>
+<h2 id="what-each-agent-accepts-for-one-session"><a class="anchor" href="#what-each-agent-accepts-for-one-session" aria-hidden="true">#</a>What each agent accepts for one session</h2>
+<p><strong>Claude Code</strong> takes <code>--mcp-config &lt;file&gt;</code>. Yardlet writes one file per session, with the server and the session's token in its environment:</p>
+<figure class="code"><figcaption><span>claude-&lt;session&gt;.json</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code>{
+  "mcpServers": {
+    "yardlet": {
+      "type": "stdio",
+      "command": "/Applications/Yardlet.app/Contents/Helpers/yardlet-mcp",
+      "args": [],
+      "env": {
+        "YARDLET_TOOLS_SOCKET": "…/tools.sock",
+        "YARDLET_TOOLS_TOKEN": "…",
+        "YARDLET_TOOLS_SESSION": "…",
+        "YARDLET_TOOLS_APP_PID": "…"
+      }
+    }
+  }
+}</code></pre></figure>
+<p>A JSON argument would work too, but then the token would show in the process list. So the file sits in a folder only the user can open, under the temporary directory of that run of Yardlet. It goes when Yardlet quits; a run that crashed leaves it, and the next run removes it. The argument goes last, because it takes several values, so nothing after it is taken as one of them. I don't pass <code>--strict-mcp-config</code>, which would drop the servers you registered yourself. They load beside Yardlet's, with one exception: when a Yardlet connector is connected for the same address as one of your Claude servers, that server is denied for this process through <code>--settings</code>, so the agent isn't offered the same service twice. That is a launch argument too.</p>
+<p><strong>Codex</strong> runs as an App Server, and <code>thread/start</code>, <code>thread/resume</code> and <code>thread/fork</code> take a <code>config</code> object for that thread:</p>
+<figure class="code"><figcaption><span>config in thread/start</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code>{
+  "mcp_servers": {
+    "yardlet": {
+      "command": "/Applications/Yardlet.app/Contents/Helpers/yardlet-mcp",
+      "args": [],
+      "env": {
+        "YARDLET_TOOLS_SOCKET": "…/tools.sock",
+        "YARDLET_TOOLS_TOKEN": "…",
+        "YARDLET_TOOLS_SESSION": "…",
+        "YARDLET_TOOLS_APP_PID": "…"
+      },
+      "tool_timeout_sec": 1800
+    }
+  }
+}</code></pre></figure>
+<p>Codex merges it over the user's configuration. I checked with a server of my own in the <code>config.toml</code> of a temporary home: <code>mcpServerStatus/list</code> showed both connected. The timeout is there because a browser call can wait for a page to load, longer than Codex's default.</p>
+<p><strong>ACP agents</strong> (OpenCode, Kimi Code, Grok Build, Hermes) take <code>mcpServers</code> in <code>session/new</code> and <code>session/load</code>. The protocol makes stdio servers mandatory for them. OpenCode, in a temporary home, started the server from that field and asked it for the tool list.</p>
+<p><strong>Cursor Agent, Antigravity CLI, Pi and Muse Code</strong> don't have one. The interfaces Yardlet runs them through have no field for a session's MCP servers; what they load comes from their configuration. Their tasks in Yardlet run without the tools. I'd rather leave those tasks without the tools than write to the agents' settings.</p>
+<h2 id="antigravity-loaded-it-and-kept-a-note"><a class="anchor" href="#antigravity-loaded-it-and-kept-a-note" aria-hidden="true">#</a>Antigravity loaded it, and kept a note</h2>
+<p>Antigravity nearly worked. Its CLI loads <code>.agents/mcp_config.json</code> from any folder passed with <code>--add-dir</code>, so Yardlet could pass a folder of its own, and the server loaded. Then I looked at what the CLI writes down. It records the folder in the conversation's <code>workspace_uris</code>, and when you continue that conversation in a terminal, it brings the folder back and tries to load the server again. A conversation continued outside Yardlet still made the CLI try to load Yardlet's server. I reverted that the same day, before it reached a release.</p>
+<p>Since then the question I ask is not whether the server loads but what the agent writes down about it. For the three above, the server is in none of their files. Their transcripts keep the calls the agent made to the tools, as they keep any tool call; a session resumed outside Yardlet simply doesn't have the tools any more.</p>
+<h2 id="keeping-the-token-to-its-session"><a class="anchor" href="#keeping-the-token-to-its-session" aria-hidden="true">#</a>Keeping the token to its session</h2>
+<p>The server itself does little. It asks the running app for the task's tool list and forwards each call over a local socket; the app drives the browser and the connectors. Each session gets a random 256-bit token in the server's environment. The app runs a call only when the token and the task ID match and the process that connected runs under the agent Yardlet runs for it: that task's Claude Code process, one of the Codex App Servers Yardlet started, or Yardlet itself for an ACP agent. Another process of the same user could read the token from the environment, but not call with it from elsewhere. Approvals stay with the agent, Claude's permission card or Codex's approval policy; Yardlet doesn't ask a second time.</p>
+<h2 id="what-is-left-when-you-remove-it"><a class="anchor" href="#what-is-left-when-you-remove-it" aria-hidden="true">#</a>What is left when you remove it</h2>
+<p>Nothing in the agents' settings. Yardlet's own things are listed in the README: <code>~/.yardlet</code> (tasks, drafts), <code class="long">~/Library/Application Support/Yardlet</code> (browser profiles), its logs and caches, and the Keychain items named Yardlet for the connectors. If you enabled the option to keep tasks running with the lid closed, turn it off before deleting the app. macOS keeps the app's background item after the app is gone.</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
