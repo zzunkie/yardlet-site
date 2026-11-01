@@ -103,7 +103,7 @@ def page(rels):
     out = re.sub(r'<main class="doc" id="main">.*?</main>', lambda _: main, template, count=1, flags=re.S)
     out = out.replace("<title>Yardlet Terms of Use</title>", "<title>Yardlet Changelog</title>", 1)
     out = re.sub(r'<meta name="description" content="[^"]*">',
-                 '<meta name="description" content="What changed in each version of Yardlet, the free Mac app '
+                 '<meta name="description" content="What changed in each version of Yardlet, the free app '
                  'for Codex, Claude Code and other coding agent CLIs.">\n'
                  '<link rel="canonical" href="https://yardlet.app/changelog.html">', out, count=1)
     out = out.replace(' aria-current="page"', "", 1)

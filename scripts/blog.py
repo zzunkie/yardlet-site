@@ -271,7 +271,7 @@ def post_page(p, others):
         f"{meta_line(p)}\n<h1>{inline(p['title'])}</h1>\n<p class=\"dek\">{inline(p['description'])}</p>\n</header>\n"
         f'<div class="post-body">\n{p["body"]}\n</div>\n</article>\n'
         '<footer class="post-end">\n<div class="about">\n<img src="../assets/icon-256.png" alt="" width="44" height="44">\n'
-        '<div><p><strong>Yardlet</strong> is a free, open-source Mac app that runs Codex, Claude Code and other coding '
+        '<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding '
         'agent CLIs side by side, each with its own sign-in and history.</p>\n<p class="links">'
         '<a class="btn btn-small" href="../#install">Download for Mac</a>'
         '<a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>\n</div>\n'
@@ -284,13 +284,13 @@ def index_page(posts):
         f'<li>{meta_line(p)}\n<h2><a href="{p["slug"]}.html">{inline(p["title"])}</a></h2>\n<p>{inline(p["description"])}</p></li>'
         for p in posts)
     main = ('<main class="doc blog" id="main">\n<header class="blog-head">\n<h1>Yardlet blog</h1>\n'
-            '<p>Notes from building Yardlet, a Mac app for running coding agents side by side: what broke, what we '
+            '<p>Notes from building Yardlet, an app for running coding agents side by side: what broke, what we '
             'measured and what we changed.</p>\n<p class="feed"><a href="feed.xml">Subscribe to the feed</a></p>\n</header>\n'
             f'<ul class="post-list">\n{items}\n</ul>\n</main>')
     head = ('<meta property="og:type" content="website">\n<meta property="og:title" content="Yardlet blog">\n'
             f'<meta property="og:url" content="{SITE}/blog/">\n<meta property="og:image" content="{SITE}/screens/og.jpg">\n'
             '<meta name="twitter:card" content="summary_large_image">')
-    return frame("Yardlet blog", "Notes from building Yardlet, a Mac app for running coding agents side by side.",
+    return frame("Yardlet blog", "Notes from building Yardlet, an app for running coding agents side by side.",
                  f"{SITE}/blog/", main, head, True)
 
 
