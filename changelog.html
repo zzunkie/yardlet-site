@@ -95,6 +95,36 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.8" aria-labelledby="v0.11.8-title">
+      <h2 id="v0.11.8-title">Yardlet 0.11.8</h2>
+      <p class="updated"><time datetime="2026-11-02">November 2, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.8">Release on GitHub</a></p>
+      <h3>Mail</h3>
+      <ul>
+        <li>A mailbox shows the inboxes of your connected Gmail, Outlook Mail and IMAP accounts beside tasks and personal agents. It is off by default: turn it on in Settings › General › Mailbox, and Mail appears next to Tasks and Personal agents.</li>
+        <li>Read threads in place, write, reply and forward. What you write is saved to the account's own Drafts, and Send waits five seconds, during which Undo takes the message back.</li>
+        <li>Mail stays on the service. The mailbox reads it when it is shown and keeps it in memory only.</li>
+        <li>Images and other remote content in a message load only after Show images, so a sender cannot tell it was read.</li>
+        <li>Ask an agent hands a thread to a new chat by name. Agents read mail and write drafts through the account's connector, and every send goes through the agent's approval, where Claude Code's card has no Always allow.</li>
+        <li>Settings › Notifications › New mail tells you when mail reaches an inbox: Gmail's Primary tab, Outlook's Focused inbox.</li>
+        <li>Outlook accounts need a Microsoft app of your own for now, as in 0.11.7: <a href="https://github.com/zzunkie/yardlet/blob/main/docs/CONNECTORS.md#your-own-microsoft-app">Your own Microsoft app</a>.</li>
+        <li>IMAP accounts (beta): mail services without an API connect over IMAP and SMTP in Settings › Connectors › Add connector › Mail (IMAP). The address picks the servers for Naver, Daum, Kakao, NAVER WORKS, iCloud, Yahoo, AOL, Zoho, Fastmail and Proton Mail Bridge, with the steps the service asks for first, or you enter another server by hand. The account uses an app password, kept in the keychain only. IMAP accounts have been tested against test servers so far; if one doesn't work with your service, please <a href="https://github.com/zzunkie/yardlet/issues">open an issue</a>.</li>
+      </ul>
+      <h3>New</h3>
+      <ul>
+        <li>Side chats are temporary, as in the Codex app: a side chat stays out of the task list and ends when its tab closes or Yardlet quits. Fork task still keeps a conversation as a task, and side chats made before this update stay tasks.</li>
+        <li>A Claude Code side chat opens while its task is running.</li>
+        <li>Agents can read the task's terminal, read only, with keys and tokens hidden. Select output in the terminal and press ⌘⇧L, or right-click, to attach it to your message. Settings › General › Share the terminal with agents turns this off.</li>
+        <li>Choose account on a working task takes effect when its turn ends, and what you send meanwhile goes to the new account.</li>
+        <li>Scheduled tasks lists the ones that run next first, and folds paused schedules and finished one-offs below.</li>
+        <li>The phone nests tasks as the Mac's sidebar does.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>A Claude Code task reopened after a relaunch no longer opens with its latest message far above the composer.</li>
+        <li>An ACP agent, such as Antigravity, starts again after its last session closed instead of failing until Yardlet restarts.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.7" aria-labelledby="v0.11.7-title">
       <h2 id="v0.11.7-title">Yardlet 0.11.7</h2>
       <p class="updated"><time datetime="2026-11-02">November 2, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.7">Release on GitHub</a></p>
