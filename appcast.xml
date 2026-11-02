@@ -3,6 +3,68 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.7</title>
+            <pubDate>Mon, 02 Nov 2026 23:03:52 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>29</sparkle:version>
+            <sparkle:shortVersionString>0.11.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.7
+
+## Security
+
+- Keys and tokens that a web page shows, such as an API key on a service's settings page, are hidden from what the
+  browser tools return to agents. Settings › General › Hide keys and tokens turns this off.
+- Reading files from a paired phone is more limited.
+
+## Google
+
+- Yardlet's own Google app now signs in for Gmail, Calendar and Drive only. Google Analytics and Google Ads need a
+  Google OAuth app of your own: Settings › Connectors › Google › Use a Google OAuth app of your own…
+- An account that turned Analytics or Ads on with Yardlet's app keeps Gmail, Calendar and Drive as they are. Analytics
+  and Ads show Needs sign-in until you save an app of your own and reconnect the account.
+
+## New
+
+- A task's terminal has tabs. + opens another shell in the task's folder, and a tab's menu renames, restarts or closes
+  it. ⌃` shows and hides the terminal, as ⌘J does, and Run in terminal types only at a shell's prompt.
+- Antigravity CLI 1.4.11 and later runs over ACP, as the other ACP agents do, with its approval requests, Yardlet's
+  tools and each turn's usage.
+- Import conversation… also lists OpenCode, Kimi Code, Grok Build and Hermes Agent conversations.
+- Kimi Code and Grok Build can keep extra accounts, and Settings › Accounts reads Muse Code's and Kimi Code's sign-ins.
+- A scheduled run starts on another account when its own has 10% or less of a limit left.
+- A Claude limit card offers Resume once its limit has reset.
+- Right-click a link in a conversation to open a task in a new tab, a split view or the side panel, a page in the
+  task's browser or your default browser, or a file in Yardlet, its own app or Finder.
+- Personal agents: a dot that writes while you are elsewhere is marked unread and sends a notification, which
+  Settings › Notifications › Personal agent messages turns off. Dot conversations show images and each message's
+  time, a dot's details list the Codex tasks it started, and agents can read your dots.
+- The browser panel's bars, such as an agent's handoff, a permission question and the password manager's offers, sit
+  above the page instead of over it.
+- A task's saved browser tabs load only when shown, as Chrome restores tabs.
+- The password manager offers to save a password sent from a dialog with no form, and the key button lists what the
+  field takes, account first.
+
+## Fixes
+
+- Signing in to a site in one task no longer sets off a chain of cookie copies between tasks that could sign them out
+  of accounts such as Google's.
+- Dragging the shown tab in the title bar moves the tab, not the window.
+- Going back to one of the last four tasks a window showed is quicker, a long turn opens with only the rows in view,
+  and a streaming answer takes work only for the turn it changes.
+- Messages no longer stay in memory after they leave the screen on macOS 27.
+- Retry on an error card sends the retry message again instead of the button's words.
+- A single tilde, as in `240~400 ms`, is no longer drawn as strikethrough.
+- The composer grows once when a line wraps, without a flash of the scroller.
+- After a newer agent CLI is installed, scheduled tasks and work a quit cut off start the newer one.
+- A stopped turn's queue no longer stays paused over an empty list.
+- Antigravity sign-in reaches its browser step with the CLI details hidden.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.7/Yardlet-0.11.7.dmg" length="176867135" type="application/octet-stream" sparkle:edSignature="H7aTkRLOARGBOKT1UZa+h8oNCe2nUYy+iV+4+vwHtgmEkoaq0fSitTtw6s0J3jRGGLkua57jDWoFClJCmCPYDQ=="/>
+        </item>
+        <item>
             <title>0.11.6</title>
             <pubDate>Sat, 31 Oct 2026 21:49:26 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -93,47 +155,6 @@ Download `Yardlet-0.11.5.dmg` below, or `brew install --cask zzunkie/tap/yardlet
 themselves. Requires macOS 15 or later on Apple silicon.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.5/Yardlet-0.11.5.dmg" length="175341977" type="application/octet-stream" sparkle:edSignature="PYKKeiAdRHsl/S9UWk0Nqd2IuTXnQnRr9xy/QZOWkR1ueDv3uSp9EUyvwniNKLwk9HZmoOebYCQLI2xtsWjKBA=="/>
-        </item>
-        <item>
-            <title>0.11.4</title>
-            <pubDate>Thu, 29 Oct 2026 11:16:29 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>26</sparkle:version>
-            <sparkle:shortVersionString>0.11.4</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.4
-
-## Security
-
-- Values the password manager fills are kept away from agents in more places.
-
-## New
-
-- Personal agents, below Scheduled tasks in the sidebar, opens your Dots conversation. Scroll up to read earlier
-  messages, and open its details panel for activity, schedules, computers and attachments.
-- At a new password field, Yardlet suggests a strong password, as Chrome and Safari do. It is saved right away,
-  beside any password the item already has, and agents can make one when they sign up for an account.
-- Gmail drafts and sends can attach files from your Mac, and a draft can be deleted.
-- Forty more remote MCP services in the connector directory.
-- An agent's reply can link to the tasks it mentions.
-
-## Fixes
-
-- A turn's error card shows where the turn ended, and offers Retry only when retrying can help.
-- A folded turn keeps its calls in one summary line, and a Codex reasoning summary folds like Claude Code's
-  thinking.
-- Reconnect signs in again when a server that listed its tools without a sign-in refuses a call.
-- A task's terminal reads a wrapped line as one line, and a program still running in it keeps the task shown as
-  working.
-
-## Install
-
-Download `Yardlet-0.11.4.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Earlier versions update
-themselves. Requires macOS 15 or later on Apple silicon.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.4/Yardlet-0.11.4.dmg" length="174287315" type="application/octet-stream" sparkle:edSignature="GDV9RJUS74/AVGtPszPJM+i7OgvvwkH2X8h1m8w9nAsa383+U2jVNURBE0Op/Fjv+S2YoKYb5u+bGLSX3eqlDw=="/>
         </item>
     </channel>
 </rss>
