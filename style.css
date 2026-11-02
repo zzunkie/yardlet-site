@@ -415,7 +415,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
   .approve-cmd .copy { display: none; }
   .approve-actions { grid-column: 1; grid-row: auto; flex-direction: column-reverse; padding-left: 0; margin-top: 0; }
   .approve-actions .btn { height: 44px; }
-  .shot { aspect-ratio: 1036 / 1800; max-height: 80vh; margin-inline: auto; border-radius: 14px; }
+  .shot { aspect-ratio: 1036 / 1296; max-height: 80vh; margin-inline: auto; border-radius: 14px; }
   .shot-review { aspect-ratio: 1036 / 1290; }
   /* Phones get crops of the settings sheets (the rows themselves), so their text stays legible. */
   .rows > li, .rows > div { grid-template-columns: 1fr; gap: 2px; }

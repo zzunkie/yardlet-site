@@ -226,19 +226,19 @@
             <figure class="attach wide">
               <div class="shot">
                 <!-- With motion the still is the recording's first frame, so playback starts without a jump; with
-                     motion reduced it is the recording's last frame and the video never loads. Wider screens get
-                     Codex and Claude Code side by side; phones get a tall recording of the Codex conversation alone,
-                     at a size they can read. -->
+                     motion reduced it is the moment the account list is open, and the video never loads. Wider
+                     screens get the whole window, Claude Code and Codex side by side; phones get the Codex pane at a
+                     size they can read, moved left while its account list is open. -->
                 <picture>
-                  <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/hero-start-phone-dark.jpg" width="1036" height="1800">
-                  <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference)" srcset="screens/hero-start-phone-light.jpg" width="1036" height="1800">
-                  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/hero-phone-dark.jpg" width="1036" height="1800">
-                  <source media="(max-width: 640px)" srcset="screens/hero-phone-light.jpg" width="1036" height="1800">
+                  <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/hero-start-phone-dark.jpg" width="1036" height="1296">
+                  <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference)" srcset="screens/hero-start-phone-light.jpg" width="1036" height="1296">
+                  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/hero-phone-dark.jpg" width="1036" height="1296">
+                  <source media="(max-width: 640px)" srcset="screens/hero-phone-light.jpg" width="1036" height="1296">
                   <source media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/hero-split-start-dark.jpg">
                   <source media="(prefers-reduced-motion: no-preference)" srcset="screens/hero-split-start-light.jpg">
                   <source media="(prefers-color-scheme: dark)" srcset="screens/hero-split-dark.jpg">
                   <img src="screens/hero-split-light.jpg" width="2240" height="1384" fetchpriority="high"
-                       alt="A recording of Yardlet: Codex adds a dark mode toggle to acme-web, and on wider screens Claude Code tracks down a flaky checkout test beside it.">
+                       alt="A recording of Yardlet: while Claude Code fixes a flaky checkout test, a new Codex task's account list shows one account with 6% of its five-hour limit left and another with 88%, the second is chosen, and Codex adds a dark mode toggle.">
                 </picture>
                 <!-- The first playable source wins: HEVC for Safari, H.264 for most browsers, then VP9 or VP8 for
                      Chromium builds without H.264. Each source also asks for motion, so nothing downloads when it is
@@ -259,9 +259,9 @@
                 </video>
               </div>
               <figcaption>
-                <p><span class="cap-wide">Recorded in Yardlet: Codex works through a dark mode toggle while Claude Code tracks
-                  down a flaky checkout test.</span><span class="cap-phone">Recorded in Yardlet: Codex plans a dark mode
-                  toggle, makes the change and runs the tests.</span></p>
+                <p><span class="cap-wide">Recorded in Yardlet: Claude Code fixes a flaky test while a new Codex task starts
+                  on the account with room left.</span><span class="cap-phone">Recorded in Yardlet: a new Codex task starts
+                  on the account with room left, then adds a dark mode toggle.</span></p>
                 <button class="pause" type="button" aria-pressed="false" hidden>
                   <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9"/></svg>
                   <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.5 8z"/></svg>
