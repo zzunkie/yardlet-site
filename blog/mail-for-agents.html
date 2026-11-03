@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Handing my mail to coding agents, and keeping Send for myself · Yardlet blog</title>
+<meta name="description" content="Yardlet 0.11.8 adds a mailbox for Gmail, Outlook and IMAP accounts. Agents read a thread and write the reply as a draft through the account&#x27;s connector; every send goes through the agent&#x27;s approval.">
+<link rel="canonical" href="https://yardlet.app/blog/mail-for-agents.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/mail-for-agents.html">
+<meta property="og:title" content="Handing my mail to coding agents, and keeping Send for myself">
+<meta property="og:description" content="Yardlet 0.11.8 adds a mailbox for Gmail, Outlook and IMAP accounts. Agents read a thread and write the reply as a draft through the account&#x27;s connector; every send goes through the agent&#x27;s approval.">
+<meta property="og:image" content="https://yardlet.app/blog/og/mail-for-agents.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-03">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/mail-for-agents.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Handing my mail to coding agents, and keeping Send for myself", "description": "Yardlet 0.11.8 adds a mailbox for Gmail, Outlook and IMAP accounts. Agents read a thread and write the reply as a draft through the account's connector; every send goes through the agent's approval.", "datePublished": "2026-11-03", "url": "https://yardlet.app/blog/mail-for-agents.html", "image": "https://yardlet.app/blog/og/mail-for-agents.png", "mainEntityOfPage": "https://yardlet.app/blog/mail-for-agents.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-03">November 3, 2026</time></span><span>6 min read</span></p>
+<h1>Handing my mail to coding agents, and keeping Send for myself</h1>
+<p class="dek">Yardlet 0.11.8 adds a mailbox for Gmail, Outlook and IMAP accounts. Agents read a thread and write the reply as a draft through the account's connector; every send goes through the agent's approval.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.</p>
+<p>I used to do my mail in Apple Mail. When I moved to a new Mac this week, my accounts didn't come over with it, and while setting them up again I realized I hadn't been reading mail there or writing replies there for a while. Agents in Yardlet were reading the threads through its Gmail and Outlook connectors and writing the replies as drafts. The mail app wasn't where I worked with mail anymore, so mail belonged in the workbench, next to the agents.</p>
+<p>Yardlet 0.11.8 adds a mailbox. It is off by default. Settings › General › Mailbox turns it on, and the sidebar gets Mail next to Tasks and Personal agents. This post covers what it keeps, how a thread gets to an agent, who presses Send, and why Naver Mail needed IMAP.</p>
+<h2 id="it-reads-the-service-and-keeps-almost-nothing"><a class="anchor" href="#it-reads-the-service-and-keeps-almost-nothing" aria-hidden="true">#</a>It reads the service and keeps almost nothing</h2>
+<p>The mailbox uses the sign-in the connector already has. Gmail is read through the Gmail API with the <code>gmail.modify</code> scope the connector asked for, Outlook through Microsoft Graph with <code>Mail.ReadWrite</code> and <code>Mail.Send</code>. Nothing more is requested, and the connector and the mailbox share one token.</p>
+<p>Mail stays on the service. The mailbox reads a list when it is shown and keeps it in memory: the first page of each inbox, the folders a window opened, the last 30 threads. On disk it writes one thing per account, how far it has read the inbox's history (a Gmail history ID, a Graph delta link, an IMAP inbox's next UID), so mail that came while Yardlet was closed is still announced. No subject, address or line of a message goes to disk or to the log.</p>
+<p>New mail is checked once a minute: <code>users.history.list</code> for Gmail, which costs 2 quota units, the inbox's delta query for Outlook, <code>STATUS</code> for IMAP. No model is involved. Mail that lands in Gmail's Primary tab or Outlook's Focused inbox becomes a notification.</p>
+<p>HTML mail is drawn with scripts off, no cookies or storage, and a content rule that blocks every <code>http</code> and <code>https</code> load until I choose <strong>Show images</strong> for that message, so a tracking pixel has nothing to report. If the rule can't be compiled, the message is shown as text.</p>
+<h2 id="handing-a-thread-to-an-agent"><a class="anchor" href="#handing-a-thread-to-an-agent" aria-hidden="true">#</a>Handing a thread to an agent</h2>
+<p><strong>Ask an agent</strong> on a thread opens a new chat with the thread named in the composer:</p>
+<figure class="code"><figcaption><span>Composer</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code>Subject: October invoice
+From: Dana Kim &lt;dana@example.com&gt;
+Account: me@example.com · thread 19a3f0c2e1b4d5a6, read with `gmail_get_thread`</code></pre></figure>
+<p>Then I write what I want done. The message itself is not pasted in. The agent reads it with the connector tool on that line, so it sees the thread as the account has it now, and a stranger's words don't land where my instructions go.</p>
+<p>From there the agent works with the connector's tools as before. It can search the account, read other threads for context, and write a reply with <code>create_draft</code>. The draft is saved in the account's own Drafts folder, so it shows in the thread in the mailbox, under an orange <strong>Draft</strong>, and in any other app that reads the account.</p>
+<h2 id="who-presses-send"><a class="anchor" href="#who-presses-send" aria-hidden="true">#</a>Who presses Send</h2>
+<p>On a draft in the mailbox I get <strong>Send</strong>, <strong>Edit</strong> and <strong>Discard</strong>. Send sends the draft as it was saved, so an HTML reply the agent wrote goes out as it is. Edit continues it as plain text with its recipients, blind copies and files. My own Send waits five seconds, during which <strong>Undo</strong> brings the message back.</p>
+<p>The agent can send too, but not on its own say. The send tools (<code>send_draft</code> and <code>send_message</code>) are on the list of tools that go through the agent's approval each time. In Claude Code the request card has no "Always allow". For Gmail and Outlook it shows the recipients, the subject and the first 1,200 characters of the body, and when the agent sends a Gmail draft by its ID, Yardlet reads the draft from Gmail first and shows it instead of the ID. Codex decides from the task's approval settings and the tools' annotations, and ACP agents use their own MCP approval. Yardlet keeps no approval rules of its own. A task running with permissions bypassed is not asked, for these tools as for any other.</p>
+<h2 id="naver-mail-has-no-api"><a class="anchor" href="#naver-mail-has-no-api" aria-hidden="true">#</a>Naver Mail has no API</h2>
+<p>Gmail and Outlook have APIs. A lot of mail in Korea lives at Naver, Daum or Kakao, and none of them has an API that Yardlet can read mail through. What they all have is IMAP and SMTP with an app password, the way Apple Mail and Thunderbird add them. So that is the third kind of account: Settings › Connectors › Add connector › <strong>Mail (IMAP)</strong>.</p>
+<p>I type the address, and the address picks the service: its IMAP and SMTP servers, the user name (for iCloud, the part before the <code>@</code>), and what the service wants done on its website first, each step with a link. Usually that is turning on two-step verification, making an app password, and for Naver, Daum, Kakao and Zoho, switching IMAP on. NAVER WORKS, iCloud, Yahoo, AOL, Fastmail and Proton Mail Bridge are on the list too, and <strong>Other IMAP server</strong> takes the servers by hand.</p>
+<p><strong>Connect</strong> signs in to the IMAP server and to the SMTP server once each and signs out again, reading and sending nothing. Only when both accept the password is the account added. The app password goes into the Keychain and nowhere else, not into a file, the log or a command line. The servers and the address aren't secret, so they're in the connector's record. Every connection is TLS from the first byte or upgraded with STARTTLS before signing in, with the certificate checked against the server's name; a server that offers neither isn't used.</p>
+<p>IMAP leaves more to the client than the APIs do. It has no threads, so each message is a line of its own. Folders are found by their special-use flags, or by the names services give them in English and Korean (보낸편지함, 임시보관함, 스팸편지함, 휴지통), and their names come in IMAP's modified UTF-7. Messages are read with <code>BODY.PEEK</code>, so opening one doesn't mark it read unless I opened it in the mailbox. A draft is a message appended to Drafts with its own <code>From</code>, <code>Date</code> and <code>Message-ID</code>. Sending goes over SMTP to every recipient with the Bcc line taken out, and a copy goes into Sent unless the server already put one there, found by its <code>Message-ID</code>.</p>
+<p>Agents get five tools for such an account, named like Outlook's: <code>search_messages</code>, <code>get_message</code>, <code>list_folders</code>, <code>create_draft</code> and <code>send_draft</code>. There is no delete, and <code>send_draft</code> asks before every call.</p>
+<h2 id="turning-it-off"><a class="anchor" href="#turning-it-off" aria-hidden="true">#</a>Turning it off</h2>
+<p>Turning the mailbox off stops the check, closes what's open, forgets every list and thread and the message being written, and removes the history markers on disk. The connectors and their Keychain items stay, since they belong to Settings › Connectors, where removing an IMAP account deletes its password too. The app password itself stays valid at the service until you delete it there.</p>
+<p>The mailbox is documented in <a href="https://github.com/zzunkie/yardlet/blob/main/docs/MAILBOX.md">docs/MAILBOX.md</a>, and the connector side in <a href="https://github.com/zzunkie/yardlet/blob/main/docs/CONNECTORS.md">docs/CONNECTORS.md</a>.</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

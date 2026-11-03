@@ -264,7 +264,8 @@ def post_page(p, others):
             f'<meta property="og:image:height" content="630">\n<meta property="article:published_time" content="{p["day"].isoformat()}">\n'
             f'<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="{image}">\n'
             f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
-    newer = next((o for o in others if o["day"] > p["day"]), None)
+    i = others.index(p)
+    newer = others[i - 1] if i > 0 else None  # the next post up the list, newest first
     nav_right = f'<a href="{newer["slug"]}.html">{html.escape(newer["title"])} →</a>' if newer else '<a href="feed.xml">Feed</a>'
     main = (
         '<main class="doc blog" id="main">\n<article class="post">\n<header class="post-head">\n'
