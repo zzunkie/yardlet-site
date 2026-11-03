@@ -92,7 +92,7 @@
 <main class="doc" id="main">
   <div class="narrow">
     <h1>Yardlet Privacy Policy</h1>
-    <p class="updated">Last updated: November 1, 2026</p>
+    <p class="updated">Last updated: November 4, 2026</p>
 
     <p class="summary">Yardlet is a desktop app that runs on your Mac. It has no analytics and does not send your
       data to its developer. Its only online services are an update feed and, if you use the phone remote, a relay
@@ -123,21 +123,32 @@
 
     <h2 id="google-user-data">Google user data</h2>
     <p>Yardlet asks for access to Google services only when you connect a Google account in its settings. Depending
-      on the services you turn on, it requests these permissions:</p>
+      on the services you turn on, it requests these permissions, and reads only what the features you use ask for:</p>
     <ul>
-      <li><strong>Gmail</strong> (<code>gmail.modify</code>): read, search, draft, send and label your email.
-        Yardlet does not ask for full mail access, so it cannot permanently delete your email.</li>
+      <li><strong>Gmail</strong> (<code>gmail.modify</code>): searches and reads messages and threads (their headers,
+        text and attachment names) and your labels; creates, sends and deletes drafts; sends messages; and adds or
+        removes labels. Yardlet does not ask for full mail access, so it cannot permanently delete messages. A draft
+        it deletes is gone for good, as when you discard a draft in Gmail.</li>
       <li><strong>Google Calendar</strong> (<code>calendar.calendarlist.readonly</code>, <code>calendar.events</code>,
-        <code>calendar.events.freebusy</code>): list your calendars, read and change events, and check free/busy
-        times.</li>
-      <li><strong>Google Drive</strong> (<code>drive.readonly</code>, <code>drive.file</code>): read your files, and
-        create or change files that Yardlet creates.</li>
+        <code>calendar.events.freebusy</code>): lists your calendars; reads events with their time, place,
+        description, attendees and meeting link; creates, changes, deletes and responds to events; and checks
+        free/busy times to suggest a time.</li>
+      <li><strong>Google Drive</strong> (<code>drive.readonly</code>, <code>drive.file</code>): searches your files
+        and reads their names, details, sharing settings, content and comments; creates new files and copies; and
+        changes only files that Yardlet created, including the content of Docs, Sheets and Slides it created.</li>
     </ul>
+    <p>If you sign in through a Google OAuth app of your own instead of Yardlet's, you can also turn on Google
+      Analytics (<code>analytics.readonly</code>) and Google Ads (<code>adwords</code>) to read reports, with
+      <code>userinfo.email</code> to show which account they belong to. Yardlet sends Google Ads only read requests.
+      Yardlet's own Google app does not ask for these permissions.</p>
+    <p>Yardlet does not make aggregated or anonymized data out of Google user data.</p>
 
     <h2 id="how-google-data-is-used">How Google data is used</h2>
-    <p>Yardlet calls Google's APIs directly from your Mac, only when a coding agent you are running asks for it
-      through Yardlet's tools. It passes the result only to that agent, so the agent can complete the task you
-      gave it. The result then becomes part of that conversation:</p>
+    <p>Yardlet calls Google's APIs directly from your Mac, only for features you use: when a coding agent you are
+      running asks for it through Yardlet's tools, and, if you turn on the mailbox in Settings, to show your Gmail
+      mail there and check for new mail once a minute. Yardlet uses Google user data for nothing else.</p>
+    <p>What an agent asks for, Yardlet passes only to that agent, so the agent can complete the task you gave it.
+      The result then becomes part of that conversation:</p>
     <ul>
       <li>The agent sends it to its AI provider under your account, as described in
         <a href="#agents-and-ai-providers">Agents and AI providers</a>. That provider's terms and privacy policy,
@@ -145,16 +156,36 @@
       <li>The agent and Yardlet keep the conversation on your Mac. Yardlet does not copy Google data to any
         server.</li>
     </ul>
-    <p>Yardlet does not sell Google user data, does not use it for advertising, and does not use it to train or
-      improve AI models. The developer never receives your Google data, so no person working on Yardlet can read
-      it.</p>
+
+    <h2 id="who-receives-google-data">Who receives Google data</h2>
+    <p>Yardlet passes Google user data only to the agent you run on your Mac, and that agent sends it only to its
+      AI provider under your account. Yardlet does not transfer Google user data to anyone else: not to its
+      developer, advertisers, data brokers or any other party. It does not sell Google user data or use it for
+      advertising.</p>
+    <p>Yardlet does not use Google user data to develop, improve or train AI or machine-learning models, and does
+      not send it to an AI provider on its own. Whether the provider of the agent you run may train on what the agent
+      sends is set by your account with that provider. Before you let an agent read Google data, check that setting,
+      and turn training off if you do not want that data used for it.</p>
+
+    <h2 id="how-google-data-is-protected">How Google data is protected</h2>
+    <p>Yardlet has no server. Google data travels only between Google and your Mac, over HTTPS. Signing in uses
+      Google's sign-in for desktop apps with PKCE, and the sign-in tokens are stored in the macOS Keychain. The
+      developer never receives your Google data or tokens, so no person working on Yardlet can read them.</p>
 
     <h2 id="storage-and-removal">Storage and removal</h2>
+    <p>Google data an agent reads stays in that task's conversation on your Mac: in the agent's own session history
+      and in Yardlet's cache of the conversation. It stays there until you delete the conversation, in Yardlet and,
+      for an agent that keeps its own history, in that agent. What the agent sent to its provider is kept as that
+      provider's terms and your account settings say.</p>
+    <p>The mailbox keeps the mail it shows in memory only. On disk it keeps one marker per account, how far it has
+      read the inbox, which turning the mailbox off removes.</p>
     <p>Your Google sign-in tokens are stored in the macOS Keychain on your Mac. Removing the Google account in
       Yardlet's settings deletes the stored sign-in. If you delete the Yardlet app without removing the account
       first, the sign-in stays in your Keychain until you remove it in Keychain Access.</p>
     <p>Removing the account in Yardlet does not cancel the access you granted at Google. You can revoke Yardlet's
       access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+    <p>Yardlet keeps no copy of your Google data anywhere but your Mac, so there is nothing for the developer to
+      delete.</p>
 
     <h2 id="other-connectors">Other connectors</h2>
     <p>GitHub, Slack and the other services you connect work the same way. The sign-in is stored in the macOS
@@ -181,7 +212,10 @@
     <h2 id="limited-use">Limited Use</h2>
     <p>Yardlet's use and transfer of information received from Google APIs adheres to the
       <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
-      including the Limited Use requirements.</p>
+      including the Limited Use requirements. The use of raw or derived user data received from Google Workspace APIs
+      adheres to the
+      <a href="https://developers.google.com/workspace/workspace-api-user-data-developer-policy">Google Workspace API
+      User Data and Developer Policy</a>, including its Limited Use requirements.</p>
 
     <h2 id="this-website">This website</h2>
     <p>This website has no analytics, cookies, third-party scripts or requests to other sites. It is hosted on GitHub Pages,
