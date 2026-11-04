@@ -105,6 +105,9 @@
 <p class="feed"><a href="feed.xml">Subscribe to the feed</a></p>
 </header>
 <ul class="post-list">
+<li><p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-05">November 5, 2026</time></span><span>6 min read</span></p>
+<h2><a href="moving-a-task-costs-its-cache.html">What moving a Claude Code task to another account costs</a></h2>
+<p>A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.</p></li>
 <li><p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-04">November 4, 2026</time></span><span>3 min read</span></p>
 <h2><a href="accounts-with-room-left.html">Starting each agent task on the account with room left</a></h2>
 <p>I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account's limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.</p></li>

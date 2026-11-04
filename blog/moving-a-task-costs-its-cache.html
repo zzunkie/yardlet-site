@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>What moving a Claude Code task to another account costs · Yardlet blog</title>
+<meta name="description" content="A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.">
+<link rel="canonical" href="https://yardlet.app/blog/moving-a-task-costs-its-cache.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/moving-a-task-costs-its-cache.html">
+<meta property="og:title" content="What moving a Claude Code task to another account costs">
+<meta property="og:description" content="A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.">
+<meta property="og:image" content="https://yardlet.app/blog/og/moving-a-task-costs-its-cache.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-05">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/moving-a-task-costs-its-cache.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "What moving a Claude Code task to another account costs", "description": "A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.", "datePublished": "2026-11-05", "url": "https://yardlet.app/blog/moving-a-task-costs-its-cache.html", "image": "https://yardlet.app/blog/og/moving-a-task-costs-its-cache.png", "mainEntityOfPage": "https://yardlet.app/blog/moving-a-task-costs-its-cache.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-05">November 5, 2026</time></span><span>6 min read</span></p>
+<h1>What moving a Claude Code task to another account costs</h1>
+<p class="dek">A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.</p>
+<p>In the <a href="https://yardlet.app/blog/accounts-with-room-left.html">last post</a> I wrote that Yardlet starts each new task on the account with room left. I didn't say what that meant for a scheduled run that continues an existing Claude Code task: if the task's account was nearly spent, 10% or less left in a window, the run moved the task to another account first. The task keeps its conversation either way, because Yardlet's account folders share Claude Code's history. I had assumed the move was free. It isn't, and I wanted to know by how much before I kept the rule.</p>
+<h2 id="the-cache-stays-behind"><a class="anchor" href="#the-cache-stays-behind" aria-hidden="true">#</a>The cache stays behind</h2>
+<p>Claude Code sends its requests with a prompt cache. In my transcripts the main conversation has been cached with the one-hour lifetime since mid-October, and subagents use the five-minute one. The cache belongs to the workspace that wrote it, so an account can't read what another account cached. When a task moves, its first request on the new account writes the whole conversation into the cache again.</p>
+<p>On Opus 5.5, input is $4 per million tokens, a one-hour cache write is twice that, and a cache read is a twentieth of it, $0.20. The same tokens cost about forty times more to write than to read. One part survives the move: Claude Code marks the first block of its system prompt with a global cache scope, and that block still reads from the cache on the new account. In the moves I looked at it was 26,000 to 41,000 tokens; I use 30,000 below. Everything after it is written again.</p>
+<p>So moving a task once costs about <code class="long">(context - 30,000) × $7.80 per million tokens</code>:</p>
+<ul>
+<li>100,000 tokens of context: about $0.55</li>
+<li>300,000: about $2.10</li>
+<li>500,000: about $3.70</li>
+<li>900,000: about $6.80</li>
+</ul>
+<p>For the tasks I looked at, that one request costs as much as about thirty of the task's ordinary requests.</p>
+<h2 id="what-381-700-requests-said"><a class="anchor" href="#what-381-700-requests-said" aria-hidden="true">#</a>What 381,700 requests said</h2>
+<p>Claude Code keeps every conversation as JSONL under <code>~/.claude/projects</code>, and every assistant line carries <code>message.usage</code> with input tokens, cache writes by lifetime, cache reads and output. Since early October most lines also carry <code>cache_miss_reason</code>, the API's word for why a request didn't read the cache. <code class="long">previous_message_not_found</code> within the hour is the one I read as an account change. I read every conversation file touched since October 1: 3,472 files and 381,700 requests after removing duplicates. No model turn, no sign-in touched.</p>
+<p>A cache loss, as I counted it, in main conversations only: the previous request had at least 30,000 tokens of context, this one read less than half of that, the model was the same, and the context didn't shrink. The lost tokens are the smaller of what this request wrote and what the previous one had cached, and the extra cost is those tokens at the write price minus the read price.</p>
+<ul>
+<li>Moves between accounts: 44 of them, $164 in API-equivalent terms, 0.4% of the $41,099 those five weeks add up to.</li>
+<li>Caches that simply expired because the task sat idle for more than an hour: $5,632, 13.7%.</li>
+<li>Restarting the CLI on the same account keeps the cache. Of 460 restarts within an hour of the previous request, 374 read the cache as if nothing had happened; 18 were account changes, and 67 lost it because the system prompt, the messages or the tools had changed.</li>
+</ul>
+<p>Yardlet itself had logged only six moves, the ones its scheduled runs made, and three of those were tasks that had sat idle for five to nine hours, so their cache was gone before the move. The other 41 I found through the diagnostics. One of the logged ones is the case I had worried about: on November 2 at 11:25 at night a scheduled run picked up a task 2.4 minutes after its last request, moved it, and the next request wrote 390,000 tokens, $3.02, 33 times that task's usual request.</p>
+<p>Of the 15 moves that followed a limit, 8 had a reset coming in 15 to 50 minutes. Waiting would have kept the cache alive. The other 7 faced a reset hours away or a weekly limit. The new account still paid the write, but waiting on the old one would have let the hour pass and the cache expire, so the move lost nothing that waiting would have kept.</p>
+<p>Claude Code's automatic compaction ran 167 times in those weeks, taking a median 970,000 tokens of context down to 90,000, and the first request after it writes the cache fresh on any account. A task that has just compacted could move for nothing, though Yardlet doesn't use that yet: compaction happens inside a turn, and a move never cuts into one. What doesn't help is waiting for the turn to end: the cache runs from the last request, not from the end of the turn.</p>
+<h2 id="what-yardlet-does-now"><a class="anchor" href="#what-yardlet-does-now" aria-hidden="true">#</a>What Yardlet does now</h2>
+<p>Settings › Accounts has a switch, "Move tasks to an account with room", on by default, and it moves a Claude Code task only when the move costs nothing or the task can't go on where it is:</p>
+<ul>
+<li>An idle task on a nearly spent account moves once its cache has expired, an hour after its last request, without starting its CLI.</li>
+<li>A task that a limit stopped moves and continues on an account with room, unless the limit resets within the day and before its cache would expire. Then the task stays and continues at the reset. A card I armed myself also keeps its task where it is.</li>
+<li>A task whose cache is still alive stays where it is until a limit stops it or the hour passes. A scheduled run that continues such a task leaves it on its account.</li>
+</ul>
+<p>A move never cuts into a turn. A second switch next to it, "Continue automatically at usage limit", is on by default too: a Claude Code task stopped by a limit that resets within the day continues by itself at the reset, as the CLI does in a terminal, instead of waiting for me to flip a switch on the card. The two work together: a task whose limit resets after its cache would expire moves to an account with room right away, and one whose limit resets sooner waits.</p>
+<p>This is on <code>main</code> and goes out with the next release.</p>
+<h2 id="what-i-can-t-say-from-this"><a class="anchor" href="#what-i-can-t-say-from-this" aria-hidden="true">#</a>What I can't say from this</h2>
+<p>The dollars are API-equivalent. On a subscription nothing is billed per token; a move spends part of a limit window instead, and by my rough estimate a 500,000-token move is under one percent of a five-hour window and far less of a weekly one.</p>
+<p>The 41 unlogged moves are inferred from the diagnostics, so a cache the server dropped early would look the same. And Yardlet doesn't move Codex tasks between accounts, so I measured none.</p>
+<p>The rule is written up in <a href="https://github.com/zzunkie/yardlet/blob/main/docs/PROVIDER_CONNECTIONS.md">docs/PROVIDER_CONNECTIONS.md</a> ("Moving tasks to an account with room").</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

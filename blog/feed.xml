@@ -4,8 +4,52 @@
   <link href="https://yardlet.app/blog/"/>
   <link rel="self" href="https://yardlet.app/blog/feed.xml"/>
   <id>https://yardlet.app/blog/</id>
-  <updated>2026-11-04T00:00:00Z</updated>
+  <updated>2026-11-05T00:00:00Z</updated>
   <author><name>Yardlet</name></author>
+  <entry>
+    <title>What moving a Claude Code task to another account costs</title>
+    <link href="https://yardlet.app/blog/moving-a-task-costs-its-cache.html"/>
+    <id>https://yardlet.app/blog/moving-a-task-costs-its-cache.html</id>
+    <updated>2026-11-05T00:00:00Z</updated>
+    <summary>A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.</summary>
+    <content type="html">&lt;p&gt;I make &lt;a href=&quot;https://github.com/zzunkie/yardlet&quot;&gt;Yardlet&lt;/a&gt;, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.&lt;/p&gt;
+&lt;p&gt;In the &lt;a href=&quot;https://yardlet.app/blog/accounts-with-room-left.html&quot;&gt;last post&lt;/a&gt; I wrote that Yardlet starts each new task on the account with room left. I didn&#x27;t say what that meant for a scheduled run that continues an existing Claude Code task: if the task&#x27;s account was nearly spent, 10% or less left in a window, the run moved the task to another account first. The task keeps its conversation either way, because Yardlet&#x27;s account folders share Claude Code&#x27;s history. I had assumed the move was free. It isn&#x27;t, and I wanted to know by how much before I kept the rule.&lt;/p&gt;
+&lt;h2 id=&quot;the-cache-stays-behind&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-cache-stays-behind&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;The cache stays behind&lt;/h2&gt;
+&lt;p&gt;Claude Code sends its requests with a prompt cache. In my transcripts the main conversation has been cached with the one-hour lifetime since mid-October, and subagents use the five-minute one. The cache belongs to the workspace that wrote it, so an account can&#x27;t read what another account cached. When a task moves, its first request on the new account writes the whole conversation into the cache again.&lt;/p&gt;
+&lt;p&gt;On Opus 5.5, input is $4 per million tokens, a one-hour cache write is twice that, and a cache read is a twentieth of it, $0.20. The same tokens cost about forty times more to write than to read. One part survives the move: Claude Code marks the first block of its system prompt with a global cache scope, and that block still reads from the cache on the new account. In the moves I looked at it was 26,000 to 41,000 tokens; I use 30,000 below. Everything after it is written again.&lt;/p&gt;
+&lt;p&gt;So moving a task once costs about &lt;code class=&quot;long&quot;&gt;(context - 30,000) × $7.80 per million tokens&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;100,000 tokens of context: about $0.55&lt;/li&gt;
+&lt;li&gt;300,000: about $2.10&lt;/li&gt;
+&lt;li&gt;500,000: about $3.70&lt;/li&gt;
+&lt;li&gt;900,000: about $6.80&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For the tasks I looked at, that one request costs as much as about thirty of the task&#x27;s ordinary requests.&lt;/p&gt;
+&lt;h2 id=&quot;what-381-700-requests-said&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-381-700-requests-said&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;What 381,700 requests said&lt;/h2&gt;
+&lt;p&gt;Claude Code keeps every conversation as JSONL under &lt;code&gt;~/.claude/projects&lt;/code&gt;, and every assistant line carries &lt;code&gt;message.usage&lt;/code&gt; with input tokens, cache writes by lifetime, cache reads and output. Since early October most lines also carry &lt;code&gt;cache_miss_reason&lt;/code&gt;, the API&#x27;s word for why a request didn&#x27;t read the cache. &lt;code class=&quot;long&quot;&gt;previous_message_not_found&lt;/code&gt; within the hour is the one I read as an account change. I read every conversation file touched since October 1: 3,472 files and 381,700 requests after removing duplicates. No model turn, no sign-in touched.&lt;/p&gt;
+&lt;p&gt;A cache loss, as I counted it, in main conversations only: the previous request had at least 30,000 tokens of context, this one read less than half of that, the model was the same, and the context didn&#x27;t shrink. The lost tokens are the smaller of what this request wrote and what the previous one had cached, and the extra cost is those tokens at the write price minus the read price.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Moves between accounts: 44 of them, $164 in API-equivalent terms, 0.4% of the $41,099 those five weeks add up to.&lt;/li&gt;
+&lt;li&gt;Caches that simply expired because the task sat idle for more than an hour: $5,632, 13.7%.&lt;/li&gt;
+&lt;li&gt;Restarting the CLI on the same account keeps the cache. Of 460 restarts within an hour of the previous request, 374 read the cache as if nothing had happened; 18 were account changes, and 67 lost it because the system prompt, the messages or the tools had changed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yardlet itself had logged only six moves, the ones its scheduled runs made, and three of those were tasks that had sat idle for five to nine hours, so their cache was gone before the move. The other 41 I found through the diagnostics. One of the logged ones is the case I had worried about: on November 2 at 11:25 at night a scheduled run picked up a task 2.4 minutes after its last request, moved it, and the next request wrote 390,000 tokens, $3.02, 33 times that task&#x27;s usual request.&lt;/p&gt;
+&lt;p&gt;Of the 15 moves that followed a limit, 8 had a reset coming in 15 to 50 minutes. Waiting would have kept the cache alive. The other 7 faced a reset hours away or a weekly limit. The new account still paid the write, but waiting on the old one would have let the hour pass and the cache expire, so the move lost nothing that waiting would have kept.&lt;/p&gt;
+&lt;p&gt;Claude Code&#x27;s automatic compaction ran 167 times in those weeks, taking a median 970,000 tokens of context down to 90,000, and the first request after it writes the cache fresh on any account. A task that has just compacted could move for nothing, though Yardlet doesn&#x27;t use that yet: compaction happens inside a turn, and a move never cuts into one. What doesn&#x27;t help is waiting for the turn to end: the cache runs from the last request, not from the end of the turn.&lt;/p&gt;
+&lt;h2 id=&quot;what-yardlet-does-now&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-yardlet-does-now&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;What Yardlet does now&lt;/h2&gt;
+&lt;p&gt;Settings › Accounts has a switch, &quot;Move tasks to an account with room&quot;, on by default, and it moves a Claude Code task only when the move costs nothing or the task can&#x27;t go on where it is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An idle task on a nearly spent account moves once its cache has expired, an hour after its last request, without starting its CLI.&lt;/li&gt;
+&lt;li&gt;A task that a limit stopped moves and continues on an account with room, unless the limit resets within the day and before its cache would expire. Then the task stays and continues at the reset. A card I armed myself also keeps its task where it is.&lt;/li&gt;
+&lt;li&gt;A task whose cache is still alive stays where it is until a limit stops it or the hour passes. A scheduled run that continues such a task leaves it on its account.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A move never cuts into a turn. A second switch next to it, &quot;Continue automatically at usage limit&quot;, is on by default too: a Claude Code task stopped by a limit that resets within the day continues by itself at the reset, as the CLI does in a terminal, instead of waiting for me to flip a switch on the card. The two work together: a task whose limit resets after its cache would expire moves to an account with room right away, and one whose limit resets sooner waits.&lt;/p&gt;
+&lt;p&gt;This is on &lt;code&gt;main&lt;/code&gt; and goes out with the next release.&lt;/p&gt;
+&lt;h2 id=&quot;what-i-can-t-say-from-this&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-i-can-t-say-from-this&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;What I can&#x27;t say from this&lt;/h2&gt;
+&lt;p&gt;The dollars are API-equivalent. On a subscription nothing is billed per token; a move spends part of a limit window instead, and by my rough estimate a 500,000-token move is under one percent of a five-hour window and far less of a weekly one.&lt;/p&gt;
+&lt;p&gt;The 41 unlogged moves are inferred from the diagnostics, so a cache the server dropped early would look the same. And Yardlet doesn&#x27;t move Codex tasks between accounts, so I measured none.&lt;/p&gt;
+&lt;p&gt;The rule is written up in &lt;a href=&quot;https://github.com/zzunkie/yardlet/blob/main/docs/PROVIDER_CONNECTIONS.md&quot;&gt;docs/PROVIDER_CONNECTIONS.md&lt;/a&gt; (&quot;Moving tasks to an account with room&quot;).&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Starting each agent task on the account with room left</title>
     <link href="https://yardlet.app/blog/accounts-with-room-left.html"/>
