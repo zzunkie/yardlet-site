@@ -4,8 +4,35 @@
   <link href="https://yardlet.app/blog/"/>
   <link rel="self" href="https://yardlet.app/blog/feed.xml"/>
   <id>https://yardlet.app/blog/</id>
-  <updated>2026-11-03T00:00:00Z</updated>
+  <updated>2026-11-04T00:00:00Z</updated>
   <author><name>Yardlet</name></author>
+  <entry>
+    <title>Starting each agent task on the account with room left</title>
+    <link href="https://yardlet.app/blog/accounts-with-room-left.html"/>
+    <id>https://yardlet.app/blog/accounts-with-room-left.html</id>
+    <updated>2026-11-04T00:00:00Z</updated>
+    <summary>I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account&#x27;s limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.</summary>
+    <content type="html">&lt;p&gt;I make &lt;a href=&quot;https://github.com/zzunkie/yardlet&quot;&gt;Yardlet&lt;/a&gt;, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.&lt;/p&gt;
+&lt;p&gt;I have more than one account for both agents, work and personal, and I usually have about ten sessions going. On November 1 my sessions ran into a limit three times: a five-hour limit at 5:21 in the morning, &quot;You&#x27;ve hit your weekly limit · resets 3am&quot; at 9:27 at night, and another five-hour limit at 10:57. Each time the question was the same. Which account still has room?&lt;/p&gt;
+&lt;h2 id=&quot;every-account-s-limits-read-from-the-cli&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#every-account-s-limits-read-from-the-cli&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;Every account&#x27;s limits, read from the CLI&lt;/h2&gt;
+&lt;p&gt;Settings › Accounts lists every sign-in with its five-hour and weekly windows and when each resets. Yardlet doesn&#x27;t call the providers with a token of its own. It asks each CLI with the sign-in that CLI already has: Claude Code through its &lt;code&gt;get_usage&lt;/code&gt; control request, which runs no model turn, Codex through its App Server&#x27;s rate-limit read, and Antigravity CLI through &lt;code&gt;agy --print /usage&lt;/code&gt;. A limit a CLI doesn&#x27;t report is shown as not available, never as zero.&lt;/p&gt;
+&lt;h2 id=&quot;the-task-picks-the-account&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-task-picks-the-account&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;The task picks the account&lt;/h2&gt;
+&lt;p&gt;A new task&#x27;s account menu says Automatic unless I pick one. A task an agent starts (a child task or a subagent), a suggestion I accept, or a new task I start on Automatic goes to the account with the most room left, and tasks started together spread across the accounts. The task&#x27;s card says what was chosen and why:&lt;/p&gt;
+&lt;figure class=&quot;code&quot;&gt;&lt;figcaption&gt;&lt;span&gt;Task card&lt;/span&gt;&lt;button class=&quot;copy&quot; type=&quot;button&quot; hidden&gt;Copy&lt;/button&gt;&lt;/figcaption&gt;&lt;pre&gt;&lt;code&gt;work@example.com · Chosen automatically · 5 hour limit 12% used · Resets 3:00 PM&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;The account is stored with the task when it starts, so resuming it later uses the same one.&lt;/p&gt;
+&lt;p&gt;Scheduled runs check before they start. If the account a run would use has 10% or less left in a window, the run starts on the account with the most room instead, and if every account is nearly spent, on the one that frees up first. The run&#x27;s line in the schedule&#x27;s history names the account it went to and the one it replaced.&lt;/p&gt;
+&lt;p&gt;Two smaller things came from running into limits myself. Since 0.11.7, a Claude limit card offers Resume once the limit has reset, so I don&#x27;t have to type &quot;continue&quot; when I come back. Since 0.11.8, choosing another account on a working task takes effect when its turn ends, and what I send meanwhile goes to the new account. Before, that choice was quietly ignored while a turn ran.&lt;/p&gt;
+&lt;h2 id=&quot;which-agents-can-keep-more-than-one-account&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#which-agents-can-keep-more-than-one-account&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;Which agents can keep more than one account&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Claude Code:&lt;/strong&gt; yes, a &lt;code&gt;CLAUDE_CONFIG_DIR&lt;/code&gt; folder per account. Folders Yardlet makes share the default folder&#x27;s conversation history, so a task can move to another account and keep its conversation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Codex:&lt;/strong&gt; yes, a &lt;code&gt;CODEX_HOME&lt;/code&gt; per account. Each keeps its own history, so an extra account joins automatic assignment only when I include it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kimi Code and Grok Build:&lt;/strong&gt; yes, with &lt;code&gt;KIMI_CODE_HOME&lt;/code&gt; and &lt;code&gt;GROK_HOME&lt;/code&gt;, the same way as Codex.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cursor Agent and Antigravity CLI:&lt;/strong&gt; no. Each keeps its sign-in in one fixed Keychain item.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;what-it-doesn-t-do&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-it-doesn-t-do&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;What it doesn&#x27;t do&lt;/h2&gt;
+&lt;p&gt;Every account is one I signed in to myself in that agent&#x27;s own CLI. Yardlet doesn&#x27;t create accounts, copy a sign-in from one folder to another, or move a turn that is already running. It decides where the next task starts.&lt;/p&gt;
+&lt;p&gt;The rules are in &lt;a href=&quot;https://github.com/zzunkie/yardlet/blob/main/docs/NATIVE_SESSION_STORAGE.md&quot;&gt;docs/NATIVE_SESSION_STORAGE.md&lt;/a&gt; (&quot;Automatic account assignment&quot;) and &lt;a href=&quot;https://github.com/zzunkie/yardlet/blob/main/docs/PROVIDER_CONNECTIONS.md&quot;&gt;docs/PROVIDER_CONNECTIONS.md&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Handing my mail to coding agents, and keeping Send for myself</title>
     <link href="https://yardlet.app/blog/mail-for-agents.html"/>

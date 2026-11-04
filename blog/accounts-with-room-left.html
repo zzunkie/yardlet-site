@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Starting each agent task on the account with room left · Yardlet blog</title>
+<meta name="description" content="I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account&#x27;s limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.">
+<link rel="canonical" href="https://yardlet.app/blog/accounts-with-room-left.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/accounts-with-room-left.html">
+<meta property="og:title" content="Starting each agent task on the account with room left">
+<meta property="og:description" content="I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account&#x27;s limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.">
+<meta property="og:image" content="https://yardlet.app/blog/og/accounts-with-room-left.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-04">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/accounts-with-room-left.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Starting each agent task on the account with room left", "description": "I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account's limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.", "datePublished": "2026-11-04", "url": "https://yardlet.app/blog/accounts-with-room-left.html", "image": "https://yardlet.app/blog/og/accounts-with-room-left.png", "mainEntityOfPage": "https://yardlet.app/blog/accounts-with-room-left.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-04">November 4, 2026</time></span><span>3 min read</span></p>
+<h1>Starting each agent task on the account with room left</h1>
+<p class="dek">I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account's limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.</p>
+<p>I have more than one account for both agents, work and personal, and I usually have about ten sessions going. On November 1 my sessions ran into a limit three times: a five-hour limit at 5:21 in the morning, "You've hit your weekly limit · resets 3am" at 9:27 at night, and another five-hour limit at 10:57. Each time the question was the same. Which account still has room?</p>
+<h2 id="every-account-s-limits-read-from-the-cli"><a class="anchor" href="#every-account-s-limits-read-from-the-cli" aria-hidden="true">#</a>Every account's limits, read from the CLI</h2>
+<p>Settings › Accounts lists every sign-in with its five-hour and weekly windows and when each resets. Yardlet doesn't call the providers with a token of its own. It asks each CLI with the sign-in that CLI already has: Claude Code through its <code>get_usage</code> control request, which runs no model turn, Codex through its App Server's rate-limit read, and Antigravity CLI through <code>agy --print /usage</code>. A limit a CLI doesn't report is shown as not available, never as zero.</p>
+<h2 id="the-task-picks-the-account"><a class="anchor" href="#the-task-picks-the-account" aria-hidden="true">#</a>The task picks the account</h2>
+<p>A new task's account menu says Automatic unless I pick one. A task an agent starts (a child task or a subagent), a suggestion I accept, or a new task I start on Automatic goes to the account with the most room left, and tasks started together spread across the accounts. The task's card says what was chosen and why:</p>
+<figure class="code"><figcaption><span>Task card</span><button class="copy" type="button" hidden>Copy</button></figcaption><pre><code>work@example.com · Chosen automatically · 5 hour limit 12% used · Resets 3:00 PM</code></pre></figure>
+<p>The account is stored with the task when it starts, so resuming it later uses the same one.</p>
+<p>Scheduled runs check before they start. If the account a run would use has 10% or less left in a window, the run starts on the account with the most room instead, and if every account is nearly spent, on the one that frees up first. The run's line in the schedule's history names the account it went to and the one it replaced.</p>
+<p>Two smaller things came from running into limits myself. Since 0.11.7, a Claude limit card offers Resume once the limit has reset, so I don't have to type "continue" when I come back. Since 0.11.8, choosing another account on a working task takes effect when its turn ends, and what I send meanwhile goes to the new account. Before, that choice was quietly ignored while a turn ran.</p>
+<h2 id="which-agents-can-keep-more-than-one-account"><a class="anchor" href="#which-agents-can-keep-more-than-one-account" aria-hidden="true">#</a>Which agents can keep more than one account</h2>
+<ul>
+<li><strong>Claude Code:</strong> yes, a <code>CLAUDE_CONFIG_DIR</code> folder per account. Folders Yardlet makes share the default folder's conversation history, so a task can move to another account and keep its conversation.</li>
+<li><strong>Codex:</strong> yes, a <code>CODEX_HOME</code> per account. Each keeps its own history, so an extra account joins automatic assignment only when I include it.</li>
+<li><strong>Kimi Code and Grok Build:</strong> yes, with <code>KIMI_CODE_HOME</code> and <code>GROK_HOME</code>, the same way as Codex.</li>
+<li><strong>Cursor Agent and Antigravity CLI:</strong> no. Each keeps its sign-in in one fixed Keychain item.</li>
+</ul>
+<h2 id="what-it-doesn-t-do"><a class="anchor" href="#what-it-doesn-t-do" aria-hidden="true">#</a>What it doesn't do</h2>
+<p>Every account is one I signed in to myself in that agent's own CLI. Yardlet doesn't create accounts, copy a sign-in from one folder to another, or move a turn that is already running. It decides where the next task starts.</p>
+<p>The rules are in <a href="https://github.com/zzunkie/yardlet/blob/main/docs/NATIVE_SESSION_STORAGE.md">docs/NATIVE_SESSION_STORAGE.md</a> ("Automatic account assignment") and <a href="https://github.com/zzunkie/yardlet/blob/main/docs/PROVIDER_CONNECTIONS.md">docs/PROVIDER_CONNECTIONS.md</a>.</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
