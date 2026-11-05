@@ -34,6 +34,8 @@ public struct Logger : @unchecked Sendable {
 
 So the compiler treats it as there since macOS 11. But the macOS 15.5 SDK that comes with the Command Line Tools has no such symbol in `libswiftos.tbd`, the 27 SDK has it, and `libswiftos.dylib` on macOS 15.6.1 doesn't export it. I haven't checked macOS 26.
 
+> **Update, November 5:** Quinn from Apple Developer Technical Support has since checked macOS 26. The symbol is missing on 26.2 and there on 26.7.1, and Apple's bug records suggest it arrived in 26.4. He also filed a bug about the availability mismatch. [His answer on the Apple Developer Forums](https://developer.apple.com/forums/thread/855301?answerId=914801022#914801022).
+
 ## The fix
 
 `OSLog` has its own `isEnabled(type:)`, which goes to the C function `os_log_type_enabled`, there since macOS 10.12. So I keep an `OSLog` handle, make the `Logger` from it, and ask the handle:
