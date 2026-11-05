@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>I talk to one session, and it runs the rest · Yardlet blog</title>
+<meta name="description" content="Andrej Karpathy wrote that he only talks to Claude now and did three things by hand. Yardlet&#x27;s own development has run the same way for weeks: one long-lived session I talk to, child sessions it starts, and a few places where I still say yes. Almost none of what still lands on me is approving. Most of it is reading.">
+<link rel="canonical" href="https://yardlet.app/blog/one-session-runs-the-rest.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/one-session-runs-the-rest.html">
+<meta property="og:title" content="I talk to one session, and it runs the rest">
+<meta property="og:description" content="Andrej Karpathy wrote that he only talks to Claude now and did three things by hand. Yardlet&#x27;s own development has run the same way for weeks: one long-lived session I talk to, child sessions it starts, and a few places where I still say yes. Almost none of what still lands on me is approving. Most of it is reading.">
+<meta property="og:image" content="https://yardlet.app/blog/og/one-session-runs-the-rest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-05">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/one-session-runs-the-rest.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "I talk to one session, and it runs the rest", "description": "Andrej Karpathy wrote that he only talks to Claude now and did three things by hand. Yardlet's own development has run the same way for weeks: one long-lived session I talk to, child sessions it starts, and a few places where I still say yes. Almost none of what still lands on me is approving. Most of it is reading.", "datePublished": "2026-11-05", "url": "https://yardlet.app/blog/one-session-runs-the-rest.html", "image": "https://yardlet.app/blog/og/one-session-runs-the-rest.png", "mainEntityOfPage": "https://yardlet.app/blog/one-session-runs-the-rest.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-05">November 5, 2026</time></span><span>5 min read</span></p>
+<h1>I talk to one session, and it runs the rest</h1>
+<p class="dek">Andrej Karpathy wrote that he only talks to Claude now and did three things by hand. Yardlet's own development has run the same way for weeks: one long-lived session I talk to, child sessions it starts, and a few places where I still say yes. Almost none of what still lands on me is approving. Most of it is reading.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.</p>
+<p>Last week Andrej Karpathy <a href="https://karpathy.bearblog.dev/hacker-tube/">built HackerTube</a> in a morning and added a note on how he works now: "I don't actually do anything resembling traditional engineering anymore (read/write code, run commands in a terminal, or etc.), I only talk to Claude and have it do everything." The manual work on that project was three things: an API key from a Google Cloud screen, a VPS, a domain name. It read as familiar. That is how I have been working on Yardlet itself for a few weeks, so I had a session compare the two and tell me where they differ.</p>
+<h2 id="one-session-i-talk-to"><a class="anchor" href="#one-session-i-talk-to" aria-hidden="true">#</a>One session I talk to</h2>
+<p>I have about ten tasks open in Yardlet at any time. One of them is a coordinating session for the Yardlet project that has been running since mid-October. I don't give it code. I tell it things like "the mail list should start folded when there are several accounts" or "is the long-command approval on the phone being fixed?", and it starts child tasks, each a session of its own in its own worktree, reviews what they send back, lands their pull requests on <code>main</code>, builds a signed build and stages it as an update on my Macs.</p>
+<p>Two numbers from my own logs say how much of my talking goes through that one session. From October 16 to 31 I sent 128 messages from my phone to tasks on the Mac. 45 of them, 35%, went to the coordinating session; the next busiest task got 13. In those two weeks I answered zero approval requests and zero questions from the phone.</p>
+<p>Last night is a fair sample of a day. Between my "I installed the update" and "archive the finished ones", the coordinating session landed a batch of pull requests, built and staged a signed build, and sent two defects its child tasks had reported to new child tasks. What came back to me that day was: paste this Mac's SSH key into a Windows PC, check whether a notification actually appeared on screen, approve a test email, install the build. Karpathy's list was an API key, a server and a domain. Both lists come down to things that need my own hands or my own accounts, done while the agent works.</p>
+<h2 id="where-it-differs"><a class="anchor" href="#where-it-differs" aria-hidden="true">#</a>Where it differs</h2>
+<p><strong>A session that lives for weeks.</strong> HackerTube took about two hours. My coordinating session has carried the project since mid-October, and what carries it is a handoff file next to the code, not the session's memory: a dated section a day with what landed, which build is staged on which Mac, what is waiting on CI and what is waiting on me. A restart or a compaction starts from that file. Keeping the session alive that long is mostly keeping that file current.</p>
+<p><strong>The workers are sessions of their own.</strong> Karpathy had Claude fan Sonnet out over the Hacker News comments with Claude Code's Workflow feature, which runs its workers from inside the session that started them. My child tasks are full sessions with their own worktree and their own history. They show up in the sidebar next to everything else, and I can open one and talk to it directly without going through the coordinator. That makes it easy to step in, and it is also where the extra reading comes from.</p>
+<p><strong>I kept a few places where I say yes.</strong> He gave Claude the server's IP and let it deploy, which fits a personal site with no accounts and nothing to break for anyone else. I let the coordinating session merge and build on its own, but a production deploy, a public release, anything other people will see, and deleting data still wait for an explicit yes from me, because a mistake there reaches people who use the app or work with me. On October 28 an agent asked whether a sentence belonged on the site and in the README. I answered with a one-line musing that was really a question, it read it as a yes, deployed the site and merged the README change. Since then an agent acts only on a clear yes or an unambiguous instruction.</p>
+<h2 id="how-far-to-go"><a class="anchor" href="#how-far-to-go" aria-hidden="true">#</a>How far to go</h2>
+<p>Reading his note, the question I actually had was whether to take my hands off further. So I asked a session to count what was still landing on me.</p>
+<p>It wasn't approvals. I hadn't approved anything from my phone in two weeks, and that morning no task was waiting for a yes from me. It was reading. I had eleven unread tasks in the sidebar, and seven of them were child tasks. A child task reports to the session that started it before it ends, so by the time I opened one, its result had already reached the coordinator and come back to me in the coordinator's report. I was reading the same result twice.</p>
+<p>The cause is in how Yardlet marks things read: a task's unread mark clears when a window shows the task, and a session reading another session's result through a tool doesn't clear it. Clearing the mark when the coordinator reads a child would fix my sidebar. I decided against it. It would change what every Yardlet user sees without any sign of it, and someone who reads child results directly would miss them. It fits how I work, and other people may not like it, so it stays out of the app.</p>
+<p>The fix went into my own instruction file instead: the session that started a child task archives it once the work has landed and nothing in it is waiting on me, and says in its report what it archived. The children are still in the archive if I want them, and finished child tasks stay out of my unread list.</p>
+<p>That leaves what Karpathy described: one session I talk to, a short list of things only I can do, done in between its work, and a yes from me where a mistake would reach other people. Yardlet is the window those sessions live in, and the coordinating session runs the others with the same task tools any agent gets in Yardlet.</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
