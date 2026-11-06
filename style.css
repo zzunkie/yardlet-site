@@ -435,7 +435,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
   * { transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* The second headline, shown instead of the first when ab.js picks it. */
-.headline-b { display: none; }
+/* The second and third headlines, shown instead of the first when ab.js picks them; the third has its own lead. */
+.headline-b, .headline-c, .lead-c { display: none; }
 :root[data-headline="b"] .headline-a { display: none; }
 :root[data-headline="b"] .headline-b { display: inline; }
+:root[data-headline="c"] .headline-a, :root[data-headline="c"] .lead-ab { display: none; }
+:root[data-headline="c"] .headline-c { display: inline; }
+:root[data-headline="c"] .lead-c { display: block; }
