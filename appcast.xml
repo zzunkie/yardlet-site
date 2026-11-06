@@ -3,6 +3,114 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.9</title>
+            <pubDate>Fri, 06 Nov 2026 12:32:56 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>31</sparkle:version>
+            <sparkle:shortVersionString>0.11.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.9
+
+## Intel Macs
+
+- Yardlet now has a version for Intel Macs with macOS 15 or later: `Yardlet-0.11.9-x86_64.dmg`, or
+  `brew install --cask zzunkie/tap/yardlet`, which picks it on an Intel Mac. It updates itself from a feed of its own.
+- This is the first Intel version. It has been tried on one Intel Mac, a 2018 Mac mini with Intel UHD Graphics 630 on
+  macOS 15.8, where it starts, streams a task and draws the built-in browser. Other Intel graphics (Iris, AMD Radeon)
+  and macOS 26 on Intel have not been tried yet.
+- Its built-in browser plays no H.264 video or AAC audio, such as many sites' MP4 videos; WebM video (VP9, AV1) plays.
+- If you use it, please tell us how it goes, especially if the built-in browser closes or stays blank: a
+  [bug report](https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml) with "Intel" chosen, or a note in
+  [Discussions](https://github.com/zzunkie/yardlet/discussions).
+
+## Accounts and limits
+
+- New tasks start on Automatic when a harness has more than one account in automatic assignment, and the composer
+  names the account it picks and why. An account you choose stays until you choose Automatic again.
+- A Claude Code task stopped by a usage limit that resets within a day continues by itself at the reset, as Claude Code
+  does, and messages other tasks send it meanwhile wait until then. Settings › Harness Accounts › Continue
+  automatically at usage limit turns this off.
+- Claude Code tasks move to an account with room when it costs nothing: an idle task on a nearly spent account moves
+  once its prompt cache has expired, and a task a limit stopped continues on an account with room. Settings › Harness
+  Accounts › Move tasks to an account with room turns this off.
+- Settings › Usage shows the tokens Claude Code and Codex record on this Mac, with their API-equivalent cost, beside
+  the plan limits, and Home shows today's tokens and the limits closest to running out. The counts stay on this Mac;
+  Settings › Usage › Count token usage turns this off and deletes them.
+- A limit card read back after a relaunch offers Resume again.
+- Each row in Settings › Harness Accounts has a "…" menu, with Sign Out… and Sign In With Another Account… for the
+  default login.
+
+## Tasks
+
+- Group the task list by state (Needs input, Working, Unread, Idle) from the menu beside its search field.
+- Archived tasks open read-only without being unarchived.
+- Rename from Recent Conversation, beside Rename, has Claude Code or Codex name a long task again from its latest turns.
+- Move to Chats takes any task out of its project.
+- Codex tasks offer the Codex app's permissions: Ask for approval, Approve for me and Full access, and Custom when
+  config.toml sets its own. You can choose one on the new-task screen, and schedules start with theirs.
+- Ask an agent in the conversation to change a Yardlet setting. A change that lowers a protection asks you on the
+  approval card first.
+- Settings groups its sections under Personal, Integrations and Harnesses, and Accounts is now Harness Accounts.
+
+## Terminal
+
+- Settings › General › Terminal location opens the terminal below the conversation or as a tab in the side panel, as
+  in the Codex app. Split Terminal in its header shows two shells side by side.
+- Shell code blocks in answers offer Run in terminal beside Copy code, and Run in terminal on a command card now runs
+  the command instead of only typing it.
+
+## Browser, files and mail
+
+- Tasks share the built-in browser's sign-ins, so a site you sign in to is signed in for every task. A task gets a
+  browser profile of its own only when its agent signs in to a site itself. Task profiles from earlier versions are
+  merged once, and the emptied ones go to the Trash.
+- Agents try the password manager before handing a sign-in to you, and ask you before keeping a two-factor setup they
+  started.
+- The blocked pop-up menu can always allow pop-ups from a site, so its sign-in or payment window opens as the site
+  meant.
+- An agent can dismiss a site's permission request in its own task's tabs; only you can allow one.
+- Files previews movies, audio and animated images.
+- Agents can attach files to Outlook and IMAP drafts, as to Gmail drafts.
+- IMAP accounts on servers such as Naver Mail now get new-mail notices and search results.
+
+## Privacy
+
+- Screenshots an agent takes in the built-in browser hide keys and tokens, as its text results already did.
+- Links you open from mail open in the mailbox's own browser panel, out of reach of task agents.
+
+## Faster
+
+- Long conversations stream with much less work on the main thread, so the task list scrolls smoothly while a Codex
+  answer streams, and scrolling up draws earlier turns one at a time.
+- Resizing a window with a long conversation, opening Personal agents and saving connector settings no longer hold
+  up the app.
+- The Mac connects to the phone relay faster on many networks.
+
+## Fixes
+
+- Agents start with your login shell's PATH, so tools such as Homebrew's `gh` are found when Yardlet was opened from
+  the Dock or Finder.
+- The Settings card in the session rail stays inside the side panel with a long model name.
+- Clicking a link in an answer that is still streaming no longer freezes Yardlet.
+- After a crash, Yardlet ends the Claude Code processes it left running instead of reporting their tasks as open in
+  another app.
+- An ACP agent whose process ended on its own starts again for the next prompt.
+- A Codex turn cut off by a lost connection continues once the network is back.
+- A subagent asked to run on a model its harness does not offer stops with an error instead of using the default model.
+- Dragging a task row in the sidebar now works, to nest it under another task or drop it onto a split view.
+- A link followed directly by Korean, Japanese or Chinese text no longer takes in the text.
+- A chat without a title from its harness no longer shows its folder name.
+
+## Thanks
+
+Thanks to @minsujang0 for reporting the slow scrolling while Codex streams (#183), the Settings card overflow (#483)
+and the missing PATH (#485), and for suggesting grouping tasks by state (#489).
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.9/Yardlet-0.11.9.dmg" length="183020612" type="application/octet-stream" sparkle:edSignature="uy/yyuD6yRYQv3kai7zLdPQeJS38iCiglU4rD0srizIc09jQToJyZ4tG8nybgN2o99V51Jv7doGBkeg5b1nPDw=="/>
+        </item>
+        <item>
             <title>0.11.8</title>
             <pubDate>Tue, 03 Nov 2026 02:48:56 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -116,51 +224,6 @@
 - Antigravity sign-in reaches its browser step with the CLI details hidden.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.7/Yardlet-0.11.7.dmg" length="176867135" type="application/octet-stream" sparkle:edSignature="H7aTkRLOARGBOKT1UZa+h8oNCe2nUYy+iV+4+vwHtgmEkoaq0fSitTtw6s0J3jRGGLkua57jDWoFClJCmCPYDQ=="/>
-        </item>
-        <item>
-            <title>0.11.6</title>
-            <pubDate>Sat, 31 Oct 2026 21:49:26 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>28</sparkle:version>
-            <sparkle:shortVersionString>0.11.6</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.6
-
-Yardlet starts on macOS 15 again. Since 0.11.0 it quit as soon as it opened there. If you are on macOS 15, download
-this version: the earlier ones cannot open to update themselves.
-
-## New
-
-- The browser panel saves and fills your addresses and payment cards. A card fills only after Touch ID, never with
-  its security code, and never for an agent.
-- Sign-ins that ask for the username first keep it for the password step, and other fields such as an AWS account ID
-  are saved with the item. The save bar closes with an X and says Save when it adds a username.
-- Move a task one level up or under another task in the sidebar, from its menu or by dragging it.
-- Personal agents: read a dot's activity records and reply in threads in Yardlet.
-- Settings says when Yardlet's instructions reach a task: when Yardlet starts or resumes it.
-
-## Fixes
-
-- Your own messages stay in view when a turn's work folds.
-- A Codex error shows once after Retry.
-- A subagent cut off by quitting tells the task that was waiting for it, and quitting to update waits for working
-  subagents too.
-- Moving an account's tasks to another folder carries on after a quit.
-- A task cannot be archived while work it started is still running.
-- An agent CLI that stops reading no longer ends Yardlet, and a shell command is no longer cut short while Yardlet is
-  busy.
-- Less work on the main thread while Codex streams, in tasks with many saved cards, and while subagents run.
-- A saved connector file that cannot be read is left as it is, and Settings says so, instead of being replaced.
-- The password the vault made is kept unless the page certainly did not take it.
-
-## Install
-
-Download `Yardlet-0.11.6.dmg` below, or `brew install --cask zzunkie/tap/yardlet`. Requires macOS 15 or later on
-Apple silicon.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.6/Yardlet-0.11.6.dmg" length="175968120" type="application/octet-stream" sparkle:edSignature="K30wVOw6tEa/iqCumpHgrHorBRc8fwEGgVkk9V+VljkIrzJE7nvMW7HblNFIxv+tXwd01xYbldevebYmvdQlDg=="/>
         </item>
     </channel>
 </rss>
