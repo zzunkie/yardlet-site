@@ -95,6 +95,78 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.9" aria-labelledby="v0.11.9-title">
+      <h2 id="v0.11.9-title">Yardlet 0.11.9</h2>
+      <p class="updated"><time datetime="2026-11-06">November 6, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.9">Release on GitHub</a></p>
+      <h3>Intel Macs</h3>
+      <ul>
+        <li>Yardlet now has a version for Intel Macs with macOS 15 or later: <code>Yardlet-0.11.9-x86_64.dmg</code>, or <code>brew install --cask zzunkie/tap/yardlet</code>, which picks it on an Intel Mac. It updates itself from a feed of its own.</li>
+        <li>This is the first Intel version. It has been tried on one Intel Mac, a 2018 Mac mini with Intel UHD Graphics 630 on macOS 15.8, where it starts, streams a task and draws the built-in browser. Other Intel graphics (Iris, AMD Radeon) and macOS 26 on Intel have not been tried yet.</li>
+        <li>Its built-in browser plays no H.264 video or AAC audio, such as many sites' MP4 videos; WebM video (VP9, AV1) plays.</li>
+        <li>If you use it, please tell us how it goes, especially if the built-in browser closes or stays blank: a <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">bug report</a> with "Intel" chosen, or a note in <a href="https://github.com/zzunkie/yardlet/discussions">Discussions</a>.</li>
+      </ul>
+      <h3>Accounts and limits</h3>
+      <ul>
+        <li>New tasks start on Automatic when a harness has more than one account in automatic assignment, and the composer names the account it picks and why. An account you choose stays until you choose Automatic again.</li>
+        <li>A Claude Code task stopped by a usage limit that resets within a day continues by itself at the reset, as Claude Code does, and messages other tasks send it meanwhile wait until then. Settings › Harness Accounts › Continue automatically at usage limit turns this off.</li>
+        <li>Claude Code tasks move to an account with room when it costs nothing: an idle task on a nearly spent account moves once its prompt cache has expired, and a task a limit stopped continues on an account with room. Settings › Harness Accounts › Move tasks to an account with room turns this off.</li>
+        <li>Settings › Usage shows the tokens Claude Code and Codex record on this Mac, with their API-equivalent cost, beside the plan limits, and Home shows today's tokens and the limits closest to running out. The counts stay on this Mac; Settings › Usage › Count token usage turns this off and deletes them.</li>
+        <li>A limit card read back after a relaunch offers Resume again.</li>
+        <li>Each row in Settings › Harness Accounts has a "…" menu, with Sign Out… and Sign In With Another Account… for the default login.</li>
+      </ul>
+      <h3>Tasks</h3>
+      <ul>
+        <li>Group the task list by state (Needs input, Working, Unread, Idle) from the menu beside its search field.</li>
+        <li>Archived tasks open read-only without being unarchived.</li>
+        <li>Rename from Recent Conversation, beside Rename, has Claude Code or Codex name a long task again from its latest turns.</li>
+        <li>Move to Chats takes any task out of its project.</li>
+        <li>Codex tasks offer the Codex app's permissions: Ask for approval, Approve for me and Full access, and Custom when config.toml sets its own. You can choose one on the new-task screen, and schedules start with theirs.</li>
+        <li>Ask an agent in the conversation to change a Yardlet setting. A change that lowers a protection asks you on the approval card first.</li>
+        <li>Settings groups its sections under Personal, Integrations and Harnesses, and Accounts is now Harness Accounts.</li>
+      </ul>
+      <h3>Terminal</h3>
+      <ul>
+        <li>Settings › General › Terminal location opens the terminal below the conversation or as a tab in the side panel, as in the Codex app. Split Terminal in its header shows two shells side by side.</li>
+        <li>Shell code blocks in answers offer Run in terminal beside Copy code, and Run in terminal on a command card now runs the command instead of only typing it.</li>
+      </ul>
+      <h3>Browser, files and mail</h3>
+      <ul>
+        <li>Tasks share the built-in browser's sign-ins, so a site you sign in to is signed in for every task. A task gets a browser profile of its own only when its agent signs in to a site itself. Task profiles from earlier versions are merged once, and the emptied ones go to the Trash.</li>
+        <li>Agents try the password manager before handing a sign-in to you, and ask you before keeping a two-factor setup they started.</li>
+        <li>The blocked pop-up menu can always allow pop-ups from a site, so its sign-in or payment window opens as the site meant.</li>
+        <li>An agent can dismiss a site's permission request in its own task's tabs; only you can allow one.</li>
+        <li>Files previews movies, audio and animated images.</li>
+        <li>Agents can attach files to Outlook and IMAP drafts, as to Gmail drafts.</li>
+        <li>IMAP accounts on servers such as Naver Mail now get new-mail notices and search results.</li>
+      </ul>
+      <h3>Privacy</h3>
+      <ul>
+        <li>Screenshots an agent takes in the built-in browser hide keys and tokens, as its text results already did.</li>
+        <li>Links you open from mail open in the mailbox's own browser panel, out of reach of task agents.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Long conversations stream with much less work on the main thread, so the task list scrolls smoothly while a Codex answer streams, and scrolling up draws earlier turns one at a time.</li>
+        <li>Resizing a window with a long conversation, opening Personal agents and saving connector settings no longer hold up the app.</li>
+        <li>The Mac connects to the phone relay faster on many networks.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>Agents start with your login shell's PATH, so tools such as Homebrew's <code>gh</code> are found when Yardlet was opened from the Dock or Finder.</li>
+        <li>The Settings card in the session rail stays inside the side panel with a long model name.</li>
+        <li>Clicking a link in an answer that is still streaming no longer freezes Yardlet.</li>
+        <li>After a crash, Yardlet ends the Claude Code processes it left running instead of reporting their tasks as open in another app.</li>
+        <li>An ACP agent whose process ended on its own starts again for the next prompt.</li>
+        <li>A Codex turn cut off by a lost connection continues once the network is back.</li>
+        <li>A subagent asked to run on a model its harness does not offer stops with an error instead of using the default model.</li>
+        <li>Dragging a task row in the sidebar now works, to nest it under another task or drop it onto a split view.</li>
+        <li>A link followed directly by Korean, Japanese or Chinese text no longer takes in the text.</li>
+        <li>A chat without a title from its harness no longer shows its folder name.</li>
+      </ul>
+      <h3>Thanks</h3>
+      <p>Thanks to @minsujang0 for reporting the slow scrolling while Codex streams (#183), the Settings card overflow (#483) and the missing PATH (#485), and for suggesting grouping tasks by state (#489).</p>
+    </section>
+
     <section class="release" id="v0.11.8" aria-labelledby="v0.11.8-title">
       <h2 id="v0.11.8-title">Yardlet 0.11.8</h2>
       <p class="updated"><time datetime="2026-11-02">November 2, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.8">Release on GitHub</a></p>
