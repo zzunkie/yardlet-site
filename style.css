@@ -346,6 +346,8 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .foot-links { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); margin-bottom: var(--s-4); }
 .foot-links a { color: var(--text-2); text-decoration: none; font-weight: 500; }
 .foot-links a:hover { color: var(--text); text-decoration: underline; }
+.foot-badge { margin-bottom: var(--s-4); }
+.foot-badge img { display: block; width: 270px; max-width: 100%; height: auto; }
 
 /* Documents (privacy policy, terms of use) share the window, with the text in the pane. */
 .doc { max-width: calc(680px + 2 * var(--s-6)); margin: 0 auto; padding: var(--s-7) var(--s-6) var(--s-8); color: var(--text-2); }
