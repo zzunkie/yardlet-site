@@ -2,6 +2,7 @@
 title: "A Logger symbol missing on macOS 15 kept my Mac app from launching"
 slug: logger-isenabled-macos-15
 date: 2026-11-01
+updated: 2026-11-05
 description: "For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1's libswiftos doesn't have it."
 ---
 

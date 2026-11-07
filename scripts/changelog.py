@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Write changelog.html from the release notes of Yardlet's app releases on GitHub.
+"""Write changelog.html from the release notes of Yardlet's app releases on GitHub, and bring the home page's
+softwareVersion and sitemap.xml up to date.
 
 Run it from the site's root after publishing a release: python3 scripts/changelog.py
 It reads the releases with the GitHub CLI (`gh`), keeps the app releases ("Yardlet 0.11.0" and later, not the
@@ -12,6 +13,8 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+
+import sitemap
 
 REPO = "zzunkie/yardlet"
 ROOT = Path(__file__).resolve().parent.parent
@@ -79,6 +82,7 @@ def body_html(markdown):
 
 def page(rels):
     template = (ROOT / "terms.html").read_text()
+    template = re.sub(r'<(?:link rel="canonical"|meta (?:property="og:|name="twitter:))[^>]*>\n', "", template)
     sections = []
     for r in rels:
         version = APP_RELEASE.match(r["name"]).group(0).split(" ", 1)[1]
@@ -102,10 +106,15 @@ def page(rels):
     )
     out = re.sub(r'<main class="doc" id="main">.*?</main>', lambda _: main, template, count=1, flags=re.S)
     out = out.replace("<title>Yardlet Terms of Use</title>", "<title>Yardlet Changelog</title>", 1)
+    description = "What changed in each version of Yardlet, the free native Mac app for Claude Code, Codex and other coding agent CLIs."
     out = re.sub(r'<meta name="description" content="[^"]*">',
-                 '<meta name="description" content="What changed in each version of Yardlet, the free app '
-                 'for Codex, Claude Code and other coding agent CLIs.">\n'
-                 '<link rel="canonical" href="https://yardlet.app/changelog.html">', out, count=1)
+                 f'<meta name="description" content="{description}">\n'
+                 '<link rel="canonical" href="https://yardlet.app/changelog.html">\n'
+                 '<meta property="og:type" content="website">\n<meta property="og:site_name" content="Yardlet">\n'
+                 '<meta property="og:url" content="https://yardlet.app/changelog.html">\n'
+                 f'<meta property="og:title" content="Yardlet Changelog">\n<meta property="og:description" content="{description}">\n'
+                 '<meta property="og:image" content="https://yardlet.app/screens/og.jpg">\n'
+                 '<meta name="twitter:card" content="summary_large_image">', out, count=1)
     out = out.replace(' aria-current="page"', "", 1)
     out = out.replace('<a class="task" href="changelog.html">', '<a class="task" href="changelog.html" aria-current="page">', 1)
     out = out.replace('<span class="jump-title">Terms of use</span>', '<span class="jump-title">Changelog</span>')
@@ -120,4 +129,8 @@ if __name__ == "__main__":
     if not rels:
         sys.exit("no app releases found")
     (ROOT / "changelog.html").write_text(page(rels))
+    home = ROOT / "index.html"
+    latest = rels[0]["name"].split(" ", 1)[1]
+    home.write_text(re.sub(r'"softwareVersion": "[^"]*"', f'"softwareVersion": "{latest}"', home.read_text(), count=1))
+    sitemap.write()
     print(f"changelog.html: {len(rels)} releases, latest {rels[0]['name']}")

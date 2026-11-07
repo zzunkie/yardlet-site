@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; media-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
-<title>Yardlet: the app for the coding agents you already use</title>
-<meta name="description" content="Yardlet is a free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and session history. Stop whenever you like; your agents stay as they were.">
+<title>Yardlet: Claude Code and Codex side by side on Mac</title>
+<meta name="description" content="Yardlet is a free, open-source native Mac app. Run Claude Code, Codex and other agents from their real CLIs, side by side, with the logins you already have.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://yardlet.app/screens/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Yardlet: every coding agent, every account, one app. A Codex task is open in its window.">
+<meta property="og:image:alt" content="Yardlet: Claude Code and Codex, better together. A Codex task is open in its window.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://yardlet.app/screens/og.jpg">
 <link rel="canonical" href="https://yardlet.app/">
@@ -27,11 +27,27 @@
   "@type": "SoftwareApplication",
   "name": "Yardlet",
   "url": "https://yardlet.app/",
-  "description": "A free, open-source app that runs Codex, Claude Code and other coding agent CLIs side by side, each with its own sign-in and session history.",
+  "description": "A free, open-source native Mac app that runs the real Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and session history.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "macOS 15 or later, Apple silicon or Intel",
+  "softwareVersion": "0.11.9",
+  "softwareRequirements": "At least one agent CLI installed and signed in, such as codex or claude",
+  "releaseNotes": "https://yardlet.app/changelog.html",
   "image": "https://yardlet.app/screens/og.jpg",
+  "screenshot": "https://yardlet.app/screens/hero-split-light.jpg",
   "downloadUrl": "https://github.com/zzunkie/yardlet/releases/latest",
+  "featureList": [
+    "Runs Claude Code, Codex, OpenCode, Cursor Agent, Antigravity CLI and other agent CLIs side by side",
+    "Keeps each agent's own sign-in and session history",
+    "Several accounts per provider, with session and weekly limits",
+    "New tasks on the account with the most room left",
+    "A Git worktree for a task",
+    "Diffs, file restore, fork, pull requests, a terminal and a files pane",
+    "A built-in browser that agents can drive",
+    "Connectors and a mailbox for agents",
+    "Tasks that read, message and start other tasks",
+    "Scheduled tasks"
+  ],
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -41,8 +57,48 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Yardlet",
+  "url": "https://yardlet.app/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I run Claude Code and Codex side by side on a Mac?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Yardlet starts their real CLIs side by side in one window of projects and tasks. Each agent keeps its own agent loop, sign-in and session history."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Yardlet a native Mac app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Yardlet is a native macOS app written in Swift and SwiftUI. Its built-in browser panel is Chromium."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Yardlet with my existing Claude or ChatGPT plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Yardlet starts the agent's own CLI with the sign-in it already has, so usage counts against that plan as it does in the CLI. Yardlet has no account, plan or fee of its own, and the agent's own terms apply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can each Yardlet task have its own Git worktree?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In a Git repository, choose New worktree instead of Local on the new-task screen, and the task works in a worktree of its own."
+      }
+    },
     {
       "@type": "Question",
       "name": "What do I need to run Yardlet?",
@@ -192,8 +248,8 @@
         <article class="turn" id="what" aria-labelledby="what-title">
           <p class="ask"><span class="sr-only">You: </span>I already use Codex and Claude Code. What does Yardlet change?</p>
           <div class="reply">
-            <h1 id="what-title"><span class="headline-a">Every coding agent. Every account. One&nbsp;app.</span><span
-              class="headline-b">The app for every coding agent you&nbsp;use.</span><span
+            <h1 id="what-title"><span class="headline-a">Every coding agent. Every account. One&nbsp;app.</span> <span
+              class="headline-b">The app for every coding agent you&nbsp;use.</span> <span
               class="headline-c">Claude Code and Codex, better&nbsp;together.</span></h1>
             <p class="lead lead-ab">Run Codex, Claude Code and any other coding agent with the sign&#8209;in you already have, and
               pick the account with room left for each task. Free and open source.</p>
@@ -273,6 +329,10 @@
                 </button>
               </figcaption>
             </figure>
+            <p>Yardlet is a free, open-source native macOS app for running coding agents side by side in one window of
+              projects and tasks. It starts the real CLIs of Claude Code, Codex and other agents. Each agent keeps its
+              own agent loop, sign&#8209;in and session history; Yardlet adds no agent layer and writes nothing into the
+              agents' settings.</p>
           </div>
         </article>
 
@@ -280,10 +340,13 @@
           <p class="ask"><span class="sr-only">You: </span>Start this on whichever account has the most left.</p>
           <div class="reply">
             <h2 id="accounts-title">Every account, with its limits in&nbsp;view.</h2>
-            <p>Yardlet shows each account's session and weekly limits, with more than one account per provider. When an
-              agent starts a task or a subagent, it goes on the account with the most room left, and tasks started
-              together spread across your accounts. A saved task keeps the account it started on. Each agent runs with
-              the sign-in its CLI already has; Yardlet doesn't copy it or stand in for it.</p>
+            <p>Yardlet shows each account's session and weekly limits, with more than one account per provider. On
+              Automatic, a new task or subagent goes on the account with the most room left, the composer names the
+              account it picks and why, and tasks started together spread across your accounts. An account you choose
+              stays until you choose Automatic again. A Claude Code task moves to an account with room when it costs
+              nothing: an idle task on a nearly spent account moves once its prompt cache has expired, and a task a
+              limit stopped continues on an account with room. You can turn this off in Settings. Each agent runs with
+              the sign&#8209;in its CLI already has; Yardlet doesn't copy it or stand in for it.</p>
             <figure class="attach">
               <div class="sheet">
                 <picture>
@@ -295,6 +358,9 @@
                 </picture>
               </div>
             </figure>
+            <p class="aside-line">From the blog: <a href="blog/accounts-with-room-left.html">starting each task on the account
+              with room left</a> and <a href="blog/moving-a-task-costs-its-cache.html">what moving a Claude Code task to
+              another account costs</a>.</p>
           </div>
         </article>
 
@@ -317,7 +383,9 @@
                 <div><dt><code>create_scheduled_task</code></dt><dd>Put work on a schedule that runs while Yardlet is open.</dd></div>
               </dl>
             </details>
-            <p class="aside-line">Messaging or starting a task in another project asks you first, with an approval card.</p>
+            <p class="aside-line">Messaging or starting a task in another project asks you first, with an approval card.
+              Yardlet itself is built this way: <a href="blog/one-session-runs-the-rest.html">I talk to one session, and it
+              runs the rest</a>.</p>
           </div>
         </article>
 
@@ -350,7 +418,10 @@
                 <div><dt>One composer</dt><dd>Type the task, attach files and choose the permission mode in the same place. Each agent asks for approval as its permission mode says, as it would on its own.</dd></div>
                 <div><dt>Plans you can follow</dt><dd>When an agent makes a plan, its steps sit beside the conversation and tick off as the work moves.</dd></div>
                 <div><dt>Model, effort, account</dt><dd>Chosen per task, from the choices that agent offers.</dd></div>
+                <div><dt>Git worktree</dt><dd>In a Git repository, choose New worktree instead of Local on the new&#8209;task screen, and the task works in a worktree of its own.</dd></div>
                 <div><dt>Context and limits</dt><dd>How much of its context a task has used, and how much of each account's session and weekly limits is left.</dd></div>
+                <div><dt>Token usage</dt><dd>Home and Settings › Usage show the tokens Claude Code and Codex record in their own transcripts on this Mac, with the API&#8209;equivalent cost, beside the plan limits. The counts stay on this Mac, and turning counting off deletes them.</dd></div>
+                <div><dt>Lid closed</dt><dd>Turn on Keep tasks working with the lid closed, and the Mac stays awake only while tasks are working. It is off by default.</dd></div>
               </dl>
             </section>
             <p class="aside-line">Product names belong to their owners. Yardlet is not affiliated with or endorsed by them.</p>
@@ -430,10 +501,11 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Draft a reply to Jordan and put the meeting on my calendar.</p>
           <div class="reply">
             <h2 id="connectors-title">Set up a connector once, and your agents get&nbsp;it.</h2>
-            <p>A connector you set up once is offered to the agents you run, and can be turned off per task. Gmail, Google
-              Calendar and Google Drive run through Yardlet's built-in MCP server on your Mac; GitHub, Slack and dozens of
-              remote MCP services connect with one sign-in. You can find more in MCP registries, or bring in the servers
-              your other apps already use.</p>
+            <p>A connector you set up once is offered to Codex, Claude Code and the agents that use ACP, and can be turned
+              off per task. Gmail, Google Calendar, Google Drive and Apple Calendar, Reminders and Contacts run through
+              Yardlet's built&#8209;in MCP server on your Mac; GitHub, Slack and dozens of remote MCP services connect with
+              one sign&#8209;in. You can find more in MCP registries, or bring in the servers your other apps already use.
+              <a href="blog/mcp-server-without-settings.html">How agents get it without a change to their settings</a>.</p>
             <figure class="attach">
               <div class="sheet">
                 <picture>
@@ -445,6 +517,14 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 </picture>
               </div>
             </figure>
+            <h3 class="sub" id="mail">Mail beside your tasks</h3>
+            <p>Turn on Settings › General › Mailbox to see your connected Gmail, Outlook Mail and IMAP inboxes beside your
+              tasks. Mail stays on the service, and Yardlet holds what it shows in memory only. Agents read threads and
+              write drafts through each account's connector, and <a href="blog/mail-for-agents.html">every send goes
+              through approval</a>. Outlook accounts need a Microsoft app of your own for now, and IMAP is in beta.</p>
+            <h3 class="sub" id="personal-agents">Personal agents</h3>
+            <p>Chat with your existing ChatGPT dots beside coding tasks, with saved drafts and file previews. The account
+              stays with its Codex runtime.</p>
           </div>
         </article>
 
@@ -481,26 +561,29 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                   <code>~/.yardlet</code><span class="val">Task list, drafts and reading state</span></li>
                 <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.75 4.5a1.5 1.5 0 0 1 1.5-1.5h3l1.5 1.5h5a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5h-9.5a1.5 1.5 0 0 1-1.5-1.5z"/></svg>
                   <code>~/Library/Application Support/Yardlet</code><span class="val">Browser profiles and staged updates</span></li>
+                <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.75 4.5a1.5 1.5 0 0 1 1.5-1.5h3l1.5 1.5h5a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5h-9.5a1.5 1.5 0 0 1-1.5-1.5z"/></svg>
+                  <code>~/Library/Logs/Yardlet</code><span class="val">The hang log, which is sent nowhere</span></li>
                 <li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="5.5" cy="10.5" r="3"/><path d="m7.6 8.4 6-6M11.75 4.25l1.5 1.5M9.75 6.25l1.25 1.25"/></svg>
                   <span class="key">Keychain items whose name starts with Yardlet</span><span class="val">Connector sign-ins, the phone remote and the password vault, plus <code>Chromium Safe Storage</code> if you don't use Chromium itself</span></li>
                 <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>
                   <span class="key">System Settings › Privacy &amp; Security</span><span class="val">Yardlet's entries</span></li>
               </ul>
-              <p class="fold-note"><code>brew uninstall --zap --cask zzunkie/tap/yardlet</code> removes both folders together
-                with Yardlet's caches and preferences.</p>
+              <p class="fold-note"><code>brew uninstall --zap --cask zzunkie/tap/yardlet</code> removes the first two folders
+                with Yardlet's caches and preferences. If Keep tasks working with the lid closed is on, turn it off
+                before you remove the app.</p>
             </details>
 
             <h3 class="sub" id="privacy">Nothing goes to Yardlet's developer</h3>
             <p>Yardlet has no analytics and no server that receives your work. Its task list and drafts stay in
-              <code>~/.yardlet</code>, and its only online services are an update check and, if you pair a phone, a
-              relay.</p>
+              <code>~/.yardlet</code>, and its only online services are an update check and, if you pair a phone or
+              another Mac, a relay.</p>
             <section class="panel" aria-labelledby="leaves-title">
               <h3 id="leaves-title">What goes where</h3>
               <dl class="rows">
                 <div><dt>Your AI providers</dt><dd>What an agent reads, including through a connector, goes to that agent's provider under your account. Training follows that account's settings.</dd></div>
                 <div><dt>Services you connect</dt><dd>Calls go straight from your Mac to the service. Sign-ins are kept in the macOS Keychain.</dd></div>
                 <div><dt>yardlet.app</dt><dd>Once a day the update check reads <code>appcast.xml</code>, with Yardlet's and its updater's version numbers and no system profile. Turn it off in Settings › General. Updates download from GitHub Releases.</dd></div>
-                <div><dt>Yardlet's relay</dt><dd>Only if you pair a phone and it is away from your Mac's network. Its messages are end-to-end encrypted; the relay cannot read them and stores none.</dd></div>
+                <div><dt>Yardlet's relay</dt><dd>Only if you pair a phone or another Mac and it is away from your network. Its messages are end-to-end encrypted; the relay cannot read them and stores none.</dd></div>
               </dl>
             </section>
             <p>The <a href="privacy.html">privacy policy</a> has the details.</p>
@@ -548,6 +631,9 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <section class="panel" aria-labelledby="know-title">
               <h3 id="know-title">Good to know</h3>
               <dl class="rows">
+                <div><dt>Side by side</dt><dd>Yardlet starts the real Claude Code and Codex CLIs side by side in one window of projects and tasks. Each agent keeps its own agent loop, sign&#8209;in and session history.</dd></div>
+                <div><dt>Native app</dt><dd>Yardlet is a native macOS app written in Swift and SwiftUI. Its built&#8209;in browser panel is Chromium.</dd></div>
+                <div><dt>Your plans</dt><dd>Yardlet starts the agent's own CLI with the sign&#8209;in it already has, so usage counts against your Claude or ChatGPT plan as it does in the CLI. Yardlet has no account, plan or fee of its own, and the agent's own terms apply.</dd></div>
                 <div><dt>Requirements</dt><dd>macOS 15 or later on a Mac with Apple silicon or Intel, and at least one agent CLI installed and signed in, such as <code>codex</code> or <code>claude</code>. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630. <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">Tell us</a> how it goes.</dd></div>
                 <div><dt>Updates</dt><dd>Yardlet is notarized by Apple and updates itself with Sparkle. It installs only updates signed with Yardlet's release key.</dd></div>
                 <div><dt>Price</dt><dd>Free and open source under the MIT License, with no Yardlet account or subscription. You pay only for the agents' own plans, as you do today.</dd></div>

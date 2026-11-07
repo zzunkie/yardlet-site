@@ -1,14 +1,16 @@
 # Yardlet
 
-> Yardlet is a free, open-source (MIT) app that runs the coding agent CLIs you already use, such as Codex, Claude Code, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Hermes Agent, Muse Code and Pi, side by side in one window. Each agent keeps its own sign-in, agent loop and session history.
+> Yardlet is a free, open-source (MIT) native macOS app that runs the real coding agent CLIs you already use, such as Claude Code, Codex, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Hermes Agent, Muse Code and Pi, side by side in one window of projects and tasks. Each agent keeps its own sign-in, agent loop and session history.
 
-- Runs each agent's own CLI on your Mac with the sign-in it already has: Codex through its app server, Claude Code through its stream JSON mode, and OpenCode and others through ACP. It does not share or proxy accounts.
+- Runs each agent's own CLI on your Mac with the sign-in it already has: Codex through its app server, Claude Code through its stream JSON mode, and OpenCode and others through ACP. It does not share or proxy accounts, and it has no account, plan or fee of its own. Usage counts against your agent plan as it does in the CLI.
+- Native: written in Swift and SwiftUI. The built-in browser panel is Chromium.
 - Sessions stay in each agent's own store, so a session started in Yardlet continues in the agent's own app or CLI, and the other way round.
 - Writes nothing into the agents' settings. Quit or delete Yardlet and the agents, their sign-ins and their sessions are as they were.
-- One sidebar, conversation view, composer and approval cards for every agent; several accounts per provider with their session and weekly limits; diffs of the last turn, file restore and fork, a pull request tab through your own `gh`, a terminal and a files pane.
-- Connectors (Gmail, Google Calendar, Google Drive, GitHub, Slack and remote MCP services) and a built-in Chromium browser that agents can drive, offered to Codex, Claude Code and the ACP agents.
+- One sidebar, conversation view, composer and approval cards for every agent; diffs of the last turn, file restore and fork, a pull request tab through your own `gh`, a terminal and a files pane. In a Git repository a task can start in a new worktree of its own.
+- Several accounts per provider with their session and weekly limits. On Automatic, a new task goes on the account with the most room left. The tokens Claude Code and Codex record on the Mac are shown with their API-equivalent cost.
+- Connectors (Gmail, Google Calendar, Google Drive, Apple Calendar, Reminders and Contacts, GitHub, Slack and remote MCP services) and a built-in Chromium browser that agents can drive, offered to Codex, Claude Code and the agents that use ACP. A mailbox shows Gmail, Outlook Mail and IMAP inboxes beside tasks; every send an agent makes goes through approval.
 - Tasks can read, message or start other tasks, including on another agent, and scheduled tasks run while Yardlet is open.
-- Requires macOS 15 or later on Apple silicon or Intel and at least one agent CLI installed and signed in. Not available for Windows or Linux. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630.
+- Requires macOS 15 or later on Apple silicon or Intel and at least one agent CLI installed and signed in. Not available for Windows or Linux yet. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630.
 - No analytics and no server that receives your work.
 
 ## Links
@@ -20,3 +22,12 @@
 - [Releases](https://github.com/zzunkie/yardlet/releases/latest): the notarized DMG; or `brew install --cask zzunkie/tap/yardlet`
 - [Privacy policy](https://yardlet.app/privacy.html)
 - [Terms of use](https://yardlet.app/terms.html)
+
+## Blog posts
+
+- [I talk to one session, and it runs the rest](https://yardlet.app/blog/one-session-runs-the-rest.html): Andrej Karpathy wrote that he only talks to Claude now and did three things by hand. Yardlet's own development has run the same way for weeks: one long-lived session I talk to, child sessions it starts, and a few places where I still say yes. Almost none of what still lands on me is approving. Most of it is reading.
+- [What moving a Claude Code task to another account costs](https://yardlet.app/blog/moving-a-task-costs-its-cache.html): A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.
+- [Starting each agent task on the account with room left](https://yardlet.app/blog/accounts-with-room-left.html): I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account's limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.
+- [Handing my mail to coding agents, and keeping Send for myself](https://yardlet.app/blog/mail-for-agents.html): Yardlet 0.11.8 adds a mailbox for Gmail, Outlook and IMAP accounts. Agents read a thread and write the reply as a draft through the account's connector; every send goes through the agent's approval.
+- [Giving coding agents an MCP server without writing to their settings](https://yardlet.app/blog/mcp-server-without-settings.html): Yardlet hands Codex, Claude Code and ACP agents its MCP server one session at a time: a launch argument for one, a request field for the others. Nothing is written to their settings.
+- [A Logger symbol missing on macOS 15 kept my Mac app from launching](https://yardlet.app/blog/logger-isenabled-macos-15.html): For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1's libswiftos doesn't have it.

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Write the blog from the posts in blog/posts/*.md: blog/<slug>.html and blog/og/<slug>.png for each post,
-blog/index.html and blog/feed.xml.
+blog/index.html, blog/feed.xml, the post list in llms.txt and sitemap.xml.
 
 Run it from the site's root after adding or changing a post: python3 scripts/blog.py
-A post starts with a front matter block (title, slug, date as YYYY-MM-DD, description, and optionally kind) and
-is written in the small part of Markdown the posts use: ## and ### headings, paragraphs, - lists, > notes,
+A post starts with a front matter block (title, slug, date as YYYY-MM-DD, description, and optionally kind and
+updated, a YYYY-MM-DD date for a later change) and is written in the small part of Markdown the posts use: ## and ### headings, paragraphs, - lists, > notes,
 fenced code blocks (swift and python are colored), `code`, **bold** and [links](url). The pages use terms.html's
 frame one folder down; the share images need Pillow and the Inter fonts in scripts/fonts.
 """
@@ -15,6 +15,8 @@ import math
 import re
 import sys
 from pathlib import Path
+
+import sitemap
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://yardlet.app"
@@ -216,6 +218,7 @@ def share_image(post, path):
 def frame(title, description, canonical, main, extra_head, current_index):
     """terms.html's page one folder down, with this page's head and main, and site.js for the copy buttons."""
     page = (ROOT / "terms.html").read_text()
+    page = re.sub(r'<(?:link rel="canonical"|meta (?:property="og:|name="twitter:))[^>]*>\n', "", page)
     page = re.sub(r'(href|src)="(?!https?:|#|mailto:|/|\.\./)([^"]*)"', lambda m: f'{m.group(1)}="../{m.group(2)}"', page)
     page = page.replace('href=".././', 'href="../').replace('href="../blog/"', 'href="./"')
     page = page.replace("default-src 'none'; img-src 'self'; style-src 'self';",
@@ -257,11 +260,14 @@ def post_page(p, others):
           "datePublished": p["day"].isoformat(), "url": url, "image": image, "mainEntityOfPage": url,
           "author": {"@type": "Organization", "name": "Yardlet", "url": SITE + "/"},
           "publisher": {"@type": "Organization", "name": "Yardlet", "url": SITE + "/"}}
+    if p.get("updated"):
+        ld["dateModified"] = p["updated"]
     head = (f'<meta property="og:type" content="article">\n<meta property="og:site_name" content="Yardlet">\n'
             f'<meta property="og:url" content="{url}">\n<meta property="og:title" content="{html.escape(p["title"])}">\n'
             f'<meta property="og:description" content="{html.escape(p["description"])}">\n'
             f'<meta property="og:image" content="{image}">\n<meta property="og:image:width" content="1200">\n'
             f'<meta property="og:image:height" content="630">\n<meta property="article:published_time" content="{p["day"].isoformat()}">\n'
+            + (f'<meta property="article:modified_time" content="{p["updated"]}">\n' if p.get("updated") else "") +
             f'<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:image" content="{image}">\n'
             f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
     i = others.index(p)
@@ -272,8 +278,8 @@ def post_page(p, others):
         f"{meta_line(p)}\n<h1>{inline(p['title'])}</h1>\n<p class=\"dek\">{inline(p['description'])}</p>\n</header>\n"
         f'<div class="post-body">\n{p["body"]}\n</div>\n</article>\n'
         '<footer class="post-end">\n<div class="about">\n<img src="../assets/icon-256.png" alt="" width="44" height="44">\n'
-        '<div><p><strong>Yardlet</strong> is a free, open-source app that runs Codex, Claude Code and other coding '
-        'agent CLIs side by side, each with its own sign-in and history.</p>\n<p class="links">'
+        '<div><p><strong><a href="../">Yardlet</a></strong> is a free, open-source native Mac app that runs the real '
+        'Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and history.</p>\n<p class="links">'
         '<a class="btn btn-small" href="../#install">Download for Mac</a>'
         '<a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>\n</div>\n'
         f'<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a>{nav_right}</nav>\n</footer>\n</main>')
@@ -288,11 +294,14 @@ def index_page(posts):
             '<p>Notes from building Yardlet, an app for running coding agents side by side: what broke, what we '
             'measured and what we changed.</p>\n<p class="feed"><a href="feed.xml">Subscribe to the feed</a></p>\n</header>\n'
             f'<ul class="post-list">\n{items}\n</ul>\n</main>')
-    head = ('<meta property="og:type" content="website">\n<meta property="og:title" content="Yardlet blog">\n'
+    description = ("Notes from building Yardlet, a native Mac app for running Claude Code, Codex and other coding "
+                   "agents side by side: what broke, what we measured and what we changed.")
+    head = ('<meta property="og:type" content="website">\n<meta property="og:site_name" content="Yardlet">\n'
+            '<meta property="og:title" content="Yardlet blog">\n'
+            f'<meta property="og:description" content="{description}">\n'
             f'<meta property="og:url" content="{SITE}/blog/">\n<meta property="og:image" content="{SITE}/screens/og.jpg">\n'
             '<meta name="twitter:card" content="summary_large_image">')
-    return frame("Yardlet blog", "Notes from building Yardlet, an app for running coding agents side by side.",
-                 f"{SITE}/blog/", main, head, True)
+    return frame("Yardlet blog: notes on running coding agents side by side", description, f"{SITE}/blog/", main, head, True)
 
 
 def feed(posts):
@@ -302,7 +311,7 @@ def feed(posts):
         f"    <title>{html.escape(p['title'])}</title>\n"
         f'    <link href="{SITE}/blog/{p["slug"]}.html"/>\n'
         f"    <id>{SITE}/blog/{p['slug']}.html</id>\n"
-        f"    <updated>{p['day'].isoformat()}T00:00:00Z</updated>\n"
+        f"    <updated>{p.get('updated') or p['day'].isoformat()}T00:00:00Z</updated>\n"
         f"    <summary>{html.escape(p['description'])}</summary>\n"
         f'    <content type="html">{html.escape(p["body"])}</content>\n'
         "  </entry>\n" for p in posts)
@@ -311,6 +320,16 @@ def feed(posts):
             f'  <link href="{SITE}/blog/"/>\n  <link rel="self" href="{SITE}/blog/feed.xml"/>\n'
             f"  <id>{SITE}/blog/</id>\n  <updated>{updated}</updated>\n"
             "  <author><name>Yardlet</name></author>\n" + entries + "</feed>\n")
+
+
+def llms(posts):
+    """The list of posts at the end of llms.txt."""
+    path = ROOT / "llms.txt"
+    items = "".join(f'- [{p["title"]}]({SITE}/blog/{p["slug"]}.html): {p["description"]}\n' for p in posts)
+    text, found = re.subn(r"(?ms)^## Blog posts\n.*\Z", lambda _: f"## Blog posts\n\n{items}", path.read_text())
+    if not found:
+        sys.exit("llms.txt no longer ends with its ## Blog posts section")
+    path.write_text(text)
 
 
 def main():
@@ -329,6 +348,8 @@ def main():
         (out / f"{p['slug']}.html").write_text(post_page(p, posts))
     (out / "index.html").write_text(index_page(posts))
     (out / "feed.xml").write_text(feed(posts))
+    llms(posts)
+    sitemap.write()
     print(f"blog: {len(posts)} posts")
 
 

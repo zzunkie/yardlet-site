@@ -6,6 +6,14 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Yardlet Privacy Policy</title>
 <meta name="description" content="What the Yardlet macOS app accesses, where it is stored, and where it goes.">
+<link rel="canonical" href="https://yardlet.app/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/privacy.html">
+<meta property="og:title" content="Yardlet Privacy Policy">
+<meta property="og:description" content="What the Yardlet macOS app accesses, where it is stored, and where it goes.">
+<meta property="og:image" content="https://yardlet.app/screens/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -92,10 +100,10 @@
 <main class="doc" id="main">
   <div class="narrow">
     <h1>Yardlet Privacy Policy</h1>
-    <p class="updated">Last updated: November 4, 2026</p>
+    <p class="updated">Last updated: November 8, 2026</p>
 
     <p class="summary">Yardlet is a desktop app that runs on your Mac. It has no analytics and does not send your
-      data to its developer. Its only online services are an update feed and, if you use the phone remote, a relay
+      data to its developer. Its only online services are an update feed and, if you pair a phone or another Mac, a relay
       that passes end-to-end encrypted messages it cannot read.</p>
 
     <h2 id="what-yardlet-keeps-on-your-mac">What Yardlet keeps on your Mac</h2>
@@ -104,6 +112,10 @@
       <li>Conversations with an agent stay in that agent's own session store on your Mac, as they would if you
         used the agent without Yardlet.</li>
       <li>Sign-ins for connectors, such as Google, GitHub and Slack, are stored in the macOS Keychain.</li>
+      <li>Settings &gt; Usage counts the tokens Claude Code and Codex record in their own transcripts on your Mac. The
+        counts stay on your Mac, and turning counting off deletes them.</li>
+      <li>When Yardlet's main thread stays busy for more than 250 ms, it writes the time and the stack (function names
+        only) to <code>~/Library/Logs/Yardlet/hangs.log</code>, kept under 2 MB and sent nowhere.</li>
     </ul>
     <p>Yardlet starts the agent CLIs you have installed with their own sign-in, and does not copy those sign-ins
       from other apps. If you ask it to, Yardlet copies a website's sign-in from another browser on your Mac into its
@@ -191,6 +203,9 @@
     <p>GitHub, Slack and the other services you connect work the same way. The sign-in is stored in the macOS
       Keychain, calls go straight from your Mac to that service, and what an agent reads through them is sent to
       that agent's provider as described above. Each service's own privacy policy applies to your account there.</p>
+    <p>If you turn on the mailbox, it works the same way for Outlook and IMAP accounts: Yardlet reads mail from the
+      service when it is shown and keeps it in memory only. An IMAP account's app password is stored in the macOS
+      Keychain.</p>
 
     <h2 id="updates">Updates</h2>
     <p>Once a day, unless you turn it off in Settings &gt; General, Yardlet reads <code>https://yardlet.app/appcast.xml</code>
@@ -199,10 +214,11 @@
       <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub
       Privacy Statement</a>.</p>
 
-    <h2 id="phone-remote">Phone remote</h2>
-    <p>If you pair a phone with Yardlet and the phone is away from your Mac's network, the two connect through
-      Yardlet's relay at <code>relay.yardlet.app</code>, which runs on Cloudflare. Everything between the phone and your
-      Mac, such as tasks, conversations and approvals, is end-to-end encrypted with keys only the two devices hold,
+    <h2 id="phone-remote">Phone and Mac remote</h2>
+    <p>If you pair a phone or another Mac with Yardlet and it is away from your Mac's network, the two connect through
+      Yardlet's relay at <code>relay.yardlet.app</code>, which runs on Cloudflare. The Mac also reaches the same relay at
+      <code>yardlet-relay-pages.pages.dev</code>, which is often nearer, and keeps whichever answers first. Everything
+      between the two devices, such as tasks, conversations and approvals, is end-to-end encrypted with keys only they hold,
       so the relay cannot read it and stores none of it. The relay sees the connection itself: a room identifier,
       IP addresses, when devices connect and how much they send. Notifications for the phone are encrypted the same
       way before they pass through the relay and Google's Firebase Cloud Messaging; to deliver one, the relay uses

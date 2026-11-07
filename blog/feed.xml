@@ -198,7 +198,7 @@ Account: me@example.com · thread 19a3f0c2e1b4d5a6, read with `gmail_get_thread`
     <title>A Logger symbol missing on macOS 15 kept my Mac app from launching</title>
     <link href="https://yardlet.app/blog/logger-isenabled-macos-15.html"/>
     <id>https://yardlet.app/blog/logger-isenabled-macos-15.html</id>
-    <updated>2026-11-01T00:00:00Z</updated>
+    <updated>2026-11-05T00:00:00Z</updated>
     <summary>For four days Yardlet quit at launch on macOS 15. The SDK marks Logger.isEnabled(type:) as available since macOS 11, but macOS 15.6.1&#x27;s libswiftos doesn&#x27;t have it.</summary>
     <content type="html">&lt;p&gt;I make &lt;a href=&quot;https://github.com/zzunkie/yardlet&quot;&gt;Yardlet&lt;/a&gt;, a free, open-source Mac app for running coding agents like Codex and Claude Code in one window. It says it needs macOS 15 or later. For four days it quit at launch on macOS 15, and I didn&#x27;t know.&lt;/p&gt;
 &lt;h2 id=&quot;how-i-found-out&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#how-i-found-out&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;How I found out&lt;/h2&gt;

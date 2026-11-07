@@ -2,26 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://yardlet.app/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/privacy.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/terms.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/changelog.html</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/blog/</loc>
+    <lastmod>2026-11-08</lastmod>
+  </url>
+  <url>
+    <loc>https://yardlet.app/blog/one-session-runs-the-rest.html</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://yardlet.app/blog/moving-a-task-costs-its-cache.html</loc>
+    <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://yardlet.app/blog/accounts-with-room-left.html</loc>
+    <lastmod>2026-11-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yardlet.app/blog/mail-for-agents.html</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://yardlet.app/blog/mcp-server-without-settings.html</loc>
     <lastmod>2026-11-01</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/blog/logger-isenabled-macos-15.html</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-05</lastmod>
   </url>
 </urlset>
