@@ -102,6 +102,88 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.10" aria-labelledby="v0.11.10-title">
+      <h2 id="v0.11.10-title">Yardlet 0.11.10</h2>
+      <p class="updated"><time datetime="2026-11-08">November 8, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.10">Release on GitHub</a></p>
+      <h3>Signing in on a first run</h3>
+      <ul>
+        <li>If you use Claude Code through the Claude app, your history comes over but the CLI has no sign-in of its own, because the app keeps its sign-in to itself. Yardlet used to look connected and let the first turn fail with <code>/login</code>. Now the login reads "Not signed in" on its row and on the new-task screen, which offers Sign in before you write anything.</li>
+        <li>A new task on a signed-out login stays on the new-task screen with your draft and Sign in, instead of becoming a failed task. This works for Claude Code, Codex and Antigravity CLI.</li>
+        <li>A task already on a signed-out login stops at once with a Sign in button, instead of after up to 30 seconds of waiting. When another signed-in account shares the task's history, the card also offers to continue with that account.</li>
+        <li>A sign-in works right away, with no restart: new tasks start on the account you signed in with, and a task that found no login resumes the same conversation with your next message. This includes a sign-in that finishes while Yardlet is still reading the login for the first time.</li>
+        <li>A Codex task on a signed-out login stops at its turn and offers Sign in, instead of retrying and ending in an error. A Codex setup with a model provider of your own no longer reads as signed out.</li>
+        <li>The account chip no longer shows an address from a config file as the account while the CLI can't confirm it.</li>
+        <li>Yardlet finds Claude Code from your login shell's PATH, including installs through asdf, mise and <code>~/.claude/local</code>, when it was opened from the Dock or Finder.</li>
+        <li>Checking your limits no longer stops Claude Code while it may be renewing its login, which could sign it out.</li>
+        <li>Sign-in checks are recorded on this Mac in <code>~/.yardlet/logs/account-checks.log</code>, without credentials, addresses or CLI output. If Claude Code still doesn't start for you, attaching that file to a <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">bug report</a> helps.</li>
+      </ul>
+      <h3>Tasks</h3>
+      <ul>
+        <li>A split view no longer repeats its tasks in the title bar: each pane heads its own task. With one tab, the panes reach the window's top, and the empty part of a top pane's header moves the window. The Split View menu and the command palette now offer Rename, Pin and Archive beside End split view.</li>
+        <li>A Claude Code task can keep a context limit of its own, so one long task compacts earlier while the others keep Claude Code's default. Choose it from Context limit in the composer's context ring. An idle task applies it at once, and a busy one when its turn ends. Child tasks, forks and side chats start without it.</li>
+        <li>A Cloud section after the tasks lists your Codex Cloud tasks, which open in your browser, and the Codex tasks your dots started, which open in Personal agents. Claude Code cloud sessions and Codex's newer cloud threads aren't listed, since neither agent offers a way to list them.</li>
+      </ul>
+      <h3>Connectors</h3>
+      <ul>
+        <li>A service with several accounts (Google's, Microsoft's and Mail) now offers each tool once, with a required <code>account</code> argument, instead of a full copy of its tools for every account. With six Google accounts that was 234 tools.</li>
+        <li>A call naming no account, or one Yardlet doesn't have, is refused before anything is sent, and one naming an account turned off in the task is refused as off. Approval cards and conversation rows name the account a call uses.</li>
+        <li>A call refused for a missing argument now lists the values it takes, such as the accounts to choose from.</li>
+        <li>Connector tools with long names now reach Antigravity CLI, which dropped three Notion tools before.</li>
+        <li>Mail's search for IMAP accounts searches only the folder it's given.</li>
+        <li>Claude Code tasks continued from before this update may say once that Yardlet's tools disconnected, or have a connector call refused until it names <code>account</code>. The tools still work.</li>
+      </ul>
+      <h3>Antigravity and other ACP agents</h3>
+      <ul>
+        <li>Turns that quitting or updating Yardlet cut off now continue at the next launch, as Claude Code and Codex turns do. This covers Antigravity, OpenCode, Kimi Code, Grok Build and Hermes.</li>
+        <li>Turns Antigravity starts on its own, when a subagent or a background task ends, now show as they run, with the usual unread mark and notification. Stop cancels them. Before, they sat unseen until your next message.</li>
+        <li>Yardlet removes the schema folders Antigravity CLI leaves behind for each task, about 2 MB each. Folders a running process may still read stay.</li>
+        <li>One spent group of models no longer reads as out for every model: with Antigravity's Gemini group nearly out, a task on another model keeps its room.</li>
+        <li>The new-task model menu lists Antigravity's models before any task has run, and says when it couldn't read them.</li>
+      </ul>
+      <h3>Accounts and limits</h3>
+      <ul>
+        <li>When every account of a harness is nearly out, <code>list_accounts</code>, <code>create_task</code> and <code>run_agent</code> tell the agent which other harnesses have room. Which harness a task uses stays the agent's choice, and this adds no check or model turn.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>A window for another Mac stays connected through the relay. A long answer could close the connection, which the direct paths hid.</li>
+        <li>A window for another Mac also tries the relay's second address, which is nearer on many networks.</li>
+        <li>A window closed right after it opened keeps what it showed for the next time.</li>
+        <li>The browser panel lays the page out at the panel's size, instead of drawing a 1280 by 800 picture at its width with empty room below.</li>
+        <li>A tab handed over behind another task keeps its size, so the panel and the agent's screenshots get the page instead of a square of one color, often black.</li>
+        <li>The panel lists a task's browser tabs as the task opens, and says when a tab shows only on the host.</li>
+        <li>A file page the task's agent opened in a tab shows there too. Other files outside the task's folders stay on the host.</li>
+        <li>Pictures an agent generated, with Antigravity's <code>generate_image</code> or Codex's image generation, count as the task's outputs: they open from the file link and show on the Outputs card.</li>
+        <li>Small trackpad scrolls no longer end in "The page didn't take that".</li>
+        <li>The title bar row starts at the window's top, as in a local window.</li>
+      </ul>
+      <h3>Security</h3>
+      <ul>
+        <li>Remote connections are hardened: what they accept from a relay, a paired device or a pairing request is held to stricter limits.</li>
+      </ul>
+      <h3>Browser</h3>
+      <ul>
+        <li>Typing Korean, Japanese or Chinese in a page keeps your text when you click another field, the address field or the composer, as in Chrome.</li>
+        <li>A <code>browser_screenshot</code> that waits asks the tab for a frame. When it still gets no picture, it says the tab drew none, and how to recover.</li>
+        <li>One-time code fields named a verification PIN, such as LinkedIn's, take a filled code.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Saving drafts, split views, account readings and address history no longer holds up the app while the disk is busy.</li>
+        <li>The session rail no longer asks the disk on every draw.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>If Yardlet can't open its task list at launch, it says so in the window for the whole run and leaves your saved window layout, projects, schedules and drafts as they were, instead of saving an empty layout over them.</li>
+        <li>An archived task no longer sends a usage-limit continue later.</li>
+        <li>ACP tool lines no longer read "read Reading README.md".</li>
+        <li>The terminal reports a shell's real exit status under load, where it sometimes said 0.</li>
+        <li>An agent's API settings no longer reach an app it opens.</li>
+      </ul>
+      <h3>Thanks</h3>
+      <p>Thanks to @rupamkgp for the work on showing cloud sessions in the task list (#226), which the Cloud section came from.</p>
+    </section>
+
     <section class="release" id="v0.11.9" aria-labelledby="v0.11.9-title">
       <h2 id="v0.11.9-title">Yardlet 0.11.9</h2>
       <p class="updated"><time datetime="2026-11-06">November 6, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.9">Release on GitHub</a></p>
