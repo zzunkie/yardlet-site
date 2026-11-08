@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Codex reviewed Claude Code&#x27;s patch three times: two real regressions, one wrong call · Yardlet blog</title>
+<meta name="description" content="Before sending a five-line fix to swift-winrt, I had Codex review the patch Claude Code wrote, three times. Two findings were real regressions. The third was wrong, and chasing it cost two needless changes.">
+<link rel="canonical" href="https://yardlet.app/blog/codex-reviewed-claude-codes-patch.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/codex-reviewed-claude-codes-patch.html">
+<meta property="og:title" content="Codex reviewed Claude Code&#x27;s patch three times: two real regressions, one wrong call">
+<meta property="og:description" content="Before sending a five-line fix to swift-winrt, I had Codex review the patch Claude Code wrote, three times. Two findings were real regressions. The third was wrong, and chasing it cost two needless changes.">
+<meta property="og:image" content="https://yardlet.app/blog/og/codex-reviewed-claude-codes-patch.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-08">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/codex-reviewed-claude-codes-patch.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Codex reviewed Claude Code's patch three times: two real regressions, one wrong call", "description": "Before sending a five-line fix to swift-winrt, I had Codex review the patch Claude Code wrote, three times. Two findings were real regressions. The third was wrong, and chasing it cost two needless changes.", "datePublished": "2026-11-08", "url": "https://yardlet.app/blog/codex-reviewed-claude-codes-patch.html", "image": "https://yardlet.app/blog/og/codex-reviewed-claude-codes-patch.png", "mainEntityOfPage": "https://yardlet.app/blog/codex-reviewed-claude-codes-patch.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Engineering</span><span><time datetime="2026-11-08">November 8, 2026</time></span><span>5 min read</span></p>
+<h1>Codex reviewed Claude Code's patch three times: two real regressions, one wrong call</h1>
+<p class="dek">Before sending a five-line fix to swift-winrt, I had Codex review the patch Claude Code wrote, three times. Two findings were real regressions. The third was wrong, and chasing it cost two needless changes.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents such as Claude Code and Codex in one window. My setup that week, in the words I used at the time: "claude code writes, codex reviews". A second model catches things the first one glosses over.</p>
+<p>On October 31 I was trying a Windows version of Yardlet built with Swift and WinUI 3, on top of <a href="https://github.com/thebrowsercompany/swift-winrt">swift-winrt</a>, the Swift projection for WinRT.</p>
+<h2 id="the-bug-in-navigationview-menuitems"><a class="anchor" href="#the-bug-in-navigationview-menuitems" aria-hidden="true">#</a>The bug in <code>NavigationView.MenuItems</code></h2>
+<p>In the WinUI 3 app, on Windows App SDK 1.7.250909003, <code>IVector&lt;Object&gt;.IndexOf</code> on <code>NavigationView.MenuItems</code> did not find an item appended through the projection. It did not even find the value <code>GetAt</code> had just returned. <code>IndexOf</code> on a <code>UIElementCollection</code> found its element.</p>
+<p>The cause was in swift-winrt's support code. Passing a projected runtime class where a WinRT API takes <code>Object</code> gave the callee a Swift-implemented wrapper made for that conversion, not the object. The wrapper answers <code>QueryInterface</code> for <code>IUnknown</code> with itself, so each conversion had its own COM identity, and native code that compares objects by COM identity did not match them.</p>
+<p>The fix Claude Code wrote was five lines: <code>AnyWrapper.toABI</code> passes a <code>WinRTClass</code> as the <code>IInspectable</code> pointer <code>_getABI()</code> returns. It also wrote tests in the repository's own style. With the tests alone, 2 of 111 failed; with the fix, none did.</p>
+<h2 id="why-a-second-review"><a class="anchor" href="#why-a-second-review" aria-hidden="true">#</a>Why a second review</h2>
+<p>The patch was going to someone else's project. My note to the session that evening, translated from Korean: "It's external work, so let's check it properly once more before we send it."</p>
+<p>The reviewer was Codex (GPT-6 Astra at extra-high reasoning effort), which had not written the fix. From the Claude Code task, Yardlet's <code>run_agent</code> tool ran it as a subagent and returned its answer to the same conversation. It got the base commit, the diff, the draft pull request text and the two test results, tests alone and tests with the fix, but not the author's conclusion. Each time, Codex said it had read the source and had not rerun the Windows tests itself.</p>
+<h2 id="round-1-getruntimeclassname-on-a-composable-subclass"><a class="anchor" href="#round-1-getruntimeclassname-on-a-composable-subclass" aria-hidden="true">#</a>Round 1: <code>GetRuntimeClassName</code> on a composable subclass</h2>
+<p>The first review came back at 14:05 UTC with a blocking finding.</p>
+<p>For a Swift subclass of a composable class with no overrides interface, such as the test component's <code>BaseNoOverrides</code>, the object passed through the new path is a <code class="long">WinRTClassWeakReference&lt;BaseNoOverrides&gt;</code>. The shared <code>IInspectable</code> vtable's <code>GetRuntimeClassName</code> casts it to <code>WinRTClass</code>, the cast fails, and the object reports <code class="long">WinRTClassWeakReference&lt;…&gt;</code> instead of its WinRT class name. Before the change, the old wrapper held the real subclass and reported the right name. Code that looks up types or XAML metadata by runtime class name would get the wrong one.</p>
+<p>A test for that case failed in CI before the fix and passed after it. The vtable's <code>GetRuntimeClassName</code> now looks through the weak reference.</p>
+<h2 id="round-2-an-access-violation-in-resolve"><a class="anchor" href="#round-2-an-access-violation-in-resolve" aria-hidden="true">#</a>Round 2: an access violation in <code>Resolve</code></h2>
+<p>The second review, at 14:57 UTC, found another blocking problem.</p>
+<p><code>Resolve</code> in the support code's weak reference passed the pointer from <code>toABI</code> to the static <code class="long">AnyWrapper.queryInterface</code>, which reads that pointer as a Swift wrapper. After the first change, the pointer can be the native WinRT object, which has no such layout.</p>
+<p>It reproduced. With the <code>toABI</code> and <code>GetRuntimeClassName</code> changes but not this one, the test process exits with <code>0xC0000005</code>, an access violation, right after <code class="long">testResolveProjectedClass</code> starts, with no test summary. <code>Resolve</code> now calls <code>QueryInterface</code> through the vtable of the pointer <code>toABI</code> returns, and a new <code>ReferenceTarget</code> runtime class in the test component covers it.</p>
+<h2 id="round-3-a-wrong-call-on-getweakreference"><a class="anchor" href="#round-3-a-wrong-call-on-getweakreference" aria-hidden="true">#</a>Round 3: a wrong call on <code>GetWeakReference</code></h2>
+<p>The third review, at 15:27 UTC, raised a third blocking claim: that <code>GetWeakReference</code> would now fail, because it unwraps the object through a <code>QueryInterface</code> for Swift's own interface, so the "all tests pass" result could not be right for this path.</p>
+<p>The code and CI showed the claim was wrong, and it was rejected. While chasing it, two changes had gone in that were not needed. Both were reverted.</p>
+<h2 id="where-it-stands"><a class="anchor" href="#where-it-stands" aria-hidden="true">#</a>Where it stands</h2>
+<p>The pull request went up at 17:33 UTC the same day: <a href="https://github.com/thebrowsercompany/swift-winrt/pull/272">"Pass projected runtime classes as themselves where WinRT takes an Object"</a>. The five lines grew to 16 files, +179 −6, most of it tests and regenerated test bindings. On a GitHub Actions Windows runner the test app runs 112 tests with 1 skipped and no failures, on Swift 6.2 in debug and Swift 6.4.1 in release; <code>main</code> has 110.</p>
+<p>The pull request also states a behaviour change. For a projected object that is not a Swift subclass, an <code>Object</code> parameter now gets the WinRT object itself, so reading it back gives a different Swift instance (<code>===</code> is false), and <code>==</code> compares COM identity.</p>
+<p>Yardlet's own copy of the patch was replaced with the reviewed version. As of November 8 the pull request has no comments or reviews, and only a static scan has run on it; the build and test workflows have not run on the fork.</p>
+<h2 id="what-i-do-now"><a class="anchor" href="#what-i-do-now" aria-hidden="true">#</a>What I do now</h2>
+<p>Asking the agent that wrote a change to check it again tends to check its own assumptions again. The second agent started from the code and the results, and found two real bugs, one of them a crash, that the authoring session and a passing test suite had missed.</p>
+<p>So a reviewing agent gets the diff and the test results, not my conclusion. And a reviewer can be wrong with the same confidence as when it is right: every blocking finding gets a reproduction or a check in CI before it is accepted or rejected. The wrong call in round three still cost time and two changes that had to be undone.</p>
+<h2 id="how-it-runs"><a class="anchor" href="#how-it-runs" aria-hidden="true">#</a>How it runs</h2>
+<p>In Yardlet both agents run from their own CLIs with the sign-ins they already have. A Claude Code task can run Codex as a subagent with <code>run_agent</code> and read its answer in the same conversation, or the two tasks can sit side by side in a split view. In a Git repository each task can start in its own worktree. The setup is in the <a href="https://github.com/zzunkie/yardlet">README</a>, or install it with <code class="long">brew install --cask zzunkie/tap/yardlet</code>.</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong><a href="../">Yardlet</a></strong> is a free, open-source native Mac app that runs the real Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

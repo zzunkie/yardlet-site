@@ -25,6 +25,7 @@
 
 ## Blog posts
 
+- [Codex reviewed Claude Code's patch three times: two real regressions, one wrong call](https://yardlet.app/blog/codex-reviewed-claude-codes-patch.html): Before sending a five-line fix to swift-winrt, I had Codex review the patch Claude Code wrote, three times. Two findings were real regressions. The third was wrong, and chasing it cost two needless changes.
 - [I talk to one session, and it runs the rest](https://yardlet.app/blog/one-session-runs-the-rest.html): Andrej Karpathy wrote that he only talks to Claude now and did three things by hand. Yardlet's own development has run the same way for weeks: one long-lived session I talk to, child sessions it starts, and a few places where I still say yes. Almost none of what still lands on me is approving. Most of it is reading.
 - [What moving a Claude Code task to another account costs](https://yardlet.app/blog/moving-a-task-costs-its-cache.html): A task that moves to another account leaves its prompt cache behind, and the next request writes the whole conversation again. I measured it on 381,700 requests from my own transcripts, and Yardlet now moves a task only when that costs nothing, or when a limit has stopped it anyway.
 - [Starting each agent task on the account with room left](https://yardlet.app/blog/accounts-with-room-left.html): I keep work and personal accounts for Claude Code and Codex. Yardlet reads each account's limits from the CLI itself and starts a task on the one with room left, instead of asking me every time.
