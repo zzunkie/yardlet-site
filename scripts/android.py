@@ -39,9 +39,10 @@ def block(r):
         sys.exit(f"{r['tag_name']} lacks the APKs this script expects: {sorted(apks)}")
     return (
         "<!-- android:start -->\n"
-        "            <p>The Android app is in testing, for Android&nbsp;10 and later. In Yardlet on your Mac, turn on\n"
-        "              Settings&nbsp;›&nbsp;Remote, choose Pair a phone and scan the QR code. To update, install a newer APK\n"
-        "              over it or follow the <code>android-v</code> releases in Obtainium; the app tells you when one is out.</p>\n"
+        "            <p>The Android app is in testing, for Android&nbsp;10 and later. In Yardlet on your Mac, open\n"
+        "              Settings&nbsp;›&nbsp;Remote, turn on Allow remote connections, click Pair… beside Pair a device and scan\n"
+        "              the code with the app. To update, install a newer APK over it or follow the <code>android-v</code>\n"
+        "              releases in Obtainium; the app tells you when one is out.</p>\n"
         '            <p class="phone-get">\n'
         f'              <a class="btn" href="{main}">Download for Android</a>\n'
         f'              <a class="btn btn-quiet" href="{foss}">Without Google Play services</a>\n'
