@@ -198,6 +198,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round
 .btn-small { height: 30px; padding: 0 var(--s-3); border-radius: 8px; }
 .btn-quiet { background: var(--quiet); color: var(--text); }
 .btn-quiet:hover { background: var(--quiet-hover); }
+.phone-get { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-4); }
 
 /* The thread: each section is a question and Yardlet's answer. */
 .thread { max-width: calc(var(--thread) + 2 * var(--s-6)); margin: 0 auto; padding: var(--s-6) var(--s-6) var(--s-8); }

@@ -46,7 +46,8 @@
     "A built-in browser that agents can drive",
     "Connectors and a mailbox for agents",
     "Tasks that read, message and start other tasks",
-    "Scheduled tasks"
+    "Scheduled tasks",
+    "An Android app to answer approvals and start tasks from your phone"
   ],
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
@@ -532,10 +533,21 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="ask"><span class="sr-only">You: </span>Can I answer my agents from my phone?</p>
           <div class="reply">
             <h2 id="phone-title">Answer approvals and start tasks from your&nbsp;phone.</h2>
-            <p>Coming soon: an Android app that pairs with your Mac by QR code and follows the tasks running in Yardlet, so you can answer
+            <p>Yardlet's Android app pairs with your Mac by QR code and follows the tasks running in Yardlet, so you can answer
               approvals and start tasks while you are away. On the same network it connects directly; away from it,
               through Yardlet's relay. Either way the messages are end-to-end encrypted, and the relay can neither read
               nor store them.</p>
+            <!-- android:start -->
+            <p>The Android app is in testing, for Android&nbsp;10 and later. In Yardlet on your Mac, turn on
+              Settings&nbsp;›&nbsp;Remote, choose Pair a phone and scan the QR code. To update, install a newer APK
+              over it or follow the <code>android-v</code> releases in Obtainium; the app tells you when one is out.</p>
+            <p class="phone-get">
+              <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/android-v0.3.9/yardlet-remote-0.3.9.apk">Download for Android</a>
+              <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet/releases/download/android-v0.3.9/yardlet-remote-0.3.9-foss.apk">Without Google Play services</a>
+            </p>
+            <p class="approve-alt"><a href="https://github.com/zzunkie/yardlet/releases/tag/android-v0.3.9">Version 0.3.9</a> · checksums and the signing
+              certificate are on the release page.</p>
+            <!-- android:end -->
           </div>
         </article>
 

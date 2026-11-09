@@ -10,6 +10,7 @@
 - Several accounts per provider with their session and weekly limits. On Automatic, a new task goes on the account with the most room left. The tokens Claude Code and Codex record on the Mac are shown with their API-equivalent cost.
 - Connectors (Gmail, Google Calendar, Google Drive, Apple Calendar, Reminders and Contacts, GitHub, Slack and remote MCP services) and a built-in Chromium browser that agents can drive, offered to Codex, Claude Code and the agents that use ACP. A mailbox shows Gmail, Outlook Mail and IMAP inboxes beside tasks; every send an agent makes goes through approval.
 - Tasks can read, message or start other tasks, including on another agent, and scheduled tasks run while Yardlet is open.
+- An Android app (in testing, Android 10 and later, APK on GitHub) pairs with the Mac by QR code to follow its tasks, answer approvals and start tasks, directly on the same network or through Yardlet's relay, end-to-end encrypted.
 - Requires macOS 15 or later on Apple silicon or Intel and at least one agent CLI installed and signed in. Not available for Windows or Linux yet. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630.
 - No analytics and no server that receives your work.
 
