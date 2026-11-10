@@ -100,7 +100,7 @@
 <main class="doc" id="main">
   <div class="narrow">
     <h1>Yardlet Privacy Policy</h1>
-    <p class="updated">Last updated: November 8, 2026</p>
+    <p class="updated">Last updated: November 10, 2026</p>
 
     <p class="summary">Yardlet is a desktop app that runs on your Mac. It has no analytics and does not send your
       data to its developer. Its only online services are an update feed and, if you pair a phone or another Mac, a relay
@@ -219,11 +219,41 @@
       Yardlet's relay at <code>relay.yardlet.app</code>, which runs on Cloudflare. The Mac also reaches the same relay at
       <code>yardlet-relay-pages.pages.dev</code>, which is often nearer, and keeps whichever answers first. Everything
       between the two devices, such as tasks, conversations and approvals, is end-to-end encrypted with keys only they hold,
-      so the relay cannot read it and stores none of it. The relay sees the connection itself: a room identifier,
-      IP addresses, when devices connect and how much they send. Notifications for the phone are encrypted the same
-      way before they pass through the relay and Google's Firebase Cloud Messaging; to deliver one, the relay uses
-      the phone's notification token and keeps it only for that moment. If you sign in to the relay with GitHub or
-      Google to find your Mac from anywhere, it keeps your Macs' names and public keys under that account.</p>
+      so the relay cannot read it and stores none of it. The relay keeps no logs of your connections; it and Cloudflare
+      see the connection itself: a room identifier, IP addresses, when devices connect and how much they send.
+      Notifications for the phone are encrypted the same way before they pass through the relay and Google's Firebase
+      Cloud Messaging; to deliver one, the relay uses the phone's notification token and keeps it only for that moment.
+      If you sign in to the relay with GitHub or Google to find your Macs from anywhere, the relay keeps a hashed account
+      identifier, your display name, your Macs' names and public keys, and a hash of each device's sign-in token with
+      that device's name. Signing out on a device removes its token. The Google Play version of the phone app has no
+      sign-in.</p>
+    <p>Yardlet Remote, the Android app, works with a Mac you pair it with by scanning a QR code that Yardlet shows on
+      that Mac.</p>
+    <ul>
+      <li><strong>Between your phone and your Mac.</strong> Task lists, conversations, messages, answers, photos and
+        files you attach, command output and file changes go only between your phone and your Mac, end-to-end
+        encrypted on every route. On the same Wi-Fi or over Tailscale they go directly; elsewhere they pass through
+        the relay as described above.</li>
+      <li><strong>Notifications.</strong> On phones with Google Play services, Google's Firebase SDK in the app sends
+        Google a Firebase installation ID and the app's version so that notifications can be delivered. The build for
+        phones without Google Play services has no Firebase; it keeps a connection to your Mac open in the background
+        only if you turn on Background notifications.</li>
+      <li><strong>Updates.</strong> If you installed the app from GitHub rather than Google Play, it asks GitHub's
+        releases API at most once a day whether a newer version exists. The request carries no identifier of yours;
+        GitHub may log it as described in the
+        <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub
+        Privacy Statement</a>. The Google Play version is updated by Google Play and makes no such request.</li>
+      <li><strong>Explore without a Mac.</strong> The demo on the first screen runs entirely on your phone with sample
+        data. It uses no network and saves nothing.</li>
+      <li><strong>On your phone.</strong> The app keeps its keys for each paired Mac, protected by the Android Keystore,
+        and a copy of the last task list and conversations it showed you, excluded from backups. Files you open from
+        your Mac stay in the app's cache only while you view them. "Disconnect this Mac" deletes that Mac's keys and
+        copies from the phone and, when it can reach the Mac, removes the phone from the Mac's list; uninstalling the
+        app deletes everything on the phone.</li>
+      <li><strong>On your Mac.</strong> Yardlet keeps the phone's public key, its device name and when it last
+        connected. Removing the phone in Settings &gt; Remote on the Mac deletes that record.</li>
+      <li><strong>No analytics or ads.</strong> The app contains no analytics, advertising or crash-reporting code.</li>
+    </ul>
 
     <h2 id="limited-use">Limited Use</h2>
     <p>Yardlet's use and transfer of information received from Google APIs adheres to the
