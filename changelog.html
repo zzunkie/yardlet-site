@@ -102,6 +102,67 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.11" aria-labelledby="v0.11.11-title">
+      <h2 id="v0.11.11-title">Yardlet 0.11.11</h2>
+      <p class="updated"><time datetime="2026-11-10">November 10, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.11">Release on GitHub</a></p>
+      <p>This release fixes two security issues in 0.11.10. Please update.</p>
+      <h3>Security</h3>
+      <ul>
+        <li>Filling a saved sign-in now asks you first on more of the pages an agent's script may still reach, including pages that tabs linked to it open or load later.</li>
+        <li>Each saved connector secret is now tied to the server, mail account, program or account provider it was saved for, and is used only there. Secrets saved before keep working without a new sign-in.</li>
+        <li>Signing in to a connector's server checks that the sign-in details the server publishes name that same server.</li>
+      </ul>
+      <h3>Tasks</h3>
+      <ul>
+        <li>Turns cut off by a force quit, a crash or a killed process now continue at the next launch, as after a quit.</li>
+        <li>The task list shows at launch without waiting for every Claude Code title to be read again.</li>
+        <li>Opening a main window again, from the Dock or with File › New Window, no longer interrupts running tasks.</li>
+        <li>Launching with a long Codex history no longer keeps Codex busy for half a minute: Yardlet lists Codex threads from Codex's own database, as the Codex app does.</li>
+        <li>Agent CLIs installed with Homebrew now update automatically. After a CLI updates, idle tasks start the new version with their next message.</li>
+        <li>Automatic account choices skip accounts whose plan doesn't offer the task's model.</li>
+        <li>Messages sent while a task waits to switch accounts no longer stay queued behind a background command.</li>
+        <li>A scheduled run no longer moves its task to another account while the task still has work running.</li>
+        <li>Schedule changes made in your own task no longer wait on an approval card after the schedule's runs move to new tasks.</li>
+      </ul>
+      <h3>Help</h3>
+      <ul>
+        <li>Help › Report a Problem… opens the bug report form on GitHub with the versions of Yardlet, macOS and your agent CLIs filled in. Error cards and a failed task start offer the same form with the error, after your home folder, names, addresses and token-like text are taken out. Nothing is sent until you submit it on GitHub.</li>
+        <li>Help › Show Diagnostic Logs opens Yardlet's log folders in the Finder, and Help › Yardlet Help opens the README.</li>
+      </ul>
+      <h3>Interface</h3>
+      <ul>
+        <li>The task header has a Find button. The session rail and terminal buttons have icons of their own, apart from the side panel's.</li>
+        <li>Tabs at the top of the window, in the side panel and in the window's tab bar, can be dragged instead of moving the window.</li>
+        <li>The new-task composer has the same + menu as a task's: files, photos, a folder and slash commands.</li>
+        <li>Removing a connector, or a Google or Microsoft account, asks first, since it signs you out.</li>
+        <li>Tooltips name their keys, disabled buttons dim, and several small buttons take clicks over a larger area.</li>
+        <li>A saved sign-in's two-factor code can be removed on its own in the item sheet.</li>
+        <li>Korean screens no longer show some text in English, and Korean activity lines read correctly.</li>
+      </ul>
+      <h3>Browser</h3>
+      <ul>
+        <li>A tab the agent used before you opened it in the panel takes the panel's size, instead of staying at 1280 by 800 in the panel's corner.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>A suggested task's Options works in a window for another Mac.</li>
+        <li>When the other Mac doesn't do what the window asked, the window says why, and shows the task's error card and composer notices as the Mac does.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>A long conversation takes less of the app's time for each streamed update, and a Codex answer wakes the app less often.</li>
+        <li>Searching the sidebar no longer redraws the window for every streamed update.</li>
+        <li>A streaming task saves only what changed in its reading copy, instead of rewriting the whole conversation every second.</li>
+        <li>Saving schedules no longer holds up the window while the disk is busy.</li>
+        <li>An account check no longer keeps a CPU core busy after the CLI exits.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>The Agents card no longer lists a retried <code>run_agent</code> call twice.</li>
+        <li>Claude Fable 5.2 and Claude Mythos 5.2 sessions show their cost.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.10" aria-labelledby="v0.11.10-title">
       <h2 id="v0.11.10-title">Yardlet 0.11.10</h2>
       <p class="updated"><time datetime="2026-11-08">November 8, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.10">Release on GitHub</a></p>

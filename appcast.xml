@@ -3,6 +3,86 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.11</title>
+            <pubDate>Tue, 10 Nov 2026 23:53:58 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>33</sparkle:version>
+            <sparkle:shortVersionString>0.11.11</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.11
+
+This release fixes two security issues in 0.11.10. Please update.
+
+## Security
+
+- Filling a saved sign-in now asks you first on more of the pages an agent's script may still reach, including pages
+  that tabs linked to it open or load later.
+- Each saved connector secret is now tied to the server, mail account, program or account provider it was saved for,
+  and is used only there. Secrets saved before keep working without a new sign-in.
+- Signing in to a connector's server checks that the sign-in details the server publishes name that same server.
+
+## Tasks
+
+- Turns cut off by a force quit, a crash or a killed process now continue at the next launch, as after a quit.
+- The task list shows at launch without waiting for every Claude Code title to be read again.
+- Opening a main window again, from the Dock or with File › New Window, no longer interrupts running tasks.
+- Launching with a long Codex history no longer keeps Codex busy for half a minute: Yardlet lists Codex threads from
+  Codex's own database, as the Codex app does.
+- Agent CLIs installed with Homebrew now update automatically. After a CLI updates, idle tasks start the new version
+  with their next message.
+- Automatic account choices skip accounts whose plan doesn't offer the task's model.
+- Messages sent while a task waits to switch accounts no longer stay queued behind a background command.
+- A scheduled run no longer moves its task to another account while the task still has work running.
+- Schedule changes made in your own task no longer wait on an approval card after the schedule's runs move to new tasks.
+
+## Help
+
+- Help › Report a Problem… opens the bug report form on GitHub with the versions of Yardlet, macOS and your agent CLIs
+  filled in. Error cards and a failed task start offer the same form with the error, after your home folder, names,
+  addresses and token-like text are taken out. Nothing is sent until you submit it on GitHub.
+- Help › Show Diagnostic Logs opens Yardlet's log folders in the Finder, and Help › Yardlet Help opens the README.
+
+## Interface
+
+- The task header has a Find button. The session rail and terminal buttons have icons of their own, apart from the side
+  panel's.
+- Tabs at the top of the window, in the side panel and in the window's tab bar, can be dragged instead of moving the
+  window.
+- The new-task composer has the same + menu as a task's: files, photos, a folder and slash commands.
+- Removing a connector, or a Google or Microsoft account, asks first, since it signs you out.
+- Tooltips name their keys, disabled buttons dim, and several small buttons take clicks over a larger area.
+- A saved sign-in's two-factor code can be removed on its own in the item sheet.
+- Korean screens no longer show some text in English, and Korean activity lines read correctly.
+
+## Browser
+
+- A tab the agent used before you opened it in the panel takes the panel's size, instead of staying at 1280 by 800 in
+  the panel's corner.
+
+## Another Mac's tasks
+
+- A suggested task's Options works in a window for another Mac.
+- When the other Mac doesn't do what the window asked, the window says why, and shows the task's error card and composer
+  notices as the Mac does.
+
+## Faster
+
+- A long conversation takes less of the app's time for each streamed update, and a Codex answer wakes the app less often.
+- Searching the sidebar no longer redraws the window for every streamed update.
+- A streaming task saves only what changed in its reading copy, instead of rewriting the whole conversation every second.
+- Saving schedules no longer holds up the window while the disk is busy.
+- An account check no longer keeps a CPU core busy after the CLI exits.
+
+## Fixes
+
+- The Agents card no longer lists a retried `run_agent` call twice.
+- Claude Fable 5.2 and Claude Mythos 5.2 sessions show their cost.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11.dmg" length="183076202" type="application/octet-stream" sparkle:edSignature="pGNlx8PySYh0Dz2xThZXeHWd3OZ2KtaQmWhAGgAS7zd2h/jhVIndevvkI1L5y3WAmzlvUn3rao0Cc03Oe4W5AQ=="/>
+        </item>
+        <item>
             <title>0.11.10</title>
             <pubDate>Sun, 08 Nov 2026 19:15:34 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -233,59 +313,6 @@ Thanks to @minsujang0 for reporting the slow scrolling while Codex streams (#183
 and the missing PATH (#485), and for suggesting grouping tasks by state (#489).
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.9/Yardlet-0.11.9.dmg" length="183020612" type="application/octet-stream" sparkle:edSignature="uy/yyuD6yRYQv3kai7zLdPQeJS38iCiglU4rD0srizIc09jQToJyZ4tG8nybgN2o99V51Jv7doGBkeg5b1nPDw=="/>
-        </item>
-        <item>
-            <title>0.11.8</title>
-            <pubDate>Tue, 03 Nov 2026 02:48:56 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>30</sparkle:version>
-            <sparkle:shortVersionString>0.11.8</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.8
-
-## Mail
-
-- A mailbox shows the inboxes of your connected Gmail, Outlook Mail and IMAP accounts beside tasks and personal
-  agents. It is off by default: turn it on in Settings › General › Mailbox, and Mail appears next to Tasks and
-  Personal agents.
-- Read threads in place, write, reply and forward. What you write is saved to the account's own Drafts, and Send waits
-  five seconds, during which Undo takes the message back.
-- Mail stays on the service. The mailbox reads it when it is shown and keeps it in memory only.
-- Images and other remote content in a message load only after Show images, so a sender cannot tell it was read.
-- Ask an agent hands a thread to a new chat by name. Agents read mail and write drafts through the account's
-  connector, and every send goes through the agent's approval, where Claude Code's card has no Always allow.
-- Settings › Notifications › New mail tells you when mail reaches an inbox: Gmail's Primary tab, Outlook's Focused
-  inbox.
-- Outlook accounts need a Microsoft app of your own for now, as in 0.11.7:
-  [Your own Microsoft app](https://github.com/zzunkie/yardlet/blob/main/docs/CONNECTORS.md#your-own-microsoft-app).
-- IMAP accounts (beta): mail services without an API connect over IMAP and SMTP in Settings › Connectors › Add
-  connector › Mail (IMAP). The address picks the servers for Naver, Daum, Kakao, NAVER WORKS, iCloud, Yahoo, AOL, Zoho,
-  Fastmail and Proton Mail Bridge, with the steps the service asks for first, or you enter another server by hand.
-  The account uses an app password, kept in the keychain only. IMAP accounts have been tested against test servers so
-  far; if one doesn't work with your service, please [open an issue](https://github.com/zzunkie/yardlet/issues).
-
-## New
-
-- Side chats are temporary, as in the Codex app: a side chat stays out of the task list and ends when its tab closes
-  or Yardlet quits. Fork task still keeps a conversation as a task, and side chats made before this update stay tasks.
-- A Claude Code side chat opens while its task is running.
-- Agents can read the task's terminal, read only, with keys and tokens hidden. Select output in the terminal and press
-  ⌘⇧L, or right-click, to attach it to your message. Settings › General › Share the terminal with agents turns this
-  off.
-- Choose account on a working task takes effect when its turn ends, and what you send meanwhile goes to the new
-  account.
-- Scheduled tasks lists the ones that run next first, and folds paused schedules and finished one-offs below.
-- The phone nests tasks as the Mac's sidebar does.
-
-## Fixes
-
-- A Claude Code task reopened after a relaunch no longer opens with its latest message far above the composer.
-- An ACP agent, such as Antigravity, starts again after its last session closed instead of failing until Yardlet
-  restarts.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.8/Yardlet-0.11.8.dmg" length="177977129" type="application/octet-stream" sparkle:edSignature="vw7E2lIOoq8sPpkJtkMUnDsWN6fTsnjrvuAiXjxGXsICoVVUJp4zs9TF3HdOmNGAF/pBfY9GqcpqR8/zMWKmAA=="/>
         </item>
     </channel>
 </rss>
