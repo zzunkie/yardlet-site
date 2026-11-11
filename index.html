@@ -70,6 +70,14 @@
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "How much memory does Yardlet use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "53 MiB at rest after a first launch, and 214 MiB with ten tasks streaming at once, not counting the agents' own CLIs. Measured with Yardlet 0.11.10 on an M1 Pro MacBook Pro with macOS 15.6 in November 2026."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Can I run Claude Code and Codex side by side on a Mac?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -333,7 +341,9 @@
             <p>Yardlet is a free, open-source native macOS app for running coding agents side by side in one window of
               projects and tasks. It starts the real CLIs of Claude Code, Codex and other agents. Each agent keeps its
               own agent loop, sign&#8209;in and session history; Yardlet adds no agent layer and writes nothing into the
-              agents' settings.</p>
+              agents' settings. It is light, too: 53&nbsp;MiB of memory at rest after a first launch, and 214&nbsp;MiB with
+              ten tasks streaming at once, not counting the agents' own CLIs (Yardlet 0.11.10 on an M1 Pro MacBook Pro,
+              November 2026).</p>
           </div>
         </article>
 
@@ -646,6 +656,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
               <dl class="rows">
                 <div><dt>Side by side</dt><dd>Yardlet starts the real Claude Code and Codex CLIs side by side in one window of projects and tasks. Each agent keeps its own agent loop, sign&#8209;in and session history.</dd></div>
                 <div><dt>Native app</dt><dd>Yardlet is a native macOS app written in Swift and SwiftUI. Its built&#8209;in browser panel is Chromium.</dd></div>
+                <div><dt>Memory</dt><dd>53&nbsp;MiB at rest after a first launch, and 214&nbsp;MiB with ten tasks streaming at once. That is the memory Activity Monitor shows for every process macOS charges to Yardlet, not counting the agents' own CLIs, measured with Yardlet 0.11.10 on an M1 Pro MacBook Pro with macOS 15.6 in November 2026.</dd></div>
                 <div><dt>Your plans</dt><dd>Yardlet starts the agent's own CLI with the sign&#8209;in it already has, so usage counts against your Claude or ChatGPT plan as it does in the CLI. Yardlet has no account, plan or fee of its own, and the agent's own terms apply.</dd></div>
                 <div><dt>Requirements</dt><dd>macOS 15 or later on a Mac with Apple silicon or Intel, and at least one agent CLI installed and signed in, such as <code>codex</code> or <code>claude</code>. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630. <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">Tell us</a> how it goes.</dd></div>
                 <div><dt>Updates</dt><dd>Yardlet is notarized by Apple and updates itself with Sparkle. It installs only updates signed with Yardlet's release key.</dd></div>
