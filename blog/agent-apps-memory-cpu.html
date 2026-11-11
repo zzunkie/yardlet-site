@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Memory and CPU of eight coding-agent apps on one Mac · Yardlet blog</title>
+<meta name="description" content="On November 9 and 10 I measured Yardlet 0.11.10 and seven other coding-agent apps on one MacBook Pro: idle on first launch, with ten tasks streaming, with twenty browser tabs and over an hour. Here are the numbers, where Yardlet does worse, what the table leaves out, and the raw data.">
+<link rel="canonical" href="https://yardlet.app/blog/agent-apps-memory-cpu.html">
+<link rel="alternate" type="application/atom+xml" title="Yardlet blog" href="https://yardlet.app/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yardlet">
+<meta property="og:url" content="https://yardlet.app/blog/agent-apps-memory-cpu.html">
+<meta property="og:title" content="Memory and CPU of eight coding-agent apps on one Mac">
+<meta property="og:description" content="On November 9 and 10 I measured Yardlet 0.11.10 and seven other coding-agent apps on one MacBook Pro: idle on first launch, with ten tasks streaming, with twenty browser tabs and over an hour. Here are the numbers, where Yardlet does worse, what the table leaves out, and the raw data.">
+<meta property="og:image" content="https://yardlet.app/blog/og/agent-apps-memory-cpu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-11-11">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yardlet.app/blog/og/agent-apps-memory-cpu.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Memory and CPU of eight coding-agent apps on one Mac", "description": "On November 9 and 10 I measured Yardlet 0.11.10 and seven other coding-agent apps on one MacBook Pro: idle on first launch, with ten tasks streaming, with twenty browser tabs and over an hour. Here are the numbers, where Yardlet does worse, what the table leaves out, and the raw data.", "datePublished": "2026-11-11", "url": "https://yardlet.app/blog/agent-apps-memory-cpu.html", "image": "https://yardlet.app/blog/og/agent-apps-memory-cpu.png", "mainEntityOfPage": "https://yardlet.app/blog/agent-apps-memory-cpu.html", "author": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}, "publisher": {"@type": "Organization", "name": "Yardlet", "url": "https://yardlet.app/"}}</script>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../blog.css">
+<script src="../site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="desk">
+  <div class="win">
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="../"><img src="../assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="Home page sections">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="../#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="../#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="../#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="../#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="../#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="../#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="../#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="../#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="../#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="../#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="../#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
+          </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="../privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="../terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="../changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="pane">
+      <header class="bar">
+        <details class="jump">
+          <summary><img class="jump-mark" src="../assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">Blog</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="../#what">What Yardlet is</a></li>
+            <li><a href="../#accounts">Every account's limits</a></li>
+            <li><a href="../#together">Agents that work together</a></li>
+            <li><a href="../#agents">Any agent, same controls</a></li>
+            <li><a href="../#approvals">Approvals in your words</a></li>
+            <li><a href="../#review">Review, then merge</a></li>
+            <li><a href="../#browser">A browser for agents</a></li>
+            <li><a href="../#connectors">Connectors for every agent</a></li>
+            <li><a href="../#phone">From your phone</a></li>
+            <li><a href="../#trust">Safe to try</a></li>
+            <li><a href="../#install">Install</a></li>
+            <li class="sep"><a href="../privacy.html">Privacy policy</a></li>
+            <li><a href="../terms.html">Terms of use</a></li>
+            <li><a href="../changelog.html">Changelog</a></li>
+            <li><a href="./">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">Blog</span></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="../">Home</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
+
+<main class="doc blog" id="main">
+<article class="post">
+<header class="post-head">
+<p class="post-meta"><span class="kind">Measurement</span><span><time datetime="2026-11-11">November 11, 2026</time></span><span>8 min read</span></p>
+<h1>Memory and CPU of eight coding-agent apps on one Mac</h1>
+<p class="dek">On November 9 and 10 I measured Yardlet 0.11.10 and seven other coding-agent apps on one MacBook Pro: idle on first launch, with ten tasks streaming, with twenty browser tabs and over an hour. Here are the numbers, where Yardlet does worse, what the table leaves out, and the raw data.</p>
+</header>
+<div class="post-body">
+<p>I make <a href="https://github.com/zzunkie/yardlet">Yardlet</a>, a free, open-source Mac app that runs coding agents like Codex and Claude Code in one window.</p>
+<p>I started it because the agent apps I was using kept eating my Mac. With a few agents going at once, the Electron apps took more and more of its memory, so I wrote a native one. That was a feeling, not a measurement. On November 9 and 10 I measured Yardlet against the apps people actually use for this, on one Mac, all in the same way. This post is the record of those two days. Every one of these apps ships often, so read it as a dated snapshot, not a ranking.</p>
+<h2 id="what-i-measured"><a class="anchor" href="#what-i-measured" aria-hidden="true">#</a>What I measured</h2>
+<p>Eight apps, each the latest public release on November 9 (for T3 Code, the latest one that isn't a nightly), each download checked against its published SHA-256 and Apple's notarization: Yardlet 0.11.10, Herdr 0.1.14 (with its herdr-core server 0.1.19), Conductor 0.93.0, cmux 0.65.2, Superset 2.0.6, T3 Code 0.1.7, Paseo 0.15.3 and Orca 1.4.254. Yardlet 0.11.11 came out after these runs and isn't in the table. The Codex app and the Claude app aren't either: both start at a sign-in screen, and this run used no accounts.</p>
+<p>Everything ran on one MacBook Pro (M1 Pro, 16 GB) on macOS 15.6.1, with Docker Desktop running as it usually does on that Mac. Every app started in a fresh, empty home folder, with no saved settings and no sign-in. The <code>claude</code> and <code>codex</code> commands were stand-ins: small scripts that answer the way the real CLIs do but call no model, so nothing left the machine and every app got the same kind of streamed output at the same pace, about 30 fragments a second.</p>
+<p>Memory is the sum of <code>phys_footprint</code>, the number Activity Monitor shows as Memory, for every process macOS charges to the app: its own processes, web renderers, GPU helpers, the system WebKit services its web views use, and the shells and servers it starts. Herdr runs its agents through a separate server, herdr-core, which macOS doesn't charge to the app, so I added it to Herdr. The stand-in agent CLIs are left out of every total. CPU is the average over the sample, sampled once a second; 100% is one full core.</p>
+<h2 id="idle-on-first-launch"><a class="anchor" href="#idle-on-first-launch" aria-hidden="true">#</a>Idle, on first launch</h2>
+<p>Each app was opened for the first time, left alone for 60 seconds, then sampled for 120 seconds. Three runs, in rotating order; the median run is shown.</p>
+<div class="table" role="region" aria-label="Table" tabindex="0"><table><thead><tr><th>App</th><th class="num">Memory</th><th class="num">CPU</th><th>First screen</th></tr></thead><tbody><tr><td>Yardlet 0.11.10</td><td class="num">53 MiB</td><td class="num">0.5%</td><td>Home screen</td></tr><tr><td>Herdr 0.1.14</td><td class="num">77 MiB</td><td class="num">0.9%</td><td>Main window, no sign-in</td></tr><tr><td>Conductor 0.93.0</td><td class="num">153 MiB</td><td class="num">6.0%</td><td>Empty window before sign-up</td></tr><tr><td>cmux 0.65.2</td><td class="num">193 MiB</td><td class="num">28.9%</td><td>Welcome video</td></tr><tr><td>Superset 2.0.6</td><td class="num">259 MiB</td><td class="num">0.2%</td><td>Sign-in</td></tr><tr><td>T3 Code 0.1.7</td><td class="num">532 MiB</td><td class="num">1.2%</td><td>Onboarding</td></tr><tr><td>Paseo 0.15.3</td><td class="num">537 MiB</td><td class="num">6.1%</td><td>Setup</td></tr><tr><td>Orca 1.4.254</td><td class="num">675 MiB</td><td class="num">17.2%</td><td>Onboarding</td></tr></tbody></table></div>
+<p>This is the cost of each app's first screen, which is what a new user sees, not of a signed-in app with real projects. Conductor and Superset need an account to go further. cmux plays a welcome video on first launch; on a second launch, without it, cmux used 168 MiB and 2.9%.</p>
+<h2 id="under-load"><a class="anchor" href="#under-load" aria-hidden="true">#</a>Under load</h2>
+<p>The load scenes need a chat view that accepts the stand-in agent without an account, so only three apps ran them: Yardlet, T3 Code and Paseo. The clicks and typing were scripted, the same for every app, in the same window size. One run per scene.</p>
+<ul>
+<li><strong>Ten tasks streaming:</strong> ten tasks, each starting with a long history, stream at once for about six and a half minutes; five minutes sampled.</li>
+<li><strong>Switching long tasks:</strong> with that history, the next task opens every 10 seconds and scrolls up and back, for five minutes.</li>
+<li><strong>Twenty browser tabs:</strong> twenty real public pages (GitHub repositories, pull requests and issues; documentation for Apple, Python, MDN, React, Tailwind, Next.js, Kubernetes and TypeScript; two Wikipedia articles, Stack Overflow, Hacker News, Reddit, and the Vercel, Figma and MacBook Pro pages) in the app's built-in browser; a minute to settle, then two minutes sampled.</li>
+<li><strong>One-hour session:</strong> in that state, with the twenty tabs still open, three tasks get a new two-minute streaming turn every 5 minutes, the browser moves to its next tab every 30 seconds, and in between the next task opens and scrolls every 10 seconds.</li>
+</ul>
+<div class="table" role="region" aria-label="Table" tabindex="0"><table><thead><tr><th>Scene</th><th class="num">Yardlet 0.11.10</th><th class="num">T3 Code 0.1.7</th><th class="num">Paseo 0.15.3</th></tr></thead><tbody><tr><td>Ten tasks streaming</td><td class="num">214 MiB · 45%</td><td class="num">867 MiB · 47%</td><td class="num">987 MiB · 67%</td></tr><tr><td>Switching long tasks</td><td class="num">275 MiB · 7%</td><td class="num">774 MiB · 8%</td><td class="num">845 MiB · 10%</td></tr><tr><td>Twenty browser tabs</td><td class="num">2,474 MiB · 1.6%</td><td class="num">no browser</td><td class="num">4,227 MiB · 90%</td></tr><tr><td>One hour, memory start → end</td><td class="num">1,793 → 1,847 MiB</td><td class="num">798 → 908 MiB</td><td class="num">4,361 → 4,362 MiB</td></tr><tr><td>One hour, CPU</td><td class="num">16%</td><td class="num">16%</td><td class="num">100%</td></tr></tbody></table></div>
+<p>Memory in the first three rows is the median over the sample. The one-hour rows give the first and the last minute's memory and the average CPU. Yardlet ran for two hours; its first hour is shown, and it ended the second hour at 1,904 MiB. Yardlet counted one process in the first two scenes and 27 in the browser scene; Paseo counted 56 there.</p>
+<p>T3 Code has no built-in browser, so its one-hour session has no tabs in it, while Yardlet's and Paseo's carry twenty. Its lower memory there isn't a like-for-like comparison with Yardlet; the browser comparison is Yardlet against Paseo. T3 Code also ran the Claude Code stand-in, because its Codex path needs a ChatGPT sign-in; Yardlet and Paseo ran the Codex one.</p>
+<h2 id="where-yardlet-does-worse"><a class="anchor" href="#where-yardlet-does-worse" aria-hidden="true">#</a>Where Yardlet does worse</h2>
+<ul>
+<li>At idle, Superset's sign-in screen used less CPU than Yardlet: 0.16% against 0.48%.</li>
+<li>Yardlet is the only one of these apps that starts an agent CLI at launch, a Codex app-server that reads the account. Here it was the stand-in and left out of the total. The real one adds memory of its own.</li>
+<li>Twenty tabs cost Yardlet 2.5 GB, most of it in its browser's web renderers. That is less than Paseo's 4.2 GB for the same pages, but it is the largest number Yardlet has in this post. I didn't run Yardlet's one-hour session without tabs, so the table can't tell you what it uses over an hour if you never open the browser.</li>
+<li>In the two-hour session Yardlet's main thread was busy for a quarter of a second or more 264 times, 122 of them in the first hour. The median was 0.28 seconds and the longest 0.44 seconds. Yardlet logs these pauses itself; the other apps don't, so I couldn't compare them.</li>
+</ul>
+<h2 id="what-this-doesn-t-tell-you"><a class="anchor" href="#what-this-doesn-t-tell-you" aria-hidden="true">#</a>What this doesn't tell you</h2>
+<p>The agent CLIs were stand-ins. Real models, real agent output and signed-in apps weren't measured, and a real agent CLI costs memory of its own in every app. Startup time and how responsive each app feels weren't measured either.</p>
+<p>It's one Mac. Docker Desktop's VM took about 4.8 GB on it, so free memory was low, especially in the load scenes, and CPU may read higher than on a roomier Mac. Each load scene ran once.</p>
+<p>Herdr, cmux and Orca were measured idle only this time. They show agents in a terminal, which would be a separate comparison from a chat view, and I ran out of time for it. Conductor and Superset need an account before they show anything else.</p>
+<h2 id="checking-it-yourself"><a class="anchor" href="#checking-it-yourself" aria-hidden="true">#</a>Checking it yourself</h2>
+<p>Everything behind the tables is next to this post:</p>
+<ul>
+<li><a href="/blog/assets/agent-apps-memory-cpu/runs.csv">runs.csv</a>: every run, with the median and largest memory, the average and 95th-percentile CPU, the process count and the load average. It includes the second launches, Yardlet measured again beside Herdr later that evening, and two runs I excluded. Those two stopped at a macOS "Keychain Not Found" dialog that an empty home folder brings up and that a user with a login keychain never sees, so I measured those apps again.</li>
+<li><a href="/blog/assets/agent-apps-memory-cpu/fake-codex.py">fake-codex.py</a> and <a href="/blog/assets/agent-apps-memory-cpu/fake-claude.py">fake-claude.py</a>: the stand-ins as I used them. They grew from the ones in the Yardlet repository's <a href="https://github.com/zzunkie/yardlet/tree/main/scripts/perf-bench">scripts/perf-bench</a>, with a few more answers that the apps ask for.</li>
+<li><a href="/blog/assets/agent-apps-memory-cpu/sample-group.swift">sample-group.swift</a>: the sampler. Once a second it reads <code>phys_footprint</code> and CPU time with <code>proc_pid_rusage</code> for every process under the app's bundle or charged to it by macOS.</li>
+<li><a href="/blog/assets/agent-apps-memory-cpu/table.png">The table as one image</a>.</li>
+</ul>
+<p>To repeat the idle runs on your own Mac, download each release and check its SHA-256 and notarization, start it with <code>HOME</code> and <code>CFFIXED_USER_HOME</code> pointing at an empty folder and the stand-ins first on <code>PATH</code>, cancel the keychain dialog if one appears, wait 60 seconds, and run the sampler for 120.</p>
+<p>If I run this again, it will be a new, dated post rather than an edit to this one.</p>
+</div>
+</article>
+<footer class="post-end">
+<div class="about">
+<img src="../assets/icon-256.png" alt="" width="44" height="44">
+<div><p><strong><a href="../">Yardlet</a></strong> is a free, open-source native Mac app that runs the real Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and history.</p>
+<p class="links"><a class="btn btn-small" href="../#install">Download for Mac</a><a class="btn btn-small btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a></p></div>
+</div>
+<nav class="post-nav" aria-label="Posts"><a href="./">← All posts</a><a href="feed.xml">Feed</a></nav>
+</footer>
+</main>
+
+      <div class="doc-end">
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="../privacy.html">Privacy policy</a>
+            <a href="../terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="../changelog.html">Changelog</a>
+            <a href="./">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

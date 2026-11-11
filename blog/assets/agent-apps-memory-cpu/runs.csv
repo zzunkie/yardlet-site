@@ -1,0 +1,50 @@
+app,version,scene,run,ended_kst,seconds_sampled,memory_median_mib,memory_max_mib,cpu_mean_percent,cpu_p95_percent,processes_median,first_minute_mib,last_minute_mib,load_average_1min,in_table,note
+Conductor,0.93.0,"idle, first launch",r1,2026-11-09 18:03:57,120,151.3,151.3,3.02,3.63,4,,,3.11,yes,
+Orca,1.4.254,"idle, first launch",excluded,2026-11-09 18:10:15,120,284.1,286.5,4.76,5.20,5,,,1.6,no,"Stopped at a macOS 'Keychain Not Found' dialog, which a user with a login keychain never sees; measured again (redo)"
+Paseo,0.15.3,"idle, first launch",r1,2026-11-09 18:13:35,120,538.6,558.1,5.98,7.36,7,,,1.34,yes,
+Superset,2.0.6,"idle, first launch",r1,2026-11-09 18:16:45,120,259.4,270.6,0.16,0.49,5,,,1.91,yes,
+T3 Code,0.1.7,"idle, first launch",excluded,2026-11-09 18:20:04,120,396.6,397.1,5.17,5.83,6,,,2.26,no,"Stopped at a macOS 'Keychain Not Found' dialog, which a user with a login keychain never sees; measured again (redo)"
+Yardlet,0.11.10,"idle, first launch",r1,2026-11-09 18:23:24,120,52.8,53.1,0.44,0.50,1,,,0.73,yes,
+cmux,0.65.2,"idle, first launch",r1,2026-11-09 18:26:34,120,191.1,212.8,29.14,53.40,6,,,3.49,yes,
+Orca,1.4.254,"idle, first launch",r2,2026-11-09 18:32:51,120,680.8,742.5,17.26,24.90,16,,,2.15,yes,
+Paseo,0.15.3,"idle, first launch",r2,2026-11-09 18:36:12,120,536.9,544.0,6.20,8.04,7,,,1.49,yes,
+Superset,2.0.6,"idle, first launch",r2,2026-11-09 18:39:21,120,259.5,263.0,0.17,0.49,5,,,1.61,yes,
+T3 Code,0.1.7,"idle, first launch",r2,2026-11-09 18:42:42,120,617.0,618.4,1.25,2.90,6,,,1.65,yes,
+Yardlet,0.11.10,"idle, first launch",r2,2026-11-09 18:45:51,120,53.0,53.4,0.48,0.40,1,,,1.04,yes,
+cmux,0.65.2,"idle, first launch",r2,2026-11-09 18:49:00,120,193.3,214.8,28.06,57.15,6,,,2.04,yes,
+Conductor,0.93.0,"idle, first launch",r2,2026-11-09 18:52:08,120,153.0,401.4,6.01,7.25,4,,,2.34,yes,
+Orca,1.4.254,"idle, first launch",r3,2026-11-09 18:55:17,120,656.0,706.2,15.15,29.36,15,,,1.98,yes,
+Paseo,0.15.3,"idle, first launch",r3,2026-11-09 18:58:37,120,535.6,542.6,6.08,7.48,7,,,1.31,yes,
+Superset,2.0.6,"idle, first launch",r3,2026-11-09 19:01:46,120,258.6,263.4,0.15,0.42,5,,,1.97,yes,
+T3 Code,0.1.7,"idle, first launch",r3,2026-11-09 19:05:06,120,526.4,534.2,1.24,2.97,6,,,0.98,yes,
+Yardlet,0.11.10,"idle, first launch",r3,2026-11-09 19:08:15,120,53.9,54.4,0.51,0.53,1,,,0.77,yes,
+cmux,0.65.2,"idle, first launch",r3,2026-11-09 19:11:24,120,196.0,217.7,28.87,57.84,6,,,3.74,yes,
+Conductor,0.93.0,"idle, first launch",r3,2026-11-09 19:14:33,120,152.8,401.2,6.27,4.81,4,,,1.7,yes,
+Orca,1.4.254,"idle, first launch",redo,2026-11-09 19:20:52,120,675.0,738.4,17.21,31.84,15,,,1.26,yes,Replaces the excluded run
+T3 Code,0.1.7,"idle, first launch",redo,2026-11-09 19:24:13,120,532.1,534.1,1.22,2.60,6,,,3.18,yes,Replaces the excluded run
+Yardlet,0.11.10,"idle, second launch",r1,2026-11-09 19:28:27,120,51.6,52.0,0.50,0.51,1,,,0.96,no,Settings kept from the first launch
+cmux,0.65.2,"idle, second launch",r1,2026-11-09 19:32:41,120,168.3,168.6,2.90,8.43,5,,,1.96,no,Settings kept from the first launch; no welcome video
+Conductor,0.93.0,"idle, second launch",r1,2026-11-09 19:36:55,120,603.8,921.1,112.09,119.60,6,,,2.12,no,Settings kept from the first launch; sign-up screen with a demo video and two runtime daemons
+Orca,1.4.254,"idle, second launch",r1,2026-11-09 19:45:34,120,652.8,671.4,6.81,11.55,19,,,1.7,no,Settings kept from the first launch
+Paseo,0.15.3,"idle, second launch",r1,2026-11-09 19:50:00,120,537.3,543.9,4.73,6.88,7,,,1.29,no,Settings kept from the first launch
+Superset,2.0.6,"idle, second launch",r1,2026-11-09 19:54:29,120,232.4,234.7,0.15,0.42,5,,,1.2,no,Settings kept from the first launch
+T3 Code,0.1.7,"idle, second launch",r1,2026-11-09 19:58:55,120,613.9,620.7,1.23,3.12,6,,,1.25,no,Settings kept from the first launch
+Herdr,0.1.14,"idle, first launch",r1,2026-11-09 22:38:40,120,109.3,116.7,0.92,3.08,5,,,1.05,yes,"Includes Herdr's herdr-core server; first Herdr launch on this Mac, includes a one-time Metal shader compile; max adds the app's and herdr-core's maxima"
+Yardlet,0.11.10,"idle, first launch",evening r1,2026-11-09 22:41:49,120,53.7,54.1,0.47,0.51,1,,,0.9,no,"Yardlet measured again beside Herdr, later that evening"
+Yardlet,0.11.10,"idle, first launch",evening r2,2026-11-09 22:44:57,120,56.0,56.3,0.47,0.55,1,,,0.81,no,"Yardlet measured again beside Herdr, later that evening"
+Herdr,0.1.14,"idle, first launch",r2,2026-11-09 22:48:07,120,76.3,83.6,0.92,2.58,3,,,1.08,yes,Includes Herdr's herdr-core server
+Herdr,0.1.14,"idle, first launch",r3,2026-11-09 22:51:16,120,76.5,83.9,0.86,2.23,3,,,1.4,yes,Includes Herdr's herdr-core server
+Yardlet,0.11.10,"idle, first launch",evening r3,2026-11-09 22:54:24,120,52.6,52.9,0.47,0.52,1,,,1.56,no,"Yardlet measured again beside Herdr, later that evening"
+Herdr,0.1.14,"idle, second launch",r1,2026-11-09 22:58:40,120,92.1,99.4,0.88,2.47,3,,,1.06,no,Settings kept from the first launch; includes its herdr-core server
+Yardlet,0.11.10,ten tasks streaming,r1,2026-11-09 20:10:53,300,213.6,219.8,45.04,49.23,1,,,2.67,yes,
+Yardlet,0.11.10,switching long tasks,r1,2026-11-09 20:18:04,300,275.3,292.3,7.07,39.26,1,,,2.4,yes,
+Yardlet,0.11.10,twenty browser tabs,r1,2026-11-09 20:25:16,120,2474.1,2499.4,1.65,9.21,27,,,2.15,yes,
+Yardlet,0.11.10,two-hour session,r1,2026-11-09 22:35:11,7200,1860.7,1992.1,15.95,47.39,20,1793.0,1904.4,1.13,no,Yardlet ran two hours; the table shows the first hour (next row); The twenty tabs from the previous scene stay open
+Yardlet,0.11.10,one-hour session,r1 (first hour),,3600,1819.5,1927.2,16.09,46.90,,1793.0,1847.4,1.13,yes,"First 3,600 seconds of the two-hour run; the twenty tabs stay open"
+Paseo,0.15.3,ten tasks streaming,r1,2026-11-09 23:09:03,300,987.3,1062.3,66.77,97.02,7,,,2.51,yes,
+Paseo,0.15.3,switching long tasks,r1,2026-11-09 23:16:25,300,844.7,953.0,10.12,48.15,7,,,1.93,yes,
+Paseo,0.15.3,twenty browser tabs,r1,2026-11-09 23:23:18,120,4227.4,4282.7,90.35,113.98,56,,,4.57,yes,
+Paseo,0.15.3,one-hour session,r1,2026-11-10 00:25:06,3600,4442.3,4634.8,99.51,136.59,56,4360.8,4362.2,3.14,yes,The twenty tabs from the previous scene stay open
+T3 Code,0.1.7,ten tasks streaming,r1,2026-11-10 00:35:08,300,867.0,916.2,46.90,66.10,17,,,2.04,yes,
+T3 Code,0.1.7,switching long tasks,r1,2026-11-10 00:42:25,300,774.5,938.0,8.34,29.93,17,,,1.12,yes,
+T3 Code,0.1.7,one-hour session,r1,2026-11-10 01:43:59,3600,893.0,1057.0,16.48,45.86,16,798.2,907.9,1.72,yes,"No built-in browser, so no tabs"

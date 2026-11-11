@@ -76,6 +76,17 @@
 .hl-t { color: var(--hl-type); }
 .hl-a { color: var(--hl-attr); }
 
+/* Tables: figures set right; a table wider than the column scrolls on its own, not the page. */
+.post-body .table { overflow-x: auto; }
+.post-body table { width: 100%; border-collapse: collapse; font-size: 15.5px; line-height: 1.45;
+  font-variant-numeric: tabular-nums; }
+.post-body th { padding: 0 var(--s-3) var(--s-2); border-bottom: 1.5px solid var(--text); text-align: left;
+  vertical-align: bottom; font-weight: 600; color: var(--text); }
+.post-body td { padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.post-body th:first-child, .post-body td:first-child { padding-left: 0; }
+.post-body th:last-child, .post-body td:last-child { padding-right: 0; }
+.post-body .num { text-align: right; }
+
 /* After a post: what Yardlet is, in one line, and the way back. */
 .post-end { margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid var(--rule); }
 .about { display: grid; grid-template-columns: 44px 1fr; gap: var(--s-4); align-items: start; }
@@ -109,5 +120,8 @@
   .code { margin-left: calc(-1 * var(--s-4)); margin-right: calc(-1 * var(--s-4)); border-radius: 0; box-shadow: none;
     border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
   .code pre code { font-size: 12.5px; }
+  .post-body table { font-size: 14px; }
+  .post-body th, .post-body td { padding-left: var(--s-2); padding-right: var(--s-2); }
+  .post-body td { white-space: normal; }
   .post-list h2 { font-size: 22px; }
 }

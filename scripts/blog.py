@@ -5,7 +5,8 @@ blog/index.html, blog/feed.xml, the post list in llms.txt and sitemap.xml.
 Run it from the site's root after adding or changing a post: python3 scripts/blog.py
 A post starts with a front matter block (title, slug, date as YYYY-MM-DD, description, and optionally kind and
 updated, a YYYY-MM-DD date for a later change) and is written in the small part of Markdown the posts use: ## and ### headings, paragraphs, - lists, > notes,
-fenced code blocks (swift and python are colored), `code`, **bold** and [links](url). The pages use terms.html's
+fenced code blocks (swift and python are colored), | tables (a cell of the |---| rule that ends in : sets
+its column right), `code`, **bold** and [links](url). The pages use terms.html's
 frame one folder down; the share images need Pillow and the Inter fonts in scripts/fonts.
 """
 import datetime
@@ -95,6 +96,19 @@ def highlight(code, lang):
 LANGUAGE_NAMES = {"swift": "Swift", "python": "Python", "": "Output", "text": "Output", "sh": "Shell"}
 
 
+def table_html(rows):
+    """A | table |: the first row is the head and the second its |---| rule; a wide table scrolls on its own."""
+    head, rule, body = rows[0], rows[1], rows[2:]
+    right = [cell.endswith(":") for cell in rule]
+
+    def cells(row, tag):
+        num = ' class="num"'
+        return "".join(f"<{tag}{num if j < len(right) and right[j] else ''}>{inline(c)}</{tag}>" for j, c in enumerate(row))
+    return ('<div class="table" role="region" aria-label="Table" tabindex="0"><table>'
+            f"<thead><tr>{cells(head, 'th')}</tr></thead><tbody>"
+            + "".join(f"<tr>{cells(r, 'td')}</tr>" for r in body) + "</tbody></table></div>")
+
+
 def body_html(markdown):
     blocks, para, items, note = [], [], [], []
     lines = markdown.split("\n")
@@ -127,6 +141,14 @@ def body_html(markdown):
             blocks.append(f'<figure class="code"><figcaption><span>{html.escape(label)}</span>'
                           f'<button class="copy" type="button" hidden>Copy</button></figcaption>'
                           f'<pre><code>{highlight(chr(10).join(code), lang)}</code></pre></figure>')
+        elif line.startswith("|"):
+            flush()
+            rows = []
+            while i < len(lines) and lines[i].startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            i -= 1
+            blocks.append(table_html(rows))
         elif line.startswith("> ") or line == ">":
             if para or items:
                 flush()
