@@ -24,7 +24,7 @@ Apart from Yardlet, each app here is a commercial product or part of an open-sou
 
 ## What else comes along
 
-Knowing the agent's state is only part of it. Some apps also add their own text to the system prompt, so the agent knows it's inside the app: how to link a pull request, how to hand work to another agent. It works, and it means the agent you talk to isn't quite the one in its own app. Some install skills into the agent's global skills folder. Some mark their folders as trusted in the agent's config. Which permission mode a new session starts in also differs from app to app, but that is a preference, and many people run with checks off on purpose, so I've left it out.
+Knowing the agent's state is only part of it. Some apps also add their own text to the system prompt, so the agent knows it's inside the app: how to link a pull request, how to hand work to another agent. It works, and it means the agent you talk to isn't quite the one in its own app. Some install skills into the agent's global skills folder. Some mark their folders as trusted in the agent's config.
 
 ## Nine apps, as of November 13
 
