@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; img-src 'self'; media-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
-<title>Yardlet: Claude Code and Codex side by side on Mac</title>
-<meta name="description" content="Yardlet is a free, open-source native Mac app. Run Claude Code, Codex and other agents from their real CLIs, side by side, with the logins you already have.">
+<title>Yardlet: Lightweight, non-intrusive ADE for Claude Code and Codex</title>
+<meta name="description" content="Yardlet runs Claude Code, Codex and other agents side by side in a free native Mac app, with no hooks, no wrappers and nothing written into their settings.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yardlet">
 <meta property="og:url" content="https://yardlet.app/">
-<meta property="og:title" content="Yardlet: Claude Code and Codex, better together">
-<meta property="og:description" content="Run their real CLIs side by side in a free, open-source native app, with the logins you already have.">
+<meta property="og:title" content="Yardlet: Lightweight, non-intrusive, yet versatile ADE">
+<meta property="og:description" content="Run Claude Code, Codex and Antigravity side by side in one native Mac app, with no hooks, no wrappers and nothing written into their settings. Free and open source.">
 <meta property="og:image" content="https://yardlet.app/screens/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Yardlet: Claude Code and Codex, better together. A Codex task is open in its window.">
+<meta property="og:image:alt" content="Yardlet: Lightweight, non-intrusive, yet versatile ADE. A native Mac app with no hooks, no wrappers and nothing written into their settings. A Codex task is open in its window.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://yardlet.app/screens/og.jpg">
 <link rel="canonical" href="https://yardlet.app/">
@@ -27,7 +27,7 @@
   "@type": "SoftwareApplication",
   "name": "Yardlet",
   "url": "https://yardlet.app/",
-  "description": "A free, open-source native Mac app that runs the real Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and session history.",
+  "description": "Lightweight, non-intrusive, yet versatile ADE. A free, open-source native Mac app that runs the real Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and session history, with no hooks, no wrappers and nothing written into their settings.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "macOS 15 or later, Apple silicon or Intel",
   "softwareVersion": "0.11.11",
@@ -171,7 +171,6 @@
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
-<script src="ab.js"></script>
 <script src="site.js" defer></script>
 </head>
 <body>
@@ -247,7 +246,7 @@
         <nav class="bar-links" aria-label="Site">
           <a href="privacy.html">Privacy</a>
           <a href="https://github.com/zzunkie/yardlet">GitHub</a>
-          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11.dmg">Download</a>
+          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11-macos.dmg">Download</a>
           <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
         </nav>
       </header>
@@ -257,13 +256,9 @@
         <article class="turn" id="what" aria-labelledby="what-title">
           <p class="ask"><span class="sr-only">You: </span>I already use Codex and Claude Code. What does Yardlet change?</p>
           <div class="reply">
-            <h1 id="what-title"><span class="headline-a">Every coding agent. Every account. One&nbsp;app.</span> <span
-              class="headline-b">The app for every coding agent you&nbsp;use.</span> <span
-              class="headline-c">Claude Code and Codex, better&nbsp;together.</span></h1>
-            <p class="lead lead-ab">Run Codex, Claude Code and any other coding agent with the sign&#8209;in you already have, and
-              pick the account with room left for each task. Free and open source.</p>
-            <p class="lead lead-c">Run their real CLIs side by side in a free, open&#8209;source native app, with the logins you
-              already have.</p>
+            <h1 id="what-title">Lightweight, non&#8209;intrusive, yet versatile&nbsp;ADE.</h1>
+            <p class="lead">Yardlet runs Claude Code, Codex and other agents side by side in one free, open&#8209;source
+              native Mac app, with no hooks, no wrappers and nothing written into their settings.</p>
 
             <div class="approve-box">
             <section class="approve" aria-labelledby="get-title">
@@ -279,7 +274,7 @@
               <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
               <div class="approve-actions">
                 <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet">View on GitHub</a>
-                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11.dmg">Download for Mac</a>
+                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11-macos.dmg">Download for Mac</a>
               </div>
             </section>
             </div>
@@ -647,7 +642,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
               <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
               <div class="approve-actions">
                 <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet#development">Build from source</a>
-                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11.dmg">Download for Mac</a>
+                <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.11/Yardlet-0.11.11-macos.dmg">Download for Mac</a>
               </div>
             </section>
             </div>

@@ -1,6 +1,6 @@
 # Yardlet
 
-> Yardlet is a free, open-source (MIT) native macOS app that runs the real coding agent CLIs you already use, such as Claude Code, Codex, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Hermes Agent, Muse Code and Pi, side by side in one window of projects and tasks. Each agent keeps its own sign-in, agent loop and session history.
+> Lightweight, non-intrusive, yet versatile ADE. Yardlet is a free, open-source (MIT) native macOS app that runs the real coding agent CLIs you already use, such as Claude Code, Codex, OpenCode, Cursor Agent, Antigravity CLI, Kimi Code, Grok Build, Hermes Agent, Muse Code and Pi, side by side in one window of projects and tasks. Each agent keeps its own sign-in, agent loop and session history, with no hooks, no wrappers around the agent commands and nothing written into the agents' settings.
 
 - Runs each agent's own CLI on your Mac with the sign-in it already has: Codex through its app server, Claude Code through its stream JSON mode, and OpenCode and others through ACP. It does not share or proxy accounts, and it has no account, plan or fee of its own. Usage counts against your agent plan as it does in the CLI.
 - Native: written in Swift and SwiftUI. The built-in browser panel is Chromium.
