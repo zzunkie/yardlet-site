@@ -6,7 +6,8 @@ Run it from the site's root after adding or changing a post: python3 scripts/blo
 A post starts with a front matter block (title, slug, date as YYYY-MM-DD, description, and optionally kind and
 updated, a YYYY-MM-DD date for a later change) and is written in the small part of Markdown the posts use: ## and ### headings, paragraphs, - lists, > notes,
 fenced code blocks (swift and python are colored), | tables (a cell of the |---| rule that ends in : sets
-its column right), `code`, **bold** and [links](url). The pages use terms.html's
+its column right; a table of five or more columns wraps its cells, and on a phone shows each row as a block), `code`, **bold**, [links](url) and notes:
+[^3] in the text points to a line "[^3]: text" (lines of them in a row make one numbered list). The pages use terms.html's
 frame one folder down; the share images need Pillow and the Inter fonts in scripts/fonts.
 """
 import datetime
@@ -51,6 +52,7 @@ def inline(text):
         part = html.escape(part, quote=False)
         part = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", part)
         part = re.sub(r"\[([^\]]+)\]\(((?:https?://|/|\.\./)[^)\s]+)\)", r'<a href="\2">\1</a>', part)
+        part = re.sub(r"\[\^(\w+)\]", r'<sup class="fn"><a href="#note-\1">\1</a></sup>', part)
         out.append(part)
     return "".join(out)
 
@@ -101,19 +103,35 @@ def table_html(rows):
     head, rule, body = rows[0], rows[1], rows[2:]
     right = [cell.endswith(":") for cell in rule]
 
+    wrap = " wrap" if len(head) >= 5 else ""  # too many columns to keep each cell on one line
+    # A wrapped table becomes one block per row on a phone, each cell under its column's name.
+    labels = [html.escape(re.sub(r"\[\^\w+\]|[`*]", "", c), quote=True) for c in head] if wrap else []
+
     def cells(row, tag):
-        num = ' class="num"'
-        return "".join(f"<{tag}{num if j < len(right) and right[j] else ''}>{inline(c)}</{tag}>" for j, c in enumerate(row))
-    return ('<div class="table" role="region" aria-label="Table" tabindex="0"><table>'
+        def attrs(j):
+            num = ' class="num"' if j < len(right) and right[j] else ""
+            label = f' data-label="{labels[j]}"' if tag == "td" and j < len(labels) else ""
+            return num + label
+        def content(c):
+            return f"<span>{inline(c)}</span>" if wrap and tag == "td" else inline(c)
+        return "".join(f"<{tag}{attrs(j)}>{content(c)}</{tag}>" for j, c in enumerate(row))
+    return (f'<div class="table{wrap}" role="region" aria-label="Table" tabindex="0"><table>'
             f"<thead><tr>{cells(head, 'th')}</tr></thead><tbody>"
             + "".join(f"<tr>{cells(r, 'td')}</tr>" for r in body) + "</tbody></table></div>")
 
 
 def body_html(markdown):
-    blocks, para, items, note = [], [], [], []
+    blocks, para, items, note, notes = [], [], [], [], []
     lines = markdown.split("\n")
 
+    def note_item(name, text):
+        value = f' value="{name}"' if name.isdigit() else ""
+        return f'<li id="note-{name}"{value}>{inline(text)}</li>\n'
+
     def flush():
+        if notes:
+            blocks.append('<ol class="notes">\n' + "".join(note_item(*n) for n in notes) + "</ol>")
+            notes.clear()
         if para:
             blocks.append(f"<p>{inline(' '.join(para))}</p>")
             para.clear()
@@ -149,6 +167,13 @@ def body_html(markdown):
                 i += 1
             i -= 1
             blocks.append(table_html(rows))
+        elif re.match(r"\[\^\w+\]: ", line):
+            if para or items or note:
+                flush()
+            name, text = re.match(r"\[\^(\w+)\]: (.*)", line).groups()
+            notes.append((name, text.strip()))
+        elif line.startswith("  ") and notes and line.strip():
+            notes[-1] = (notes[-1][0], notes[-1][1] + " " + line.strip())
         elif line.startswith("> ") or line == ">":
             if para or items:
                 flush()
@@ -162,7 +187,7 @@ def body_html(markdown):
             anchor = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
             blocks.append(f'<h2 id="{anchor}"><a class="anchor" href="#{anchor}" aria-hidden="true">#</a>{inline(title)}</h2>')
         elif line.startswith("- "):
-            if para or note:
+            if para or note or notes:
                 flush()
             items.append(line[2:].strip())
         elif line.startswith("  ") and items and line.strip():
@@ -173,7 +198,7 @@ def body_html(markdown):
             else:
                 note.append("")
         else:
-            if items or note:
+            if items or note or notes:
                 flush()
             para.append(line.strip())
         i += 1
@@ -183,6 +208,7 @@ def body_html(markdown):
 
 def reading_minutes(markdown):
     prose = re.sub(r"```.*?```", "", markdown, flags=re.S)
+    prose = re.sub(r"\]\([^)\s]+\)", "]", prose)  # a link's address is not read
     return max(1, math.ceil(len(re.findall(r"\w+", prose)) / 230))
 
 

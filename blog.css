@@ -125,3 +125,24 @@
   .post-body td { white-space: normal; }
   .post-list h2 { font-size: 22px; }
 }
+
+/* A table of five or more columns wraps its cells instead of scrolling; notes under it are numbered. */
+.post-body .table.wrap table { font-size: 14.5px; }
+.post-body .table.wrap td { white-space: normal; vertical-align: top; }
+.post-body sup.fn { font-size: 0.7em; line-height: 0; vertical-align: super; }
+.post-body sup.fn a { padding: 0 0.1em; text-decoration: none; }
+.post-body .notes { padding-left: 1.6em; list-style: decimal; font-size: 15px; line-height: 1.6; color: var(--text-2); }
+.post-body .notes li + li { margin-top: var(--s-2); }
+.post-body .notes li:target { color: var(--text); }
+@media (max-width: 640px) {
+  .post-body .table.wrap { overflow: visible; }
+  .post-body .table.wrap thead { display: none; }
+  .post-body .table.wrap table, .post-body .table.wrap tbody, .post-body .table.wrap tr { display: block; }
+  .post-body .table.wrap tr { padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .post-body .table.wrap tr:first-child { border-top: 1.5px solid var(--text); }
+  .post-body .table.wrap td { display: grid; grid-template-columns: 8.5em 1fr; gap: var(--s-3); padding: 2px 0;
+    border-bottom: 0; text-align: left; }
+  .post-body .table.wrap td::before { content: attr(data-label); color: var(--text-3); }
+  .post-body .table.wrap td:first-child { display: block; padding-bottom: var(--s-1); font-weight: 600; color: var(--text); }
+  .post-body .table.wrap td:first-child::before { content: none; }
+}
