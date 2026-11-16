@@ -102,6 +102,114 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.12" aria-labelledby="v0.11.12-title">
+      <h2 id="v0.11.12-title">Yardlet 0.11.12</h2>
+      <p class="updated"><time datetime="2026-11-16">November 16, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.12">Release on GitHub</a></p>
+      <h3>Security</h3>
+      <ul>
+        <li>Signing in to a connector asks first when its sign-in page is on another site than the connector's server. The sign-in opens only web pages and takes only its own answer.</li>
+        <li>Reading another project's tasks through the session tools asks you first, and keys and tokens in what those tools return are hidden.</li>
+        <li>A task that may only read starts only tasks that may only read. Running or changing a schedule that may do more than the calling task asks you first.</li>
+        <li>A task's browser takes a profile of its own before an agent runs scripts on a page, and sites in tabs an agent drives ask again for the camera and microphone.</li>
+        <li>A paired device needs its Terminal permission to start or switch a task to a mode that skips approvals.</li>
+        <li>Yardlet's folder in your home is private to your account, and the Git that Yardlet runs no longer starts programs a folder's own settings name.</li>
+        <li>An update no longer installs an older build over a newer one, and a download is checked against the release key before it is opened.</li>
+        <li>A folder given to a page's file chooser is refused when it holds a link leading outside the task's folders.</li>
+      </ul>
+      <h3>Tasks</h3>
+      <ul>
+        <li>Every task starts on its harness's current CLI, the one chosen in Settings › Harnesses or else the newest install, as the Codex and Claude apps do. Choosing another version moves idle tasks to it with their next message.</li>
+        <li>Your own message no longer waits behind an account move Yardlet chose itself. Such a move that still waits after ten minutes is given up, and the line above the composer says what a move is waiting for.</li>
+        <li>Choosing another account for a task with background work waits for that work, as during a turn, instead of ending it.</li>
+        <li>Background shells and agents keep running after a turn ends on a usage limit or an error.</li>
+        <li>When every account is nearly spent, automatic assignment picks one with something left before one that is used up.</li>
+        <li>"Continue with another account" works again after the Claude app updated the CLI it bundles.</li>
+        <li>A message that reached a task while its CLI was still starting no longer fails with "Claude session is already attached".</li>
+        <li>A child task's result that its parent task already read no longer counts as needing you in the Dock badge, the menu bar and Next Task Needing Attention. Its unread dot stays in the sidebar.</li>
+        <li>Next-message suggestions are asked for only in tasks on screen or seen recently, instead of after every turn of every task.</li>
+        <li>What a CLI writes just before it exits is no longer lost, for Claude Code, ACP agents and Pi.</li>
+        <li>Disconnecting or removing a connector that runs on this Mac ends everything its server started.</li>
+      </ul>
+      <h3>Claude Code</h3>
+      <ul>
+        <li>Idle compaction (Settings › General › Tasks, on by default) compacts a long Claude Code task that sits idle shortly before its prompt cache expires, by Claude Code's own rules, so coming back after an hour doesn't write the whole conversation to the cache again.</li>
+        <li>Settings › General › Tasks › Context limit for Claude Code tasks sets the limit for tasks that chose none of their own. The per-task menu adds 600k.</li>
+        <li>Renaming a task renames its running Claude Code session too, and each session carries its task's title in the list of other sessions Claude Code shows its agents.</li>
+        <li>Slash commands such as <code>/compact</code> read back after a relaunch as they were sent, not as your bubbles with tags.</li>
+      </ul>
+      <h3>Conversation</h3>
+      <ul>
+        <li>A message you send while a turn works now parts the folded work, so the turn reads in the order it happened: the work after your message folds on a "Work details" line under it.</li>
+        <li>A Claude Code turn you stopped reads "You stopped after N seconds", as a Codex turn does, and the calls the stop cut read Stopped, not failed.</li>
+        <li>Claude Code's question cards show the previews an option carries (a mockup, code, a draft) beside the options.</li>
+        <li>An approval card shows the whole command it asks about, scrolling instead of folding.</li>
+        <li>With the composer empty, Return or ⌘Return allows the oldest waiting tool approval once and Escape denies it, as in the Codex and Claude apps. The card's buttons name their keys.</li>
+        <li>A Codex command you declined reads "Denied", not "Ran".</li>
+        <li>Skip on a question card's last question sends on the first click.</li>
+        <li>Wide tables wrap their cells to fit the message, and a table that still scrolls fades at its edge. Find stays on a match inside a table.</li>
+        <li>The conversation keeps at least 560 points beside the side panel. Where both don't fit, the panel floats over the conversation's trailing edge.</li>
+        <li>When a connector tool names a view for its results (MCP Apps), the view shows under the call, in a sandbox of its own (<a href="https://github.com/zzunkie/yardlet/blob/main/docs/CONNECTORS.md">docs/CONNECTORS.md</a>, "MCP Apps").</li>
+        <li>A message that starts with a code block draws the block's header and Copy button in place.</li>
+        <li>Return chooses a typed <code>/</code> command even when its list arrived after your last keystroke.</li>
+        <li>⌘ shortcuts work under Korean and other non-Latin input sources in the browser panel, the composer's paste, the terminal and the image viewer.</li>
+      </ul>
+      <h3>Settings</h3>
+      <ul>
+        <li>Appearance can choose the font and size for code, diffs, command output, open files and the terminal.</li>
+        <li>Notifications can choose when a finished or failed turn notifies, whether approvals and questions notify, and the sound.</li>
+        <li>General › App has Launch at login, off by default.</li>
+        <li>General › Tasks has Send shortcut: Return, ⌘Return for drafts of several lines, or always ⌘Return, as in the Codex app.</li>
+        <li>Harness Accounts says each account's limits on one line. Usage keeps the bars and reset times.</li>
+        <li>Descriptions in Settings are shorter.</li>
+      </ul>
+      <h3>Calendar</h3>
+      <ul>
+        <li>Settings › General › App › Calendar, off by default, shows your connected Google and Outlook calendars and the Mac's calendars beside your tasks, by week or by day, with Yardlet's scheduled runs as a layer of their own. Google and Outlook invitations can be answered there, and an event can be handed to an agent.</li>
+      </ul>
+      <h3>Schedules</h3>
+      <ul>
+        <li>A task's Background tasks card lists the schedules that continue it.</li>
+        <li>Scheduled tasks groups what will run under Today, Tomorrow, Next 7 days and Later, and names the task a continuing schedule runs in.</li>
+        <li>A scheduled run's clock lines up with the other marks at the end of its sidebar row.</li>
+      </ul>
+      <h3>Browser and passwords</h3>
+      <ul>
+        <li>Import from Another Browser… is also in the browser panel's ⋯ menu and in Settings › Passwords, and can bring the other browser's visit history into the address field's suggestions.</li>
+        <li>A sign-in that asks for several secrets, such as an organization's password and then your own, is saved and filled whole. The item sheet shows each secret on a row of its own.</li>
+      </ul>
+      <h3>Antigravity</h3>
+      <ul>
+        <li>Over ACP, the permission menu is the only one: it lists Default, Antigravity's own modes such as Accept edits and Auto, and Bypass permissions.</li>
+        <li>Bypass permissions runs on Antigravity's own skip-permissions process, so turns Antigravity starts by itself, such as after a subagent ends, no longer wait for an approval.</li>
+        <li>When an ACP agent such as Antigravity serves several tasks from one process and supports it, closing one task's session tells the agent, so it can release what it started for that session, such as connector servers.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>In a window for another Mac that also runs 0.11.12, Review can stage, unstage and discard, and the Files panel can save. Unsaved edits are kept when the window closes.</li>
+        <li>A terminal keeps running when the window closes or the connection drops, and comes back with its screen when the window opens again.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Scrolling a long conversation or the sidebar does much less work each frame.</li>
+        <li>A plan limit report redraws only the turn with the limit card, not every turn in view.</li>
+        <li>Long histories draw with less work on the main thread.</li>
+        <li>Saving the message queue, the restart record, task profiles, account assignments and model lists no longer holds up the window while the disk is busy.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>A file Yardlet keeps state in and can't read is set aside instead of being written over, and the window says when a save failed.</li>
+        <li>Queued messages and shell output go out once an edit is cancelled or files are restored, instead of waiting for the next turn.</li>
+        <li>A task off screen whose message failed to go gets its unread mark and a notification that names the failure.</li>
+        <li>A schedule moved to continue another task no longer leaves the first task waiting on approval cards.</li>
+        <li>The Agents card lists a continued Claude Code subagent once.</li>
+        <li>The main-thread hang log keeps more than a day.</li>
+      </ul>
+      <h3>Thanks</h3>
+      <ul>
+        <li><a href="https://github.com/minsujang0">@minsujang0</a> for reporting the per-frame scrolling work in <a href="https://github.com/zzunkie/yardlet/issues/677">#677</a> and for the scrolling measurements and work in <a href="https://github.com/zzunkie/yardlet/pull/719">#719</a>.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.11" aria-labelledby="v0.11.11-title">
       <h2 id="v0.11.11-title">Yardlet 0.11.11</h2>
       <p class="updated"><time datetime="2026-11-10">November 10, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.11">Release on GitHub</a></p>
