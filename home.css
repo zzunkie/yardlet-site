@@ -128,26 +128,26 @@ code { font: 0.86em var(--mono); }
 .top .bar-source { display: none; }
 
 /* The first screen: a question, the answer, how to get it, and the window. */
-.hero { position: relative; padding-top: 48px; text-align: center; }
+.hero { position: relative; padding-top: 36px; text-align: center; }
 .ask {
   display: inline-block; max-width: 34em; padding: 10px 18px; border-radius: 20px 20px 6px 20px;
   background: var(--bubble); color: var(--text); font-size: 17px; line-height: 1.45; text-align: left;
 }
-.hero .ask { margin-bottom: 24px; }
+.hero .ask { margin-bottom: 20px; }
 .hero h1 {
   margin-inline: auto;
-  font: 700 clamp(44px, 5.7vw, 74px)/1 var(--display); letter-spacing: -0.042em; word-spacing: 0.06em; color: var(--ink);
+  font: 700 clamp(44px, 5.4vw, 70px)/1 var(--display); letter-spacing: -0.042em; word-spacing: 0.06em; color: var(--ink);
   text-wrap: balance;
 }
-.hero .lead { margin: 22px auto 0; max-width: 38em; font-size: 20px; line-height: 1.5; color: var(--text-2); text-wrap: pretty; }
-.get { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+.hero .lead { margin: 18px auto 0; max-width: 38em; font-size: 20px; line-height: 1.5; color: var(--text-2); text-wrap: pretty; }
+.get { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
 .meta { margin-top: 16px; font: 13px/1.6 var(--mono); color: var(--text-3); }
 .meta a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .meta a:hover { color: var(--text); }
 .meta .sep { margin: 0 2px; opacity: 0.6; }
 
 /* The window rests on a band of desk that runs to the edges of the page. */
-.stage { position: relative; margin-top: 40px; padding-bottom: 56px; }
+.stage { position: relative; margin-top: 32px; padding-bottom: 56px; }
 .stage::before {
   content: ""; position: absolute; left: 0; right: 0; top: 34%; bottom: 0; z-index: -1;
   background: linear-gradient(180deg, var(--desk) 0%, var(--desk) 55%, var(--bg) 100%);
@@ -181,7 +181,7 @@ code { font: 0.86em var(--mono); }
 
 /* The agents, as their own marks. */
 .works { margin-top: 40px; text-align: center; }
-.works p { font-size: 14px; color: var(--text-3); }
+.works p { font-size: 14px; color: var(--text-2); }   /* text-3 on the desk band is under 4.5:1 */
 .works ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 14px; }
 .works li { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; }
 .works img { width: 20px; height: 20px; border-radius: 5px; }
@@ -333,15 +333,20 @@ code { font: 0.86em var(--mono); }
   .works ul { gap: 10px 18px; }
   .works li { font-size: 14px; }
   .proof { padding-top: 56px; }
-  .facts, .facts.two, .facts.four { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
-  .answer { padding-top: 88px; }
+  /* On a phone each small fact is one paragraph: its title, then its line. */
+  .facts, .facts.two, .facts.four { grid-template-columns: 1fr; gap: 0; margin-top: 32px; }
+  .facts > div { padding: 12px 0; }
+  .facts dt, .facts h3, .facts dd, .facts p { display: inline; }
+  .facts dd, .facts p { margin: 0 0 0 4px; }
+  .answer { padding-top: 76px; }
   .answer .body { font-size: 17px; }
   .answer .wide { margin-top: 36px; }
   .rows > div, .rows > li { grid-template-columns: 1fr; gap: 2px; }
   .tools { grid-template-columns: 1fr; gap: 2px; }
   .tools dd { margin-bottom: 8px; }
-  .phone-band { margin-top: 96px; padding-block: 64px; }
+  .phone-band { margin-top: 80px; padding-block: 56px; }
   .android .phone-get .btn { width: 100%; }
-  .closing { padding-top: 112px; }
+  .closing { padding-top: 96px; }
+  .know { margin-top: 64px; }
   .foot-in { grid-template-columns: 1fr; }
 }
