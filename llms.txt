@@ -26,6 +26,7 @@
 
 ## Blog posts
 
+- [98% of our Claude Code tokens were cache reads, but only 52% of the cost](https://yardlet.app/blog/claude-code-tokens-cache-reads-cost.html): Across 8 days of Claude Code transcripts on my Mac, cache reads were 98% of the tokens but 52% of the API-equivalent cost, while cache writes and output were 35% and 13%.
 - [I renamed my MCP tools, and 8 of 20 resumed sessions decided the server was down](https://yardlet.app/blog/renamed-mcp-tools-sessions-said-disconnected.html): After I merged per-account MCP tools into single tools, 8 of 20 resumed Claude Code sessions reported that the server was disconnected and stopped calling tools, even though the server never went down.
 - [What desktop apps for coding agents add to Claude Code and Codex](https://yardlet.app/blog/what-agent-apps-add.html): An app that runs several agents has to know when each one is working, waiting or done. Nine apps solve it with global hooks, command wrappers, a terminal signal or the agent's own protocol, and some add their own text to the prompt. What each does as of November 13, what it leaves on your Mac, and its memory at rest.
 - [Memory and CPU of eight coding-agent apps on one Mac](https://yardlet.app/blog/agent-apps-memory-cpu.html): On November 9 and 10 I measured Yardlet 0.11.10 and seven other coding-agent apps on one MacBook Pro: idle on first launch, with ten tasks streaming, with twenty browser tabs and over an hour. Here are the numbers, where Yardlet does worse, what the table leaves out, and the raw data.
