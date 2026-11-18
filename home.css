@@ -236,7 +236,7 @@ code { font: 0.86em var(--mono); }
 
 /* Measured facts, in place of praise. */
 .proof { padding-block: 16px 112px; background: linear-gradient(var(--desk-top), var(--desk-bottom)); }
-.proof dl { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.proof dl { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
 .proof .wrap > :first-child { margin-top: 0; }
 .proof dl > div { padding: 28px 24px 0 0; }
 .proof dl > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
@@ -374,8 +374,7 @@ code { font: 0.86em var(--mono); }
   .split > :last-child { grid-column: 1; grid-row: auto; margin-top: 36px; }
   .facts { grid-template-columns: repeat(2, 1fr); }
   .proof dl { grid-template-columns: repeat(2, 1fr); }
-  .proof dl > div:nth-child(3) { padding-left: 0; border-left: 0; }
-  .proof dl > div:nth-child(n+3) { margin-top: 24px; }
+  .proof dl > div:nth-child(3) { grid-column: 1 / -1; padding-left: 0; border-left: 0; margin-top: 24px; }
   .answer { padding-top: 104px; }
   .top nav a.hide-narrow { display: none; }
 }
