@@ -383,15 +383,13 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <figcaption>What the agent gets back after filling a saved sign-in</figcaption>
           <pre><code>Filled the username and password of “Acme dashboard” into the form on dashboard.acme.dev and submitted it. The values are not shown to you.</code></pre>
         </figure>
+        <dl class="facts two">
+          <div><dt>Codes and passkeys</dt><dd>The vault also fills two-step codes and passkeys.</dd></div>
+          <div><dt>Hand it over</dt><dd>The agent hands you the tab with a reason. Finish the step and press I'm done, or decline.</dd></div>
+          <div><dt>Sign-ins you have</dt><dd>Bring a site's sign-in over from another browser on your Mac.</dd></div>
+          <div><dt>Default browser</dt><dd>Set Yardlet as your default browser, and links open beside the task you are looking at.</dd></div>
+        </dl>
       </div>
-    </div>
-    <div class="wrap">
-      <dl class="facts four">
-        <div><dt>Codes and passkeys</dt><dd>The vault also fills two-step codes and passkeys.</dd></div>
-        <div><dt>Hand it over</dt><dd>The agent hands you the tab with a reason. Finish the step and press I'm done, or decline.</dd></div>
-        <div><dt>Sign-ins you have</dt><dd>Bring a site's sign-in over from another browser on your Mac.</dd></div>
-        <div><dt>Default browser</dt><dd>Set Yardlet as your default browser, and links open beside the task you are looking at.</dd></div>
-      </dl>
     </div>
   </section>
 
@@ -402,6 +400,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
         <h2 id="connectors-title">Connect your tools once, for every&nbsp;agent.</h2>
         <p class="body">Gmail, Google Calendar, Google Drive and Apple Calendar, Reminders and Contacts run through Yardlet's built-in MCP server on your Mac; GitHub, Slack and dozens of remote MCP services connect with one sign-in. Turn any of them off per task.</p>
         <p class="more"><a href="blog/mcp-server-without-settings.html">How agents get it without a change to their settings</a>.</p>
+        <div class="facts one">
+          <div id="mail"><h3>Mailbox</h3><p>Gmail, Outlook Mail and IMAP inboxes beside your tasks. Agents read threads and write drafts, and every send goes through your approval.</p></div>
+          <div id="personal-agents"><h3>Personal agents</h3><p>Chat with your existing ChatGPT dots beside coding tasks.</p></div>
+        </div>
       </div>
       <figure>
         <div class="sheet">
@@ -414,12 +416,6 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           </picture>
         </div>
       </figure>
-    </div>
-    <div class="wrap">
-      <div class="facts two">
-        <div id="mail"><h3>Mailbox</h3><p>Gmail, Outlook Mail and IMAP inboxes beside your tasks. Agents read threads and write drafts, and every send goes through your approval.</p></div>
-        <div id="personal-agents"><h3>Personal agents</h3><p>Chat with your existing ChatGPT dots beside coding tasks.</p></div>
-      </div>
     </div>
   </section>
 
@@ -457,10 +453,12 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
 
   <div class="phone-band">
     <section class="answer" id="phone" aria-labelledby="phone-title">
-      <div class="wrap">
+      <div class="wrap split">
+        <div>
         <p class="ask"><span class="sr-only">You: </span>Let me follow tasks and answer approvals while I'm out.</p>
         <h2 id="phone-title">Follow tasks and answer approvals from your Android&nbsp;phone.</h2>
         <p class="body">The app pairs with your Mac by QR code. On the same network it connects directly; away from it, through Yardlet's relay, end-to-end encrypted, and the relay can neither read nor store the messages.</p>
+        </div>
         <div class="android">
         <!-- android:start -->
             <p>The Android app is in testing, for Android&nbsp;10 and later. In Yardlet on your Mac, open
