@@ -169,7 +169,7 @@ code { font: 0.86em var(--mono); }
 }
 .stage { position: relative; margin-top: 36px; padding-bottom: 72px; }
 .stage::before {
-  content: ""; position: absolute; inset: 30% 0 0; z-index: -1;
+  content: ""; position: absolute; inset: 190px 0 0; z-index: -1;   /* from a quarter down the window, so the first screen shows it */
   background: radial-gradient(64% 58% at 50% 0%, var(--desk-glow), transparent 72%), var(--desk-top);
 }
 .window { position: relative; max-width: 1200px; margin-inline: auto; }
@@ -401,7 +401,7 @@ code { font: 0.86em var(--mono); }
   .hero .meta br, .hero .meta-2 { display: none; }   /* both are said again in the last answer */
   .meta { font-size: 12px; }
   .stage { margin-top: 32px; padding-bottom: 48px; }
-  .stage::before { inset: 22% 0 0; }
+  .stage::before { inset: 150px 0 0; }
   .shot { aspect-ratio: 1036 / 1296; max-height: 78vh; margin-inline: auto; border-radius: 16px; }
   .shot-review { aspect-ratio: 1036 / 1290; }
   .cap-wide { display: none; }
