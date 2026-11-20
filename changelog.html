@@ -102,6 +102,98 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.13" aria-labelledby="v0.11.13-title">
+      <h2 id="v0.11.13-title">Yardlet 0.11.13</h2>
+      <p class="updated"><time datetime="2026-11-20">November 20, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.13">Release on GitHub</a></p>
+      <h3>Security</h3>
+      <ul>
+        <li>Keys and tokens in what the browser, session and terminal tools return are hidden more reliably, and hiding them in a long result no longer holds up the window.</li>
+      </ul>
+      <h3>Simulators</h3>
+      <ul>
+        <li>A task's side panel has a Simulator tab, after Browser in its launcher and + menu. It shows an iOS simulator from your Xcode, an Android emulator from your Android SDK, or an Android phone or tablet that adb reaches, live, and you use it with the mouse, the trackpad and the keyboard. Yardlet starts devices without a window and changes nothing in Xcode's or the SDK's settings.</li>
+        <li>What the Mac lacks for a simulator (Xcode, an iOS runtime, the Android SDK) can be installed from the tab, which shows what it will download first.</li>
+        <li>Agents can see and drive the device their task attached, read its screen as elements, and hand it to you for a step only you can take. A device asks once before an agent first uses it, and a real Android device asks in each task.</li>
+        <li>The simulator helper runs in a sandbox, with no network.</li>
+        <li>Settings › General › Simulator turns it all off: the tabs close, the devices Yardlet started shut down, and Yardlet offers to remove what it installed.</li>
+      </ul>
+      <h3>Conversation</h3>
+      <ul>
+        <li>Pictures an answer's Markdown names are drawn in place, and videos and sounds play where they are named. A picture on the web loads only when you click Load image.</li>
+        <li>Mermaid blocks are drawn as diagrams, as in the Codex and Claude apps.</li>
+        <li>Codex's inline visualizations are drawn in the conversation, as in the Codex app. Claude Code and ACP agents get a <code>show_widget</code> tool that draws a view under its call.</li>
+        <li>A waiting approval, question or plan sits right above the composer on a panel of its own, as in the Claude app, and the composer stays free to type in. An answered request stays in its turn as one quiet line that names what was asked.</li>
+        <li>A message you send while an agent waits on you goes to the agent and answers what it waited on, instead of waiting until you press Decline.</li>
+        <li>A request's wider allows share one Always allow button, with each scope in its menu.</li>
+        <li>A task waiting on you reads Needs approval or Needs answer in the sidebar and home, and in the task only the progress line is orange. A split pane's outline marks focus alone.</li>
+        <li>Korean wraps between words in text fields and answers, and the composer grows while an input method is still composing a word.</li>
+        <li>In a narrow composer the model control shortens first, so Send stays in view.</li>
+        <li>A 1M-context Claude model reads "Opus (1M context)" before Claude Code lists its models.</li>
+        <li>A Claude Code Code Mode step reads as its script and the calls it made.</li>
+      </ul>
+      <h3>Settings</h3>
+      <ul>
+        <li>Settings has a search field, and ⌘K finds settings too, in English and Korean.</li>
+        <li>Keyboard shortcuts can be changed in Settings › Keyboard shortcuts.</li>
+        <li>View › Zoom In, Zoom Out and Actual Size (⌘+, ⌘− and ⌘0) zoom the app's text from 80% to 175%, as in the Codex and Claude apps.</li>
+        <li>Yardlet follows the Mac's accent color by default. Appearance › Color preset offers the accents Ink, Grove and Iris and the complete palettes Nord, Catppuccin, Ember and Tidepool. The Light and Dark columns can set their own accent, background and text colors, checked for contrast before they are saved, and the interface font can be the system, serif or rounded face.</li>
+        <li>Changing the language offers Relaunch.</li>
+        <li>The browser's settings have a Browser section of their own, Harness Accounts and Usage come before Harnesses, and more rows say what they change.</li>
+        <li>A task's harness settings turn Codex skills and Claude Code plugins on and off through the harness's own commands. They open from Harness settings… in ⌘K, Manage skills… under Codex's Skills, and Claude Code's <code>/plugin</code>.</li>
+      </ul>
+      <h3>Tasks</h3>
+      <ul>
+        <li>Sidebar rows stay in place while the pointer is over the list, so a click opens the task you saw.</li>
+        <li>A message sent into a turn that ended before the agent read it, as when Yardlet quit, goes out again instead of waiting for a turn that never comes.</li>
+        <li>A task whose harness did not start keeps the message it was started with and the reason in its conversation, and a scheduled run that made it names it.</li>
+        <li>With no project chosen, the home starts a chat.</li>
+        <li>A task hears when a subagent it started ends, also after the call returned.</li>
+        <li>A subagent that ended no longer leaves its calling task waiting on an approval nobody can answer.</li>
+        <li>A task a schedule started changes other schedules as its permission mode allows, as any task does.</li>
+        <li>Agents can add a folder as a project with <code>create_project</code>.</li>
+        <li>A sign-in a CLI can no longer renew offers Sign in.</li>
+        <li>A Claude Code error shows once, as its card.</li>
+        <li>A Claude Code turn the Mac's sleep cut mid-response is continued.</li>
+        <li>GPT-6.2 Astra and Sol usage has its prices.</li>
+      </ul>
+      <h3>Antigravity</h3>
+      <ul>
+        <li>Antigravity CLI tasks run only over ACP.</li>
+        <li>Antigravity CLI accounts no longer take part in automatic account assignment.</li>
+      </ul>
+      <h3>Browser</h3>
+      <ul>
+        <li>Import from Another Browser… starts with your default browser, and lists the browsers macOS keeps from other apps with how to allow them.</li>
+        <li>An agent's script on a page gives its task a browser profile of its own only where the page may be signing in, so the task keeps your later sign-ins elsewhere.</li>
+        <li>Each browser profile's disk cache stays under 80 MiB, and an archived task's profile is removed while the browser keeps running.</li>
+        <li>A tab shown again no longer stays white until you reload it.</li>
+        <li><code>browser_snapshot</code> can read one part of a page.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>A window for another Mac keeps its close, minimize and zoom buttons on the title bar row as its connection changes.</li>
+        <li>A task list the other Mac refused is asked for again while the connection stays.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Launch reads saved conversations off the main thread, so a long history no longer stalls "Restoring tasks…".</li>
+        <li>Hiding and showing the conversation behind an expanded side panel lays out none of its messages.</li>
+        <li>PDF previews open, draw and close off the main thread.</li>
+        <li>Long commands and waits on large pages cost the main thread far less.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>A saved file takes the save's modification time, so build tools and file watchers see the change.</li>
+        <li>A turn you jumped to stays in view when Claude Code's saved conversation replaces the cache.</li>
+        <li>Codex starts when its account folder's path has a space or a non-ASCII character.</li>
+        <li>A Codex task that failed to start keeps its first message once its thread starts.</li>
+        <li>The next Codex task on an account no longer loses its first message after the account's last session closed.</li>
+        <li>Stopping a Codex turn that had already ended reads as stopped, not failed.</li>
+        <li>A mail account that could not be read at launch is read again as soon as its watch hears from it.</li>
+        <li>The calendar sums up each day's recurring runs, so meetings keep their room.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.12" aria-labelledby="v0.11.12-title">
       <h2 id="v0.11.12-title">Yardlet 0.11.12</h2>
       <p class="updated"><time datetime="2026-11-16">November 16, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.12">Release on GitHub</a></p>
