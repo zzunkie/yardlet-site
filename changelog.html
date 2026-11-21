@@ -102,6 +102,37 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.14" aria-labelledby="v0.11.14-title">
+      <h2 id="v0.11.14-title">Yardlet 0.11.14</h2>
+      <p class="updated"><time datetime="2026-11-21">November 21, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.14">Release on GitHub</a></p>
+      <h3>Security</h3>
+      <ul>
+        <li>Keys and tokens in what the browser, session and terminal tools return are hidden in more cases.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>File › Connect to Mac… lists the other Macs signed in to your Yardlet account with remote connections turned on, and connects to the one you choose without a number to confirm. You can sign in from there, and a connection link still works under Use a connection link.</li>
+        <li>When the other Mac runs an earlier Yardlet, or the account cannot approve the connection yet, you confirm a number on the other Mac or on a phone already connected to it, as before.</li>
+        <li>Settings › Yardlet Account says that Macs signed in to the same account can connect to this one.</li>
+      </ul>
+      <h3>Conversation</h3>
+      <ul>
+        <li>A Claude Code <code>/compact</code> that fails, whether you typed it or Yardlet ran it while the task was idle, shows as a failed compaction with Claude Code's reason, also after a relaunch.</li>
+        <li>The Settings window and the approval, question, plan and form cards share one set of text sizes, spacing and corners, and a form's labels, hints and "Required" are no longer small print.</li>
+      </ul>
+      <h3>Antigravity</h3>
+      <ul>
+        <li>A turn that Antigravity's plan limit stopped ends on a limit card with the reset time, as a Claude Code limit does, instead of showing the CLI's notice as the answer.</li>
+        <li>A turn that ended on the CLI's error notice ends as failed with its words, and a <code>run_agent</code> subagent that a limit or an error stopped ends as failed and says why.</li>
+        <li>Importing finds an Antigravity conversation in each folder it lists, and a conversation Yardlet started is listed only under the folder Yardlet opened it in.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>Keep tasks working with the lid closed turns on instead of saying Yardlet's helper is not available, and General › App shows Launch at login on a Mac where it was never turned on.</li>
+        <li>A Mac without a built-in lid (Mac mini, Mac Studio, iMac) no longer offers the lid setting.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.13" aria-labelledby="v0.11.13-title">
       <h2 id="v0.11.13-title">Yardlet 0.11.13</h2>
       <p class="updated"><time datetime="2026-11-20">November 20, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.13">Release on GitHub</a></p>
