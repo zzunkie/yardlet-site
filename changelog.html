@@ -102,6 +102,52 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.15" aria-labelledby="v0.11.15-title">
+      <h2 id="v0.11.15-title">Yardlet 0.11.15</h2>
+      <p class="updated"><time datetime="2026-11-23">November 23, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.15">Release on GitHub</a></p>
+      <h3>Languages</h3>
+      <ul>
+        <li>Japanese and Simplified Chinese localizations are now included alongside English and Korean, with English fallback for any missing string.</li>
+      </ul>
+      <h3>Workspace and sidebar</h3>
+      <ul>
+        <li>A unified vertical sidebar navigation organizes Home, Mail, Calendar, Tasks, and Projects with refined surface depth, composer contrast, and an accent send button.</li>
+        <li>Turn a chat into a project of its own folder from its menu or by dropping it onto Projects, start nested tasks from a task's menu, collapse task families inline, and clear the hero project filter in one click.</li>
+        <li>The turn rail's marks are easier to click without a focus ring.</li>
+      </ul>
+      <h3>Antigravity and other harnesses</h3>
+      <ul>
+        <li>Queued messages on Antigravity and other turn-by-turn harnesses now offer <strong>Stop and send</strong>, cancelling the running turn and sending the chosen follow-up immediately once the turn stops.</li>
+        <li>Antigravity connector tools route through a compact MCP gateway and avoid duplicate MCP server registrations on resume, keeping built-in tools within the eager tool budget, and Yardlet MCP tool rows display clean names without per-session hash prefixes.</li>
+        <li>Antigravity subagents appear in the session rail and side panel, autonomous turns no longer duplicate or leak stale streams, and scheduled-task and session tools support Antigravity permission modes.</li>
+        <li>Interactive <code>show_widget</code> views render locally and in remote desktop windows for ACP harnesses.</li>
+        <li>Live thinking previews stream without Commentary flicker across harnesses, with reliability fixes across non-primary harness adapters.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>Mail, Calendar, and command shortcuts are available in the remote Mac window, and connectors can be set up from remote Mac settings.</li>
+        <li>Remote browser tabs capture faster and preserve viewport width without clipping.</li>
+        <li>Remote archive navigation no longer resets unexpectedly, and chats are labeled Chats on another Mac's Environment card.</li>
+      </ul>
+      <h3>Browser and tools</h3>
+      <ul>
+        <li>Copy a saved password from the browser key menu.</li>
+        <li>Agent tools can read archived tasks in read-only mode.</li>
+        <li>Optional experimental <strong>MCP Code Mode</strong> under <strong>Settings › Connectors</strong> collapses flat connector schemas behind <code>search_yardlet_tools</code> and a sandboxed JavaScript <code>run_yardlet_script</code> tool (off by default).</li>
+        <li>Released <code>yardlet-mcp</code> servers exit cleanly when no longer needed.</li>
+      </ul>
+      <h3>Faster and fixes</h3>
+      <ul>
+        <li>Conversation search runs outside the sidebar render, finished subagent conversations save off the main thread, and conversations draw through the unified row list.</li>
+        <li>Fixed a main-queue deadlock when background preference writes notified <code>UserDefaults</code> observers while the main thread flushed state.</li>
+        <li>Sidebar task commands are guarded outside the Tasks section, and remote push targets bind to the room that registered them.</li>
+      </ul>
+      <h3>Thanks</h3>
+      <ul>
+        <li>Thanks to @Greensy24 for contributing remote Mac connector setup (#1007).</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.14" aria-labelledby="v0.11.14-title">
       <h2 id="v0.11.14-title">Yardlet 0.11.14</h2>
       <p class="updated"><time datetime="2026-11-21">November 21, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.14">Release on GitHub</a></p>

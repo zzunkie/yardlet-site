@@ -3,6 +3,60 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.15</title>
+            <pubDate>Tue, 24 Nov 2026 02:36:09 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>37</sparkle:version>
+            <sparkle:shortVersionString>0.11.15</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.15
+
+## Languages
+
+- Japanese and Simplified Chinese localizations are now included alongside English and Korean, with English fallback for any missing string.
+
+## Workspace and sidebar
+
+- A unified vertical sidebar navigation organizes Home, Mail, Calendar, Tasks, and Projects with refined surface depth, composer contrast, and an accent send button.
+- Turn a chat into a project of its own folder from its menu or by dropping it onto Projects, start nested tasks from a task's menu, collapse task families inline, and clear the hero project filter in one click.
+- The turn rail's marks are easier to click without a focus ring.
+
+## Antigravity and other harnesses
+
+- Queued messages on Antigravity and other turn-by-turn harnesses now offer **Stop and send**, cancelling the running turn and sending the chosen follow-up immediately once the turn stops.
+- Antigravity connector tools route through a compact MCP gateway and avoid duplicate MCP server registrations on resume, keeping built-in tools within the eager tool budget, and Yardlet MCP tool rows display clean names without per-session hash prefixes.
+- Antigravity subagents appear in the session rail and side panel, autonomous turns no longer duplicate or leak stale streams, and scheduled-task and session tools support Antigravity permission modes.
+- Interactive `show_widget` views render locally and in remote desktop windows for ACP harnesses.
+- Live thinking previews stream without Commentary flicker across harnesses, with reliability fixes across non-primary harness adapters.
+
+## Another Mac's tasks
+
+- Mail, Calendar, and command shortcuts are available in the remote Mac window, and connectors can be set up from remote Mac settings.
+- Remote browser tabs capture faster and preserve viewport width without clipping.
+- Remote archive navigation no longer resets unexpectedly, and chats are labeled Chats on another Mac's Environment card.
+
+## Browser and tools
+
+- Copy a saved password from the browser key menu.
+- Agent tools can read archived tasks in read-only mode.
+- Optional experimental **MCP Code Mode** under **Settings › Connectors** collapses flat connector schemas behind `search_yardlet_tools` and a sandboxed JavaScript `run_yardlet_script` tool (off by default).
+- Released `yardlet-mcp` servers exit cleanly when no longer needed.
+
+## Faster and fixes
+
+- Conversation search runs outside the sidebar render, finished subagent conversations save off the main thread, and conversations draw through the unified row list.
+- Fixed a main-queue deadlock when background preference writes notified `UserDefaults` observers while the main thread flushed state.
+- Sidebar task commands are guarded outside the Tasks section, and remote push targets bind to the room that registered them.
+
+## Thanks
+
+- Thanks to @Greensy24 for contributing remote Mac connector setup (#1007).
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.15/Yardlet-0.11.15.dmg" length="191291079" type="application/octet-stream" sparkle:edSignature="VjPXOcatxEBInmvDYsG2an5Qn8ZU1oWoWhKVuP0IEdqtH1M1kTop1c3kPf8HwUWWX53gOM0elPN+yXdFNFb0AA=="/>
+        </item>
+        <item>
             <title>0.11.14</title>
             <pubDate>Sat, 21 Nov 2026 13:41:20 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -175,161 +229,6 @@
 - The calendar sums up each day's recurring runs, so meetings keep their room.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.13/Yardlet-0.11.13.dmg" length="189632236" type="application/octet-stream" sparkle:edSignature="ilP3jkY/DApmtG6OciUHkcI07Cq/6b4ExmXpXY56KXq+iD+xVKsgCT5fZNJUrsl+2z6lwJ6M4SBM/8jns8d8BA=="/>
-        </item>
-        <item>
-            <title>0.11.12</title>
-            <pubDate>Mon, 16 Nov 2026 11:51:03 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>34</sparkle:version>
-            <sparkle:shortVersionString>0.11.12</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.12
-
-## Security
-
-- Signing in to a connector asks first when its sign-in page is on another site than the connector's server. The
-  sign-in opens only web pages and takes only its own answer.
-- Reading another project's tasks through the session tools asks you first, and keys and tokens in what those tools
-  return are hidden.
-- A task that may only read starts only tasks that may only read. Running or changing a schedule that may do more
-  than the calling task asks you first.
-- A task's browser takes a profile of its own before an agent runs scripts on a page, and sites in tabs an agent
-  drives ask again for the camera and microphone.
-- A paired device needs its Terminal permission to start or switch a task to a mode that skips approvals.
-- Yardlet's folder in your home is private to your account, and the Git that Yardlet runs no longer starts programs a
-  folder's own settings name.
-- An update no longer installs an older build over a newer one, and a download is checked against the release key
-  before it is opened.
-- A folder given to a page's file chooser is refused when it holds a link leading outside the task's folders.
-
-## Tasks
-
-- Every task starts on its harness's current CLI, the one chosen in Settings › Harnesses or else the newest install,
-  as the Codex and Claude apps do. Choosing another version moves idle tasks to it with their next message.
-- Your own message no longer waits behind an account move Yardlet chose itself. Such a move that still waits after
-  ten minutes is given up, and the line above the composer says what a move is waiting for.
-- Choosing another account for a task with background work waits for that work, as during a turn, instead of ending it.
-- Background shells and agents keep running after a turn ends on a usage limit or an error.
-- When every account is nearly spent, automatic assignment picks one with something left before one that is used up.
-- "Continue with another account" works again after the Claude app updated the CLI it bundles.
-- A message that reached a task while its CLI was still starting no longer fails with "Claude session is already
-  attached".
-- A child task's result that its parent task already read no longer counts as needing you in the Dock badge, the menu
-  bar and Next Task Needing Attention. Its unread dot stays in the sidebar.
-- Next-message suggestions are asked for only in tasks on screen or seen recently, instead of after every turn of
-  every task.
-- What a CLI writes just before it exits is no longer lost, for Claude Code, ACP agents and Pi.
-- Disconnecting or removing a connector that runs on this Mac ends everything its server started.
-
-## Claude Code
-
-- Idle compaction (Settings › General › Tasks, on by default) compacts a long Claude Code task that sits idle shortly
-  before its prompt cache expires, by Claude Code's own rules, so coming back after an hour doesn't write the whole
-  conversation to the cache again.
-- Settings › General › Tasks › Context limit for Claude Code tasks sets the limit for tasks that chose none of their
-  own. The per-task menu adds 600k.
-- Renaming a task renames its running Claude Code session too, and each session carries its task's title in the list
-  of other sessions Claude Code shows its agents.
-- Slash commands such as `/compact` read back after a relaunch as they were sent, not as your bubbles with tags.
-
-## Conversation
-
-- A message you send while a turn works now parts the folded work, so the turn reads in the order it happened: the
-  work after your message folds on a "Work details" line under it.
-- A Claude Code turn you stopped reads "You stopped after N seconds", as a Codex turn does, and the calls the stop cut
-  read Stopped, not failed.
-- Claude Code's question cards show the previews an option carries (a mockup, code, a draft) beside the options.
-- An approval card shows the whole command it asks about, scrolling instead of folding.
-- With the composer empty, Return or ⌘Return allows the oldest waiting tool approval once and Escape denies it, as
-  in the Codex and Claude apps. The card's buttons name their keys.
-- A Codex command you declined reads "Denied", not "Ran".
-- Skip on a question card's last question sends on the first click.
-- Wide tables wrap their cells to fit the message, and a table that still scrolls fades at its edge. Find stays on a
-  match inside a table.
-- The conversation keeps at least 560 points beside the side panel. Where both don't fit, the panel floats over the
-  conversation's trailing edge.
-- When a connector tool names a view for its results (MCP Apps), the view shows under the call, in a sandbox of its
-  own ([docs/CONNECTORS.md](https://github.com/zzunkie/yardlet/blob/main/docs/CONNECTORS.md), "MCP Apps").
-- A message that starts with a code block draws the block's header and Copy button in place.
-- Return chooses a typed `/` command even when its list arrived after your last keystroke.
-- ⌘ shortcuts work under Korean and other non-Latin input sources in the browser panel, the composer's paste, the
-  terminal and the image viewer.
-
-## Settings
-
-- Appearance can choose the font and size for code, diffs, command output, open files and the terminal.
-- Notifications can choose when a finished or failed turn notifies, whether approvals and questions notify, and the
-  sound.
-- General › App has Launch at login, off by default.
-- General › Tasks has Send shortcut: Return, ⌘Return for drafts of several lines, or always ⌘Return, as in the Codex
-  app.
-- Harness Accounts says each account's limits on one line. Usage keeps the bars and reset times.
-- Descriptions in Settings are shorter.
-
-## Calendar
-
-- Settings › General › App › Calendar, off by default, shows your connected Google and Outlook calendars and the Mac's
-  calendars beside your tasks, by week or by day, with Yardlet's scheduled runs as a layer of their own. Google and
-  Outlook invitations can be answered there, and an event can be handed to an agent.
-
-## Schedules
-
-- A task's Background tasks card lists the schedules that continue it.
-- Scheduled tasks groups what will run under Today, Tomorrow, Next 7 days and Later, and names the task a continuing
-  schedule runs in.
-- A scheduled run's clock lines up with the other marks at the end of its sidebar row.
-
-## Browser and passwords
-
-- Import from Another Browser… is also in the browser panel's ⋯ menu and in Settings › Passwords, and can bring the
-  other browser's visit history into the address field's suggestions.
-- A sign-in that asks for several secrets, such as an organization's password and then your own, is saved and filled
-  whole. The item sheet shows each secret on a row of its own.
-
-## Antigravity
-
-- Over ACP, the permission menu is the only one: it lists Default, Antigravity's own modes such as Accept edits and
-  Auto, and Bypass permissions.
-- Bypass permissions runs on Antigravity's own skip-permissions process, so turns Antigravity starts by itself, such
-  as after a subagent ends, no longer wait for an approval.
-- When an ACP agent such as Antigravity serves several tasks from one process and supports it, closing one task's
-  session tells the agent, so it can release what it started for that session, such as connector servers.
-
-## Another Mac's tasks
-
-- In a window for another Mac that also runs 0.11.12, Review can stage, unstage and discard, and the Files panel can
-  save. Unsaved edits are kept when the window closes.
-- A terminal keeps running when the window closes or the connection drops, and comes back with its screen when the
-  window opens again.
-
-## Faster
-
-- Scrolling a long conversation or the sidebar does much less work each frame.
-- A plan limit report redraws only the turn with the limit card, not every turn in view.
-- Long histories draw with less work on the main thread.
-- Saving the message queue, the restart record, task profiles, account assignments and model lists no longer holds up
-  the window while the disk is busy.
-
-## Fixes
-
-- A file Yardlet keeps state in and can't read is set aside instead of being written over, and the window says when a
-  save failed.
-- Queued messages and shell output go out once an edit is cancelled or files are restored, instead of waiting for the
-  next turn.
-- A task off screen whose message failed to go gets its unread mark and a notification that names the failure.
-- A schedule moved to continue another task no longer leaves the first task waiting on approval cards.
-- The Agents card lists a continued Claude Code subagent once.
-- The main-thread hang log keeps more than a day.
-
-## Thanks
-
-- [@minsujang0](https://github.com/minsujang0) for reporting the per-frame scrolling work in
-  [#677](https://github.com/zzunkie/yardlet/issues/677) and for the scrolling measurements and work in
-  [#719](https://github.com/zzunkie/yardlet/pull/719).
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.12/Yardlet-0.11.12.dmg" length="184925687" type="application/octet-stream" sparkle:edSignature="KosfJ8OxjDtmA08Gw6t/cTHIKLRx77bWO2af7bgj9BDMflgAOyyE7PwWKHyv+sY19Px16jV5OH0duzZn00eFDg=="/>
         </item>
     </channel>
 </rss>
