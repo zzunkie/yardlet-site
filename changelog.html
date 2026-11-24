@@ -102,6 +102,47 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.16" aria-labelledby="v0.11.16-title">
+      <h2 id="v0.11.16-title">Yardlet 0.11.16</h2>
+      <p class="updated"><time datetime="2026-11-24">November 24, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.16">Release on GitHub</a></p>
+      <h3>Conversation</h3>
+      <ul>
+        <li>Messages from Claude Code, Antigravity and other harnesses that don't mark working notes now stay visible in full, and tool-only stretches between messages fold into one-line summaries.</li>
+        <li>Turns with several messages offer <strong>Copy full response</strong>.</li>
+        <li>Hover or focus a message to see when it was sent.</li>
+      </ul>
+      <h3>Windows, tabs and panes</h3>
+      <ul>
+        <li>Two or more tabs in a window get their own browser-style tab bar.</li>
+        <li>The focused split pane stands out more clearly, and a pane can be maximized with ⌃⌘↩.</li>
+        <li>The Session Rail's on/off state now stays with each task, across split panes and windows.</li>
+        <li>Narrow side panels and the raised rail float as inset cards, with finer alignment, spacing and colors throughout.</li>
+      </ul>
+      <h3>Simulators</h3>
+      <ul>
+        <li>When another task already uses an iOS simulator or Android emulator, a task gets its own isolated copy of that device.</li>
+        <li>A task can open several Simulator tabs, each with its own device, and xctest batches no longer run in the terminal.</li>
+      </ul>
+      <h3>Settings and tools</h3>
+      <ul>
+        <li><strong>MCP Code Mode</strong> moved to <strong>Settings › General › Tasks</strong>.</li>
+        <li><code>browser_snapshot</code> accepts <code>query</code> and <code>maxResults</code> to return only matching parts of a page.</li>
+      </ul>
+      <h3>Codex and Antigravity</h3>
+      <ul>
+        <li>Codex speed tiers and lazy MCP startup work with Codex 0.172.</li>
+        <li>Antigravity offers only conversations still on disk, and its index no longer stops at a fixed size.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Markdown rendering in transcripts, power source checks, lid helper status at launch and file change previews no longer hold up the main thread.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>A saved-password fill on a page that changed underneath it now asks the agent to read the page again instead of reporting a browser refusal.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.15" aria-labelledby="v0.11.15-title">
       <h2 id="v0.11.15-title">Yardlet 0.11.15</h2>
       <p class="updated"><time datetime="2026-11-23">November 23, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.15">Release on GitHub</a></p>
