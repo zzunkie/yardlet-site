@@ -175,7 +175,7 @@ code { font: 0.86em var(--mono); }
 .window { position: relative; max-width: 1200px; margin-inline: auto; }
 .shot {
   position: relative; overflow: hidden; aspect-ratio: 2240 / 1384;
-  border-radius: 14px; background: #000; box-shadow: var(--win-shadow);
+  border-radius: 16px; background: #000; box-shadow: var(--win-shadow);
 }
 .stage .shot { box-shadow: 0 0 0 0.5px rgb(15 32 59 / 0.24), 0 2px 8px rgb(15 32 59 / 0.08), 0 44px 100px rgb(0 0 0 / 0.38); }
 .shot img, .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -267,7 +267,8 @@ code { font: 0.86em var(--mono); }
 .split > div:first-child > :not(.ask) { grid-column: 1; }
 .split > :last-child { grid-column: 2; grid-row: 2 / span 6; min-width: 0; }
 .split .sheet { margin: 0; }
-.sheet { overflow: hidden; border-radius: 12px; box-shadow: var(--sheet-shadow); background: var(--card); }
+/* The screenshots are the whole settings sheet, so its own corners (a share of its size) are the figure's. */
+.sheet { overflow: hidden; border-radius: 3.6% / 4.75%; box-shadow: var(--sheet-shadow); background: var(--card); }
 .sheet img { width: 100%; }
 .split figcaption, .sheet-cap { margin-top: 14px; font-size: 14px; color: var(--text-3); }
 
@@ -403,6 +404,7 @@ code { font: 0.86em var(--mono); }
   .stage::before { inset: 150px 0 0; }
   .shot { aspect-ratio: 1036 / 1296; max-height: 78vh; margin-inline: auto; border-radius: 16px; }
   .shot-review { aspect-ratio: 1036 / 1290; }
+  .sheet { border-radius: 12px; }   /* the phone crops are parts of the sheet, with no corners of their own */
   .cap-wide { display: none; }
   .cap-phone { display: inline; }
   .works { margin-top: 48px; }
