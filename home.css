@@ -137,6 +137,9 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 .talk, .more, .home .foot { grid-column: 1; min-width: 0; padding-inline: max(var(--gutter), (100% - 580px) / 2); }
 .talk { container-type: inline-size; padding-top: 14px; }
 .home .ask { max-width: 100%; text-wrap: balance; padding: 9px 15px; border-radius: 13px; box-shadow: inset 0 0 0 1px var(--bubble-ring); font-size: 15px; }
+/* Where the first question takes two lines, it breaks between its sentences, so its bubble hugs them. */
+.home .ask br { display: none; }
+@container (max-width: 545px) { .home .ask br { display: inline; } }
 .home .reply { margin-top: 22px; }
 .home .reply h1 { font: 700 clamp(36px, 9.5cqw, 58px)/1.02 var(--display); letter-spacing: -0.042em; max-width: none; text-wrap: nowrap; }
 .home .reply h2 { font: 700 clamp(28px, 6.6cqw, 36px)/1.1 var(--display); letter-spacing: -0.032em; }
