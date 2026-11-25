@@ -35,7 +35,9 @@
   --desk-pad: clamp(14px, 2.2vmin, 26px);
   --win-w: 1680px;
   --r-win: 16px;
-  --py: max(var(--desk-pad), (100vh - 1000px) / 2);
+  /* As tall as the screen allows, up to where the recording would no longer fill the panel it is in. */
+  --win-max: min(1000px, (min(100vw - 2 * var(--desk-pad), var(--win-w)) - var(--side-w)) / 2 * 1584 / 1118 + var(--bar-h));
+  --py: max(var(--desk-pad), (100vh - var(--win-max)) / 2);
   --win-h: calc(100vh - 2 * var(--py));
   /* The recording's shape decides how wide the right-hand panel is. */
   --beside: clamp(380px, (var(--win-h) - var(--bar-h)) * 1118 / 1584, 50cqw);
@@ -301,6 +303,7 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 
 /* Without room for three columns the sidebar goes first, and its sections move to the title. */
 @media (max-width: 1140px) {
+  :root { --side-w: 0px; }
   .home .win { grid-template-columns: minmax(0, 1fr); }
   .home .side { display: none; }
   .home .bar-title { display: none; }
@@ -318,6 +321,7 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 
 /* Then the panel moves under the answer. */
 @media (max-width: 860px), (max-aspect-ratio: 1/1), (max-height: 520px) {
+  :root { --win-max: 100vh; }
   .home .bar { margin-right: 0; }
   .view { display: block; }
   .talk, .more, .home .foot { padding-inline: max(var(--gutter), (100% - 640px) / 2); }
