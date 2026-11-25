@@ -7,8 +7,8 @@
 <title>Yardlet: Lightweight, non-intrusive ADE for Claude Code and Codex</title>
 <meta name="description" content="Yardlet runs Claude Code, Codex and other agents side by side in a free native Mac app, with no hooks, no wrappers and nothing written into their settings.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191a1c" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yardlet">
 <meta property="og:url" content="https://yardlet.app/">
@@ -170,296 +170,327 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="home.css">
 <script src="site.js" defer></script>
+<script src="home.js" defer></script>
 </head>
-<body>
+<body class="home">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="top">
-  <div class="wrap top-in">
-    <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="28" height="28">Yardlet</a>
-    <nav aria-label="Site">
-      <a class="hide-narrow" href="changelog.html">Changelog</a>
-      <a class="hide-narrow" href="blog/">Blog</a>
-      <a class="hide-narrow" href="privacy.html">Privacy</a>
-      <a href="https://github.com/zzunkie/yardlet">GitHub</a>
-      <a class="btn btn-small bar-get" href="https://dl.yardlet.app/site/arm64">Download</a>
-    </nav>
-  </div>
-</header>
-
-<main id="main">
-
-  <section class="hero" id="what" aria-labelledby="what-title">
-    <div class="wrap">
-      <p class="ask"><span class="sr-only">You: </span>I already use Codex and Claude Code. What does Yardlet change?</p>
-      <div class="reply">
-        <span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>
-        <h1 id="what-title">Lightweight, non&#8209;intrusive,<br> yet versatile&nbsp;ADE.</h1>
-        <div class="hero-row">
-      <p class="lead">Yardlet runs Claude Code, Codex and other agent CLIs side by side in one native Mac app, with no hooks, no wrappers and nothing written into their settings.</p>
-        <div class="hero-act">
-      <div class="get">
-        <a class="btn" href="https://dl.yardlet.app/site/arm64">Download for Mac</a>
-        <p class="cmd"><span class="sr-only">Or with Homebrew: </span><span class="prompt" aria-hidden="true">$</span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
-      </div>
-      <p class="meta"><a href="changelog.html">Version 0.11.16</a> <span class="sep">·</span> <span class="nw">macOS 15 or later</span> <span class="sep">·</span> <span class="nw">Apple silicon</span> <span class="sep">·</span> <a class="nw" href="https://dl.yardlet.app/site/x86_64">Intel version</a><br>
-        <span class="meta-2"><span class="nw">Free and open source, MIT License</span> <span class="sep">·</span> <span class="nw">No Yardlet account</span></span></p>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="stage">
-      <div class="wrap">
-        <figure class="window">
-          <div class="shot">
-            <!-- With motion the still is the recording's first frame, so playback starts without a jump; with motion
-                 reduced it is the moment the account list is open, and the video never loads. Wider screens get the
-                 whole window, Claude Code and Codex side by side; phones get the Codex pane at a size they can read. -->
-            <picture>
-              <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/hero-start-phone-dark.jpg" width="1036" height="1296">
-              <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference)" srcset="screens/hero-start-phone-light.jpg" width="1036" height="1296">
-              <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/hero-phone-dark.jpg" width="1036" height="1296">
-              <source media="(max-width: 640px)" srcset="screens/hero-phone-light.jpg" width="1036" height="1296">
-              <source media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/hero-split-start-dark.jpg">
-              <source media="(prefers-reduced-motion: no-preference)" srcset="screens/hero-split-start-light.jpg">
-              <source media="(prefers-color-scheme: dark)" srcset="screens/hero-split-dark.jpg">
-              <img src="screens/hero-split-light.jpg" width="2240" height="1384" fetchpriority="high"
-                   alt="A recording of Yardlet: while Claude Code fixes a flaky checkout test, a new Codex task's account list shows one account with 6% of its five-hour limit left and another with 88%, the second is chosen, and Codex adds a dark mode toggle.">
-            </picture>
-            <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
-              <source src="screens/demo-phone-dark.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L123.90"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
-              <source src="screens/demo-phone-dark.mp4" type='video/mp4; codecs="avc1.640032"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
-              <source src="screens/demo-phone-dark.webm" type='video/webm; codecs="vp9"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
-              <source src="screens/demo-phone-light.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L123.90"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference)">
-              <source src="screens/demo-phone-light.mp4" type='video/mp4; codecs="avc1.640032"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference)">
-              <source src="screens/demo-phone-light.webm" type='video/webm; codecs="vp9"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference)">
-              <source src="screens/demo-split-dark.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L150.90"' media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
-              <source src="screens/demo-split-dark.mp4" type='video/mp4; codecs="avc1.640033"' media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
-              <source src="screens/demo-split-dark.webm" type='video/webm; codecs="vp8"' media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
-              <source src="screens/demo-split-light.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L150.90"' media="(prefers-reduced-motion: no-preference)">
-              <source src="screens/demo-split-light.mp4" type='video/mp4; codecs="avc1.640033"' media="(prefers-reduced-motion: no-preference)">
-              <source src="screens/demo-split-light.webm" type='video/webm; codecs="vp8"' media="(prefers-reduced-motion: no-preference)">
-            </video>
-          </div>
-          <figcaption>
-            <p><span class="cap-wide">Recorded in Yardlet: Claude Code fixes a flaky checkout test while a new Codex task starts on an account with room left.</span><span class="cap-phone">Recorded in Yardlet: a new Codex task starts on an account with room left, then adds a dark mode toggle.</span></p>
-            <button class="pause" type="button" aria-pressed="false" hidden>
-              <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h2v10H5zM9 3h2v10H9z"/></svg>
-              <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.5 8z"/></svg>
-              <span class="label">Pause</span>
-            </button>
-          </figcaption>
-        </figure>
-
-        <div class="works">
-          <p>Runs the agent CLIs you already use</p>
-          <ul aria-label="Agents Yardlet works with">
-            <li><img src="assets/agents/codex.png" alt="" width="22" height="22">Codex</li>
-            <li><img src="assets/agents/claude-code.png" alt="" width="22" height="22">Claude Code</li>
-            <li><img src="assets/agents/opencode.png" alt="" width="22" height="22">OpenCode</li>
-            <li><img src="assets/agents/cursor-agent.png" alt="" width="22" height="22">Cursor Agent</li>
-            <li><img src="assets/agents/antigravity-cli.png" alt="" width="22" height="22">Antigravity CLI</li>
-            <li><img src="assets/agents/kimi-code.png" alt="" width="22" height="22">Kimi Code</li>
-            <li><img src="assets/agents/grok-build.png" alt="" width="22" height="22">Grok Build</li>
-            <li><img src="assets/agents/hermes-agent.png" alt="" width="22" height="22">Hermes Agent</li>
-            <li><img src="assets/agents/muse-code.png" alt="" width="22" height="22">Muse Code</li>
-            <li><img src="assets/agents/pi.png" alt="" width="22" height="22">Pi</li>
+<div class="desk">
+  <div class="win">
+    <!-- The sidebar lists the page's sections the way Yardlet lists tasks. -->
+    <aside class="side" aria-label="Sections">
+      <div class="side-inner">
+        <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="22" height="22">Yardlet</a>
+        <!-- side:start -->
+        <nav class="tasks" aria-label="On this page">
+          <p class="group">yardlet.app</p>
+          <ul>
+            <li><a class="task" href="#what"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="10.5" rx="2.25"/><path d="M5.75 2.75v10.5"/></svg>What Yardlet is</a></li>
+            <li><a class="task" href="#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg>Every account's limits</a></li>
+            <li><a class="task" href="#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Agents that work together</a></li>
+            <li><a class="task" href="#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Any agent, same controls</a></li>
+            <li><a class="task" href="#approvals"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.25h11v7.5H8l-3.25 2.5v-2.5H2.5z"/><path d="M5.25 6.25h5.5M5.25 8.25h3.5"/></svg>Approvals in your words</a></li>
+            <li><a class="task" href="#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review, then merge</a></li>
+            <li><a class="task" href="#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>A browser for agents</a></li>
+            <li><a class="task" href="#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg>Connectors for every agent</a></li>
+            <li><a class="task" href="#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>From your phone</a></li>
+            <li><a class="task" href="#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>Safe to try</a></li>
+            <li><a class="task" href="#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Install</a></li>
           </ul>
+        </nav>
+        <nav class="tasks" aria-label="Documents">
+          <p class="group">Documents</p>
+          <ul>
+            <li><a class="task" href="privacy.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Privacy policy</a></li>
+            <li><a class="task" href="terms.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75h5.25L12 4.5v9.75H4zM9.25 1.75V4.5H12M6 8h4M6 10.75h4"/></svg>Terms of use</a></li>
+            <li><a class="task" href="changelog.html"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.75V8l2.25 1.5"/></svg>Changelog</a></li>
+            <li><a class="task" href="blog/"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.75h10M4.25 10.75l6.5-6.5 1.75 1.75-6.5 6.5H4.25z"/></svg>Blog</a></li>
+          </ul>
+        </nav>
+        <!-- side:end -->
+        <div class="side-foot">
+          <p>Free and open source, MIT License</p>
+          <p><a href="https://github.com/zzunkie/yardlet">github.com/zzunkie/yardlet</a></p>
         </div>
       </div>
-    </div>
-  </section>
+    </aside>
 
-  <section class="proof" aria-label="Measured">
-    <div class="wrap">
-      <dl>
-        <div><dt>53<small>MiB</small></dt><dd>Memory at rest after a first launch</dd></div>
-        <div><dt>214<small>MiB</small></dt><dd>Memory with ten tasks streaming at once</dd></div>
-        <div><dt>No hooks</dt><dd>No wrappers, and nothing written into their settings</dd></div>
-      </dl>
-      <p class="about">Yardlet is a free, open-source native macOS app for running coding agents side by side in one
-        window of projects and tasks. It starts the real CLIs of Claude Code, Codex and other agents. Each agent keeps
-        its own agent loop, sign&#8209;in and session history; Yardlet adds no agent layer and writes nothing into the
-        agents' settings.</p>
-      <p class="note">Memory figures leave out the agents' own CLIs and were measured with Yardlet 0.11.10 on an M1 Pro MacBook Pro with macOS 15.6 in November 2026. <a href="blog/agent-apps-memory-cpu.html">How it was measured</a>.</p>
-    </div>
-  </section>
+    <div class="pane">
+      <header class="bar">
+        <!-- Below 1000px the title opens the list of sections, as a task's title does in Yardlet. -->
+        <details class="jump">
+          <summary><img class="jump-mark" src="assets/favicon.svg" alt="Yardlet" width="24" height="24"><span class="jump-title">What Yardlet is</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
+          <ul>
+            <li><a href="#what">What Yardlet is</a></li>
+            <li><a href="#accounts">Every account's limits</a></li>
+            <li><a href="#together">Agents that work together</a></li>
+            <li><a href="#agents">Any agent, same controls</a></li>
+            <li><a href="#approvals">Approvals in your words</a></li>
+            <li><a href="#review">Review, then merge</a></li>
+            <li><a href="#browser">A browser for agents</a></li>
+            <li><a href="#connectors">Connectors for every agent</a></li>
+            <li><a href="#phone">From your phone</a></li>
+            <li><a href="#trust">Safe to try</a></li>
+            <li><a href="#install">Install</a></li>
+            <li class="sep"><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of use</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="blog/">Blog</a></li>
+            <li><a href="https://github.com/zzunkie/yardlet">Source on GitHub</a></li>
+          </ul>
+        </details>
+        <p class="bar-title" aria-hidden="true"><span class="jump-title">What Yardlet is</span></p>
+        <p class="version"><a href="changelog.html">Yardlet 0.11.16</a></p>
+        <nav class="bar-links" aria-label="Site">
+          <a href="blog/">Blog</a>
+          <a href="https://github.com/zzunkie/yardlet">GitHub</a>
+          <a class="btn btn-small bar-get" href="https://dl.yardlet.app/site/arm64">Download</a>
+          <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
+        </nav>
+      </header>
 
-  <section class="answer" id="accounts" aria-labelledby="accounts-title">
-    <div class="wrap split">
-      <div>
-        <p class="ask"><span class="sr-only">You: </span>Start this on whichever account has the most left.</p>
-        <h2 id="accounts-title">Every account, with its limits in&nbsp;view.</h2>
-        <p class="body">Yardlet shows each account's session and weekly limits, with more than one account per provider. On Automatic, a new task or subagent goes on the account with the most room left among those you include, and tasks started together spread across them.</p>
-        <p class="more">From the blog: <a href="blog/accounts-with-room-left.html">starting each task on the account with room left</a>.</p>
-      </div>
-      <figure>
-        <div class="sheet">
-          <picture>
-            <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/explore-accounts-phone-dark.png" width="1194" height="704">
-            <source media="(max-width: 640px)" srcset="screens/explore-accounts-phone-light.png" width="1194" height="704">
-            <source media="(prefers-color-scheme: dark)" srcset="screens/explore-accounts-dark.png" width="1640" height="1240">
-            <img src="screens/explore-accounts-light.png" width="1640" height="1240" loading="lazy"
-                 alt="Settings, Harness Accounts: two Codex accounts and a Claude Code account, each with what is left of its five-hour and weekly limits, over the switches that choose the account for new tasks.">
-          </picture>
-        </div>
-        <figcaption>Settings › Harness Accounts: each account with what is left of its five-hour and weekly limits.</figcaption>
-      </figure>
-    </div>
-  </section>
+      <main id="main" class="thread">
 
-  <section class="answer" id="together" aria-labelledby="together-title">
-    <div class="wrap split">
-      <div>
-        <p class="ask"><span class="sr-only">You: </span>Have Codex review what Claude Code just wrote.</p>
-        <h2 id="together-title">Your agents hand work to each&nbsp;other.</h2>
-        <p class="body">One task can read another, message it while it works, start a task under itself on any agent and account, or run a subagent on another agent and get its answer. Work in another project asks you first.</p>
-        <h3 class="sub-h" id="approvals">Forwarded approvals carry your exact words</h3>
-        <p class="body">When one agent passes your approval to another, Yardlet sends your own words with the time you sent them, checks that they are in your messages in that task, and refuses to send if they are not.</p>
-        <p class="more">Yardlet itself is built this way: <a href="blog/one-session-runs-the-rest.html">one session runs the rest</a>.</p>
-      </div>
-      <div>
-        <figure class="trace">
-          <figcaption>The session tools Codex, Claude Code and ACP agents get</figcaption>
-          <dl class="tools">
-            <dt>read_task</dt><dd>Read another task's latest turns.</dd>
-            <dt>send_message_to_task</dt><dd>Message a task. A running one reads it without stopping.</dd>
-            <dt>create_task</dt><dd>Start a task under this one, on any agent and account.</dd>
-            <dt>run_agent</dt><dd>Run a subagent on another agent and get its answer.</dd>
-            <dt>wait_tasks</dt><dd>Wait until they finish a turn or need you.</dd>
-            <dt>create_scheduled_task</dt><dd>Put work on a schedule.</dd>
-          </dl>
-        </figure>
-        <figure class="trace">
-          <figcaption>What the deploy task reads</figcaption>
-          <pre><code>The checks passed on #128. Ship it.
+        <article class="turn first" id="what" aria-labelledby="what-title">
+          <p class="ask"><span class="sr-only">You: </span>I already use Codex and Claude Code. What does Yardlet change?</p>
+          <div class="reply">
+            <h1 id="what-title">Lightweight, non&#8209;intrusive,<br class="wide-br"> yet versatile&nbsp;ADE.</h1>
+            <p class="lead">Yardlet runs Claude Code, Codex and other agent CLIs side by side in one native Mac app, with no hooks, no wrappers and nothing written into their settings.</p>
+            <div class="approve-box">
+            <section class="approve" aria-labelledby="get-title">
+              <div class="approve-head">
+                <svg class="approve-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>
+                <div>
+                  <h2 id="get-title">Install Yardlet?</h2>
+                  <p><a class="nw" href="changelog.html">Version 0.11.16</a> · <span class="nw">macOS 15 or later</span><br><span class="nw">Apple silicon or <a href="https://dl.yardlet.app/site/x86_64">Intel</a></span></p>
+                </div>
+              </div>
+              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
+              <div class="approve-actions">
+                <a class="btn" href="https://dl.yardlet.app/site/arm64">Download for Mac</a>
+              </div>
+            </section>
+            </div>
+            <figure class="attach flush">
+              <div class="shot">
+                <!-- The page's own sidebar stands where the app's does, so the recording is the panes beside it. With
+                     motion the still is its first frame; with motion reduced it is the moment the account list is open,
+                     and the video never loads. Phones get the Codex pane at a size they can read. -->
+                <picture>
+                  <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/hero-start-phone-dark.jpg" width="1036" height="1296">
+                  <source media="(max-width: 640px) and (prefers-reduced-motion: no-preference)" srcset="screens/hero-start-phone-light.jpg" width="1036" height="1296">
+                  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/hero-phone-dark.jpg" width="1036" height="1296">
+                  <source media="(max-width: 640px)" srcset="screens/hero-phone-light.jpg" width="1036" height="1296">
+                  <source media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)" srcset="screens/panes-start-dark.jpg">
+                  <source media="(prefers-reduced-motion: no-preference)" srcset="screens/panes-start-light.jpg">
+                  <source media="(prefers-color-scheme: dark)" srcset="screens/panes-dark.jpg">
+                  <img src="screens/panes-light.jpg" width="2236" height="1680" fetchpriority="high"
+                       alt="A recording of Yardlet: while Claude Code fixes a flaky checkout test, a new Codex task's account list shows one account with 6% of its five-hour limit left and another with 88%, the second is chosen, and Codex adds a dark mode toggle.">
+                </picture>
+                <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="screens/demo-phone-dark.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L123.90"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
+                <source src="screens/demo-phone-dark.mp4" type='video/mp4; codecs="avc1.640032"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
+                <source src="screens/demo-phone-dark.webm" type='video/webm; codecs="vp9"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
+                <source src="screens/demo-phone-light.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L123.90"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference)">
+                <source src="screens/demo-phone-light.mp4" type='video/mp4; codecs="avc1.640032"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference)">
+                <source src="screens/demo-phone-light.webm" type='video/webm; codecs="vp9"' media="(max-width: 640px) and (prefers-reduced-motion: no-preference)">
+                <source src="screens/demo-panes-dark.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L150.90"' media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
+                <source src="screens/demo-panes-dark.mp4" type='video/mp4; codecs="avc1.640033"' media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
+                <source src="screens/demo-panes-dark.webm" type='video/webm; codecs="vp8"' media="(prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark)">
+                <source src="screens/demo-panes-light.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L150.90"' media="(prefers-reduced-motion: no-preference)">
+                <source src="screens/demo-panes-light.mp4" type='video/mp4; codecs="avc1.640033"' media="(prefers-reduced-motion: no-preference)">
+                <source src="screens/demo-panes-light.webm" type='video/webm; codecs="vp8"' media="(prefers-reduced-motion: no-preference)">
+                </video>
+              </div>
+              <figcaption>
+                <p><span class="cap-wide">Recorded in Yardlet: Claude Code fixes a flaky checkout test while a new Codex task starts on an account with room left.</span><span class="cap-phone">Recorded in Yardlet: a new Codex task starts on an account with room left, then adds a dark mode toggle.</span></p>
+                <button class="pause" type="button" aria-pressed="false" hidden>
+                  <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h2v10H5zM9 3h2v10H9z"/></svg>
+                  <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L12.5 8z"/></svg>
+                  <span class="label">Pause</span>
+                </button>
+              </figcaption>
+            </figure>
+            <section class="panel measured" aria-label="Measured">
+              <dl>
+                <div><dt>53<small>MiB</small></dt><dd>Memory at rest after a first launch</dd></div>
+                <div><dt>214<small>MiB</small></dt><dd>Memory with ten tasks streaming at once</dd></div>
+                <div><dt>No hooks</dt><dd>No wrappers, and nothing written into their settings</dd></div>
+              </dl>
+              <p class="note">Memory figures leave out the agents' own CLIs and were measured with Yardlet 0.11.10 on an M1 Pro MacBook Pro with macOS 15.6 in November 2026. <a href="blog/agent-apps-memory-cpu.html">How it was measured</a>.</p>
+            </section>
+            <p>Yardlet is a free, open-source native macOS app for running coding agents side by side in one window of projects and tasks. It starts the real CLIs of Claude Code, Codex and other agents. Each agent keeps its own agent loop, sign&#8209;in and session history; Yardlet adds no agent layer and writes nothing into the agents' settings.</p>
+          </div>
+        </article>
+
+        <article class="turn" id="accounts" aria-labelledby="accounts-title">
+          <p class="ask"><span class="sr-only">You: </span>Start this on whichever account has the most left.</p>
+          <div class="reply">
+            <h2 id="accounts-title">Every account, with its limits in&nbsp;view.</h2>
+            <p>Yardlet shows each account's session and weekly limits, with more than one account per provider. On Automatic, a new task or subagent goes on the account with the most room left among those you include, and tasks started together spread across them.</p>
+            <figure class="attach">
+              <div class="sheet">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" srcset="screens/page-accounts-dark.png">
+                  <img src="screens/page-accounts-light.png" width="1168" height="852" loading="lazy" alt="Settings, Harness Accounts: two Codex accounts and a Claude Code account, each with what is left of its five-hour and weekly limits, over the switch that chooses the account for new tasks.">
+                </picture>
+              </div>
+            </figure>
+            <p class="aside-line">From the blog: <a href="blog/accounts-with-room-left.html">starting each task on the account with room left</a>.</p>
+          </div>
+        </article>
+
+        <article class="turn" id="together" aria-labelledby="together-title">
+          <p class="ask"><span class="sr-only">You: </span>Have Codex review what Claude Code just wrote.</p>
+          <div class="reply">
+            <h2 id="together-title">Your agents hand work to each&nbsp;other.</h2>
+            <p>One task can read another, message it while it works, start a task under itself on any agent and account, or run a subagent on another agent and get its answer. Work in another project asks you first.</p>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>Six of the session tools Codex, Claude Code and ACP agents get</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
+                <dl class="rows tools">
+                  <div><dt><code>read_task</code></dt><dd>Read another task's latest turns.</dd></div>
+                  <div><dt><code>send_message_to_task</code></dt><dd>Message a task. A running one reads it without stopping.</dd></div>
+                  <div><dt><code>create_task</code></dt><dd>Start a task under this one, on any agent and account.</dd></div>
+                  <div><dt><code>run_agent</code></dt><dd>Run a subagent on another agent and get its answer.</dd></div>
+                  <div><dt><code>wait_tasks</code></dt><dd>Wait until they finish a turn or need you.</dd></div>
+                  <div><dt><code>create_scheduled_task</code></dt><dd>Put work on a schedule.</dd></div>
+                </dl>
+              </div>
+            </details>
+            <p class="aside-line">Yardlet itself is built this way: <a href="blog/one-session-runs-the-rest.html">one session runs the rest</a>.</p>
+          </div>
+        </article>
+
+        <article class="turn" id="agents" aria-labelledby="agents-title">
+          <p class="ask"><span class="sr-only">You: </span>Run Codex, Claude Code and OpenCode tasks side by side.</p>
+          <div class="reply">
+            <h2 id="agents-title">The ones you already use, with the same&nbsp;controls.</h2>
+            <p>Every agent gets one sidebar, conversation view, composer and approval cards. The controls stay in place; the choices and values come from each agent.</p>
+            <ul class="shelf" aria-label="Agents Yardlet works with">
+                <li><img src="assets/agents/codex.png" alt="" width="22" height="22">Codex</li>
+                <li><img src="assets/agents/claude-code.png" alt="" width="22" height="22">Claude Code</li>
+                <li><img src="assets/agents/opencode.png" alt="" width="22" height="22">OpenCode</li>
+                <li><img src="assets/agents/cursor-agent.png" alt="" width="22" height="22">Cursor Agent</li>
+                <li><img src="assets/agents/antigravity-cli.png" alt="" width="22" height="22">Antigravity CLI</li>
+                <li><img src="assets/agents/kimi-code.png" alt="" width="22" height="22">Kimi Code</li>
+                <li><img src="assets/agents/grok-build.png" alt="" width="22" height="22">Grok Build</li>
+                <li><img src="assets/agents/hermes-agent.png" alt="" width="22" height="22">Hermes Agent</li>
+                <li><img src="assets/agents/muse-code.png" alt="" width="22" height="22">Muse Code</li>
+                <li><img src="assets/agents/pi.png" alt="" width="22" height="22">Pi</li>
+            </ul>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>What every task comes with</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
+                <dl class="rows">
+                  <div><dt>One composer</dt><dd>Type the task, attach files and choose the permission mode in the same place.</dd></div>
+                  <div><dt>Plans</dt><dd>Plan steps tick off beside the conversation as the agent works.</dd></div>
+                  <div><dt>Model, effort, account</dt><dd>Chosen per task, from what that agent offers. On Automatic, the composer says which account and why.</dd></div>
+                  <div><dt>Git worktree</dt><dd>Choose New worktree instead of Local, and the task works in a Git worktree of its own.</dd></div>
+                  <div><dt>Context and limits</dt><dd>See how much context a task has used and what is left on each account.</dd></div>
+                  <div><dt>Token usage</dt><dd>Claude Code and Codex tokens with the API-equivalent cost, counted on your Mac.</dd></div>
+                </dl>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="turn" id="approvals" aria-labelledby="approvals-title">
+          <p class="ask"><span class="sr-only">You: </span>Tell the deploy task: ship it once the checks pass.</p>
+          <div class="reply">
+            <h2 id="approvals-title">Your approval travels in your own&nbsp;words.</h2>
+            <p>When one agent passes your approval to another, Yardlet sends your own words with the time you sent them, checks that they are in your messages in that task, and refuses to send if they are not.</p>
+            <figure class="trace">
+              <figcaption>What the deploy task reads</figcaption>
+              <pre><code>The checks passed on #128. Ship it.
 
 <span class="t">Sent by another Yardlet task (task id 5C0A5E00-0000-0000-0000-000000000001); the person did not type it.
 
 Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000-0000-000000000001, sent 2026-10-28T09:12:40+09:00:</span>
 <span class="q">&gt; ship it once the checks pass</span></code></pre>
-        </figure>
-        <figure class="trace">
-          <figcaption>What an agent gets back if it quotes words you never typed</figcaption>
-          <pre><code>Not sent: the person's messages in this task do not hold "deploy to production now".</code></pre>
-        </figure>
-      </div>
-    </div>
-  </section>
+            </figure>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>What an agent gets back if it quotes words you never typed</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
+                <pre class="mini"><code>Not sent: the person's messages in this task do not hold "deploy to production now".</code></pre>
+              </div>
+            </details>
+          </div>
+        </article>
 
-  <section class="answer" id="review" aria-labelledby="review-title">
-    <div class="wrap">
-      <p class="ask"><span class="sr-only">You: </span>Show me what changed, then merge it.</p>
-      <h2 id="review-title">Review it next to the conversation, then&nbsp;merge.</h2>
-      <p class="body">Diffs of the last turn, file restore and fork, a terminal and a files pane sit next to the conversation. The pull request card follows checks through your own <code>gh</code>, offers Fix CI when one fails, and merges when it is ready.</p>
-      <figure class="window wide">
-        <div class="shot shot-review">
-          <picture>
-            <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/story-review-phone-dark.jpg" width="1036" height="1290">
-            <source media="(max-width: 640px)" srcset="screens/story-review-phone-light.jpg" width="1036" height="1290">
-            <source media="(prefers-color-scheme: dark)" srcset="screens/story-review-dark.jpg">
-            <img src="screens/story-review-light.jpg" width="2240" height="1383" loading="lazy"
-                 alt="Reviewing the task's changes: the diff of src/app/settings/page.tsx beside the conversation, with pull request 128 in the task's header.">
-          </picture>
-        </div>
-        <figcaption><p>The review pane goes through the task's changes file by file.</p></figcaption>
-      </figure>
-    </div>
-  </section>
+        <article class="turn" id="review" aria-labelledby="review-title">
+          <p class="ask"><span class="sr-only">You: </span>Show me what changed, then merge it.</p>
+          <div class="reply">
+            <h2 id="review-title">Review it next to the conversation, then&nbsp;merge.</h2>
+            <p>Diffs of the last turn, file restore and fork, a terminal and a files pane sit next to the conversation. The pull request card follows checks through your own <code>gh</code>, offers Fix CI when one fails, and merges when it is ready.</p>
+            <figure class="attach flush">
+              <div class="shot shot-review">
+                <picture>
+                  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/story-review-phone-dark.jpg" width="1036" height="1290">
+                  <source media="(max-width: 640px)" srcset="screens/story-review-phone-light.jpg" width="1036" height="1290">
+                  <source media="(prefers-color-scheme: dark)" srcset="screens/review-panes-dark.jpg">
+                  <img src="screens/review-panes-light.jpg" width="2236" height="1680" loading="lazy" alt="Reviewing the task's changes: the diff of src/app/settings/page.tsx beside the conversation, with pull request 128 in the task's header.">
+                </picture>
+              </div>
+              <figcaption><p>The review pane goes through the task's changes file by file.</p></figcaption>
+            </figure>
+          </div>
+        </article>
 
-  <section class="answer" id="browser" aria-labelledby="browser-title">
-    <div class="wrap split flip">
-      <div>
-        <p class="ask"><span class="sr-only">You: </span>Sign in to the dashboard and pull this week's numbers.</p>
-        <h2 id="browser-title">A browser your agents drive, without seeing your&nbsp;passwords.</h2>
-        <p class="body">Agents drive a Chromium panel beside the conversation while you watch. They fill a sign-in saved in Yardlet's vault only on its own site, and a step only you can do, like a CAPTCHA, comes to you as a handed-over tab.</p>
-      </div>
-      <div>
-        <figure class="trace">
-          <figcaption>What the agent gets back after filling a saved sign-in</figcaption>
-          <pre><code>Filled the username and password of “Acme dashboard” into the form on dashboard.acme.dev and submitted it. The values are not shown to you.</code></pre>
-        </figure>
-        <dl class="facts two">
-          <div><dt>Codes and passkeys</dt><dd>The vault also fills two-step codes and passkeys.</dd></div>
-          <div><dt>Hand it over</dt><dd>The agent hands you the tab with a reason. Finish the step and press I'm done, or decline.</dd></div>
-          <div><dt>Sign-ins you have</dt><dd>Bring a site's sign-in over from another browser on your Mac.</dd></div>
-          <div><dt>Default browser</dt><dd>Set Yardlet as your default browser, and links open beside the task you are looking at.</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
+        <article class="turn" id="browser" aria-labelledby="browser-title">
+          <p class="ask"><span class="sr-only">You: </span>Sign in to the dashboard and pull this week's numbers.</p>
+          <div class="reply">
+            <h2 id="browser-title">A browser your agents drive, without seeing your&nbsp;passwords.</h2>
+            <p>Agents drive a Chromium panel beside the conversation while you watch. They fill a sign-in saved in Yardlet's vault only on its own site, and a step only you can do, like a CAPTCHA, comes to you as a handed-over tab.</p>
+            <figure class="trace">
+              <figcaption>What the agent gets back after filling a saved sign-in</figcaption>
+              <pre><code>Filled the username and password of “Acme dashboard” into the form on dashboard.acme.dev and submitted it. The values are not shown to you.</code></pre>
+            </figure>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>Codes, passkeys and handing a tab over</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
+                <dl class="rows">
+                  <div><dt>Codes and passkeys</dt><dd>The vault also fills two-step codes and passkeys.</dd></div>
+                  <div><dt>Hand it over</dt><dd>The agent hands you the tab with a reason. Finish the step and press I'm done, or decline.</dd></div>
+                  <div><dt>Sign-ins you have</dt><dd>Bring a site's sign-in over from another browser on your Mac.</dd></div>
+                  <div><dt>Default browser</dt><dd>Set Yardlet as your default browser, and links open beside the task you are looking at.</dd></div>
+                </dl>
+              </div>
+            </details>
+          </div>
+        </article>
 
-  <section class="answer" id="connectors" aria-labelledby="connectors-title">
-    <div class="wrap split">
-      <div>
-        <p class="ask"><span class="sr-only">You: </span>Check my calendar and Slack, then draft a reply in Gmail.</p>
-        <h2 id="connectors-title">Connect your tools once, for every&nbsp;agent.</h2>
-        <p class="body">Gmail, Google Calendar, Google Drive and Apple Calendar, Reminders and Contacts run through Yardlet's built-in MCP server on your Mac; GitHub, Slack and dozens of remote MCP services connect with one sign-in. Turn any of them off per task.</p>
-        <p class="more"><a href="blog/mcp-server-without-settings.html">How agents get it without a change to their settings</a>.</p>
-        <div class="facts one">
-          <div id="mail"><h3>Mailbox</h3><p>Gmail, Outlook Mail and IMAP inboxes beside your tasks. Agents read threads and write drafts, and every send goes through your approval.</p></div>
-          <div id="personal-agents"><h3>Personal agents</h3><p>Chat with your existing ChatGPT dots beside coding tasks.</p></div>
-        </div>
-      </div>
-      <figure>
-        <div class="sheet">
-          <picture>
-            <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/explore-connectors-phone-dark.png" width="720" height="682">
-            <source media="(max-width: 640px)" srcset="screens/explore-connectors-phone-light.png" width="720" height="682">
-            <source media="(prefers-color-scheme: dark)" srcset="screens/explore-connectors-dark.png" width="1640" height="1240">
-            <img src="screens/explore-connectors-light.png" width="1640" height="1240" loading="lazy"
-                 alt="Settings, Connectors: GitHub, Linear, Notion, Sentry and Slack connected for every task.">
-          </picture>
-        </div>
-      </figure>
-    </div>
-  </section>
+        <article class="turn" id="connectors" aria-labelledby="connectors-title">
+          <p class="ask"><span class="sr-only">You: </span>Check my calendar and Slack, then draft a reply in Gmail.</p>
+          <div class="reply">
+            <h2 id="connectors-title">Connect your tools once, for every&nbsp;agent.</h2>
+            <p>Gmail, Google Calendar, Google Drive and Apple Calendar, Reminders and Contacts run through Yardlet's built-in MCP server on your Mac; GitHub, Slack and dozens of remote MCP services connect with one sign-in. Turn any of them off per task.</p>
+            <figure class="attach">
+              <div class="sheet">
+                <picture>
+                  <source media="(prefers-color-scheme: dark)" srcset="screens/page-connectors-dark.png">
+                  <img src="screens/page-connectors-light.png" width="1168" height="820" loading="lazy" alt="Settings, Connectors: GitHub, Linear, Notion, Sentry and Slack connected for every task.">
+                </picture>
+              </div>
+            </figure>
+            <dl class="rows apart">
+              <div id="mail"><dt>Mailbox</dt><dd>Gmail, Outlook Mail and IMAP inboxes beside your tasks. Agents read threads and write drafts, and every send goes through your approval.</dd></div>
+              <div id="personal-agents"><dt>Personal agents</dt><dd>Chat with your existing ChatGPT dots beside coding tasks.</dd></div>
+            </dl>
+            <p class="aside-line"><a href="blog/mcp-server-without-settings.html">How agents get it without a change to their settings</a>.</p>
+          </div>
+        </article>
 
-  <section class="answer" id="agents" aria-labelledby="agents-title">
-    <div class="wrap split flip">
-      <div>
-        <p class="ask"><span class="sr-only">You: </span>Run Codex, Claude Code and OpenCode tasks side by side.</p>
-        <h2 id="agents-title">The ones you already use, with the same&nbsp;controls.</h2>
-        <p class="body">Every agent gets one sidebar, conversation view, composer and approval cards. The controls stay in place; the choices and values come from each agent.</p>
-      </div>
-      <figure>
-        <div class="sheet">
-          <picture>
-            <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="screens/explore-agents-phone-dark.png" width="720" height="846">
-            <source media="(max-width: 640px)" srcset="screens/explore-agents-phone-light.png" width="720" height="846">
-            <source media="(prefers-color-scheme: dark)" srcset="screens/explore-agents-dark.png" width="1640" height="1240">
-            <img src="screens/explore-agents-light.png" width="1640" height="1240" loading="lazy"
-                 alt="Settings, Harnesses: Codex, Claude Code and OpenCode installed, and Muse Code, Cursor Agent, Antigravity CLI and Kimi Code not installed, each with its own icon.">
-          </picture>
-        </div>
-        <figcaption>Settings › Harnesses lists each agent Yardlet can start.</figcaption>
-      </figure>
-    </div>
-    <div class="wrap">
-      <dl class="facts">
-        <div><dt>One composer</dt><dd>Type the task, attach files and choose the permission mode in the same place.</dd></div>
-        <div><dt>Plans</dt><dd>Plan steps tick off beside the conversation as the agent works.</dd></div>
-        <div><dt>Model, effort, account</dt><dd>Chosen per task, from what that agent offers. On Automatic, the composer says which account and why.</dd></div>
-        <div><dt>Git worktree</dt><dd>Choose New worktree instead of Local, and the task works in a Git worktree of its own.</dd></div>
-        <div><dt>Context and limits</dt><dd>See how much context a task has used and what is left on each account.</dd></div>
-        <div><dt>Token usage</dt><dd>Claude Code and Codex tokens with the API-equivalent cost, counted on your Mac.</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <div class="phone-band">
-    <section class="answer" id="phone" aria-labelledby="phone-title">
-      <div class="wrap split">
-        <div>
-        <p class="ask"><span class="sr-only">You: </span>Let me follow tasks and answer approvals while I'm out.</p>
-        <h2 id="phone-title">Follow tasks and answer approvals from your Android&nbsp;phone.</h2>
-        <p class="body">The app pairs with your Mac by QR code. On the same network it connects directly; away from it, through Yardlet's relay, end-to-end encrypted, and the relay can neither read nor store the messages.</p>
-        </div>
-        <div class="android">
-        <!-- android:start -->
+        <article class="turn" id="phone" aria-labelledby="phone-title">
+          <p class="ask"><span class="sr-only">You: </span>Let me follow tasks and answer approvals while I'm out.</p>
+          <div class="reply">
+            <h2 id="phone-title">Follow tasks and answer approvals from your Android&nbsp;phone.</h2>
+            <p>The app pairs with your Mac by QR code. On the same network it connects directly; away from it, through Yardlet's relay, end-to-end encrypted, and the relay can neither read nor store the messages.</p>
+            <!-- android:start -->
             <p>The Android app is in testing on Google&nbsp;Play, for Android&nbsp;10 and later. Join the testers
               group with the Google account on your phone, then open the test on Google&nbsp;Play and install it there;
               Play keeps it up to date. Testers who install it this way also help it reach the Play&nbsp;Store.</p>
@@ -475,25 +506,22 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <p>To pair it, open Settings&nbsp;›&nbsp;Remote in Yardlet on your Mac, turn on Allow remote connections,
               click Pair… beside Pair a device and scan the code with the app.</p>
             <!-- android:end -->
-        </div>
-      </div>
-    </section>
-  </div>
+          </div>
+        </article>
 
-  <section class="answer" id="trust" aria-labelledby="trust-title">
-    <div class="wrap">
-      <p class="ask"><span class="sr-only">You: </span>What do I risk by trying it?</p>
-      <h2 id="trust-title">Your agents, sessions and data stay where they&nbsp;are.</h2>
-      <div class="facts">
-        <div id="sessions"><h3 class="dot">Sessions stay with the agent</h3><p>Every session stays in the agent's own store on your Mac. Start a task in Yardlet, resume it in the Codex app or Terminal, and switch back anytime.</p></div>
-        <div id="stop"><h3 class="dot">Stop anytime</h3><p>Yardlet hands an agent its own MCP tools when it starts it, and you can turn them off. It writes nothing into the agents' settings, so quit or remove it and everything is as it was.</p></div>
-        <div id="privacy"><h3 class="dot">Nothing goes to Yardlet's developer</h3><p>No analytics and no server that receives your work. The only online services are an update check and, if you pair a phone or another Mac, the end-to-end encrypted relay.</p></div>
-      </div>
+        <article class="turn" id="trust" aria-labelledby="trust-title">
+          <p class="ask"><span class="sr-only">You: </span>What do I risk by trying it?</p>
+          <div class="reply">
+            <h2 id="trust-title">Your agents, sessions and data stay where they&nbsp;are.</h2>
+            <dl class="rows apart">
+              <div id="sessions"><dt>Sessions stay with the agent</dt><dd>Every session stays in the agent's own store on your Mac. Start a task in Yardlet, resume it in the Codex app or Terminal, and switch back anytime.</dd></div>
+              <div id="stop"><dt>Stop anytime</dt><dd>Yardlet hands an agent its own MCP tools when it starts it, and you can turn them off. It writes nothing into the agents' settings, so quit or remove it and everything is as it was.</dd></div>
+              <div id="privacy"><dt>Nothing goes to Yardlet's developer</dt><dd>No analytics and no server that receives your work. The only online services are an update check and, if you pair a phone or another Mac, the end-to-end encrypted relay.</dd></div>
+            </dl>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>What goes where</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
 
-      <details class="fold">
-        <summary>What goes where
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
-        <div class="fold-body">
           <dl class="rows">
             <div><dt>Your AI providers</dt><dd>What an agent reads, including through a connector, goes to that agent's provider under your account. Training follows that account's settings.</dd></div>
             <div><dt>Services you connect</dt><dd>Calls go straight from your Mac to the service. Sign-ins are kept in the macOS Keychain.</dd></div>
@@ -501,13 +529,12 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <div><dt>Yardlet's relay</dt><dd>Only if you pair a phone or another Mac and it is away from your network. Its messages are end-to-end encrypted; the relay cannot read them and stores none.</dd></div>
           </dl>
           <p class="fold-note">The <a href="privacy.html">privacy policy</a> has the details.</p>
-        </div>
-      </details>
+              </div>
+            </details>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>Remove Yardlet's own data too</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
 
-      <details class="fold">
-        <summary>Remove Yardlet's own data too
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 6.25 3.5 3.5 3.5-3.5"/></svg></summary>
-        <div class="fold-body">
           <ul class="rows">
             <li><code class="key">~/.yardlet</code><span class="val">Task list, drafts and reading state</span></li>
             <li><code class="key">~/Library/Application Support/Yardlet</code><span class="val">Browser profiles and staged updates</span></li>
@@ -518,75 +545,93 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
           <p class="fold-note"><code>brew uninstall --zap --cask zzunkie/tap/yardlet</code> removes the first two folders
             with Yardlet's caches and preferences. If Keep tasks working with the lid closed is on, turn it off
             before you remove the app.</p>
-        </div>
-      </details>
-
-      <section class="fold-open" id="google" aria-labelledby="google-title">
-        <h3 class="sub-h" id="google-title">How Yardlet uses Google data</h3>
-        <p class="body">Connecting Google is optional, and you choose which of Gmail, Google Calendar and Google Drive to turn on.
+              </div>
+            </details>
+            <section class="google" id="google" aria-labelledby="google-title">
+              <h3 class="sub" id="google-title">How Yardlet uses Google data</h3>
+              <p>Connecting Google is optional, and you choose which of Gmail, Google Calendar and Google Drive to turn on.
           Yardlet's own MCP server runs on your Mac and calls Google's APIs directly, only when an agent uses one of
           these tools, and passes the result only to that agent. Yardlet does not sell Google data, use it for
           advertising, or use it to train AI models.</p>
-        <dl class="facts" style="margin-top:28px">
-          <div><dt>Gmail</dt><dd>Search, read, draft, send and label email. No full mail access, so messages are never deleted for good.</dd></div>
-          <div><dt>Google Calendar</dt><dd>List calendars, read and change events, and check free times.</dd></div>
-          <div><dt>Google Drive</dt><dd>Read files, and create or change files of its own.</dd></div>
-        </dl>
-        <p class="more">The <a href="privacy.html">privacy policy</a> lists each permission it asks for and where the data goes.
+              <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>Gmail, Google Calendar and Google Drive</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
+                <dl class="rows">
+                  <div><dt>Gmail</dt><dd>Search, read, draft, send and label email. No full mail access, so messages are never deleted for good.</dd></div>
+                  <div><dt>Google Calendar</dt><dd>List calendars, read and change events, and check free times.</dd></div>
+                  <div><dt>Google Drive</dt><dd>Read files, and create or change files of its own.</dd></div>
+                </dl>
+              </div>
+            </details>
+              <p class="aside-line">The <a href="privacy.html">privacy policy</a> lists each permission it asks for and where the data goes.
           Until Google finishes reviewing Yardlet, its sign-in screen shows an “unverified app” warning. You can also
           sign in through a Google OAuth app of your own.</p>
-      </section>
-    </div>
-  </section>
+            </section>
+          </div>
+        </article>
 
-  <section class="closing" id="install" aria-labelledby="install-title">
-    <div class="wrap">
-      <div class="tile">
-      <img class="tile-icon" src="assets/icon-256.png" alt="" width="96" height="96">
-      <p class="ask"><span class="sr-only">You: </span>How do I install it?</p>
-      <h2 id="install-title">Download it, or use&nbsp;Homebrew.</h2>
-      <p class="body">Free and open source, with no Yardlet account. Your agents keep their sign&#8209;ins.</p>
-      <div class="get">
-        <a class="btn" href="https://dl.yardlet.app/site/arm64">Download for Mac</a>
-        <p class="cmd"><span class="sr-only">Or with Homebrew: </span><span class="prompt" aria-hidden="true">$</span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
+        <article class="turn" id="install" aria-labelledby="install-title">
+          <p class="ask"><span class="sr-only">You: </span>How do I install it?</p>
+          <div class="reply">
+            <h2 id="install-title">Download it, or use&nbsp;Homebrew.</h2>
+            <div class="approve-box">
+            <section class="approve" aria-labelledby="get-again-title">
+              <div class="approve-head">
+                <svg class="approve-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>
+                <div>
+                  <h3 id="get-again-title">Install Yardlet?</h3>
+                  <p><a class="nw" href="changelog.html">Version 0.11.16</a> · <span class="nw">macOS 15 or later</span><br><span class="nw">Apple silicon or <a href="https://dl.yardlet.app/site/x86_64">Intel</a></span></p>
+                </div>
+              </div>
+              <p class="approve-cmd"><span class="sr-only">Or with Homebrew: </span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
+              <div class="approve-actions">
+                <a class="btn" href="https://dl.yardlet.app/site/arm64">Download for Mac</a>
+              </div>
+            </section>
+            </div>
+            <p class="aside-line">Free and open source, with no Yardlet account. Your agents keep their sign&#8209;ins. Or <a href="https://github.com/zzunkie/yardlet#development">build it from source</a>.</p>
+            <details class="work">
+              <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4h8.25M5.5 8h8.25M5.5 12h8.25M2.5 4h.01M2.5 8h.01M2.5 12h.01"/></svg><span>Good to know</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6.25 4.5 3.5 3.5-3.5 3.5"/></svg></summary>
+              <div class="work-body">
+                <dl class="rows">
+                  <div><dt>Your plans</dt><dd>Usage counts against your Claude or ChatGPT plan, as it does in the CLI. Yardlet has no account, plan or fee of its own, and the agent's own terms apply.</dd></div>
+                  <div><dt>Requirements</dt><dd>macOS 15 or later on Apple silicon or Intel, and at least one agent CLI installed and signed in, such as <code>codex</code> or <code>claude</code>.</dd></div>
+                  <div><dt>Intel Macs</dt><dd>The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far. <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">Tell us</a> how it goes.</dd></div>
+                  <div><dt>Your accounts</dt><dd>Each task runs the agent's own CLI with the sign-in it already has: the app server for Codex, stream JSON for Claude Code and ACP for the others. Yardlet does not share or proxy accounts.</dd></div>
+                  <div><dt>Updates</dt><dd>Notarized by Apple, and updates itself with Sparkle. It installs only updates signed with Yardlet's release key. Each version's changes are in the <a href="changelog.html">changelog</a>.</dd></div>
+                  <div><dt>Native app</dt><dd>Written in Swift and SwiftUI. Its built-in browser panel is Chromium. Windows and Linux: not yet.</dd></div>
+                </dl>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <footer class="foot">
+          <nav class="foot-links" aria-label="Footer">
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of use</a>
+            <a href="https://github.com/zzunkie/yardlet">Source code</a>
+            <a href="changelog.html">Changelog</a>
+            <a href="blog/">Blog</a>
+            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+          </nav>
+          <p class="foot-badge"><a href="https://www.opensourcealternatives.to"><img src="assets/badge-osa.svg" alt="As seen on Open Source Alternatives" width="270" height="20"></a></p>
+          <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
+            analytics or third-party requests.</p>
+          <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
+            endorsed by them.</p>
+        </footer>
+      </main>
+
+      <!-- The composer holds the next question; sending it goes to that answer. Shown by home.js. -->
+      <div class="dock" hidden>
+        <a class="composer" href="#accounts">
+          <span class="draft">Start this on whichever account has the most left.</span>
+          <span class="send" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 13V3.25M8 3.25 3.75 7.5M8 3.25l4.25 4.25"/></svg></span>
+        </a>
       </div>
-      <p class="meta">Version 0.11.16 <span class="sep">·</span> <span class="nw">macOS 15 or later</span> <span class="sep">·</span> <a class="nw" href="https://dl.yardlet.app/site/x86_64">Intel version</a> <span class="sep">·</span> <a class="nw" href="https://github.com/zzunkie/yardlet#development">Build from source</a></p>
-      </div>
-
-      <section class="know" aria-labelledby="know-title">
-        <h3 id="know-title">Good to know</h3>
-        <dl class="facts">
-          <div><dt>Your plans</dt><dd>Usage counts against your Claude or ChatGPT plan, as it does in the CLI. Yardlet has no account, plan or fee of its own, and the agent's own terms apply.</dd></div>
-          <div><dt>Requirements</dt><dd>macOS 15 or later on Apple silicon or Intel, and at least one agent CLI installed and signed in, such as <code>codex</code> or <code>claude</code>.</dd></div>
-          <div><dt>Intel Macs</dt><dd>The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far. <a href="https://github.com/zzunkie/yardlet/issues/new?template=bug_report.yml">Tell us</a> how it goes.</dd></div>
-          <div><dt>Your accounts</dt><dd>Each task runs the agent's own CLI with the sign-in it already has: the app server for Codex, stream JSON for Claude Code and ACP for the others. Yardlet does not share or proxy accounts.</dd></div>
-          <div><dt>Updates</dt><dd>Notarized by Apple, and updates itself with Sparkle. It installs only updates signed with Yardlet's release key. Each version's changes are in the <a href="changelog.html">changelog</a>.</dd></div>
-          <div><dt>Native app</dt><dd>Written in Swift and SwiftUI. Its built-in browser panel is Chromium. Windows and Linux: not yet.</dd></div>
-        </dl>
-      </section>
     </div>
-  </section>
-
-</main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    <div>
-      <nav aria-label="Footer">
-        <a href="privacy.html">Privacy policy</a>
-        <a href="terms.html">Terms of use</a>
-        <a href="https://github.com/zzunkie/yardlet">Source code</a>
-        <a href="changelog.html">Changelog</a>
-        <a href="blog/">Blog</a>
-        <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
-      </nav>
-      <p style="margin-top:20px">Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
-        analytics or third-party requests.</p>
-      <p>Codex, Claude Code and the other agents named here belong to their owners. Yardlet is not affiliated with or
-        endorsed by them.</p>
-    </div>
-    <p class="foot-badge"><a href="https://www.opensourcealternatives.to"><img src="assets/badge-osa.svg" alt="As seen on Open Source Alternatives" width="270" height="20"></a></p>
   </div>
-</footer>
+</div>
 </body>
 </html>
