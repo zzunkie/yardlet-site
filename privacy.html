@@ -100,11 +100,12 @@
 <main class="doc" id="main">
   <div class="narrow">
     <h1>Yardlet Privacy Policy</h1>
-    <p class="updated">Last updated: November 12, 2026</p>
+    <p class="updated">Last updated: November 25, 2026</p>
 
     <p class="summary">Yardlet is a desktop app that runs on your Mac. It has no analytics and does not send your
-      data to its developer. Its only online services are an update feed and, if you pair a phone or another Mac, a relay
-      that passes end-to-end encrypted messages it cannot read.</p>
+      data to its developer. Its only online services are an update feed, a download link, a way to send feedback when
+      you choose to, and, if you pair a phone or another Mac, a relay that passes end-to-end encrypted messages it cannot
+      read. These services keep anonymous counts of the requests they answer, with nothing that identifies you.</p>
 
     <h2 id="what-yardlet-keeps-on-your-mac">What Yardlet keeps on your Mac</h2>
     <ul>
@@ -213,6 +214,27 @@
       system profile. Updates download from GitHub Releases, which may log the download as described in the
       <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub
       Privacy Statement</a>.</p>
+    <p>The update feed passes through a small Cloudflare Worker on its way from GitHub Pages, unchanged. For each
+      check it adds one to a daily count for that Yardlet version and Mac architecture (Apple silicon or Intel). It
+      keeps nothing else about the request: no IP address and no identifier.</p>
+
+    <h2 id="downloads">Downloads</h2>
+    <p>A download link that points to <code>dl.yardlet.app</code> sends your browser on to the disk image on GitHub
+      Releases. It counts the download by where the link was placed
+      (for example this website or Homebrew) and by Mac architecture, and leaves out crawlers and link previews. It
+      keeps no IP address and no identifier.</p>
+
+    <h2 id="feedback">Feedback and problem reports</h2>
+    <p>Yardlet sends feedback only when you write it and press Send in its Feedback window, or in a problem report you
+      open from an error. Before you send, the window shows what goes with your message: the Yardlet version and the
+      kind of screen you were on and, for a problem report, the macOS version, the agent and the error's kind and code.
+      An email address for a reply is optional. Yardlet attaches no conversations, file paths, account details, logs or
+      screenshots.</p>
+    <p>The message goes to Yardlet's relay, which forwards it by email to the Yardlet team's inbox through Cloudflare
+      and keeps no copy. To send a retried message only once, the relay remembers the message's random identifier, and
+      nothing of its content, for about 7 days. It uses your IP address only to limit how many messages one address
+      can send in a minute, and does not store it. The team reads feedback to improve Yardlet, answers only if you gave
+      an address, and does not publish it or share it with anyone else.</p>
 
     <h2 id="phone-remote">Phone and Mac remote</h2>
     <p>If you pair a phone or another Mac with Yardlet and it is away from your Mac's network, the two connect through
@@ -220,7 +242,9 @@
       <code>yardlet-relay-pages.pages.dev</code>, which is often nearer, and keeps whichever answers first. Everything
       between the two devices, such as tasks, conversations and approvals, is end-to-end encrypted with keys only they hold,
       so the relay cannot read it and stores none of it. The relay keeps no logs of your connections; it and Cloudflare
-      see the connection itself: a room identifier, IP addresses, when devices connect and how much they send.
+      see the connection itself: a room identifier, IP addresses, when devices connect and how much they send. The relay
+      keeps anonymous counts of connections, how they close, notifications sent, sign-ins by provider and Macs added or
+      removed, with no room identifier, IP address, account or device in them.
       Notifications for the phone are encrypted the same way before they pass through the relay and Google's Firebase
       Cloud Messaging; to deliver one, the relay uses the phone's notification token and keeps it only for that moment.
       If you sign in to the relay with GitHub or Google to find your Macs from anywhere, the relay keeps a hashed account
@@ -267,7 +291,7 @@
     <p>This website has no analytics, cookies, third-party scripts or requests to other sites. It is hosted on GitHub Pages,
       which may log visits as described in the
       <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub
-      Privacy Statement</a>.</p>
+      Privacy Statement</a>, and reaches you through Cloudflare's network.</p>
 
     <h2 id="changes">Changes</h2>
     <p>When this policy changes, the date at the top changes with it. Earlier versions are in the
