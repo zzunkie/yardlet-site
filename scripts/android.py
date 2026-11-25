@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Point the home page's phone section at the newest Android APK on GitHub, and bring sitemap.xml up to date.
+"""Point the home page's phone section at the Google Play test and the newest Android APK on GitHub, and bring
+sitemap.xml up to date.
 
 Run it from the site's root after publishing an Android release: python3 scripts/android.py
 It reads the releases tagged android-v<version> with the GitHub CLI (`gh`) and rewrites what index.html holds
@@ -16,6 +17,9 @@ import sitemap
 REPO = "zzunkie/yardlet"
 ROOT = Path(__file__).resolve().parent.parent
 TAG = re.compile(r"^android-v(\d+)\.(\d+)\.(\d+)$")
+# Google Play's closed test takes testers from this group; the second link opts a member in.
+GROUP = "https://groups.google.com/g/yardlet-testers"
+PLAY_TEST = "https://play.google.com/apps/testing/com.zzunkie.yardlet.remote"
 
 
 def latest():
@@ -39,16 +43,20 @@ def block(r):
         sys.exit(f"{r['tag_name']} lacks the APKs this script expects: {sorted(apks)}")
     return (
         "<!-- android:start -->\n"
-        "            <p>The Android app is in testing, for Android&nbsp;10 and later. In Yardlet on your Mac, open\n"
-        "              Settings&nbsp;›&nbsp;Remote, turn on Allow remote connections, click Pair… beside Pair a device and scan\n"
-        "              the code with the app. To update, install a newer APK over it or follow the <code>android-v</code>\n"
-        "              releases in Obtainium; the app tells you when one is out.</p>\n"
+        "            <p>The Android app is in testing on Google&nbsp;Play, for Android&nbsp;10 and later. Join the testers\n"
+        "              group with the Google account on your phone, then open the test on Google&nbsp;Play and install it there;\n"
+        "              Play keeps it up to date. Testers who install it this way also help it reach the Play&nbsp;Store.</p>\n"
         '            <p class="phone-get">\n'
-        f'              <a class="btn" href="{main}">Download for Android</a>\n'
-        f'              <a class="btn btn-quiet" href="{foss}">Without Google Play services</a>\n'
+        f'              <a class="btn" href="{GROUP}">Join the testers group</a>\n'
+        f'              <a class="btn btn-quiet" href="{PLAY_TEST}">Then get it on Google&nbsp;Play</a>\n'
         "            </p>\n"
-        f'            <p class="approve-alt"><a href="{r["html_url"]}">Version {version}</a> · checksums and the signing\n'
-        "              certificate are on the release page.</p>\n"
+        f'            <p class="approve-alt">If you would rather not join, or your phone has no Google&nbsp;Play,\n'
+        f'              <a href="{main}">download the APK</a> or the <a href="{foss}">build without Google&nbsp;Play services</a>\n'
+        f'              instead. To update it, install a newer one over it or follow the <code>android-v</code> releases in\n'
+        f'              Obtainium. <a href="{r["html_url"]}">Version {version}</a> · checksums and the signing certificate are\n'
+        "              on the release page.</p>\n"
+        "            <p>To pair it, open Settings&nbsp;›&nbsp;Remote in Yardlet on your Mac, turn on Allow remote connections,\n"
+        "              click Pair… beside Pair a device and scan the code with the app.</p>\n"
         "            <!-- android:end -->"
     )
 

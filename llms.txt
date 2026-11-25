@@ -10,7 +10,7 @@
 - Several accounts per provider with their session and weekly limits. On Automatic, a new task goes on the account with the most room left. The tokens Claude Code and Codex record on the Mac are shown with their API-equivalent cost.
 - Connectors (Gmail, Google Calendar, Google Drive, Apple Calendar, Reminders and Contacts, GitHub, Slack and remote MCP services) and a built-in Chromium browser that agents can drive, offered to Codex, Claude Code and the agents that use ACP. A mailbox shows Gmail, Outlook Mail and IMAP inboxes beside tasks; every send an agent makes goes through approval.
 - Tasks can read, message or start other tasks, including on another agent, and scheduled tasks run while Yardlet is open.
-- An Android app (in testing, Android 10 and later, APK on GitHub) pairs with the Mac by QR code to follow its tasks, answer approvals and start tasks, directly on the same network or through Yardlet's relay, end-to-end encrypted.
+- An Android app (in testing on Google Play, Android 10 and later; also an APK on GitHub) pairs with the Mac by QR code to follow its tasks, answer approvals and start tasks, directly on the same network or through Yardlet's relay, end-to-end encrypted.
 - Requires macOS 15 or later on Apple silicon or Intel and at least one agent CLI installed and signed in. Not available for Windows or Linux yet. The Intel version is new: its built-in browser plays no H.264 or AAC, and it has been tried on one Intel Mac so far, a 2018 Mac mini with Intel UHD Graphics 630.
 - No analytics and no server that receives your work.
 
@@ -26,6 +26,7 @@
 
 ## Blog posts
 
+- [98% of our Claude Code tokens were cache reads, but only 52% of the cost](https://yardlet.app/blog/claude-code-tokens-cache-reads-cost.html): Across 8 days of Claude Code transcripts on my Mac, cache reads were 98% of the tokens but 52% of the API-equivalent cost, while cache writes and output were 35% and 13%.
 - [I renamed my MCP tools, and 8 of 20 resumed sessions decided the server was down](https://yardlet.app/blog/renamed-mcp-tools-sessions-said-disconnected.html): After I merged per-account MCP tools into single tools, 8 of 20 resumed Claude Code sessions reported that the server was disconnected and stopped calling tools, even though the server never went down.
 - [What desktop apps for coding agents add to Claude Code and Codex](https://yardlet.app/blog/what-agent-apps-add.html): An app that runs several agents has to know when each one is working, waiting or done. Nine apps solve it with global hooks, command wrappers, a terminal signal or the agent's own protocol, and some add their own text to the prompt. What each does as of November 13, what it leaves on your Mac, and its memory at rest.
 - [Memory and CPU of eight coding-agent apps on one Mac](https://yardlet.app/blog/agent-apps-memory-cpu.html): On November 9 and 10 I measured Yardlet 0.11.10 and seven other coding-agent apps on one MacBook Pro: idle on first launch, with ten tasks streaming, with twenty browser tabs and over an hour. Here are the numbers, where Yardlet does worse, what the table leaves out, and the raw data.

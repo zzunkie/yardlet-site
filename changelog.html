@@ -92,7 +92,7 @@
         <nav class="bar-links" aria-label="Site">
           <a href="./">Home</a>
           <a href="https://github.com/zzunkie/yardlet">GitHub</a>
-          <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/latest">Download</a>
+          <a class="btn btn-small bar-get" href="https://dl.yardlet.app/site/arm64">Download</a>
           <a class="btn btn-small bar-source" href="https://github.com/zzunkie/yardlet">GitHub</a>
         </nav>
       </header>
@@ -101,6 +101,216 @@
   <div class="narrow">
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
+
+    <section class="release" id="v0.11.16" aria-labelledby="v0.11.16-title">
+      <h2 id="v0.11.16-title">Yardlet 0.11.16</h2>
+      <p class="updated"><time datetime="2026-11-24">November 24, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.16">Release on GitHub</a></p>
+      <h3>Conversation</h3>
+      <ul>
+        <li>Messages from Claude Code, Antigravity and other harnesses that don't mark working notes now stay visible in full, and tool-only stretches between messages fold into one-line summaries.</li>
+        <li>Turns with several messages offer <strong>Copy full response</strong>.</li>
+        <li>Hover or focus a message to see when it was sent.</li>
+      </ul>
+      <h3>Windows, tabs and panes</h3>
+      <ul>
+        <li>Two or more tabs in a window get their own browser-style tab bar.</li>
+        <li>The focused split pane stands out more clearly, and a pane can be maximized with ⌃⌘↩.</li>
+        <li>The Session Rail's on/off state now stays with each task, across split panes and windows.</li>
+        <li>Narrow side panels and the raised rail float as inset cards, with finer alignment, spacing and colors throughout.</li>
+      </ul>
+      <h3>Simulators</h3>
+      <ul>
+        <li>When another task already uses an iOS simulator or Android emulator, a task gets its own isolated copy of that device.</li>
+        <li>A task can open several Simulator tabs, each with its own device, and xctest batches no longer run in the terminal.</li>
+      </ul>
+      <h3>Settings and tools</h3>
+      <ul>
+        <li><strong>MCP Code Mode</strong> moved to <strong>Settings › General › Tasks</strong>.</li>
+        <li><code>browser_snapshot</code> accepts <code>query</code> and <code>maxResults</code> to return only matching parts of a page.</li>
+      </ul>
+      <h3>Codex and Antigravity</h3>
+      <ul>
+        <li>Codex speed tiers and lazy MCP startup work with Codex 0.172.</li>
+        <li>Antigravity offers only conversations still on disk, and its index no longer stops at a fixed size.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Markdown rendering in transcripts, power source checks, lid helper status at launch and file change previews no longer hold up the main thread.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>A saved-password fill on a page that changed underneath it now asks the agent to read the page again instead of reporting a browser refusal.</li>
+      </ul>
+    </section>
+
+    <section class="release" id="v0.11.15" aria-labelledby="v0.11.15-title">
+      <h2 id="v0.11.15-title">Yardlet 0.11.15</h2>
+      <p class="updated"><time datetime="2026-11-23">November 23, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.15">Release on GitHub</a></p>
+      <h3>Languages</h3>
+      <ul>
+        <li>Japanese and Simplified Chinese localizations are now included alongside English and Korean, with English fallback for any missing string.</li>
+      </ul>
+      <h3>Workspace and sidebar</h3>
+      <ul>
+        <li>A unified vertical sidebar navigation organizes Home, Mail, Calendar, Tasks, and Projects with refined surface depth, composer contrast, and an accent send button.</li>
+        <li>Turn a chat into a project of its own folder from its menu or by dropping it onto Projects, start nested tasks from a task's menu, collapse task families inline, and clear the hero project filter in one click.</li>
+        <li>The turn rail's marks are easier to click without a focus ring.</li>
+      </ul>
+      <h3>Antigravity and other harnesses</h3>
+      <ul>
+        <li>Queued messages on Antigravity and other turn-by-turn harnesses now offer <strong>Stop and send</strong>, cancelling the running turn and sending the chosen follow-up immediately once the turn stops.</li>
+        <li>Antigravity connector tools route through a compact MCP gateway and avoid duplicate MCP server registrations on resume, keeping built-in tools within the eager tool budget, and Yardlet MCP tool rows display clean names without per-session hash prefixes.</li>
+        <li>Antigravity subagents appear in the session rail and side panel, autonomous turns no longer duplicate or leak stale streams, and scheduled-task and session tools support Antigravity permission modes.</li>
+        <li>Interactive <code>show_widget</code> views render locally and in remote desktop windows for ACP harnesses.</li>
+        <li>Live thinking previews stream without Commentary flicker across harnesses, with reliability fixes across non-primary harness adapters.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>Mail, Calendar, and command shortcuts are available in the remote Mac window, and connectors can be set up from remote Mac settings.</li>
+        <li>Remote browser tabs capture faster and preserve viewport width without clipping.</li>
+        <li>Remote archive navigation no longer resets unexpectedly, and chats are labeled Chats on another Mac's Environment card.</li>
+      </ul>
+      <h3>Browser and tools</h3>
+      <ul>
+        <li>Copy a saved password from the browser key menu.</li>
+        <li>Agent tools can read archived tasks in read-only mode.</li>
+        <li>Optional experimental <strong>MCP Code Mode</strong> under <strong>Settings › Connectors</strong> collapses flat connector schemas behind <code>search_yardlet_tools</code> and a sandboxed JavaScript <code>run_yardlet_script</code> tool (off by default).</li>
+        <li>Released <code>yardlet-mcp</code> servers exit cleanly when no longer needed.</li>
+      </ul>
+      <h3>Faster and fixes</h3>
+      <ul>
+        <li>Conversation search runs outside the sidebar render, finished subagent conversations save off the main thread, and conversations draw through the unified row list.</li>
+        <li>Fixed a main-queue deadlock when background preference writes notified <code>UserDefaults</code> observers while the main thread flushed state.</li>
+        <li>Sidebar task commands are guarded outside the Tasks section, and remote push targets bind to the room that registered them.</li>
+      </ul>
+      <h3>Thanks</h3>
+      <ul>
+        <li>Thanks to @Greensy24 for contributing remote Mac connector setup (#1007).</li>
+      </ul>
+    </section>
+
+    <section class="release" id="v0.11.14" aria-labelledby="v0.11.14-title">
+      <h2 id="v0.11.14-title">Yardlet 0.11.14</h2>
+      <p class="updated"><time datetime="2026-11-21">November 21, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.14">Release on GitHub</a></p>
+      <h3>Security</h3>
+      <ul>
+        <li>Keys and tokens in what the browser, session and terminal tools return are hidden in more cases.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>File › Connect to Mac… lists the other Macs signed in to your Yardlet account with remote connections turned on, and connects to the one you choose without a number to confirm. You can sign in from there, and a connection link still works under Use a connection link.</li>
+        <li>When the other Mac runs an earlier Yardlet, or the account cannot approve the connection yet, you confirm a number on the other Mac or on a phone already connected to it, as before.</li>
+        <li>Settings › Yardlet Account says that Macs signed in to the same account can connect to this one.</li>
+      </ul>
+      <h3>Conversation</h3>
+      <ul>
+        <li>A Claude Code <code>/compact</code> that fails, whether you typed it or Yardlet ran it while the task was idle, shows as a failed compaction with Claude Code's reason, also after a relaunch.</li>
+        <li>The Settings window and the approval, question, plan and form cards share one set of text sizes, spacing and corners, and a form's labels, hints and "Required" are no longer small print.</li>
+      </ul>
+      <h3>Antigravity</h3>
+      <ul>
+        <li>A turn that Antigravity's plan limit stopped ends on a limit card with the reset time, as a Claude Code limit does, instead of showing the CLI's notice as the answer.</li>
+        <li>A turn that ended on the CLI's error notice ends as failed with its words, and a <code>run_agent</code> subagent that a limit or an error stopped ends as failed and says why.</li>
+        <li>Importing finds an Antigravity conversation in each folder it lists, and a conversation Yardlet started is listed only under the folder Yardlet opened it in.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>Keep tasks working with the lid closed turns on instead of saying Yardlet's helper is not available, and General › App shows Launch at login on a Mac where it was never turned on.</li>
+        <li>A Mac without a built-in lid (Mac mini, Mac Studio, iMac) no longer offers the lid setting.</li>
+      </ul>
+    </section>
+
+    <section class="release" id="v0.11.13" aria-labelledby="v0.11.13-title">
+      <h2 id="v0.11.13-title">Yardlet 0.11.13</h2>
+      <p class="updated"><time datetime="2026-11-20">November 20, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.13">Release on GitHub</a></p>
+      <h3>Security</h3>
+      <ul>
+        <li>Keys and tokens in what the browser, session and terminal tools return are hidden more reliably, and hiding them in a long result no longer holds up the window.</li>
+      </ul>
+      <h3>Simulators</h3>
+      <ul>
+        <li>A task's side panel has a Simulator tab, after Browser in its launcher and + menu. It shows an iOS simulator from your Xcode, an Android emulator from your Android SDK, or an Android phone or tablet that adb reaches, live, and you use it with the mouse, the trackpad and the keyboard. Yardlet starts devices without a window and changes nothing in Xcode's or the SDK's settings.</li>
+        <li>What the Mac lacks for a simulator (Xcode, an iOS runtime, the Android SDK) can be installed from the tab, which shows what it will download first.</li>
+        <li>Agents can see and drive the device their task attached, read its screen as elements, and hand it to you for a step only you can take. A device asks once before an agent first uses it, and a real Android device asks in each task.</li>
+        <li>The simulator helper runs in a sandbox, with no network.</li>
+        <li>Settings › General › Simulator turns it all off: the tabs close, the devices Yardlet started shut down, and Yardlet offers to remove what it installed.</li>
+      </ul>
+      <h3>Conversation</h3>
+      <ul>
+        <li>Pictures an answer's Markdown names are drawn in place, and videos and sounds play where they are named. A picture on the web loads only when you click Load image.</li>
+        <li>Mermaid blocks are drawn as diagrams, as in the Codex and Claude apps.</li>
+        <li>Codex's inline visualizations are drawn in the conversation, as in the Codex app. Claude Code and ACP agents get a <code>show_widget</code> tool that draws a view under its call.</li>
+        <li>A waiting approval, question or plan sits right above the composer on a panel of its own, as in the Claude app, and the composer stays free to type in. An answered request stays in its turn as one quiet line that names what was asked.</li>
+        <li>A message you send while an agent waits on you goes to the agent and answers what it waited on, instead of waiting until you press Decline.</li>
+        <li>A request's wider allows share one Always allow button, with each scope in its menu.</li>
+        <li>A task waiting on you reads Needs approval or Needs answer in the sidebar and home, and in the task only the progress line is orange. A split pane's outline marks focus alone.</li>
+        <li>Korean wraps between words in text fields and answers, and the composer grows while an input method is still composing a word.</li>
+        <li>In a narrow composer the model control shortens first, so Send stays in view.</li>
+        <li>A 1M-context Claude model reads "Opus (1M context)" before Claude Code lists its models.</li>
+        <li>A Claude Code Code Mode step reads as its script and the calls it made.</li>
+      </ul>
+      <h3>Settings</h3>
+      <ul>
+        <li>Settings has a search field, and ⌘K finds settings too, in English and Korean.</li>
+        <li>Keyboard shortcuts can be changed in Settings › Keyboard shortcuts.</li>
+        <li>View › Zoom In, Zoom Out and Actual Size (⌘+, ⌘− and ⌘0) zoom the app's text from 80% to 175%, as in the Codex and Claude apps.</li>
+        <li>Yardlet follows the Mac's accent color by default. Appearance › Color preset offers the accents Ink, Grove and Iris and the complete palettes Nord, Catppuccin, Ember and Tidepool. The Light and Dark columns can set their own accent, background and text colors, checked for contrast before they are saved, and the interface font can be the system, serif or rounded face.</li>
+        <li>Changing the language offers Relaunch.</li>
+        <li>The browser's settings have a Browser section of their own, Harness Accounts and Usage come before Harnesses, and more rows say what they change.</li>
+        <li>A task's harness settings turn Codex skills and Claude Code plugins on and off through the harness's own commands. They open from Harness settings… in ⌘K, Manage skills… under Codex's Skills, and Claude Code's <code>/plugin</code>.</li>
+      </ul>
+      <h3>Tasks</h3>
+      <ul>
+        <li>Sidebar rows stay in place while the pointer is over the list, so a click opens the task you saw.</li>
+        <li>A message sent into a turn that ended before the agent read it, as when Yardlet quit, goes out again instead of waiting for a turn that never comes.</li>
+        <li>A task whose harness did not start keeps the message it was started with and the reason in its conversation, and a scheduled run that made it names it.</li>
+        <li>With no project chosen, the home starts a chat.</li>
+        <li>A task hears when a subagent it started ends, also after the call returned.</li>
+        <li>A subagent that ended no longer leaves its calling task waiting on an approval nobody can answer.</li>
+        <li>A task a schedule started changes other schedules as its permission mode allows, as any task does.</li>
+        <li>Agents can add a folder as a project with <code>create_project</code>.</li>
+        <li>A sign-in a CLI can no longer renew offers Sign in.</li>
+        <li>A Claude Code error shows once, as its card.</li>
+        <li>A Claude Code turn the Mac's sleep cut mid-response is continued.</li>
+        <li>GPT-6.2 Astra and Sol usage has its prices.</li>
+      </ul>
+      <h3>Antigravity</h3>
+      <ul>
+        <li>Antigravity CLI tasks run only over ACP.</li>
+        <li>Antigravity CLI accounts no longer take part in automatic account assignment.</li>
+      </ul>
+      <h3>Browser</h3>
+      <ul>
+        <li>Import from Another Browser… starts with your default browser, and lists the browsers macOS keeps from other apps with how to allow them.</li>
+        <li>An agent's script on a page gives its task a browser profile of its own only where the page may be signing in, so the task keeps your later sign-ins elsewhere.</li>
+        <li>Each browser profile's disk cache stays under 80 MiB, and an archived task's profile is removed while the browser keeps running.</li>
+        <li>A tab shown again no longer stays white until you reload it.</li>
+        <li><code>browser_snapshot</code> can read one part of a page.</li>
+      </ul>
+      <h3>Another Mac's tasks</h3>
+      <ul>
+        <li>A window for another Mac keeps its close, minimize and zoom buttons on the title bar row as its connection changes.</li>
+        <li>A task list the other Mac refused is asked for again while the connection stays.</li>
+      </ul>
+      <h3>Faster</h3>
+      <ul>
+        <li>Launch reads saved conversations off the main thread, so a long history no longer stalls "Restoring tasks…".</li>
+        <li>Hiding and showing the conversation behind an expanded side panel lays out none of its messages.</li>
+        <li>PDF previews open, draw and close off the main thread.</li>
+        <li>Long commands and waits on large pages cost the main thread far less.</li>
+      </ul>
+      <h3>Fixes</h3>
+      <ul>
+        <li>A saved file takes the save's modification time, so build tools and file watchers see the change.</li>
+        <li>A turn you jumped to stays in view when Claude Code's saved conversation replaces the cache.</li>
+        <li>Codex starts when its account folder's path has a space or a non-ASCII character.</li>
+        <li>A Codex task that failed to start keeps its first message once its thread starts.</li>
+        <li>The next Codex task on an account no longer loses its first message after the account's last session closed.</li>
+        <li>Stopping a Codex turn that had already ended reads as stopped, not failed.</li>
+        <li>A mail account that could not be read at launch is read again as soon as its watch hears from it.</li>
+        <li>The calendar sums up each day's recurring runs, so meetings keep their room.</li>
+      </ul>
+    </section>
 
     <section class="release" id="v0.11.12" aria-labelledby="v0.11.12-title">
       <h2 id="v0.11.12-title">Yardlet 0.11.12</h2>

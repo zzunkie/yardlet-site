@@ -2,23 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://yardlet.app/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/privacy.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/terms.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/changelog.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/blog/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://yardlet.app/blog/claude-code-tokens-cache-reads-cost.html</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://yardlet.app/blog/renamed-mcp-tools-sessions-said-disconnected.html</loc>

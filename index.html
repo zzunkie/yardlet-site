@@ -30,12 +30,12 @@
   "description": "Lightweight, non-intrusive, yet versatile ADE. A free, open-source native Mac app that runs the real Claude Code, Codex and other coding agent CLIs side by side, each with its own sign-in and session history, with no hooks, no wrappers and nothing written into their settings.",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "macOS 15 or later, Apple silicon or Intel",
-  "softwareVersion": "0.11.12",
+  "softwareVersion": "0.11.16",
   "softwareRequirements": "At least one agent CLI installed and signed in, such as codex or claude",
   "releaseNotes": "https://yardlet.app/changelog.html",
   "image": "https://yardlet.app/screens/og.jpg",
   "screenshot": "https://yardlet.app/screens/hero-split-light.jpg",
-  "downloadUrl": "https://github.com/zzunkie/yardlet/releases/latest",
+  "downloadUrl": "https://dl.yardlet.app/site/arm64",
   "featureList": [
     "Runs Claude Code, Codex, OpenCode, Cursor Agent, Antigravity CLI and other agent CLIs side by side",
     "Keeps each agent's own sign-in and session history",
@@ -184,7 +184,7 @@
       <a class="hide-narrow" href="blog/">Blog</a>
       <a class="hide-narrow" href="privacy.html">Privacy</a>
       <a href="https://github.com/zzunkie/yardlet">GitHub</a>
-      <a class="btn btn-small bar-get" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.12/Yardlet-0.11.12-macos.dmg">Download</a>
+      <a class="btn btn-small bar-get" href="https://dl.yardlet.app/site/arm64">Download</a>
     </nav>
   </div>
 </header>
@@ -201,10 +201,10 @@
       <p class="lead">Yardlet runs Claude Code, Codex and other agent CLIs side by side in one native Mac app, with no hooks, no wrappers and nothing written into their settings.</p>
         <div class="hero-act">
       <div class="get">
-        <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.12/Yardlet-0.11.12-macos.dmg">Download for Mac</a>
+        <a class="btn" href="https://dl.yardlet.app/site/arm64">Download for Mac</a>
         <p class="cmd"><span class="sr-only">Or with Homebrew: </span><span class="prompt" aria-hidden="true">$</span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
       </div>
-      <p class="meta"><a href="changelog.html">Version 0.11.12</a> <span class="sep">·</span> <span class="nw">macOS 15 or later</span> <span class="sep">·</span> <span class="nw">Apple silicon</span> <span class="sep">·</span> <a class="nw" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.12/Yardlet-0.11.12-x86_64.dmg">Intel version</a><br>
+      <p class="meta"><a href="changelog.html">Version 0.11.16</a> <span class="sep">·</span> <span class="nw">macOS 15 or later</span> <span class="sep">·</span> <span class="nw">Apple silicon</span> <span class="sep">·</span> <a class="nw" href="https://dl.yardlet.app/site/x86_64">Intel version</a><br>
         <span class="meta-2"><span class="nw">Free and open source, MIT License</span> <span class="sep">·</span> <span class="nw">No Yardlet account</span></span></p>
         </div>
         </div>
@@ -460,16 +460,20 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
         </div>
         <div class="android">
         <!-- android:start -->
-            <p>The Android app is in testing, for Android&nbsp;10 and later. In Yardlet on your Mac, open
-              Settings&nbsp;›&nbsp;Remote, turn on Allow remote connections, click Pair… beside Pair a device and scan
-              the code with the app. To update, install a newer APK over it or follow the <code>android-v</code>
-              releases in Obtainium; the app tells you when one is out.</p>
+            <p>The Android app is in testing on Google&nbsp;Play, for Android&nbsp;10 and later. Join the testers
+              group with the Google account on your phone, then open the test on Google&nbsp;Play and install it there;
+              Play keeps it up to date. Testers who install it this way also help it reach the Play&nbsp;Store.</p>
             <p class="phone-get">
-              <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/android-v0.3.13/yardlet-remote-0.3.13.apk">Download for Android</a>
-              <a class="btn btn-quiet" href="https://github.com/zzunkie/yardlet/releases/download/android-v0.3.13/yardlet-remote-0.3.13-foss.apk">Without Google Play services</a>
+              <a class="btn" href="https://groups.google.com/g/yardlet-testers">Join the testers group</a>
+              <a class="btn btn-quiet" href="https://play.google.com/apps/testing/com.zzunkie.yardlet.remote">Then get it on Google&nbsp;Play</a>
             </p>
-            <p class="approve-alt"><a href="https://github.com/zzunkie/yardlet/releases/tag/android-v0.3.13">Version 0.3.13</a> · checksums and the signing
-              certificate are on the release page.</p>
+            <p class="approve-alt">If you would rather not join, or your phone has no Google&nbsp;Play,
+              <a href="https://github.com/zzunkie/yardlet/releases/download/android-v0.3.13/yardlet-remote-0.3.13.apk">download the APK</a> or the <a href="https://github.com/zzunkie/yardlet/releases/download/android-v0.3.13/yardlet-remote-0.3.13-foss.apk">build without Google&nbsp;Play services</a>
+              instead. To update it, install a newer one over it or follow the <code>android-v</code> releases in
+              Obtainium. <a href="https://github.com/zzunkie/yardlet/releases/tag/android-v0.3.13">Version 0.3.13</a> · checksums and the signing certificate are
+              on the release page.</p>
+            <p>To pair it, open Settings&nbsp;›&nbsp;Remote in Yardlet on your Mac, turn on Allow remote connections,
+              click Pair… beside Pair a device and scan the code with the app.</p>
             <!-- android:end -->
         </div>
       </div>
@@ -543,10 +547,10 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
       <h2 id="install-title">Download it, or use&nbsp;Homebrew.</h2>
       <p class="body">Free and open source, with no Yardlet account. Your agents keep their sign&#8209;ins.</p>
       <div class="get">
-        <a class="btn" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.12/Yardlet-0.11.12-macos.dmg">Download for Mac</a>
+        <a class="btn" href="https://dl.yardlet.app/site/arm64">Download for Mac</a>
         <p class="cmd"><span class="sr-only">Or with Homebrew: </span><span class="prompt" aria-hidden="true">$</span><code>brew install --cask zzunkie/tap/yardlet</code><button class="copy" type="button" data-copy="brew install --cask zzunkie/tap/yardlet" hidden>Copy</button></p>
       </div>
-      <p class="meta">Version 0.11.12 <span class="sep">·</span> <span class="nw">macOS 15 or later</span> <span class="sep">·</span> <a class="nw" href="https://github.com/zzunkie/yardlet/releases/download/v0.11.12/Yardlet-0.11.12-x86_64.dmg">Intel version</a> <span class="sep">·</span> <a class="nw" href="https://github.com/zzunkie/yardlet#development">Build from source</a></p>
+      <p class="meta">Version 0.11.16 <span class="sep">·</span> <span class="nw">macOS 15 or later</span> <span class="sep">·</span> <a class="nw" href="https://dl.yardlet.app/site/x86_64">Intel version</a> <span class="sep">·</span> <a class="nw" href="https://github.com/zzunkie/yardlet#development">Build from source</a></p>
       </div>
 
       <section class="know" aria-labelledby="know-title">
