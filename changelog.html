@@ -102,6 +102,56 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.17" aria-labelledby="v0.11.17-title">
+      <h2 id="v0.11.17-title">Yardlet 0.11.17</h2>
+      <p class="updated"><time datetime="2026-11-26">November 26, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.17">Release on GitHub</a></p>
+      <h3>Tool approvals</h3>
+      <ul>
+        <li>Yardlet now weighs each agent tool call where it runs, so a call made inside a script, a connector wrapper or a browser batch asks the same way the direct call would.</li>
+        <li>In a task that asks you, a connector's first read of a service asks once for the task, and every connector write, scheduled-task change and saved sign-in fill asks on Yardlet's card.</li>
+        <li>A task's first read of your personal agents asks once, and adding, hiding or showing a project in the sidebar asks each time, naming the project and its folder.</li>
+        <li>A tool call now shows one card: Codex and Antigravity leave the calls Yardlet weighs to Yardlet's card, and scheduled-task cards name the task the runs continue and the mode they use.</li>
+        <li>Subagents run at their harness's actual permission level, never freer than their caller, and a subagent waiting on you says which task's conversation shows its card.</li>
+      </ul>
+      <h3>Browser</h3>
+      <ul>
+        <li>The agent reads and views its own tabs without asking. Going to another site asks by site, with <strong>Allow once</strong> or <strong>Allow it in this task</strong>, and redirects to another site and downloads from a site ask too.</li>
+        <li>Servers a task starts itself, including Antigravity's and those listening on 0.0.0.0, open without a card.</li>
+        <li>While the agent drives a tab, the page keeps your stray clicks and keys out and shows <strong>Take control</strong> to hand it back to you.</li>
+        <li>A browser tab no longer turns white or stale when the same task is also shown in a split pane or another window tab.</li>
+      </ul>
+      <h3>MCP Code Mode</h3>
+      <ul>
+        <li><strong>MCP Code Mode</strong> is now <strong>Auto</strong> (the default), <strong>On</strong> or <strong>Off</strong>. Auto uses it in Claude Code tasks with 30 or more connector tools and in other agents' tasks with any connector tool, never in Codex, which has its own. A switch you set earlier keeps its meaning.</li>
+        <li>Tool searches answer in JSON that a script can filter.</li>
+      </ul>
+      <h3>Harnesses</h3>
+      <ul>
+        <li><strong>Kiro CLI</strong> joins the ACP agents, with its mode, Autopilot, model and effort, sign-in and sign-out, and importing and resuming sessions.</li>
+        <li>New experimental setting <strong>Steer Antigravity turns</strong> (off by default): a message sent while an Antigravity task works reaches it at its next step, as with Claude Code. It adds a small plugin under <code>~/.gemini/config/plugins</code> and removes it when turned off.</li>
+        <li>Antigravity tool calls titled "Run &lt;tool&gt;" now show the tool's name in the conversation and on permission cards.</li>
+        <li>A message another task sends into a running Claude Code turn is marked as not coming from you.</li>
+      </ul>
+      <h3>Conversation and layout</h3>
+      <ul>
+        <li>Request cards are cleaner: answered questions sit in one quiet block, option rows show the number key that picks them, and a reply to Codex's questions no longer repeats as a separate bubble.</li>
+        <li>The composer now lines up with the conversation's column.</li>
+        <li>The new-task screen fits inside a narrow split pane.</li>
+        <li>A personal agent's conversation now looks like a task's, with grouped messages, day dividers and actions on hover.</li>
+      </ul>
+      <h3>Sidebar and feedback</h3>
+      <ul>
+        <li>The sidebar footer shows your name, a Settings gear and a Feedback button side by side.</li>
+        <li><strong>Send Feedback</strong> sends a private note to the Yardlet team, and error cards offer <strong>Send problem report</strong>. The sheet shows what goes with the note before sending and never attaches conversations, paths, accounts, logs or screenshots.</li>
+      </ul>
+      <h3>Fixes and performance</h3>
+      <ul>
+        <li>Quitting while tasks were set to continue no longer continues one of them twice at the next launch.</li>
+        <li>A scheduled run no longer fails with "ACP transport stopped" when another session on the same agent process closes while it opens.</li>
+        <li>Long answers redraw faster: a message's Markdown is read again only where it changed.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.16" aria-labelledby="v0.11.16-title">
       <h2 id="v0.11.16-title">Yardlet 0.11.16</h2>
       <p class="updated"><time datetime="2026-11-24">November 24, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.16">Release on GitHub</a></p>

@@ -3,6 +3,63 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.17</title>
+            <pubDate>Thu, 26 Nov 2026 12:13:12 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>39</sparkle:version>
+            <sparkle:shortVersionString>0.11.17</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.17
+
+## Tool approvals
+
+- Yardlet now weighs each agent tool call where it runs, so a call made inside a script, a connector wrapper or a browser batch asks the same way the direct call would.
+- In a task that asks you, a connector's first read of a service asks once for the task, and every connector write, scheduled-task change and saved sign-in fill asks on Yardlet's card.
+- A task's first read of your personal agents asks once, and adding, hiding or showing a project in the sidebar asks each time, naming the project and its folder.
+- A tool call now shows one card: Codex and Antigravity leave the calls Yardlet weighs to Yardlet's card, and scheduled-task cards name the task the runs continue and the mode they use.
+- Subagents run at their harness's actual permission level, never freer than their caller, and a subagent waiting on you says which task's conversation shows its card.
+
+## Browser
+
+- The agent reads and views its own tabs without asking. Going to another site asks by site, with **Allow once** or **Allow it in this task**, and redirects to another site and downloads from a site ask too.
+- Servers a task starts itself, including Antigravity's and those listening on 0.0.0.0, open without a card.
+- While the agent drives a tab, the page keeps your stray clicks and keys out and shows **Take control** to hand it back to you.
+- A browser tab no longer turns white or stale when the same task is also shown in a split pane or another window tab.
+
+## MCP Code Mode
+
+- **MCP Code Mode** is now **Auto** (the default), **On** or **Off**. Auto uses it in Claude Code tasks with 30 or more connector tools and in other agents' tasks with any connector tool, never in Codex, which has its own. A switch you set earlier keeps its meaning.
+- Tool searches answer in JSON that a script can filter.
+
+## Harnesses
+
+- **Kiro CLI** joins the ACP agents, with its mode, Autopilot, model and effort, sign-in and sign-out, and importing and resuming sessions.
+- New experimental setting **Steer Antigravity turns** (off by default): a message sent while an Antigravity task works reaches it at its next step, as with Claude Code. It adds a small plugin under `~/.gemini/config/plugins` and removes it when turned off.
+- Antigravity tool calls titled "Run <tool>" now show the tool's name in the conversation and on permission cards.
+- A message another task sends into a running Claude Code turn is marked as not coming from you.
+
+## Conversation and layout
+
+- Request cards are cleaner: answered questions sit in one quiet block, option rows show the number key that picks them, and a reply to Codex's questions no longer repeats as a separate bubble.
+- The composer now lines up with the conversation's column.
+- The new-task screen fits inside a narrow split pane.
+- A personal agent's conversation now looks like a task's, with grouped messages, day dividers and actions on hover.
+
+## Sidebar and feedback
+
+- The sidebar footer shows your name, a Settings gear and a Feedback button side by side.
+- **Send Feedback** sends a private note to the Yardlet team, and error cards offer **Send problem report**. The sheet shows what goes with the note before sending and never attaches conversations, paths, accounts, logs or screenshots.
+
+## Fixes and performance
+
+- Quitting while tasks were set to continue no longer continues one of them twice at the next launch.
+- A scheduled run no longer fails with "ACP transport stopped" when another session on the same agent process closes while it opens.
+- Long answers redraw faster: a message's Markdown is read again only where it changed.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.17/Yardlet-0.11.17-x86_64.dmg" length="209035290" type="application/octet-stream" sparkle:edSignature="fufb3IGoy22ieSfyUPffpMt8OCvyQYLG7sD3m8QDfQ29kve+lozpj1r+dZxDpLZEeVPHo6sbSnqVmDROX4isCw=="/>
+        </item>
+        <item>
             <title>0.11.16</title>
             <pubDate>Wed, 25 Nov 2026 00:14:43 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -102,53 +159,6 @@
 - Thanks to @Greensy24 for contributing remote Mac connector setup (#1007).
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.15/Yardlet-0.11.15-x86_64.dmg" length="208406741" type="application/octet-stream" sparkle:edSignature="NKjsEoQtsxaEpTWyTVg74CiibOH7F+08vChcJDWWW+eSvAEQ+ysSA0BaOjt6FDOdBc40b/SnUnj5eWWZYPTSDQ=="/>
-        </item>
-        <item>
-            <title>0.11.14</title>
-            <pubDate>Sat, 21 Nov 2026 13:45:00 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>36</sparkle:version>
-            <sparkle:shortVersionString>0.11.14</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.14
-
-## Security
-
-- Keys and tokens in what the browser, session and terminal tools return are hidden in more cases.
-
-## Another Mac's tasks
-
-- File › Connect to Mac… lists the other Macs signed in to your Yardlet account with remote connections turned on,
-  and connects to the one you choose without a number to confirm. You can sign in from there, and a connection link
-  still works under Use a connection link.
-- When the other Mac runs an earlier Yardlet, or the account cannot approve the connection yet, you confirm a number
-  on the other Mac or on a phone already connected to it, as before.
-- Settings › Yardlet Account says that Macs signed in to the same account can connect to this one.
-
-## Conversation
-
-- A Claude Code `/compact` that fails, whether you typed it or Yardlet ran it while the task was idle, shows as a
-  failed compaction with Claude Code's reason, also after a relaunch.
-- The Settings window and the approval, question, plan and form cards share one set of text sizes, spacing and
-  corners, and a form's labels, hints and "Required" are no longer small print.
-
-## Antigravity
-
-- A turn that Antigravity's plan limit stopped ends on a limit card with the reset time, as a Claude Code limit does,
-  instead of showing the CLI's notice as the answer.
-- A turn that ended on the CLI's error notice ends as failed with its words, and a `run_agent` subagent that a limit
-  or an error stopped ends as failed and says why.
-- Importing finds an Antigravity conversation in each folder it lists, and a conversation Yardlet started is listed
-  only under the folder Yardlet opened it in.
-
-## Fixes
-
-- Keep tasks working with the lid closed turns on instead of saying Yardlet's helper is not available, and
-  General › App shows Launch at login on a Mac where it was never turned on.
-- A Mac without a built-in lid (Mac mini, Mac Studio, iMac) no longer offers the lid setting.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.14/Yardlet-0.11.14-x86_64.dmg" length="206595942" type="application/octet-stream" sparkle:edSignature="HNVGjQl5t1+uFlmerYL7ygXBQoSZzQm6iYWN/R7lRfacLD43t8oIuQyXT3tQ9KINSKHi86NR4FA+jtTB7R0xAg=="/>
         </item>
     </channel>
 </rss>
