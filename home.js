@@ -27,7 +27,8 @@
   };
   const show = (view) => {
     if (view === current) return;
-    current?.classList.remove('current');
+    for (const other of views) other.classList.remove('leaving');
+    current?.classList.replace('current', 'leaving');
     current = view;
     view.classList.add('current');
     for (const [key, row] of rowOf) {

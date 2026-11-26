@@ -176,9 +176,11 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 .flow .view { display: block; min-height: calc(var(--win-h) - var(--bar-h) - var(--dock-h) + 24px); padding-bottom: 96px; }
 .flow .view + .view { border-top: 0; }
 .flow .beside { position: absolute; top: calc(-1 * var(--bar-h)); right: 0; bottom: 0; width: var(--beside); height: auto; margin: 0;
-  align-self: stretch; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  align-self: stretch; opacity: 0; pointer-events: none; }
 .flow .beside-in { position: sticky; top: var(--py); height: var(--win-h); }
 .flow .current .beside { z-index: 1; opacity: 1; pointer-events: auto; }
+/* The panel coming in and the one going out cross; any passed on the way are gone at once. */
+.flow .current .beside, .flow .leaving .beside { transition: opacity 0.3s ease; }
 .flow .views > .foot { margin-right: 0; padding-bottom: calc(var(--dock-h) + 8px); }
 .beside-bar { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 0 12px; }
 .pill, .tab { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 10px; border-radius: 9px; font: 600 14px/1 var(--font); color: var(--text); }
