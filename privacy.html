@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
 <title>Yardlet Privacy Policy</title>
-<meta name="description" content="What the Yardlet macOS app accesses, where it is stored, and where it goes.">
+<meta name="description" content="How Yardlet and Yardlet Remote handle tasks, optional account sign-in, pairing and notifications.">
 <link rel="canonical" href="https://yardlet.app/privacy.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yardlet">
 <meta property="og:url" content="https://yardlet.app/privacy.html">
 <meta property="og:title" content="Yardlet Privacy Policy">
-<meta property="og:description" content="What the Yardlet macOS app accesses, where it is stored, and where it goes.">
+<meta property="og:description" content="How Yardlet and Yardlet Remote handle tasks, optional account sign-in, pairing and notifications.">
 <meta property="og:image" content="https://yardlet.app/screens/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -100,12 +100,11 @@
 <main class="doc" id="main">
   <div class="narrow">
     <h1>Yardlet Privacy Policy</h1>
-    <p class="updated">Last updated: November 25, 2026</p>
+    <p class="updated">Last updated: November 26, 2026</p>
 
-    <p class="summary">Yardlet is a desktop app that runs on your Mac. It has no analytics and does not send your
-      data to its developer. Its only online services are an update feed, a download link, a way to send feedback when
-      you choose to, and, if you pair a phone or another Mac, a relay that passes end-to-end encrypted messages it cannot
-      read. These services keep anonymous counts of the requests they answer, with nothing that identifies you.</p>
+    <p class="summary">Yardlet runs your agents on your Mac. Yardlet Remote lets you use those tasks from a
+      paired phone. Task contents are encrypted between your devices. This policy explains what stays on each
+      device and what Yardlet’s services receive for features such as optional sign-in, notifications and feedback.</p>
 
     <h2 id="what-yardlet-keeps-on-your-mac">What Yardlet keeps on your Mac</h2>
     <ul>
@@ -245,8 +244,8 @@
       see the connection itself: a room identifier, IP addresses, when devices connect and how much they send. The relay
       keeps anonymous counts of connections, how they close, notifications sent, sign-ins by provider and Macs added or
       removed, with no room identifier, IP address, account or device in them.
-      Notifications for the phone are encrypted the same way before they pass through the relay and Google's Firebase
-      Cloud Messaging; to deliver one, the relay uses the phone's notification token and keeps it only for that moment.
+      For notifications, your Mac encrypts the task details before the relay passes the message to Apple Push
+      Notification service on iPhone or Firebase Cloud Messaging on supported Android phones.
       If you sign in to the relay with GitHub or Google to find your Macs from anywhere, the relay keeps a hashed account
       identifier, your display name, your Macs' names and public keys, and a hash of each device's sign-in token with
       that device's name. Signing out on a device removes its token. The Google Play version of the phone app has no
@@ -279,6 +278,30 @@
       <li><strong>No analytics or ads.</strong> The app contains no analytics, advertising or crash-reporting code.</li>
     </ul>
 
+    <h2 id="iphone">Yardlet Remote for iPhone</h2>
+    <p>You can pair your iPhone by scanning the QR code on your Mac. Your messages, task history, approvals, photos
+      and files travel directly over local Wi-Fi or Tailscale when available, or through the encrypted relay.
+      An agent running on your Mac may send the material you give it to its AI provider under your own account.</p>
+    <ul>
+      <li><strong>Optional account sign-in.</strong> If you use GitHub or Google to find your Macs, the relay keeps a
+        hashed account identifier, the sign-in provider, your GitHub username or Google display name, and a hash
+        of your sign-in token with the device name and sign-in activity timestamps. The Macs you register with
+        the account are listed by name and public keys. Signing out ends that device’s session when the relay receives
+        the request. You can still connect to Macs you have already paired.</li>
+      <li><strong>Notifications.</strong> To receive notifications, your iPhone registers its Apple push token
+        with the relay for each paired Mac that uses the service. The relay stores the token with a delivery
+        target for that Mac. Apple delivers the encrypted task details and a generic fallback message.
+        Your iPhone decrypts the details for display. Removing a Mac revokes its delivery target when the relay
+        receives the request. The relay also expires targets after 90 days without use.</li>
+      <li><strong>On your iPhone.</strong> Pairing keys, the keys that open task notifications and your optional
+        sign-in token are stored in the iOS Keychain. Pairing and push keys are tied to this device. The app
+        keeps your list of paired Macs outside device backups. Files you preview are cached while the viewer is
+        open. The camera can scan a pairing code or take a photo you choose to send. Removing a Mac in Settings
+        deletes its local pairing and push keys. Keychain items can survive uninstalling the app.</li>
+    </ul>
+    <p>Yardlet Remote for iPhone has no advertising or analytics SDK. For privacy questions or a request about
+      account data, email <a href="mailto:zzunkie.dev@gmail.com">zzunkie.dev@gmail.com</a>.</p>
+
     <h2 id="limited-use">Limited Use</h2>
     <p>Yardlet's use and transfer of information received from Google APIs adheres to the
       <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
@@ -309,7 +332,7 @@
             <a href="https://github.com/zzunkie/yardlet">Source code</a>
             <a href="changelog.html">Changelog</a>
             <a href="blog/">Blog</a>
-            <a href="https://github.com/zzunkie/yardlet-site/issues">Contact</a>
+            <a href="support.html">Support</a>
           </nav>
           <p>Yardlet is a personal open-source project, released under the MIT License. This site uses no cookies,
             analytics or third-party requests.</p>
