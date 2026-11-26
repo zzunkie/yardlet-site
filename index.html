@@ -250,8 +250,8 @@
         </nav>
       </header>
 
-      <!-- Each section is a task: the question and Yardlet's answer, and beside them the panel it speaks of. With
-           home.js one is open at a time; without it they follow one another. -->
+      <!-- Each section is a task: the question and Yardlet's answer, and beside them the panel it speaks of. They run
+           down the page; with home.js the panels share one place beside the answers and show the one being read. -->
       <main id="main" class="views">
 
         <article class="view first" id="what" aria-labelledby="what-title">
@@ -277,7 +277,7 @@
             </div>
             </div>
           </div>
-          <section class="beside" aria-label="Two agents at work, recorded in Yardlet">
+          <section class="beside" aria-label="Two agents at work, recorded in Yardlet"><div class="beside-in">
             <div class="beside-bar tabs">
               <button class="tab" type="button" aria-pressed="false" data-done="4.4"><img src="assets/agents/claude-code.png" alt="" width="18" height="18"><span>Claude Code</span><i class="state"></i></button>
               <button class="tab" type="button" aria-pressed="true" data-done="6.45"><img src="assets/agents/codex.png" alt="" width="18" height="18"><span>Codex</span><i class="state"></i></button>
@@ -309,7 +309,7 @@
                 </video>
               </div>
             </div>
-          </section>
+          </div></section>
           <div class="more">
             <section class="measured" aria-label="Measured">
               <dl>
@@ -320,19 +320,6 @@
               <p class="note">Memory figures leave out the agents' own CLIs and were measured with Yardlet 0.11.10 on an M1 Pro MacBook Pro with macOS 15.6 in November 2026. <a href="blog/agent-apps-memory-cpu.html">How it was measured</a>.</p>
             </section>
             <p class="about">Yardlet is a free, open-source native macOS app for running coding agents side by side in one window of projects and tasks. It starts the real CLIs of Claude Code, Codex and other agents. Each agent keeps its own agent loop, sign&#8209;in and session history; Yardlet adds no agent layer and writes nothing into the agents' settings.</p>
-            <nav class="index" aria-label="More answers">
-              <ul>
-                <li><a href="#agents"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg><span>Any agent, same controls</span></a></li>
-                <li><a href="#accounts"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5.75" r="2.75"/><path d="M2.75 14c.6-2.6 2.7-4 5.25-4s4.65 1.4 5.25 4"/></svg><span>Every account's limits</span></a></li>
-                <li><a href="#together"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg><span>Agents that work together</span></a></li>
-                <li><a href="#review"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg><span>Review, then merge</span></a></li>
-                <li><a href="#browser"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg><span>A browser for agents</span></a></li>
-                <li><a href="#connectors"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 1.75v3M10.5 1.75v3M3.75 4.75h8.5v3a4.25 4.25 0 0 1-8.5 0zM8 12v2.25"/></svg><span>Connectors</span></a></li>
-                <li><a href="#phone"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg><span>From your phone</span></a></li>
-                <li><a href="#trust"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg><span>Safe to try</span></a></li>
-                <li><a href="#install"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg><span>Install</span></a></li>
-              </ul>
-            </nav>
           </div>
         </article>
 
@@ -352,7 +339,7 @@
             </dl>
             </div>
           </div>
-          <section class="beside" aria-label="Agents Yardlet works with">
+          <section class="beside" aria-label="Agents Yardlet works with"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 14.25 5 8 8.25 1.75 5zM1.75 8 8 11.25 14.25 8M1.75 11 8 14.25 14.25 11"/></svg>Agents</p></div>
             <div class="beside-body">
               <ul class="shelf" aria-label="Agents Yardlet works with">
@@ -368,7 +355,7 @@
                 <li><img src="assets/agents/pi.png" alt="" width="32" height="32">Pi</li>
               </ul>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="accounts" aria-labelledby="accounts-title">
@@ -380,7 +367,7 @@
             <p class="aside-line">From the blog: <a href="blog/accounts-with-room-left.html">starting each task on the account with room left</a>.</p>
             </div>
           </div>
-          <section class="beside" aria-label="Harness Accounts in Yardlet">
+          <section class="beside" aria-label="Harness Accounts in Yardlet"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.1"/><path d="M8 1.75v1.9M8 12.35v1.9M1.75 8h1.9M12.35 8h1.9M3.58 3.58l1.35 1.35M11.07 11.07l1.35 1.35M12.42 3.58l-1.35 1.35M4.93 11.07l-1.35 1.35"/></svg>Settings</p></div>
             <div class="beside-body page">
               <picture>
@@ -388,7 +375,7 @@
                 <img src="screens/panel-accounts-light.png" width="1192" height="1142" loading="lazy" alt="Settings, Harness Accounts: two Codex accounts and a Claude Code account, each with what is left of its five-hour and weekly limits, over the switches that choose the account for new tasks, continue after a limit and move tasks to an account with room.">
               </picture>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="together" aria-labelledby="together-title">
@@ -404,7 +391,7 @@
             <p class="aside-line">Yardlet itself is built this way: <a href="blog/one-session-runs-the-rest.html">one session runs the rest</a>.</p>
             </div>
           </div>
-          <section class="beside" aria-label="What one task sends another">
+          <section class="beside" aria-label="What one task sends another"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.25 5.25h9.5m-2.5-2.5 2.5 2.5-2.5 2.5M13.75 10.75h-9.5m2.5-2.5-2.5 2.5 2.5 2.5"/></svg>Between tasks</p></div>
             <div class="beside-body rail">
               <div class="step">
@@ -436,7 +423,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 </dl>
               </div>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="review" aria-labelledby="review-title">
@@ -447,7 +434,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <p>Diffs of the last turn, file restore and fork, a terminal and a files pane sit next to the conversation. The pull request card follows checks through your own <code>gh</code>, offers Fix CI when one fails, and merges when it is ready.</p>
             </div>
           </div>
-          <section class="beside" aria-label="The review panel in Yardlet">
+          <section class="beside" aria-label="The review panel in Yardlet"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.25v6M5 5.25h6M5 12.75h6"/></svg>Review</p><span class="beside-meta">3 files · +50 −4</span></div>
             <div class="beside-body diff">
               <picture>
@@ -459,7 +446,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <img src="screens/panel-pr-light.png" width="526" height="536" loading="lazy" alt="The pull request card: PR #128 is ready to merge, 5 checks passed and it is approved.">
               </picture></div>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="browser" aria-labelledby="browser-title">
@@ -470,7 +457,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <p>Agents drive a Chromium panel beside the conversation while you watch. They fill a sign-in saved in Yardlet's vault only on its own site, and a step only you can do, like a CAPTCHA, comes to you as a handed-over tab.</p>
             </div>
           </div>
-          <section class="beside" aria-label="What the browser does with your sign-ins">
+          <section class="beside" aria-label="What the browser does with your sign-ins"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.75 1.9 2.6 4 2.6 6.25S9.75 12.35 8 14.25C6.25 12.35 5.4 10.25 5.4 8S6.25 3.65 8 1.75z"/></svg>Browser</p></div>
             <div class="beside-body rail">
               <div class="step">
@@ -488,7 +475,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <div><dt>Default browser</dt><dd>Set Yardlet as your default browser, and links open beside the task you are looking at.</dd></div>
               </dl>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="connectors" aria-labelledby="connectors-title">
@@ -504,7 +491,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <p class="aside-line"><a href="blog/mcp-server-without-settings.html">How agents get it without a change to their settings</a>.</p>
             </div>
           </div>
-          <section class="beside" aria-label="Connectors in Yardlet">
+          <section class="beside" aria-label="Connectors in Yardlet"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.1"/><path d="M8 1.75v1.9M8 12.35v1.9M1.75 8h1.9M12.35 8h1.9M3.58 3.58l1.35 1.35M11.07 11.07l1.35 1.35M12.42 3.58l-1.35 1.35M4.93 11.07l-1.35 1.35"/></svg>Settings</p></div>
             <div class="beside-body page fades">
               <picture>
@@ -512,7 +499,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <img src="screens/panel-connectors-light.png" width="1192" height="1142" loading="lazy" alt="Settings, Connectors: GitHub, Linear, Notion, Sentry and Slack connected for every task, and Google to set up in one go.">
               </picture>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="phone" aria-labelledby="phone-title">
@@ -539,7 +526,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <!-- android:end -->
             </div>
           </div>
-          <section class="beside" aria-label="How the phone reaches your Mac">
+          <section class="beside" aria-label="How the phone reaches your Mac"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4.25" y="1.75" width="7.5" height="12.5" rx="1.75"/><path d="M7 12h2"/></svg>Remote</p></div>
             <div class="beside-body routes">
               <div class="route">
@@ -557,7 +544,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <p>End-to-end encrypted between the phone and the Mac. The relay can neither read nor store the messages.</p>
               </div>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="trust" aria-labelledby="trust-title">
@@ -592,7 +579,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             </section>
             </div>
           </div>
-          <section class="beside" aria-label="Where your data goes">
+          <section class="beside" aria-label="Where your data goes"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75 13.25 3.75v4c0 3.1-2.2 5.5-5.25 6.5-3.05-1-5.25-3.4-5.25-6.5v-4z"/></svg>What goes where</p></div>
             <div class="beside-body rail">
               <dl class="card">
@@ -618,7 +605,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             </details>
               <p class="step-note">The <a href="privacy.html">privacy policy</a> has the details.</p>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <article class="view" id="install" aria-labelledby="install-title">
@@ -644,7 +631,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
             <p class="aside-line">Free and open source, with no Yardlet account. Your agents keep their sign&#8209;ins. Or <a href="https://github.com/zzunkie/yardlet#development">build it from source</a>.</p>
             </div>
           </div>
-          <section class="beside" aria-label="Good to know before you install">
+          <section class="beside" aria-label="Good to know before you install"><div class="beside-in">
             <div class="beside-bar"><p class="pill"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75v8.5m0 0L4.75 7M8 10.25 11.25 7M2.75 13.75h10.5"/></svg>Good to know</p></div>
             <div class="beside-body rail">
               <dl class="card">
@@ -656,7 +643,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
                 <div><dt>Native app</dt><dd>Written in Swift and SwiftUI. Its built-in browser panel is Chromium. Windows and Linux: not yet.</dd></div>
               </dl>
             </div>
-          </section>
+          </div></section>
         </article>
 
         <footer class="foot">
@@ -676,7 +663,7 @@ Yardlet found these words in the person's own message in task 5C0A5E00-0000-0000
         </footer>
       </main>
 
-      <!-- The composer holds the next question; sending it opens that answer. Shown by home.js. -->
+      <!-- The composer holds the next question; sending it goes to that answer. Shown by home.js. -->
       <div class="dock" hidden>
         <a class="composer" href="#agents">
           <span class="draft">Run Codex, Claude Code and OpenCode tasks side by side.</span>

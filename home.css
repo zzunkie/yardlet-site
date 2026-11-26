@@ -1,6 +1,6 @@
-/* The home page, over style.css: the page is one Yardlet window on a desk, in today's window's colors. It fits the
-   screen, as the app's does: the sidebar's sections are tasks, one open at a time, with the question and its answer
-   on the left and the panel it speaks of on the right. The page scrolls only where an answer is longer than that. */
+/* The home page, over style.css: the page is one Yardlet window on a desk, in today's window's colors, as tall as the
+   screen. The sidebar's sections are tasks; their questions and answers run down the middle, and on the right is the
+   panel the answer being read speaks of. */
 
 :root {
   --desk: #14264a;
@@ -132,8 +132,6 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
   min-height: calc(var(--win-h) - var(--bar-h)); padding-bottom: var(--dock-h); outline: 0;
 }
 .view + .view { border-top: 1px solid var(--line); }
-.one .view { border-top: 0; }
-.one .view[hidden] { min-height: 0; padding: 0; }
 .talk, .more, .home .foot { grid-column: 1; min-width: 0; padding-inline: max(var(--gutter), (100% - 580px) / 2); }
 .talk { container-type: inline-size; padding-top: 14px; }
 .home .ask { max-width: 100%; text-wrap: balance; padding: 9px 15px; border-radius: 13px; box-shadow: inset 0 0 0 1px var(--bubble-ring); font-size: 15px; }
@@ -166,10 +164,22 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 /* The panel beside the answer, with its own title bar */
 .beside {
   grid-column: 2; grid-row: 1 / span 3; position: sticky; top: var(--py); align-self: start;
-  display: grid; grid-template-rows: var(--bar-h) minmax(0, 1fr);
   height: var(--win-h); margin-top: calc(-1 * var(--bar-h)); margin-bottom: calc(-1 * var(--dock-h));
-  border-left: 1px solid var(--line); background: var(--win);
 }
+.beside-in { display: grid; grid-template-rows: var(--bar-h) minmax(0, 1fr); height: 100%; border-left: 1px solid var(--line); background: var(--win); }
+.views > .foot { margin-right: var(--beside); }
+
+/* With home.js the answers run down one column, and the panels share the other: each spans the whole page, out of
+   sight until its answer is the one being read. */
+.flow .views { position: relative; padding-right: var(--beside); }
+/* An answer reached from the composer fills the window above it, so the next question comes out of the composer. */
+.flow .view { display: block; min-height: calc(var(--win-h) - var(--bar-h) - var(--dock-h) + 24px); padding-bottom: 96px; }
+.flow .view + .view { border-top: 0; }
+.flow .beside { position: absolute; top: calc(-1 * var(--bar-h)); right: 0; bottom: 0; width: var(--beside); height: auto; margin: 0;
+  align-self: stretch; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.flow .beside-in { position: sticky; top: var(--py); height: var(--win-h); }
+.flow .current .beside { z-index: 1; opacity: 1; pointer-events: auto; }
+.flow .views > .foot { margin-right: 0; padding-bottom: calc(var(--dock-h) + 8px); }
 .beside-bar { display: flex; align-items: center; gap: 8px; min-width: 0; padding: 0 12px; }
 .pill, .tab { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 10px; border-radius: 9px; font: 600 14px/1 var(--font); color: var(--text); }
 .pill { box-shadow: 0 0 0 1px var(--card-ring); }
@@ -192,7 +202,7 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 
 .beside-body { min-height: 0; overflow: hidden; position: relative; }
 /* The recording's own shade of the window, for its title bar too. */
-.first .beside { background: var(--film); }
+.first .beside-in { background: var(--film); }
 .home .strip-box { aspect-ratio: auto; max-height: none; border-radius: 0; background: none; box-shadow: none; margin: 0; }
 .strip { position: absolute; left: 0; top: 0; width: 200%; aspect-ratio: 2236 / 1584; transition: transform 0.42s cubic-bezier(0.3, 0.75, 0.2, 1); }
 .strip[data-show="1"] { transform: translateX(calc(-50% - 1px)); }
@@ -249,7 +259,6 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 .measured dd { margin-top: 8px; font-size: 13px; line-height: 1.4; color: var(--text-2); }
 .measured .note { padding: 10px 16px 11px; border-top: 1px solid var(--line); font-size: 12.5px; line-height: 1.5; color: var(--text-3); }
 .about { margin-top: 22px; font-size: 15px; line-height: 1.6; color: var(--text-2); }
-.index { display: none; }
 
 /* Work a task folds: what an answer rests on, one line until it is opened. */
 .work { margin-top: 18px; }
@@ -290,11 +299,12 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 .composer:hover .send { background: var(--btn-hover); }
 
 @media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .flow .current .beside-body { animation: answered 0.42s ease-out both; }
   .draft::after { animation: caret 1.1s steps(1) infinite; }
   @keyframes caret { 50% { opacity: 0; } }
   .sent .ask { animation: sent 0.34s cubic-bezier(0.2, 0.9, 0.3, 1.15) both; }
   .sent .reply, .sent .more { animation: answered 0.42s 0.2s ease-out both; }
-  .sent .beside-body { animation: answered 0.42s 0.1s ease-out both; }
   @keyframes sent { from { opacity: 0; transform: translateY(26px) scale(0.97); } }
   @keyframes answered { from { opacity: 0; transform: translateY(6px); } }
 }
@@ -326,10 +336,14 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
 @media (max-width: 860px), (max-aspect-ratio: 1/1), (max-height: 520px) {
   :root { --win-max: 100vh; }
   .home .bar { margin-right: 0; }
-  .view { display: block; }
+  .views, .flow .views { padding-right: 0; }
+  .view, .flow .view { display: block; min-height: 0; padding-bottom: 0; }
+  .view + .view { margin-top: 64px; border-top: 0; }
+  .views > .foot { margin-right: 0; }
   .talk, .more, .home .foot { padding-inline: max(var(--gutter), (100% - 640px) / 2); }
   .home .reply h1 { font-size: clamp(36px, 10.4cqw, 60px); }
-  .beside { position: static; height: auto; margin: 32px 0 0; border: solid var(--line); border-width: 1px 0; grid-template-rows: var(--bar-h) auto; }
+  .beside, .flow .beside { position: static; width: auto; height: auto; margin: 32px 0 0; opacity: 1; pointer-events: auto; transition: none; }
+  .beside-in, .flow .beside-in { position: static; height: auto; grid-template-rows: var(--bar-h) auto; border: solid var(--line); border-width: 1px 0; }
   .home .strip-box { aspect-ratio: 2236 / 1584; }
   .strip { width: 100%; }
   .strip[data-show] { transform: none; }
@@ -337,17 +351,13 @@ html { scroll-padding-top: calc(var(--py) + var(--bar-h) + 16px); }
   .tabs .tab, .tabs .tab[aria-pressed="true"] { padding: 0 18px; color: var(--text); font-weight: 600; box-shadow: none; pointer-events: none; }
   .tabs .tab + .tab { border-left: 1px solid var(--line); border-radius: 0; height: 100%; }
   .tabs .pause { position: absolute; right: 12px; }
-  .shelf li { padding: 24px 8px; }
+  .shelf li { padding: 18px 8px; gap: 10px; }
+  .shelf img { width: 36px; height: 36px; border-radius: 8px; }
   .rail { padding: 6px max(var(--gutter), (100% - 640px) / 2) 22px; overflow: visible; }
   .page { padding: 0 max(0px, (100% - 640px) / 2); }
   .diff { padding-bottom: 24px; }
   .pr { position: static; margin: 18px 18px 0 auto; width: 265px; }
   .dock { margin-right: 0; padding-inline: max(var(--gutter), (100% - 640px) / 2); }
-  .index { display: block; margin-top: 30px; }
-  .index ul { border-radius: 14px; box-shadow: 0 0 0 1px var(--card-ring); overflow: hidden; }
-  .index li + li { border-top: 1px solid var(--line); }
-  .index a { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 8px 16px; color: var(--text); text-decoration: none; font-size: 15px; }
-  .index a svg { flex: none; width: 17px; height: 17px; color: var(--text-3); }
 }
 @media (max-width: 640px) {
   .home { background: var(--win); }
