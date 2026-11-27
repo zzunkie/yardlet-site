@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://yardlet.app"
 PAGES = {"": "index.html", "privacy.html": "privacy.html", "terms.html": "terms.html",
-         "changelog.html": "changelog.html", "blog/": "blog/index.html"}
+         "support.html": "support.html", "changelog.html": "changelog.html", "blog/": "blog/index.html"}
 
 
 def git(*args):
