@@ -102,6 +102,52 @@
     <h1>Yardlet Changelog</h1>
     <p class="summary">What changed in each version of the Yardlet app. Yardlet updates itself, and <a href="https://github.com/zzunkie/yardlet/releases">GitHub Releases</a> has the downloads. Changes on <code>main</code> that are not released yet are not listed.</p>
 
+    <section class="release" id="v0.11.18" aria-labelledby="v0.11.18-title">
+      <h2 id="v0.11.18-title">Yardlet 0.11.18</h2>
+      <p class="updated"><time datetime="2026-11-27">November 27, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.18">Release on GitHub</a></p>
+      <h3>Touch ID passkeys</h3>
+      <ul>
+        <li>The built-in browser can now save a passkey on this Mac with Touch ID, instead of only offering the phone QR code.</li>
+        <li>Passkeys are saved on this Mac only and are not synced or backed up; keep another sign-in method as well.</li>
+      </ul>
+      <h3>Home and desk</h3>
+      <ul>
+        <li>The home now opens on the desk, which gathers what waits on you, what is running and what just finished. Choose <strong>Projects</strong> to switch back; the <strong>Now | Projects</strong> switch shows once you have a project or a task.</li>
+        <li>The desk shows a command to approve in a code box and any other request as a sentence, and each request line names its kind: command, approval or question.</li>
+        <li>Everything waiting on you uses the same colors as the sidebar: green for an approval, orange for a question or a browser wait, red for a failure.</li>
+        <li>With no task yet, the home offers a single import action. With no harness connected, the composer points you to <strong>Manage harnesses</strong>.</li>
+      </ul>
+      <h3>Composer and conversation</h3>
+      <ul>
+        <li>The composer shows Markdown as you type: bold, italic, inline and fenced code, quotes and headings take their look while the marks stay visible.</li>
+        <li>Lists continue on Return and end on an empty item, Tab and Shift-Tab indent and outdent list lines, and Cmd-B, Cmd-I and Cmd-E toggle bold, italic and code.</li>
+        <li>Request cards, the composer row and the side panel are tidier, and a waiting status line is easier to read.</li>
+        <li><code>conversation://</code> links, which Antigravity writes for its subagents, now open in Yardlet: the subagent in the side panel, or the matching task.</li>
+      </ul>
+      <h3>Browser</h3>
+      <ul>
+        <li>A saved sign-in now fills inside a frame when the frame and every page around it are https pages of the item's own sites. Frames from other sites stay refused.</li>
+      </ul>
+      <h3>Harnesses</h3>
+      <ul>
+        <li>OpenCode tasks that share a folder now run on separate processes, so one task's tools no longer reach Yardlet as another task.</li>
+        <li>Archiving or restoring a Codex task archives or unarchives its thread in Codex too, whether or not the task is attached, so the Codex app and CLI show the same list.</li>
+      </ul>
+      <h3>Settings and look</h3>
+      <ul>
+        <li>Harness Accounts groups each harness's accounts with tighter detail lines.</li>
+        <li><strong>Messages sent while a task works</strong> replaces "Follow-up behavior", with <strong>After the turn</strong> and <strong>Send now</strong> and a line on what each does.</li>
+        <li>In dark mode the sidebar draws Codex's dark mark, and approval and question marks are easier to read in light mode.</li>
+        <li><code>show_widget</code> views follow Yardlet's light and dark theme.</li>
+      </ul>
+      <h3>Fixes and performance</h3>
+      <ul>
+        <li>Signing in to a Yardlet account no longer flashes and closes when the sign-in sheet can't show, most often with a default browser other than Safari: Yardlet finishes the sign-in in your default browser instead. A long Mac name no longer makes the sign-in fail, and errors are readable.</li>
+        <li>MCP Code Mode's tool search runs off the main thread, so it no longer stalls the window with hundreds of connector tools.</li>
+        <li>The Yardlet account sign-in messages are translated into Korean, Japanese and Simplified Chinese.</li>
+      </ul>
+    </section>
+
     <section class="release" id="v0.11.17" aria-labelledby="v0.11.17-title">
       <h2 id="v0.11.17-title">Yardlet 0.11.17</h2>
       <p class="updated"><time datetime="2026-11-26">November 26, 2026</time> · <a href="https://github.com/zzunkie/yardlet/releases/tag/v0.11.17">Release on GitHub</a></p>

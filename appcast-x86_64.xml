@@ -3,6 +3,59 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.18</title>
+            <pubDate>Fri, 27 Nov 2026 10:09:48 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>40</sparkle:version>
+            <sparkle:shortVersionString>0.11.18</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.18
+
+## Touch ID passkeys
+
+- The built-in browser can now save a passkey on this Mac with Touch ID, instead of only offering the phone QR code.
+- Passkeys are saved on this Mac only and are not synced or backed up; keep another sign-in method as well.
+
+## Home and desk
+
+- The home now opens on the desk, which gathers what waits on you, what is running and what just finished. Choose **Projects** to switch back; the **Now | Projects** switch shows once you have a project or a task.
+- The desk shows a command to approve in a code box and any other request as a sentence, and each request line names its kind: command, approval or question.
+- Everything waiting on you uses the same colors as the sidebar: green for an approval, orange for a question or a browser wait, red for a failure.
+- With no task yet, the home offers a single import action. With no harness connected, the composer points you to **Manage harnesses**.
+
+## Composer and conversation
+
+- The composer shows Markdown as you type: bold, italic, inline and fenced code, quotes and headings take their look while the marks stay visible.
+- Lists continue on Return and end on an empty item, Tab and Shift-Tab indent and outdent list lines, and Cmd-B, Cmd-I and Cmd-E toggle bold, italic and code.
+- Request cards, the composer row and the side panel are tidier, and a waiting status line is easier to read.
+- `conversation://` links, which Antigravity writes for its subagents, now open in Yardlet: the subagent in the side panel, or the matching task.
+
+## Browser
+
+- A saved sign-in now fills inside a frame when the frame and every page around it are https pages of the item's own sites. Frames from other sites stay refused.
+
+## Harnesses
+
+- OpenCode tasks that share a folder now run on separate processes, so one task's tools no longer reach Yardlet as another task.
+- Archiving or restoring a Codex task archives or unarchives its thread in Codex too, whether or not the task is attached, so the Codex app and CLI show the same list.
+
+## Settings and look
+
+- Harness Accounts groups each harness's accounts with tighter detail lines.
+- **Messages sent while a task works** replaces "Follow-up behavior", with **After the turn** and **Send now** and a line on what each does.
+- In dark mode the sidebar draws Codex's dark mark, and approval and question marks are easier to read in light mode.
+- `show_widget` views follow Yardlet's light and dark theme.
+
+## Fixes and performance
+
+- Signing in to a Yardlet account no longer flashes and closes when the sign-in sheet can't show, most often with a default browser other than Safari: Yardlet finishes the sign-in in your default browser instead. A long Mac name no longer makes the sign-in fail, and errors are readable.
+- MCP Code Mode's tool search runs off the main thread, so it no longer stalls the window with hundreds of connector tools.
+- The Yardlet account sign-in messages are translated into Korean, Japanese and Simplified Chinese.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.18/Yardlet-0.11.18-x86_64.dmg" length="209230967" type="application/octet-stream" sparkle:edSignature="96v08tZV3hTnkTYoNjjAVsrGQNiUdM9ZOTH0X0XaIambxAwFJLCc8P0H5tNCjLw2X4AzESXLpFAaG0empBO2CQ=="/>
+        </item>
+        <item>
             <title>0.11.17</title>
             <pubDate>Thu, 26 Nov 2026 12:13:12 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -106,59 +159,6 @@
 - A saved-password fill on a page that changed underneath it now asks the agent to read the page again instead of reporting a browser refusal.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.16/Yardlet-0.11.16-x86_64.dmg" length="208618632" type="application/octet-stream" sparkle:edSignature="rk9GsZy+vVkUcq+LD+hmoKJRUBfa79agrBvj4phSM9QpA87HLnyDmroiQSgL21+fSL+666NTzdOEbMZGFeccDA=="/>
-        </item>
-        <item>
-            <title>0.11.15</title>
-            <pubDate>Tue, 24 Nov 2026 02:45:40 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>37</sparkle:version>
-            <sparkle:shortVersionString>0.11.15</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.15
-
-## Languages
-
-- Japanese and Simplified Chinese localizations are now included alongside English and Korean, with English fallback for any missing string.
-
-## Workspace and sidebar
-
-- A unified vertical sidebar navigation organizes Home, Mail, Calendar, Tasks, and Projects with refined surface depth, composer contrast, and an accent send button.
-- Turn a chat into a project of its own folder from its menu or by dropping it onto Projects, start nested tasks from a task's menu, collapse task families inline, and clear the hero project filter in one click.
-- The turn rail's marks are easier to click without a focus ring.
-
-## Antigravity and other harnesses
-
-- Queued messages on Antigravity and other turn-by-turn harnesses now offer **Stop and send**, cancelling the running turn and sending the chosen follow-up immediately once the turn stops.
-- Antigravity connector tools route through a compact MCP gateway and avoid duplicate MCP server registrations on resume, keeping built-in tools within the eager tool budget, and Yardlet MCP tool rows display clean names without per-session hash prefixes.
-- Antigravity subagents appear in the session rail and side panel, autonomous turns no longer duplicate or leak stale streams, and scheduled-task and session tools support Antigravity permission modes.
-- Interactive `show_widget` views render locally and in remote desktop windows for ACP harnesses.
-- Live thinking previews stream without Commentary flicker across harnesses, with reliability fixes across non-primary harness adapters.
-
-## Another Mac's tasks
-
-- Mail, Calendar, and command shortcuts are available in the remote Mac window, and connectors can be set up from remote Mac settings.
-- Remote browser tabs capture faster and preserve viewport width without clipping.
-- Remote archive navigation no longer resets unexpectedly, and chats are labeled Chats on another Mac's Environment card.
-
-## Browser and tools
-
-- Copy a saved password from the browser key menu.
-- Agent tools can read archived tasks in read-only mode.
-- Optional experimental **MCP Code Mode** under **Settings › Connectors** collapses flat connector schemas behind `search_yardlet_tools` and a sandboxed JavaScript `run_yardlet_script` tool (off by default).
-- Released `yardlet-mcp` servers exit cleanly when no longer needed.
-
-## Faster and fixes
-
-- Conversation search runs outside the sidebar render, finished subagent conversations save off the main thread, and conversations draw through the unified row list.
-- Fixed a main-queue deadlock when background preference writes notified `UserDefaults` observers while the main thread flushed state.
-- Sidebar task commands are guarded outside the Tasks section, and remote push targets bind to the room that registered them.
-
-## Thanks
-
-- Thanks to @Greensy24 for contributing remote Mac connector setup (#1007).
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.15/Yardlet-0.11.15-x86_64.dmg" length="208406741" type="application/octet-stream" sparkle:edSignature="NKjsEoQtsxaEpTWyTVg74CiibOH7F+08vChcJDWWW+eSvAEQ+ysSA0BaOjt6FDOdBc40b/SnUnj5eWWZYPTSDQ=="/>
         </item>
     </channel>
 </rss>
