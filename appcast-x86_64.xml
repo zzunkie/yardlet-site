@@ -3,6 +3,22 @@
     <channel>
         <title>Yardlet</title>
         <item>
+            <title>0.11.19</title>
+            <pubDate>Fri, 27 Nov 2026 15:10:43 +0900</pubDate>
+            <link>https://yardlet.app</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>41</sparkle:version>
+            <sparkle:shortVersionString>0.11.19</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.19
+
+## Fixes and performance
+
+- The composer accepts pasted text again. 0.11.18 narrowed its paste types to the modern string UTI, which left AppKit's **Paste** and **Paste and Match Style** with nothing to read from the clipboard: text pastes dropped silently and both menu items were grayed out. Listing the legacy string pasteboard type alongside the modern UTI brings pasting back.
+]]></description>
+            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.19/Yardlet-0.11.19-x86_64.dmg" length="209222911" type="application/octet-stream" sparkle:edSignature="CcbEUl/fUGDrtn1UV9KB4V34iiWl/90v4olMdfJT7BkQFLdvQzhg3Es//Pmjb4H4/IAhIrB7BoqGe5q59VUKDA=="/>
+        </item>
+        <item>
             <title>0.11.18</title>
             <pubDate>Fri, 27 Nov 2026 10:09:48 +0900</pubDate>
             <link>https://yardlet.app</link>
@@ -111,54 +127,6 @@
 - Long answers redraw faster: a message's Markdown is read again only where it changed.
 ]]></description>
             <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.17/Yardlet-0.11.17-x86_64.dmg" length="209035290" type="application/octet-stream" sparkle:edSignature="fufb3IGoy22ieSfyUPffpMt8OCvyQYLG7sD3m8QDfQ29kve+lozpj1r+dZxDpLZEeVPHo6sbSnqVmDROX4isCw=="/>
-        </item>
-        <item>
-            <title>0.11.16</title>
-            <pubDate>Wed, 25 Nov 2026 00:14:43 +0900</pubDate>
-            <link>https://yardlet.app</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/zzunkie/yardlet/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>38</sparkle:version>
-            <sparkle:shortVersionString>0.11.16</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Yardlet 0.11.16
-
-## Conversation
-
-- Messages from Claude Code, Antigravity and other harnesses that don't mark working notes now stay visible in full, and tool-only stretches between messages fold into one-line summaries.
-- Turns with several messages offer **Copy full response**.
-- Hover or focus a message to see when it was sent.
-
-## Windows, tabs and panes
-
-- Two or more tabs in a window get their own browser-style tab bar.
-- The focused split pane stands out more clearly, and a pane can be maximized with ⌃⌘↩.
-- The Session Rail's on/off state now stays with each task, across split panes and windows.
-- Narrow side panels and the raised rail float as inset cards, with finer alignment, spacing and colors throughout.
-
-## Simulators
-
-- When another task already uses an iOS simulator or Android emulator, a task gets its own isolated copy of that device.
-- A task can open several Simulator tabs, each with its own device, and xctest batches no longer run in the terminal.
-
-## Settings and tools
-
-- **MCP Code Mode** moved to **Settings › General › Tasks**.
-- `browser_snapshot` accepts `query` and `maxResults` to return only matching parts of a page.
-
-## Codex and Antigravity
-
-- Codex speed tiers and lazy MCP startup work with Codex 0.172.
-- Antigravity offers only conversations still on disk, and its index no longer stops at a fixed size.
-
-## Faster
-
-- Markdown rendering in transcripts, power source checks, lid helper status at launch and file change previews no longer hold up the main thread.
-
-## Fixes
-
-- A saved-password fill on a page that changed underneath it now asks the agent to read the page again instead of reporting a browser refusal.
-]]></description>
-            <enclosure url="https://github.com/zzunkie/yardlet/releases/download/v0.11.16/Yardlet-0.11.16-x86_64.dmg" length="208618632" type="application/octet-stream" sparkle:edSignature="rk9GsZy+vVkUcq+LD+hmoKJRUBfa79agrBvj4phSM9QpA87HLnyDmroiQSgL21+fSL+666NTzdOEbMZGFeccDA=="/>
         </item>
     </channel>
 </rss>
